@@ -1,4 +1,4 @@
-#node js 설치
+﻿#node js 설치
 node -v
 npm -v
 
@@ -73,3 +73,7 @@ master를 default 로 변경후
 
 git bash에서 git clone https://github.com/usakiman/nodejs-test.git
 하면 연결
+
+
+#파일 삭제후
+git commit -a 하면?
