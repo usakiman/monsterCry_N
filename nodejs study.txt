@@ -58,3 +58,15 @@ git push origin master
 master라는 branch를 생성하면서 푸시
 
 
+#내용 변경시
+git add *
+git commit -m "내용"
+git push origin master
+[origin은 remote, master는 branch]
+
+#새로운 디렉토리에 연결시
+main 이 default branch로 되어있으면 
+master를 default 로 변경후
+
+git bash에서 git clone https://github.com/usakiman/nodejs-test.git
+하면 연결
