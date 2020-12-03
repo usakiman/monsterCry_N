@@ -1,0 +1,31 @@
+#node js 설치
+node -v
+npm -v
+
+
+#package.json
+npm init
+npm init -y
+
+package.json 내에 scripts 에 기술하면 cmd에서 그대로 실행가능
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev" : "node index.js"
+  }
+
+node start
+node run dev
+
+
+
+#npm 설치
+설치하면 node_modules 라는 폴더에 모두 묶임
+require 시 상대경로 지정안해도 바로 인식
+
+npm install express
+npm install uuid4
+npm update -> package.json dependencies 에 기술된 모듈 모두 최신버전 업데이트
+npm install -> package.json dependencies 에 기술된 모듈 모두 설치
+

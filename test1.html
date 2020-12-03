@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<div id="dnum"></div>    
+<button id="plus">더하기</button>
+<button id="minus">빼기</button>
+
+<input type="button" value="abcd" onclick="ab();">
+
+<script>
+
+    function ab() {
+        alert("abcd");
+    }
+
+    var num = 10;
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#dnum").innerHTML = "num = " + num;
+    }); 
+    console.log(num);
+
+    document.querySelector("#plus").addEventListener("click", function () {
+        num++;
+        document.querySelector("#dnum").innerHTML = "num = " + num;
+        console.log("plus=" + num);
+    });
+
+    document.querySelector("#minus").addEventListener("click", function () {
+        num--;
+        document.querySelector("#dnum").innerHTML = "num = " + num;
+        console.log("minus=" + num);
+    });
+
+    let func1 = (a,b) => {
+        return a+b;
+    }
+
+    const func2 = (a,...b) => {        
+        
+        let c = 0;
+        for (let index = 0; index < b.length; index++) {
+            c += a + b[index];
+        }        
+        
+        return c;
+    }
+
+    console.log(func1(1,1));
+    console.log(func2(1,1,2,3,4,5,5,5,5,5));
+
+</script>
+    
+</body>
+</html>

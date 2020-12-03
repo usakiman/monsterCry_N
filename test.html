@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+
+function Car(a,b) {
+    this.body = a;
+    this.color = b;    
+}
+
+var car1 = new Car("sm3", "red");
+var car2 = new Car("sm35", "black");
+
+console.log(car1.body + ":" + car1.color);
+console.log(car2.body + ":" + car2.color);
+
+Car.prototype.run = function () {
+    var a = [1,2,3];
+
+    for (var i = 0; i < a.length; i++)
+    {
+       console  .log(a[i]); 
+    }
+}
+
+// car1.run();
+function show ( v, callback) {
+    var a = 9;
+    var b = 9;
+    var c = a+b;
+
+    console.log(v + "=" + c);
+    //callback(c);
+
+    return function(d) {
+        c++;
+        c = c+d;
+        console.log(c);
+    }
+}
+
+var rv1 = show("첫번째", function (a) {
+    console.log(a);
+});
+
+rv1(5);
+rv1(7);
+
+var rv2 = show("두번째", function (a) {
+    console.log(a);
+});
+
+rv2(2);
+rv2(4);
+rv2(7);
+rv2(8);
+
+
+</script>    
+
+
+</body>
+</html>
