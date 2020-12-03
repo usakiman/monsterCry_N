@@ -1,4 +1,4 @@
-#node js ¼³Ä¡
+#node js ì„¤ì¹˜
 node -v
 npm -v
 
@@ -7,7 +7,7 @@ npm -v
 npm init
 npm init -y
 
-package.json ³»¿¡ scripts ¿¡ ±â¼úÇÏ¸é cmd¿¡¼­ ±×´ë·Î ½ÇÇà°¡´É
+package.json ë‚´ì— scripts ì— ê¸°ìˆ í•˜ë©´ cmdì—ì„œ ê·¸ëŒ€ë¡œ ì‹¤í–‰ê°€ëŠ¥
 
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -20,53 +20,56 @@ node run dev
 
 
 
-#npm ¼³Ä¡
-https://npmjs.com ¿¡¼­ È®ÀÎ °¡´É
-¼³Ä¡ÇÏ¸é node_modules ¶ó´Â Æú´õ¿¡ ¸ğµÎ ¹­ÀÓ
-require ½Ã »ó´ë°æ·Î ÁöÁ¤¾ÈÇØµµ ¹Ù·Î ÀÎ½Ä
+#npm ì„¤ì¹˜
+https://npmjs.com ì—ì„œ í™•ì¸ ê°€ëŠ¥
+ì„¤ì¹˜í•˜ë©´ node_modules ë¼ëŠ” í´ë”ì— ëª¨ë‘ ë¬¶ì„
+require ì‹œ ìƒëŒ€ê²½ë¡œ ì§€ì •ì•ˆí•´ë„ ë°”ë¡œ ì¸ì‹
 
 npm install express
 npm install uuid4
-npm update -> package.json dependencies ¿¡ ±â¼úµÈ ¸ğµâ ¸ğµÎ ÃÖ½Å¹öÀü ¾÷µ¥ÀÌÆ®
-npm install -> package.json dependencies ¿¡ ±â¼úµÈ ¸ğµâ ¸ğµÎ ¼³Ä¡
+npm update -> package.json dependencies ì— ê¸°ìˆ ëœ ëª¨ë“ˆ ëª¨ë‘ ìµœì‹ ë²„ì „ ì—…ë°ì´íŠ¸
+npm install -> package.json dependencies ì— ê¸°ìˆ ëœ ëª¨ë“ˆ ëª¨ë‘ ì„¤ì¹˜
 
 
 
 # github
-git bash ÈÄ
+git bash í›„
 git clone https://github.com/usakiman/nodejs-test.git
-ÇÏ¸é ÇØ´ç Æú´õ¿¡ gitÀÚ·á ´Ù¿î·Îµå
+í•˜ë©´ í•´ë‹¹ í´ë”ì— gitìë£Œ ë‹¤ìš´ë¡œë“œ
 
 git config --global user.name "usakiman"
 git config --global user.email "choiyw2@gmail.com"
 
-ÇØ´çÆú´õ¿¡¼­ git init ÇÏ¸é .git Æú´õ »ı¼º
+í•´ë‹¹í´ë”ì—ì„œ git init í•˜ë©´ .git í´ë” ìƒì„±
 
--ÇØ´çÆú´õ¿¡¼­ 
-#ÇØ´ç Æú´õ Á¢¼Ó
+-í•´ë‹¹í´ë”ì—ì„œ 
+#í•´ë‹¹ í´ë” ì ‘ì†
 git remote add origin https://github.com/usakiman/nodejs-test.git
 
-#Ä¿¹ÔÇÒ ÆÄÀÏµé ¿Ã¸®±â
+#ì»¤ë°‹í•  íŒŒì¼ë“¤ ì˜¬ë¦¬ê¸°
 git add *
 
-#Ä¿¹ÔÇÏ±â
-git commit -m "³»¿ë"
+#ì»¤ë°‹í•˜ê¸°
+git commit -m "ë‚´ìš©"
 
-#Çª½Ã
+#í‘¸ì‹œ
 git push origin master
 
-master¶ó´Â branch¸¦ »ı¼ºÇÏ¸é¼­ Çª½Ã
+masterë¼ëŠ” branchë¥¼ ìƒì„±í•˜ë©´ì„œ í‘¸ì‹œ
 
 
-#³»¿ë º¯°æ½Ã
+#ë‚´ìš© ë³€ê²½ì‹œ
 git add *
-git commit -m "³»¿ë"
+git commit -m "ë‚´ìš©"
 git push origin master
-[originÀº remote, master´Â branch]
+[originì€ remote, masterëŠ” branch]
 
-#»õ·Î¿î µğ·ºÅä¸®¿¡ ¿¬°á½Ã
-main ÀÌ default branch·Î µÇ¾îÀÖÀ¸¸é 
-master¸¦ default ·Î º¯°æÈÄ
+masterê°€ default ì¼ì‹œ
+git push ë§Œ í•´ë„ ë°”ë¡œ push ê°€ëŠ¥.
 
-git bash¿¡¼­ git clone https://github.com/usakiman/nodejs-test.git
-ÇÏ¸é ¿¬°á
+#ìƒˆë¡œìš´ ë””ë ‰í† ë¦¬ì— ì—°ê²°ì‹œ
+main ì´ default branchë¡œ ë˜ì–´ìˆìœ¼ë©´ 
+masterë¥¼ default ë¡œ ë³€ê²½í›„
+
+git bashì—ì„œ git clone https://github.com/usakiman/nodejs-test.git
+í•˜ë©´ ì—°ê²°
