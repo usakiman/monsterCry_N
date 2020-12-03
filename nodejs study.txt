@@ -37,6 +37,7 @@ git bash 후
 git clone https://github.com/usakiman/nodejs-test.git
 하면 해당 폴더에 git자료 다운로드
 
+#처음에 한번만 하면 인식
 git config --global user.name "usakiman"
 git config --global user.email "choiyw2@gmail.com"
 
