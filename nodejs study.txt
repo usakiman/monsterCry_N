@@ -77,3 +77,9 @@ git bash에서 git clone https://github.com/usakiman/nodejs-test.git
 
 #파일 삭제후
 git commit -a 하면?
+
+#svn과 차이점
+update -> git pull
+commit -> git commit -> git push
+get -> clone
+set -> remote add
