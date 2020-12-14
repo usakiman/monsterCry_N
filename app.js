@@ -11,6 +11,7 @@ const express = require("express");
 
 const admin = require("./routes/admin");
 const nunjucks = require("nunjucks");
+const logger = require("morgan");
 
 const app = express();
 const port = 3000;
@@ -20,6 +21,8 @@ nunjucks.configure("template", {
     express : app
 });
 
+// 미들웨어 셋팅
+app.use( logger("dev") );
 
 app.get('/', (req, res) => {
     res.send("hi express");
@@ -29,7 +32,12 @@ app.get('/fastcampus', (req, res) => {
     res.send("fastcampus get2222222222");
 });
 
-app.use("/admin", admin);
+function vipMiddleWare(req, res, next) {
+    console.log("최우선 middleware");
+    next();
+}
+
+app.use("/admin", vipMiddleWare, admin);
 
 app.listen( port, () => {
     console.log("express listening port", port);
