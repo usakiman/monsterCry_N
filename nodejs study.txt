@@ -33,15 +33,17 @@ npm install -> package.json dependencies 에 기술된 모듈 모두 설치
 
 
 # github
-git bash 후
-git clone https://github.com/usakiman/nodejs-test.git
+git bash 후 (설정할 폴더에서 마우스 오른쪽 버튼)
+git clone https://github.com/usakiman/nodejs-test (브라우저에서 계정 인증 필요)
 하면 해당 폴더에 git자료 다운로드
 
 #처음에 한번만 하면 인식
 git config --global user.name "usakiman"
 git config --global user.email "choiyw2@gmail.com"
 
-해당폴더에서 git init 하면 .git 폴더 생성
+#해당폴더에서 git init 하면 .git 폴더 생성
+
+#위 작업만 하면 commit 가능
 
 -해당폴더에서 
 #해당 폴더 접속
