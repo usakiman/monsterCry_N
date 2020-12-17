@@ -12,6 +12,7 @@ const express = require("express");
 const admin = require("./routes/admin");
 const nunjucks = require("nunjucks");
 const logger = require("morgan");
+const bodyParser = require("body-parser");
 
 const app = express();
 const port = 3000;
@@ -23,6 +24,10 @@ nunjucks.configure("template", {
 
 // 미들웨어 셋팅
 app.use( logger("dev") );
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended : false}));
+
+app.use("/files", express.static("uploads"));
 
 app.get('/', (req, res) => {
     res.send("hi express");
