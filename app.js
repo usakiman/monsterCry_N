@@ -9,30 +9,16 @@
 
 const express = require("express");
 const nunjucks = require("nunjucks");
-<<<<<<< HEAD
 const logger = require('morgan');
 const bodyParser = require('body-parser');	
-=======
-const logger = require("morgan");
-const bodyParser = require("body-parser");
->>>>>>> a0151b5e1f611987e584b311c960520a7a951a7d
 
 class App {
 
     constructor () {
         this.app = express();
 
-<<<<<<< HEAD
         // 뷰엔진 셋팅
         this.setViewEngine();
-=======
-// 미들웨어 셋팅
-app.use( logger("dev") );
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended : false}));
-
-app.use("/files", express.static("uploads"));
->>>>>>> a0151b5e1f611987e584b311c960520a7a951a7d
 
         // 미들웨어 셋팅
         this.setMiddleWare();
