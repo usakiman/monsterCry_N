@@ -63,6 +63,7 @@ class App {
 
     setStatic (){
         this.app.use('/files', express.static('uploads'));
+        this.app.use("/", express.static("uploads/main"));
     }
 
     setLocals(){
