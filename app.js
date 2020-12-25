@@ -9,8 +9,10 @@
 
 const express = require("express");
 const nunjucks = require("nunjucks");
+const ejs = require("ejs");
 const logger = require('morgan');
 const bodyParser = require('body-parser');	
+var session = require('express-session');
 
 class App {
 
@@ -49,14 +51,30 @@ class App {
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
 
+        this.app.use(session({
+            secret: '@#@$MYSIGN#@$#$',
+            resave: false,
+            saveUninitialized: true
+           }));
     }
 
     setViewEngine (){
 
+        /*
         nunjucks.configure('template', {
             autoescape: true,
             express: this.app
         });
+        */
+       
+        this.app.set("view engine", "ejs");
+        this.app.engine("html", require('ejs').renderFile);
+        this.app.set('views', __dirname + '/views');        
+        this.app.use(express.static(__dirname + '/public'));
+
+       //this.app.get('/', (req, res) => {
+       //  res.render('index')
+       //})
 
     }
 
@@ -83,7 +101,7 @@ class App {
 
     status404() {        
         this.app.use( ( req , res, _ ) => {
-            res.status(404).render('common/404.html')
+            res.status(404).render('common/404')
         });
     }
 
@@ -91,7 +109,7 @@ class App {
 
         this.app.use( (err, req, res,  _ ) => {
             console.log(err);
-            res.status(500).render('common/500.html')
+            res.status(500).render('common/500')
         });
 
     }

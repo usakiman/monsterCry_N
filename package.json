@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx nodemon -e js,html web.js",
+    "start": "npx nodemon -e js,html,ejs web.js",
     "cafe24": "npx nodemon -e js,html web.js"
   },
   "repository": {
@@ -21,6 +21,7 @@
   "dependencies": {
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.6",
     "nunjucks": "^3.2.2",
