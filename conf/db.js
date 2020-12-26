@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var os = require('os');  //호스트 이름을 가져오기 위한 모듈
+var os = require('os');
 
 var dbconnInfo = {
 	dev:{
@@ -11,7 +11,7 @@ var dbconnInfo = {
 		multipleStatements : true
 	},
 	real:{
-		host     : 'usaki.cafe24app.com',
+        host     : 'usaki.cafe24app.com',        
 		port: '3306',
 		user     : 'choiyw22',
 		password : 'eago25!@',

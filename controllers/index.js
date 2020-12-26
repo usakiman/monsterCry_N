@@ -30,9 +30,7 @@ router.get('/', (req, res) => {
             loginID : req.session.loginID
         });
     });
-
-    
-    
+        
     // res.render('index', {
     //     name: req.url
     // })

@@ -7,6 +7,7 @@
 //     response.end();
 // }).listen(3000);
 
+const os = require('os');
 const express = require("express");
 const nunjucks = require("nunjucks");
 const ejs = require("ejs");
@@ -14,8 +15,8 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');	
 const uuid = require("uuid4");
 const session = require('express-session');                      
-const sessionMysql = require(__dirname + "/conf/sessionMysql");
-const fileStore = require("session-file-store")(session);
+const mysqlStore = require('express-mysql-session')(session);    
+
 
 class App {
 
@@ -54,19 +55,21 @@ class App {
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
         
-        this.app.use(session({                                              
-            //secret: uuid() + "_usaki",
-            secret: "keyboard cat",
+        const sessionMysql = require(__dirname + "/conf/sessionMysql");
+        var hostname = os.hostname();
+        var sessionStore = null;
+        if(hostname === 'MSDN-SPECIAL') {  
+            sessionStore = new mysqlStore(sessionMysql.dev);                    
+        } else {
+            sessionStore = new mysqlStore(sessionMysql.real);
+        }        
+
+        this.app.use(session({                                                          
+            secret: "usaki key",
             resave:false,
             saveUninitialized:true,
-            store: new fileStore()
+            store : sessionStore            
           }))
-
-        // this.app.use(session({
-        //     secret: '@#@$MYSIGN#@$#$',
-        //     resave: false,
-        //     saveUninitialized: true
-        //    }));
     }
 
     setViewEngine (){
