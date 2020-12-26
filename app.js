@@ -12,7 +12,10 @@ const nunjucks = require("nunjucks");
 const ejs = require("ejs");
 const logger = require('morgan');
 const bodyParser = require('body-parser');	
-var session = require('express-session');
+const uuid = require("uuid4");
+const session = require('express-session');                      
+const sessionMysql = require(__dirname + "/conf/sessionMysql");
+const fileStore = require("session-file-store")(session);
 
 class App {
 
@@ -50,12 +53,20 @@ class App {
         this.app.use(logger('dev'));
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
+        
+        this.app.use(session({                                              
+            //secret: uuid() + "_usaki",
+            secret: "keyboard cat",
+            resave:false,
+            saveUninitialized:true,
+            store: new fileStore()
+          }))
 
-        this.app.use(session({
-            secret: '@#@$MYSIGN#@$#$',
-            resave: false,
-            saveUninitialized: true
-           }));
+        // this.app.use(session({
+        //     secret: '@#@$MYSIGN#@$#$',
+        //     resave: false,
+        //     saveUninitialized: true
+        //    }));
     }
 
     setViewEngine (){
@@ -75,13 +86,11 @@ class App {
        //this.app.get('/', (req, res) => {
        //  res.render('index')
        //})
-
     }
 
-
     setStatic (){
-        this.app.use('/files', express.static('uploads'));
-        this.app.use("/", express.static("uploads/main"));
+        this.app.use('/files', express.static( __dirname +'/uploads'));
+        this.app.use("/", express.static( __dirname + "/uploads/main"));
     }
 
     setLocals(){
@@ -89,7 +98,7 @@ class App {
         // 템플릿 변수
         this.app.use( (req, res, next) => {
             this.app.locals.isLogin = true;
-            this.app.locals.req_path = req.path;
+            this.app.locals.req_path = req.path;            
             next();
         });
 

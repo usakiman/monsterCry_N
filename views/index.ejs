@@ -5,3 +5,28 @@
     <span class="stranger">Stranger!</span>
   <% } %>
 </h1>
+
+<li>
+  <% if (isLogin) { %>
+    로그인중 <%= loginID %>
+  <% } else { %>
+    로그아웃 
+  <% } %>
+
+</li>
+
+<li>
+  <% if(tList != null && tList.length > 0){ %>
+		<ul class="test-list">
+			<% for ( var i = 0; i < tList.length; i++){ %>
+				<!-- href를 이용해서 페이지 이동시  data-ajax="false" 를 추가해줘야 함. 그렇지 않으면 ajax형태로 가져온 데이터(화면)을 추가함.-->
+				<li><a href="/club/detail/<%=tList[i].str1%>"  data-ajax="false" data-bandkey="<%=tList[i].str2%>">
+					<img src="<%=tList[i].str1%>" alt="<%=tList[i].str1%> 밴드 커버 이미지"><div><%=tList[i].str1%></div>
+					<small><%=tList[i].str2%></small></a>
+				</li>
+			<% } %>
+		</ul>
+		<% }else{ %>
+		<p>111111111111111111111111111111111</p>
+		<% } %>  
+</li>
