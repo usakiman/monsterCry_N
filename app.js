@@ -85,6 +85,7 @@ class App {
         this.app.engine("html", require('ejs').renderFile);
         this.app.set('views', __dirname + '/views');        
         this.app.use(express.static(__dirname + '/public'));
+        this.app.use('/theme', express.static( __dirname +'/theme'));
 
        //this.app.get('/', (req, res) => {
        //  res.render('index')

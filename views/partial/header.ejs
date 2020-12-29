@@ -1,27 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><%= title %></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<title><%= title %></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" shrink-to-fit="no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- favicons -->
+<link rel="apple-touch-icon" sizes="57x57" href="/theme/images/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/theme/images/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/theme/images/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/theme/images/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/theme/images/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/theme/images/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/theme/images/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/theme/images/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/theme/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/theme/images/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/theme/images/favicon-16x16.png">
+<!-- favicons -->
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/theme/css/style.css">
+<link rel="stylesheet" type="text/css" href="/theme/css/custom-responsive-style.css">
+<script type="text/javascript" src="/theme/scripts/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/theme/scripts/plugin-active.js"></script>
+<script type="text/javascript" src="/theme/scripts/jquery-usaki.js"></script>
+<script type="text/javascript">
+
+// $("#aServices").on("click", function() {  
+//     console.log("aaaaaaaaaaaaaa");
+// });
+
+$(document).ready(function() {
+    $("#Login").css("display", "none");
+    $("#Simul").css("display", "none");  
+    $("#SimulView").css("display", "none");  
+    $("#MCE").css("display", "none");    
+    $("#Join").css("display", "none");
+    $("#lLogout").css("display", "none");
+
+    $("#ddlLevel").on("change", function() {
+        var lvl = $("#ddlLevel").val();
+        $.ajax({
+            type : "POST",
+            url : "/card/list",
+            dataType : "JSON",
+            //data : {"lvl" : JSON.stringify(lvl)},
+            data : {"lvl" : lvl},
+            success: function(result){       
+                if (result.length > 0) {
+                    funSimulList(result);
+                }                                                        
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+            }
+        });
+    });
+
+    /*
+    $(".ajaxSend").on("click", function(){
+        var email = $('input[name=email]').val();
+        $.ajax({
+            url : "/ajax",
+            type : "POST",
+            dataType : "JSON",
+            data : {"email" : email}
+        })
+
+        .done(function (json){
+            $(".result").text(json.email) 
+        })
+
+        .fail(function (xhr, status, errorThrown){
+            alert("Ajax failed")
+        })
+    });
+    */
+});
+
+function funNav(v) {  
+
+    switch (v) {
+    case "Login" : 
+        $("#Banner").css("display", "none");
+        $("#Login").css("display", "block");
+        $("#Simul").css("display", "none");
+        $("#SimulView").css("display", "none");  
+        $("#Join").css("display", "none");
+        $("#MCE").css("display", "none");
+    break;
+
+    case "Simul" : 
+        $("#Banner").css("display", "none");
+        $("#Login").css("display", "none");
+        $("#Simul").css("display", "block");
+        $("#SimulView").css("display", "none");  
+        $("#Join").css("display", "none");
+        $("#MCE").css("display", "none");
+
+        var lvl = $("#ddlLevel").val();
+        $.ajax({
+            type : "POST",
+            url : "/card/list",
+            dataType : "JSON",
+            //data : {"lvl" : JSON.stringify(lvl)},
+            data : {"lvl" : lvl},
+            success: function(result){       
+                if (result.length > 0) {
+                    funSimulList(result);
+                }
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+            }
+        });
+
+    break;
+
+    case "MCE" : 
+        $("#Banner").css("display", "none");
+        $("#Login").css("display", "none");
+        $("#Simul").css("display", "none");
+        $("#SimulView").css("display", "none");  
+        $("#Join").css("display", "none");
+        $("#MCE").css("display", "block");
+    break;
+
+    default : 
+        $("#Banner").css("display", "block");
+        $("#Login").css("display", "none");
+        $("#Simul").css("display", "none");
+        $("#SimulView").css("display", "none");  
+        $("#Join").css("display", "none");
+        $("#MCE").css("display", "none"); 
+    break;
+    }  
+    
+    document.location.href = "#" + v;
+}
+
+var vItem = function(v) {
+    alert(v);
+    $("#Simul").css("display", "none");
+    $("#SimulView").css("display", "block");  
+}
+
+var vItemReturn = function() {
+    $("#Simul").css("display", "block");
+    $("#SimulView").css("display", "none");  
+}
+
+var vJoin = function() {
+    $("#Login").css("display", "none");
+    $("#Join").css("display", "block");
+}
+
+var vJoinConfirm = function() {
+    $("#lLogin").css("display", "none");
+    $("#lLogout").css("display", "block");
+    $("#loginInfo").html("후후 로그인중");
+
+    funNav("");
+}
+
+var vLogin = function() {
+    $("#lLogin").css("display", "none");
+    $("#lLogout").css("display", "block");
+    $("#loginInfo").html("후후 로그인중");
+
+    funNav("");
+}
+
+var vLogout = function() {
+    $("#lLogin").css("display", "block");
+    $("#lLogout").css("display", "none");
+    $("#loginInfo").html("");
+
+    funNav("");
+}
+
+</script>
 </head>
-<body>
-    <div class="container" style="padding-top: 10px;">
-        <nav class="navbar navbar-inverse"> 
-            <div class="container-fluid"> 
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">                    
-                    <ul class="nav navbar-nav">                                                
-                        <% if (req_path == "/admin/products") { %>
-                            <li class="active"><a href="/admin/products">리스트</a></li>
-                            <li><a href="/admin/products/write">작성</a></li>
-                        <% } else if (req_path == "/admin/products/write") { %>
-                            <li><a href="/admin/products">리스트</a></li>
-                            <li class="active"><a href="/admin/products/write">작성</a></li>
-                        <% } %>
-                    </ul> 
-                </div> 
-            </div> 
-        </nav>
-    </div>    

@@ -1,0 +1,156 @@
+<body>
+    <header>
+    <div class="mobile-logo">
+    <a href=""><img src="/theme/images/logo.gif"></a>
+    </div>
+    <a class="menu-toggle rounded" href="#">
+    <i class="fa fa-bars"></i>
+    </a>
+    <nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+        <span class="smooth-scroll" id="loginInfo"></span>        
+        </li>
+        <li class="sidebar-nav-item" id="lLogin">
+        <button class="btn btn-danger" id="btnLogin" onclick="funNav('Login');">Login</button>        
+        </li>
+        <li class="sidebar-nav-item" id="lLogout">                
+        <button class="btn btn-danger" id="btnLogout" onclick="vLogout();">Logout</button>
+        </li><p/>
+        <li class="sidebar-nav-item">        
+        <button class="btn btn-danger" id="btnSimul" onclick="funNav('Simul');">시뮬레이터</button>
+        </li><p/>
+        <li class="sidebar-nav-item">        
+        <button class="btn btn-danger" id="btnBanner" onclick="funNav('Banner');">준비중</button>
+        </li><p/>  
+        <li class="sidebar-nav-item">        
+        <button class="btn btn-danger" id="btnBanner" onclick="funNav('Banner');">준비중</button>
+        </li><p/>  
+        <li class="sidebar-nav-item">        
+        <button class="btn btn-danger" id="btnMCE" onclick="funNav('MCE');">MonsteryCryEternal</button>
+        </li>
+    </ul>
+    </nav>
+    </header>
+
+<section id="Banner">
+    <div class="logo">
+    <img src="/theme/images/logo.gif">
+    </div>
+    <div class="blacksection">
+    <h1>
+        Dragon Chronicles - 몬스터주식회사<br><br>
+        공속 및 스속 계산을 위한 사이트입니다<br><br>        
+    </h1>
+    </div>
+</section>
+
+<section id="Login"> 
+    <div class="container">
+    <h2>로그인</h2>
+    <p>좋은 하루 되세용</p>
+    <div class="blog-wrap">                  
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">&nbsp;&nbsp;아이디&nbsp;&nbsp;</span>
+        </div>
+        <input type="text" class="form-control" placeholder="최대 10자리, 대소문자 구분 없음" id="txtUid" maxlength="10" aria-describedby="basic-addon3">
+        </div>
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">패스워드</span>
+        </div>
+        <input type="password" class="form-control" placeholder="최대 20자리, 대소문자 구분 없음" id="txtPwd" maxlength="20" aria-describedby="basic-addon3">
+        </div>
+
+        <button type="button" id="btnLogin" class="btn btn-success" onclick="vLogin();">로그인</button>
+        <button type="button" id="btnJoin" class="btn btn-success" onclick="vJoin();">회원가입</button>
+    </div>    
+    </div>
+</section>
+
+<section id="Join"> 
+    <div class="container">
+    <h2>회원가입</h2>
+    <p>아이디는 중복 불가능 합니다. <br>비밀번호는 암호화 되지만 간단한걸로 해주세요. <br><br>**다른정보를 받지않기 때문에 비밀번호는 찾을수 없습니다**<br>
+        기억하기 쉽게 지정해주세요.
+    </p>    
+    <div class="blog-wrap">                  
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">아이디</span>
+        </div>
+        <input type="text" class="form-control" placeholder="최대 10자리, 대소문자 구분 없음" id="txtJoinUid" maxlength="10" aria-describedby="basic-addon3">
+        </div>
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">패스워드</span>
+        </div>
+        <input type="password" class="form-control" placeholder="최대 20자리, 대소문자 구분 없음" id="txtJoinPwd" maxlength="20" aria-describedby="basic-addon3">
+        </div>
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">패스워드 확인</span>
+        </div>
+        <input type="password" class="form-control" placeholder="최대 20자리, 대소문자 구분 없음" id="txtJoinPwdConfirm" maxlength="20" aria-describedby="basic-addon3">
+        </div>
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">닉네임</span>
+        </div>
+        <input type="text" class="form-control" placeholder="최대 20자리" id="txtJoinNickname" maxlength="20" aria-describedby="basic-addon3">
+        </div>
+        
+        <button type="button" id="btnJoinConfirm" class="btn btn-success" onclick="vJoinConfirm()">회원가입</button>
+    </div>    
+    </div>
+</section>
+
+<section id="Simul">
+    <div class="container">          
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">등급</label>
+        </div>
+        <select class="custom-select" id="ddlLevel">        
+        <option value="SSS+" selected>SSS+</option>
+        <option value="SSS">SSS</option>
+        <option value="SS">SS</option>
+        </select>
+    </div>
+
+    <div class="testi-wrapper" id="SimulList">                
+        <div class="old-simul each-testi">
+            <div class="profile">
+            <img src="../theme/images/non.jpg" alt="">
+            <div class="designation">              
+                <button class="btn btn-link" onclick="vItem('단테')">단테</button>
+                <p>SSS+ 인간-공격</p>
+            </div>
+            </div>
+        </div>        
+        </div>
+    </div>
+</section>
+
+<section id="SimulView">
+    <div class="container">
+    <p>단테 - 어쩌구저쩌구</p>
+    <button class="btn btn-info" onclick="vItemReturn()">돌아가기</button>    
+    <ul class="social-icons">
+        
+    </ul>
+    </div>
+</section>
+
+<section id="MCE">
+    <div class="container">
+    <p>have a nice day</p>
+    <a href="mail:choiyw2@gmail.com" class="email-btn"><span><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</span></a>
+    <ul class="social-icons">
+        <li><a href="https://www.facebook.com/OfficialDragonChronicles" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>      
+        <li><a href="https://thevc.kr/Nyou" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>      
+        <li><a href="https://play.google.com/store/apps/details?id=com.nyouinc.monstercryeternal&hl=ko&gl=US" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+    </ul>
+    </div>
+</section>    
