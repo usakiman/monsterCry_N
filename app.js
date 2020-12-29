@@ -15,6 +15,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');	
 const uuid = require("uuid4");
 const session = require('express-session');                      
+const { response } = require('express');
 const mysqlStore = require('express-mysql-session')(session);    
 
 
@@ -102,7 +103,8 @@ class App {
         // 템플릿 변수
         this.app.use( (req, res, next) => {
             this.app.locals.isLogin = true;
-            this.app.locals.req_path = req.path;            
+            this.app.locals.req_path = req.path;
+            this.app.locals.title = "Dragon Chronicles - monster corp (usaki)";
             next();
         });
 
@@ -113,16 +115,21 @@ class App {
     }
 
     status404() {        
-        this.app.use( ( req , res, _ ) => {
-            res.status(404).render('common/404')
+        this.app.use( (req , res, _ ) => {
+            res.status(404).render('common/404', {
+                msg : response.status404,
+                title : this.app.locals.title
+            });
         });
     }
 
     errorHandler() {
-
         this.app.use( (err, req, res,  _ ) => {
             console.log(err);
-            res.status(500).render('common/500')
+            res.status(500).render('common/500', {
+                msg : err.msg,
+                title : this.app.locals.title
+            });
         });
 
     }

@@ -1,10 +1,10 @@
 const { Router } = require('express');
 const router = Router();
 
-const db_config = require('../conf/db.js');
-console.log(db_config.init);
-var conn = db_config.init();
-db_config.connect(conn);
+// const db_config = require('../conf/db.js');
+// console.log(db_config.init);
+// var conn = db_config.init();
+// db_config.connect(conn);
 
 router.use('/admin', require('./admin'));
 router.use('/card', require('./card'));
@@ -27,14 +27,10 @@ router.get('/', (req, res) => {
     //         title : "Dragon Chronicles - monster corp (usaki)"
     //     });
     // });
-
+    
     res.render("index", {
-        title : "Dragon Chronicles - monster corp (usaki)"
-    });
         
-    // res.render('index', {
-    //     name: req.url
-    // })
+    });            
 })
 
 router.get('/hello', function(req,res){

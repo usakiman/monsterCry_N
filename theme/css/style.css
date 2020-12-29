@@ -507,7 +507,7 @@ body.active .mscroll {
 }
 #Simul h2 {
 	color: #000;
-	font: 68px/125% 'Futura PT book';
+	font: 30px/125% 'Futura PT book';
 	margin-bottom: 20px;
 	text-align: center;
 }
@@ -523,7 +523,7 @@ body.active .mscroll {
 #Simul .testi-wrapper .each-testi {
 	display: inline-block;
 	vertical-align: middle;
-  width: 15%;  
+  width: 18%;  
 }
 #Simul .testi-wrapper  .latest-simul {
   margin-right: 10px;  
@@ -536,7 +536,7 @@ body.active .mscroll {
   background: black;
   padding: 30px 50px;
   margin: 10px 10px 10px 10px;  
-	height: 200px;
+	height: 250px;
 	position: relative;
 	text-align: center;
 }
@@ -573,15 +573,15 @@ body.active .mscroll {
 }
 #Simul .each-testi .profile {
 	position: absolute;
-	bottom: 30px;
-	width: 100%;
+  bottom: 30px;  
+  width: 100%;  
 	left: 0;
 }
 #Simul .each-testi .profile img {
 	display: inline-block;
 	vertical-align: middle;
-	width: 70px;
-	height: auto;
+  width: 90px;
+  height: 70px;
 }
 #Simul .each-testi .profile .designation {
 	display: inline-block;
