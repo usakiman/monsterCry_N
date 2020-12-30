@@ -1,4 +1,9 @@
 <body>
+    <input type="hidden" id="hidActPower" name="hidActPower"/>
+    <input type="hidden" id="hidActSkill1" name="hidActSkill1"/>
+    <input type="hidden" id="hidActSkill1_w" name="hidActSkill1_w"/>
+    <input type="hidden" id="hidActSkill2" name="hidActSkill2"/>
+    <input type="hidden" id="hidActSkill2_w" name="hidActSkill2_w"/>
     <header>
     <div class="mobile-logo">
     <a href=""><img src="/theme/images/logo.gif"></a>
@@ -121,13 +126,7 @@
 
     <div class="testi-wrapper" id="SimulList">                
         <div class="old-simul each-testi">
-            <div class="profile">
-            <img src="/theme/images/non.jpg" alt="">
-            <div class="designation">              
-                <button class="btn btn-link" onclick="vItem('단테')">단테</button>
-                <p>SSS+ 인간-공격</p>
-            </div>
-            </div>
+            
         </div>        
         </div>
     </div>
@@ -150,6 +149,8 @@
             <% } %>                        
         </select>    
     </div>
+
+    <div>-</div>
 
     <div class="input-group-prepend">
         <span class="input-group-text"><font color="black">무기</font></span>
@@ -181,6 +182,8 @@
         </select>            
     </div>        
 
+    <div>-</div>
+
     <div class="input-group-prepend">
         <span class="input-group-text"><font color="black">방어구</font></span>
         <select id="ddlDefenseMain" class="form-control">
@@ -210,6 +213,8 @@
             <% } %>
         </select>            
     </div>        
+
+    <div>-</div>
 
     <div class="input-group-prepend">
         <span class="input-group-text"><font color="black">악세</font></span>
@@ -241,19 +246,63 @@
         </select>            
     </div>        
 
+    <div>-</div>
 
+    <div class="input-group-prepend">
+        <span class="input-group-text"><font color="black">추가 공속</font></span>
+        <select id="ddlAttSpeedControl1" class="form-control">            
+            <% for (var i = 0; i <= 100; i++) { %>                
+                <option value="<%=i%>"><%=i%></option>
+            <% } %>            
+        </select>
+        <span class="input-group-text"><font color="black">.</font></span>
+        <select id="ddlAttSpeedControl2" class="form-control">            
+            <% for (var i = 0; i <= 100; i++) { %>
+                <option value="<%=i%>"><%=i%></option>
+            <% } %>            
+        </select>        
+    </div>        
+
+    <div>-</div>
+
+    <div class="input-group-prepend">
+        <span class="input-group-text"><font color="black">추가 스속</font></span>
+        <select id="ddlSkillSpeedControl1" class="form-control">            
+            <% for (var i = 0; i <= 100; i++) { %>
+                <option value="<%=i%>"><%=i%></option>
+            <% } %>            
+        </select>
+        <span class="input-group-text"><font color="black">.</font></span>
+        <select id="ddlSkillSpeedControl2" class="form-control">            
+            <% for (var i = 0; i <= 100; i++) { %>
+                <option value="<%=i%>"><%=i%></option>
+            <% } %>            
+        </select>        
+    </div>        
+
+    <div>
+        <span id="spnResult"></span>        
+    </div>
 
     </div>
 </section>
 
 <section id="MCE">
     <div class="container">
-    <p>have a nice day</p>
-    <a href="mail:choiyw2@gmail.com" class="email-btn"><span><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</span></a>
-    <ul class="social-icons">
-        <li><a href="https://www.facebook.com/OfficialDragonChronicles" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>      
-        <li><a href="https://thevc.kr/Nyou" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>      
-        <li><a href="https://play.google.com/store/apps/details?id=com.nyouinc.monstercryeternal&hl=ko&gl=US" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-    </ul>
-    </div>
+        <p>
+        <% if(itemList.setList != null && itemList.setList.length > 0) { %>
+            <% for (var i = 0; i < itemList.setList.length; i++) { %>
+                <%=itemList.setList[i].a%>
+            <% } %>
+        <% } %>                    
+        </p>
+        <a href="mail:choiyw2@gmail.com" class="email-btn"><span><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</span></a>
+        <ul class="social-icons">
+            <li><a href="https://www.facebook.com/OfficialDragonChronicles" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>      
+            <li><a href="https://thevc.kr/Nyou" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>      
+            <li><a href="https://play.google.com/store/apps/details?id=com.nyouinc.monstercryeternal&hl=ko&gl=US" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+        </ul>                    
+    </div>    
 </section>    
+
+

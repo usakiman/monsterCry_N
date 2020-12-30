@@ -311,6 +311,15 @@ body.active .mscroll {
 	padding: 60px 0;
 	background-color: #9585b9;
 }
+#Login .container {
+  width: 100%;  
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-top: 40px;
+  margin-left: auto;
+}
+    
 #Login h2 {
 	color: #000;
 	font: 35px/125% 'Futura PT book';
@@ -607,10 +616,18 @@ body.active .mscroll {
 	padding: 70px 0 50px 0;
 	background-color: #333f4f;
 }
+#SimulView .container {
+	  width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-top: 40px;
+    margin-left: auto;
+}
 #SimulView p {
     color: #c7c5ca;
-    font-size: 40px;
-    margin-bottom: 30px;
+    font-size: 25px;
+    margin-bottom: 20px;
 }
 #SimulView span {
   color: #c7c5ca;
@@ -680,10 +697,23 @@ body.active .mscroll {
 	padding: 70px 0 50px 0;
 	background-color: #333f4f;
 }
+#MCE .container {
+  width: 100%;  
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-top: 40px;
+  margin-left: auto;
+}
 #MCE p {
     color: #c7c5ca;
     font-size: 40px;
     margin-bottom: 30px;
+}
+#MCE span {
+  color: #c7c5ca;
+  position: relative;
+  font-size: 25px;  
 }
 #MCE a.email-btn {
     color: #fff;

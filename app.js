@@ -103,7 +103,8 @@ class App {
         // 템플릿 변수
         this.app.use( (req, res, next) => {
             this.app.locals.isLogin = true;
-            this.app.locals.req_path = req.path;
+            this.app.locals.reqPath = req.path;
+            this.app.locals.loginCode = "";
             this.app.locals.title = "Dragon Chronicles - monster corp (usaki)";
             next();
         });

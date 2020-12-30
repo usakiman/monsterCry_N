@@ -14,9 +14,11 @@ router.get('/', testMiddleWare, testMiddleWare2 , (req,res) => {
     res.send('card app');
 });
 
-router.post('/list', ctrl.get_card_list );
+router.post('/list', ctrl.post_card_list );
 
-router.post('/view', ctrl.get_card_view );
+router.post('/view', ctrl.post_card_view );
+
+router.post("/actResult", ctrl.post_card_result);
 
 router.post('/write', ctrl.post_card_write );
 

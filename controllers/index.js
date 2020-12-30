@@ -12,7 +12,11 @@ router.use('/admin', require('./admin'));
 router.use('/card', require('./card'));
 
 router.get('/', (req, res) => {
+    const ip = req.headers['x-forwarded-for'] ||  req.connection.remoteAddress;
     var sql = "SELECT * FROM card_info WHERE maineffect <> '' ORDER BY cardlevel desc, cardname";
+    var sqlInsert = "insert into access_list (user_ip, cre_date, code) values (?, now(), ?)";
+    var sqlMerge = "INSERT INTO access_log (ymd, cnt) VALUES (DATE_FORMAT( NOW(), '%Y%m%d'), 1) ON DUPLICATE KEY UPDATE cnt = cnt + 1";
+    var params = [ip, ""];        
 
     console.log(req.session);
     req.session.isLogin = true;
@@ -20,7 +24,7 @@ router.get('/', (req, res) => {
     console.log(req.session.loginID);
 
     conn.query(sql, function (err, rows, fields) {
-        if(err) console.log('query is not excuted. select fail...\n' + err);
+        if(err) console.log('query is not excuted.\n' + err);
         else { 
             console.log(itemList);
             res.render('index', {
@@ -31,7 +35,21 @@ router.get('/', (req, res) => {
                 loginID : req.session.loginID            
             });                        
         }
-    });        
+    });
+
+    conn.query(sqlInsert, params, function(err, rows, fields) {
+        if (err) console.log('query is not excuted.\n' + err);
+        else {
+            console.log("insert execute --> accessID = "+rows.insertId);
+        }
+    });
+
+    conn.query(sqlMerge, function(err, rows, fields) {
+        if (err) console.log('query is not excuted.\n' + err);
+        else {
+            console.log("merge execute");
+        }
+    });    
 })
 
 router.get('/hello', function(req,res){
