@@ -1,36 +1,37 @@
 const { Router } = require('express');
 const router = Router();
 
-// const db_config = require('../conf/db.js');
+const db_config = require('../conf/db.js');
 // console.log(db_config.init);
-// var conn = db_config.init();
-// db_config.connect(conn);
+var conn = db_config.init();
+db_config.connect(conn);
 
+const itemList = require("../conf/item_info");
+ 
 router.use('/admin', require('./admin'));
 router.use('/card', require('./card'));
 
 router.get('/', (req, res) => {
-    // var sql = 'SELECT * FROM table1';
+    var sql = "SELECT * FROM card_info WHERE maineffect <> '' ORDER BY cardlevel desc, cardname";
 
-    // console.log(req.session);
-    // req.session.isLogin = true;
-    // req.session.loginID = "test";
-    // console.log(req.session.loginID);
+    console.log(req.session);
+    req.session.isLogin = true;
+    req.session.loginID = "test";
+    console.log(req.session.loginID);
 
-    // conn.query(sql, function (err, rows, fields) {
-    //     if(err) console.log('query is not excuted. select fail...\n' + err);
-    //     else res.render('index', {
-    //         tList : rows,
-    //         name: req.url,
-    //         isLogin : req.session.isLogin,
-    //         loginID : req.session.loginID,
-    //         title : "Dragon Chronicles - monster corp (usaki)"
-    //     });
-    // });
-    
-    res.render("index", {
-        
-    });            
+    conn.query(sql, function (err, rows, fields) {
+        if(err) console.log('query is not excuted. select fail...\n' + err);
+        else { 
+            console.log(itemList);
+            res.render('index', {
+                eList : rows,
+                itemList : itemList,            
+                path: req.url,
+                isLogin : req.session.isLogin,
+                loginID : req.session.loginID            
+            });                        
+        }
+    });        
 })
 
 router.get('/hello', function(req,res){
