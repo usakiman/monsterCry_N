@@ -261,6 +261,12 @@ var goUrl = function(v) {
     }    
 }
 
+var vEnter = function() {
+    if (event.keyCode == 13) {
+        vLogin();
+    }
+}
+
 var vItemReturn = function() {
     $("#Simul").css("display", "block");
     $("#SimulView").css("display", "none");  
