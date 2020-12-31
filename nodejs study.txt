@@ -88,3 +88,16 @@ get -> clone
 set -> remote add
 
 111111111111111111111
+
+#집 셋팅
+nodejs-test -> https://www.github.com/usakiman/nodejs-test
+git add *
+git commit -m "1111"
+git push origin master
+
+usaki_home -> choiyw22@usaki.cafe24app.com:choiyw22_usaki
+ssh key -> usaki_home
+git add *
+git commit -m "1111"
+git push remote_choiyw22 master
+"key password"

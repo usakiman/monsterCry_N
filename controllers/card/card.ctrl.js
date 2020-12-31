@@ -118,7 +118,7 @@ exports.post_card_login = (req, res) => {
     });
     
     console.log(vFlag);
-    if (1) {
+    if (vFlag == 1) {
         console.log(sqlLogin);
         conn.query(sqlLogin, params, function (err, result, fields) {
             if(err) console.log('query is not excuted. select fail\n' + err);
