@@ -24,17 +24,10 @@
 <link rel="stylesheet" type="text/css" href="/theme/css/style.css">
 <link rel="stylesheet" type="text/css" href="/theme/css/custom-responsive-style.css">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
 <script type="text/javascript" src="/theme/scripts/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/theme/scripts/plugin-active.js"></script>
 <script type="text/javascript" src="/theme/scripts/jquery-usaki.js"></script>
 <script type="text/javascript">
-
-// $("#aServices").on("click", function() {  
-//     console.log("aaaaaaaaaaaaaa");
-// });
 
 $(document).ready(function() {
     $("#Login").css("display", "none");
@@ -44,7 +37,7 @@ $(document).ready(function() {
     $("#Join").css("display", "none");
     //$("#lLogout").css("display", "none");        
 
-    var loginid = "<%=loginID%>";
+    var loginid = $("#hidloginID").val();    
     if (loginid != "") {
         $("#btnLoginG").removeAttr("onclick");
         $("#btnLoginG").attr("onclick", "vLogout();");
@@ -55,6 +48,29 @@ $(document).ready(function() {
         $("#btnLoginG").attr("onclick", "funNav('Login');");
         $("#btnLoginG").html("로그인");        
     }
+
+    var userInputId = getCookie("userInputId");
+    $("#txtUid").val(userInputId); 
+     
+    if($("#txtUid").val() != ""){                                         
+        $("#cbIDSave").attr("checked", true); 
+    }
+     
+    $("#cbIDSave").change(function(){ 
+        if($("#cbIDSave").is(":checked")){
+            var userInputId = $("#txtUid").val();
+            setCookie("userInputId", userInputId, 7);
+        }else{
+            deleteCookie("userInputId");
+        }
+    });
+         
+    $("#txtUid").keyup(function(){ 
+        if($("#cbIDSave").is(":checked")){
+            var userInputId = $("#txtUid").val();
+            setCookie("userInputId", userInputId, 7);
+        }
+    });
         
 
     $("#ddlLevel").on("change", function() {
@@ -236,7 +252,7 @@ var vItem = function(v) {
 }
 
 var goUrl = function(v) {
-    var loginid = "<%=loginID%>";
+    var loginid = $("#hidloginID").val();    
 
     if (loginid != "") {
         funNav(v);
@@ -258,9 +274,42 @@ var vJoin = function() {
 var vJoinConfirm = function() {
     //$("#lLogin").css("display", "none");
     //$("#lLogout").css("display", "block");
-    $("#loginInfo").html("후후 로그인중");
+    //$("#loginInfo").html("후후 로그인중");
+    
+    var uid = $("#txtJoinUid").val();
+    var pwd = $("#txtJoinPwd").val();
+    var pwdconfirm = $("#txtJoinPwdConfirm").val();
+    var nickname = $("#txtJoinNickname").val();
 
-    funNav("");
+    if (uid == "") { alert("아이디를 입력해주세요."); return; }
+    if (pwd == "") { alert("패스워드를 입력해주세요."); return; }
+    if (pwdconfirm == "") { alert("패스워드 재확인을 해주세요."); return; }
+    if (pwd != pwdconfirm) { alert("패스워드가 동일하지 않습니다."); return; }
+    if (nickname == "") { alert("닉네임을 입력해주세요."); return; }
+
+    $.ajax({
+            type : "POST",
+            url : "/card/join",
+            dataType : "JSON",            
+            data : {
+                "uid" : uid,
+                "pwd" : pwd,
+                "nickname" : nickname
+            },
+            success: function(result){
+                if (result.length > 0) {
+                    if (result == "SUCCESS") {
+                        alert("가입 성공. 로그인 창으로 이동합니다");
+                        funNav("Login");
+                    } else {
+                        alert(result);
+                    }                                        
+                }                                                        
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+            }
+        });            
 }
 
 var vLogin = function() {

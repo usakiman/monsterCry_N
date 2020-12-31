@@ -4,6 +4,7 @@
     <input type="hidden" id="hidActSkill1_w" name="hidActSkill1_w"/>
     <input type="hidden" id="hidActSkill2" name="hidActSkill2"/>
     <input type="hidden" id="hidActSkill2_w" name="hidActSkill2_w"/>
+    <input type="hidden" id="hidloginID" name="hidloginID" value="<%=loginID%>"/>
     <header>
     <div class="mobile-logo">
     <a href=""><img src="/theme/images/logo.gif"></a>
@@ -19,7 +20,7 @@
         <li class="sidebar-nav-item" id="lLogin"><button class="btn btn-danger" id="btnLoginG" onclick="funNav('Login');"></button></li>        
         <p/>
         <li class="sidebar-nav-item">        
-        <button class="btn btn-danger" id="btnSimul" onclick="funNav('Simul');">시뮬레이터</button>
+        <button class="btn btn-danger" id="btnSimul" onclick="goUrl('Simul');">시뮬레이터</button>
         </li><p/>
         <li class="sidebar-nav-item">        
         <button class="btn btn-danger" id="btnBanner" onclick="goUrl('Banner');">준비중</button>
@@ -49,7 +50,7 @@
 <section id="Login"> 
     <div class="container">
     <h2>로그인</h2>
-    <p>좋은 하루 되세용</p>
+    <p>모든 메뉴는 회원 가입을 해주셔야 접근 가능합니다~!<br> 추후에 다른 메뉴에 활용할 예정이니 가입해주세요~<br>민감한 정보는 하나도 입력받지 않습니다</p>
     <div class="blog-wrap">                  
         <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -63,6 +64,12 @@
         </div>
         <input type="password" class="form-control" placeholder="최대 20자리, 대소문자 구분 없음" id="txtPwd" maxlength="20" aria-describedby="basic-addon3">
         </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="cbIDSave">
+            <label class="form-check-label" for="cbIDSave">아이디 기억</label>
+        </div>
+
+        <div>&nbsp;</div>
 
         <button type="button" id="btnLogin" class="btn btn-success" onclick="vLogin();">로그인</button>
         <button type="button" id="btnJoin" class="btn btn-success" onclick="vJoin();">회원가입</button>
@@ -136,7 +143,7 @@
     
     <div class="input-group-prepend">
         <span class="input-group-text"><font color="black">대표카드효과</font></span>
-        <select class="custom-select mr-sm-2" id="ddlMainEffect">
+        <select class="custom-select mr-sm-2" id="ddlMainEffect" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(eList != null && eList.length > 0) { %>
                 <% for (var i = 0; i < eList.length; i++) { %>
@@ -150,29 +157,29 @@
 
     <div class="input-group-prepend">
         <span class="input-group-text"><font color="black">무기</font></span>
-        <select id="ddlWeaponMain" class="form-control">
+        <select id="ddlWeaponMain" class="form-control" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(itemList.weaponList != null && itemList.weaponList.length > 0) { %>
                 <% for (var i = 0; i < itemList.weaponList.length; i++) { %>
-                    <option value="<%=itemList.weaponList[i].effect%> <%=itemList.weaponList[i].effect_v%>"><%=itemList.weaponList[i].level%><%=itemList.weaponList[i].kind%> - <%=itemList.weaponList[i].effect%> <%=itemList.weaponList[i].effect_v%>%</option>
+                    <option value="<%=itemList.weaponList[i].effect%> <%=itemList.weaponList[i].effect_v%>"><%=itemList.weaponList[i].level%><%=itemList.weaponList[i].kind%>-<%=itemList.weaponList[i].effect%> <%=itemList.weaponList[i].effect_v%>%</option>
                 <% } %>
             <% } %>
         </select>
         <span class="input-group-text"><font color="black">마석</font></span>
-        <select id="ddlWeaponOption1" class="form-control">
+        <select id="ddlWeaponOption1" class="form-control" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(itemList.stoneList != null && itemList.stoneList.length > 0) { %>
                 <% for (var i = 0; i < itemList.stoneList.length; i++) { %>
-                    <option value="<%=itemList.stoneList[i].effect_w%> <%=itemList.stoneList[i].effect_w_v%>"><%=itemList.stoneList[i].level%><%=itemList.stoneList[i].kind%> - <%=itemList.stoneList[i].effect_w%> <%=itemList.stoneList[i].effect_w_v%>%</option>
+                    <option value="<%=itemList.stoneList[i].effect_w%> <%=itemList.stoneList[i].effect_w_v%>"><%=itemList.stoneList[i].level%><%=itemList.stoneList[i].kind%>-<%=itemList.stoneList[i].effect_w%> <%=itemList.stoneList[i].effect_w_v%>%</option>
                 <% } %>
             <% } %>
         </select>
         <span class="input-group-text"><font color="black">마석</font></span>
-        <select id="ddlWeaponOption2" class="form-control">
+        <select id="ddlWeaponOption2" class="form-control" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(itemList.stoneList != null && itemList.stoneList.length > 0) { %>
                 <% for (var i = 0; i < itemList.stoneList.length; i++) { %>
-                    <option value="<%=itemList.stoneList[i].effect_w%> <%=itemList.stoneList[i].effect_w_v%>"><%=itemList.stoneList[i].level%><%=itemList.stoneList[i].kind%> - <%=itemList.stoneList[i].effect_w%> <%=itemList.stoneList[i].effect_w_v%>%</option>
+                    <option value="<%=itemList.stoneList[i].effect_w%> <%=itemList.stoneList[i].effect_w_v%>"><%=itemList.stoneList[i].level%><%=itemList.stoneList[i].kind%>-<%=itemList.stoneList[i].effect_w%> <%=itemList.stoneList[i].effect_w_v%>%</option>
                 <% } %>
             <% } %>
         </select>            
@@ -182,29 +189,29 @@
 
     <div class="input-group-prepend">
         <span class="input-group-text"><font color="black">방어구</font></span>
-        <select id="ddlDefenseMain" class="form-control">
+        <select id="ddlDefenseMain" class="form-control" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(itemList.defenseList != null && itemList.defenseList.length > 0) { %>
                 <% for (var i = 0; i < itemList.defenseList.length; i++) { %>
-                    <option value="<%=itemList.defenseList[i].effect%> <%=itemList.defenseList[i].effect_v%>"><%=itemList.defenseList[i].level%><%=itemList.defenseList[i].kind%> - <%=itemList.defenseList[i].effect%> <%=itemList.defenseList[i].effect_v%>%</option>
+                    <option value="<%=itemList.defenseList[i].effect%> <%=itemList.defenseList[i].effect_v%>"><%=itemList.defenseList[i].level%><%=itemList.defenseList[i].kind%>-<%=itemList.defenseList[i].effect%> <%=itemList.defenseList[i].effect_v%>%</option>
                 <% } %>
             <% } %>
         </select>
         <span class="input-group-text"><font color="black">마석</font></span>
-        <select id="ddlDefenseOption1" class="form-control">
+        <select id="ddlDefenseOption1" class="form-control" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(itemList.stoneList != null && itemList.stoneList.length > 0) { %>
                 <% for (var i = 0; i < itemList.stoneList.length; i++) { %>
-                    <option value="<%=itemList.stoneList[i].effect_d%> <%=itemList.stoneList[i].effect_d_v%>"><%=itemList.stoneList[i].level%><%=itemList.stoneList[i].kind%> - <%=itemList.stoneList[i].effect_d%> <%=itemList.stoneList[i].effect_d_v%>%</option>
+                    <option value="<%=itemList.stoneList[i].effect_d%> <%=itemList.stoneList[i].effect_d_v%>"><%=itemList.stoneList[i].level%><%=itemList.stoneList[i].kind%>-<%=itemList.stoneList[i].effect_d%> <%=itemList.stoneList[i].effect_d_v%>%</option>
                 <% } %>
             <% } %>
         </select>
         <span class="input-group-text"><font color="black">마석</font></span>
-        <select id="ddlDefenseOption2" class="form-control">
+        <select id="ddlDefenseOption2" class="form-control" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(itemList.stoneList != null && itemList.stoneList.length > 0) { %>
                 <% for (var i = 0; i < itemList.stoneList.length; i++) { %>
-                    <option value="<%=itemList.stoneList[i].effect_d%> <%=itemList.stoneList[i].effect_d_v%>"><%=itemList.stoneList[i].level%><%=itemList.stoneList[i].kind%> - <%=itemList.stoneList[i].effect_d%> <%=itemList.stoneList[i].effect_d_v%>%</option>
+                    <option value="<%=itemList.stoneList[i].effect_d%> <%=itemList.stoneList[i].effect_d_v%>"><%=itemList.stoneList[i].level%><%=itemList.stoneList[i].kind%>-<%=itemList.stoneList[i].effect_d%> <%=itemList.stoneList[i].effect_d_v%>%</option>
                 <% } %>
             <% } %>
         </select>            
@@ -214,29 +221,29 @@
 
     <div class="input-group-prepend">
         <span class="input-group-text"><font color="black">악세</font></span>
-        <select id="ddlAssMain" class="form-control">
+        <select id="ddlAssMain" class="form-control" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(itemList.assList != null && itemList.assList.length > 0) { %>
                 <% for (var i = 0; i < itemList.assList.length; i++) { %>
-                    <option value="<%=itemList.assList[i].effect%> <%=itemList.assList[i].effect_v%>"><%=itemList.assList[i].level%><%=itemList.assList[i].kind%> - <%=itemList.assList[i].effect%> <%=itemList.assList[i].effect_v%>%</option>
+                    <option value="<%=itemList.assList[i].effect%> <%=itemList.assList[i].effect_v%>"><%=itemList.assList[i].level%><%=itemList.assList[i].kind%>-<%=itemList.assList[i].effect%> <%=itemList.assList[i].effect_v%>%</option>
                 <% } %>
             <% } %>
         </select>
         <span class="input-group-text"><font color="black">마석</font></span>
-        <select id="ddlAssOption1" class="form-control">
+        <select id="ddlAssOption1" class="form-control" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(itemList.stoneList != null && itemList.stoneList.length > 0) { %>
                 <% for (var i = 0; i < itemList.stoneList.length; i++) { %>
-                    <option value="<%=itemList.stoneList[i].effect_a%> <%=itemList.stoneList[i].effect_a_v%>"><%=itemList.stoneList[i].level%><%=itemList.stoneList[i].kind%> - <%=itemList.stoneList[i].effect_a%> <%=itemList.stoneList[i].effect_a_v%>%</option>
+                    <option value="<%=itemList.stoneList[i].effect_a%> <%=itemList.stoneList[i].effect_a_v%>"><%=itemList.stoneList[i].level%><%=itemList.stoneList[i].kind%>-<%=itemList.stoneList[i].effect_a%> <%=itemList.stoneList[i].effect_a_v%>%</option>
                 <% } %>
             <% } %>
         </select>
         <span class="input-group-text"><font color="black">마석</font></span>
-        <select id="ddlAssOption2" class="form-control">
+        <select id="ddlAssOption2" class="form-control" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(itemList.stoneList != null && itemList.stoneList.length > 0) { %>
                 <% for (var i = 0; i < itemList.stoneList.length; i++) { %>
-                    <option value="<%=itemList.stoneList[i].effect_a%> <%=itemList.stoneList[i].effect_a_v%>"><%=itemList.stoneList[i].level%><%=itemList.stoneList[i].kind%> - <%=itemList.stoneList[i].effect_a%> <%=itemList.stoneList[i].effect_a_v%>%</option>
+                    <option value="<%=itemList.stoneList[i].effect_a%> <%=itemList.stoneList[i].effect_a_v%>"><%=itemList.stoneList[i].level%><%=itemList.stoneList[i].kind%>-<%=itemList.stoneList[i].effect_a%> <%=itemList.stoneList[i].effect_a_v%>%</option>
                 <% } %>
             <% } %>
         </select>            

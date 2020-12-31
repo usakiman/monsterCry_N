@@ -65,11 +65,13 @@ class App {
             sessionStore = new mysqlStore(sessionMysql.company);                    
         } else {
             sessionStore = new mysqlStore(sessionMysql.real);
-        }        
-
+        }
+        
+        var hour = 3600000; // 60000 = 1분
         this.app.use(session({                                                          
             secret: "usaki key",
-            resave:false,
+            resave:true,
+            cookie:{ expires : new Date(Date.now() + hour)},
             saveUninitialized:true,
             store : sessionStore            
           }))

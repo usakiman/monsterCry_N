@@ -1,4 +1,4 @@
-#node js ¼³Ä¡
+#node js ï¿½ï¿½Ä¡
 node -v
 npm -v
 
@@ -7,7 +7,7 @@ npm -v
 npm init
 npm init -y
 
-package.json ³»¿¡ scripts ¿¡ ±â¼úÇÏ¸é cmd¿¡¼­ ±×´ë·Î ½ÇÇà°¡´É
+package.json ï¿½ï¿½ï¿½ï¿½ scripts ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ cmdï¿½ï¿½ï¿½ï¿½ ï¿½×´ï¿½ï¿½ ï¿½ï¿½ï¿½à°¡ï¿½ï¿½
 
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -20,14 +20,14 @@ node run dev
 
 
 
-#npm ¼³Ä¡
-¼³Ä¡ÇÏ¸é node_modules ¶ó´Â Æú´õ¿¡ ¸ðµÎ ¹­ÀÓ
-require ½Ã »ó´ë°æ·Î ÁöÁ¤¾ÈÇØµµ ¹Ù·Î ÀÎ½Ä
+#npm ï¿½ï¿½Ä¡
+ï¿½ï¿½Ä¡ï¿½Ï¸ï¿½ node_modules ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+require ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ ï¿½Ù·ï¿½ ï¿½Î½ï¿½
 
 npm install express
 npm install uuid4
-npm update -> package.json dependencies ¿¡ ±â¼úµÈ ¸ðµâ ¸ðµÎ ÃÖ½Å¹öÀü ¾÷µ¥ÀÌÆ®
-npm install -> package.json dependencies ¿¡ ±â¼úµÈ ¸ðµâ ¸ðµÎ ¼³Ä¡
+npm update -> package.json dependencies ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö½Å¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+npm install -> package.json dependencies ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
 
 
 #mysql 
@@ -69,7 +69,7 @@ CREATE TABLE `card_info` (
 
 SELECT * FROM card_info;
 
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '»ç¿ëÇÒ ÆÐ½º¿öµå';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½';
 
 CREATE TABLE user_table
 (
@@ -83,5 +83,22 @@ CREATE TABLE user_table
 
 ALTER TABLE user_table ADD UNIQUE user_table_unique (uid);
 
-INSERT INTO user_table (uid, pwd, nickname) VALUES ('choiyw2', SHA2('choiyw2',256), 'usaki')
+INSERT INTO user_table (uid, pwd, nickname) VALUES ('choiyw2', md5('choiyw2'), 'usaki')
 
+SELECT * FROM user_table;
+
+CREATE TABLE user_login_info 
+(
+	seq INT NOT NULL AUTO_INCREMENT,
+	seq_fk INT NOT NULL,
+	user_ip VARCHAR(15) NOT NULL,
+	cre_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (seq)
+);
+
+INSERT INTO user_login_info (seq_fk, user_ip, cre_date) SELECT (SELECT seq FROM user_table WHERE uid = 'choiyw2'), '123.111.222.333', NOW();
+
+UPDATE user_table SET last_login = NOW() WHERE uid = 'choiyw2';
+
+SELECT * FROM user_login_info;
+SELECT * FROM user_table;

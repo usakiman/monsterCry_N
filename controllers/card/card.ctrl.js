@@ -10,6 +10,7 @@ exports.post_card_list = (req , res) => {
     sql = sql.replace(":lvl", lvl);        
     
     console.log(sql);
+    if (req.session.isLogin == null) res.json(null);
 
     conn.query(sql, function (err, rows, fields) {
         if(err) console.log('query is not excuted. select fail\n' + err);
@@ -26,14 +27,51 @@ exports.post_card_view = ( req , res) => {
     sql = sql.replace(":seq", seq);        
     
     console.log(sql);
+    if (req.session.isLogin == null) res.json(null);
 
     conn.query(sql, function (err, rows, fields) {
         if(err) console.log('query is not excuted. select fail\n' + err);
         else {            
             res.json(rows);
-            console.log(rows);
+            //console.log(rows);
         }
     });  
+}
+
+exports.post_card_join = (req, res) => {
+    const ip = req.headers['x-forwarded-for'] ||  req.connection.remoteAddress;
+    var uid = req.body.uid.toLowerCase();
+    var pwd = req.body.pwd.toLowerCase();    
+    var nickname = req.body.nickname;
+    var sql = "SELECT count(*) as cnt FROM user_table WHERE uid = LOWER(?)";
+    var sqlInsert = "INSERT INTO user_table (uid, pwd, nickname) VALUES (?, MD5(?), ?)";
+    var params = [uid];
+    var params2 = [uid, pwd, nickname];
+    var vFlag = 0;
+    
+    console.log(sql);
+
+    conn.query(sql, params, function (err, result, fields) {
+        if(err) console.log('query is not excuted.\n' + err);
+        else {            
+            if (result[0].cnt === 1) {
+                vFlag == 1;
+                res.json("해당 아이디는 사용중입니다.");
+            }                                    
+        }
+    });  
+
+    if (vFlag == 0) {
+        conn.query(sqlInsert, params2, function(err, rows, fields) {
+            if (err) console.log('query is not excuted.\n' + err);
+            else {
+                console.log("insert execute --> UserID = "+rows.insertId);
+                res.json("SUCCESS");
+            }
+        });
+    }
+    
+
 }
 
 exports.post_card_logout = (req, res) => {
@@ -51,10 +89,19 @@ exports.post_card_login = (req, res) => {
     const ip = req.headers['x-forwarded-for'] ||  req.connection.remoteAddress;
     var uid = req.body.uid.toLowerCase();
     var pwd = req.body.pwd.toLowerCase();    
+    // 아이디체크
     var sql = "SELECT count(*) as cnt FROM user_table WHERE uid = ':uid';";
     sql = sql.replace(":uid", uid);
-    var sqlLogin = "SELECT count(*) as cnt FROM user_table WHERE uid = ? AND pwd = SHA2(?, 256);";
-    var params = [uid, pwd];    
+    // 비번체크
+    var sqlLogin = "SELECT count(*) as cnt FROM user_table WHERE uid = ? AND pwd = md5(?)";
+    var params = [uid, pwd];
+    // ip입력
+    var sqlIP = "INSERT INTO user_login_info (seq_fk, user_ip, cre_date) SELECT (SELECT seq FROM user_table WHERE uid = ?), ?, NOW()";
+    var params2 = [uid, ip];
+    // 마지막 로그인시간
+    var sqlUpdate = "UPDATE user_table SET last_login = NOW() WHERE uid = ':uid'";
+    sqlUpdate = sqlUpdate.replace(":uid", uid);
+
     var vFlag = 0;
     var returnMsg = "";
 
@@ -87,6 +134,20 @@ exports.post_card_login = (req, res) => {
 
                     })
 
+                    conn.query(sqlIP, params2, function(err, rows, fields) {
+                        if (err) console.log('query is not excuted.\n' + err);
+                        else {
+                            console.log("insert execute --> user_login_info seq = "+rows.insertId);                            
+                        }
+                    });
+
+                    conn.query(sqlUpdate, function(err, rows, fields) {
+                        if (err) console.log('query is not excuted.\n' + err);
+                        else {
+                            console.log("insert execute --> last login update");
+                        }
+                    });
+
                     res.json("SUCCESS");
                 } else {
                     res.json("패스워드가 일치하지 않습니다.");
@@ -111,6 +172,7 @@ exports.post_card_result = (req, res) => {
     // "skillSpeed" : vSkillSpeed   
 
     console.log(req.body);
+    if (req.session.isLogin == null) res.json(null);
 
     var returnActPower = 0.0;
     var returnSkill1_Wtime = 0.0;
