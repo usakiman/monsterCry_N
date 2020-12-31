@@ -101,62 +101,54 @@ exports.post_card_login = (req, res) => {
     // 마지막 로그인시간
     var sqlUpdate = "UPDATE user_table SET last_login = NOW() WHERE uid = ':uid'";
     sqlUpdate = sqlUpdate.replace(":uid", uid);
-
-    var vFlag = 0;
-    var returnMsg = "";
-
+    
     console.log(sql);
     conn.query(sql, function (err, result, fields) {
         if(err) console.log('query is not excuted. select fail\n' + err);
         else {              
-            if (result[0].cnt === 1) {
-                vFlag = 1;
+            // 아이디 체크
+            if (result[0].cnt == 1) {
+                console.log(sqlLogin);
+                conn.query(sqlLogin, params, function (err, result, fields) {
+                    if(err) console.log('query is not excuted. select fail\n' + err);
+                    else {                  
+                        if (result[0].cnt == 1) {
+
+                            console.log(req.session);
+                            req.session.isLogin = true;
+                            //req.isLogin = true;
+                            req.session.loginID = uid;
+                            console.log(req.session.loginID);
+                            req.session.save(function() {
+
+                            })
+
+                            conn.query(sqlIP, params2, function(err, rows, fields) {
+                                if (err) console.log('query is not excuted.\n' + err);
+                                else {
+                                    console.log("insert execute --> user_login_info seq = "+rows.insertId);                            
+                                }
+                            });
+
+                            conn.query(sqlUpdate, function(err, rows, fields) {
+                                if (err) console.log('query is not excuted.\n' + err);
+                                else {
+                                    console.log("insert execute --> last login update");
+                                }
+                            });
+
+                            res.json("SUCCESS");
+                        } else {
+                            res.json("패스워드가 일치하지 않습니다.");
+                        }                        
+                    }
+                });  
+                
             } else {
-                returnMsg = "해당 아이디는 존재 하지 않습니다.";
-            }                        
-        }
-    });
-    
-    console.log(vFlag);
-    if (vFlag == 1) {
-        console.log(sqlLogin);
-        conn.query(sqlLogin, params, function (err, result, fields) {
-            if(err) console.log('query is not excuted. select fail\n' + err);
-            else {                  
-                if (result[0].cnt == 1) {
-
-                    console.log(req.session);
-                    req.session.isLogin = true;
-                    //req.isLogin = true;
-                    req.session.loginID = uid;
-                    console.log(req.session.loginID);
-                    req.session.save(function() {
-
-                    })
-
-                    conn.query(sqlIP, params2, function(err, rows, fields) {
-                        if (err) console.log('query is not excuted.\n' + err);
-                        else {
-                            console.log("insert execute --> user_login_info seq = "+rows.insertId);                            
-                        }
-                    });
-
-                    conn.query(sqlUpdate, function(err, rows, fields) {
-                        if (err) console.log('query is not excuted.\n' + err);
-                        else {
-                            console.log("insert execute --> last login update");
-                        }
-                    });
-
-                    res.json("SUCCESS");
-                } else {
-                    res.json("패스워드가 일치하지 않습니다.");
-                }                        
+                res.json("해당 아이디는 존재 하지 않습니다.");
             }
-        });  
-    } else {
-        res.json(returnMsg);
-    }
+        }
+    });            
 };
 
 exports.post_card_write = ( req , res ) => {
