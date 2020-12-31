@@ -11,7 +11,7 @@ var funSimulList = function(v) {
         td += "<p>"+result[i].maineffect+"</p>";
         td += "</div></div></div>";
 
-        console.log(td);
+        //console.log(td);
 
         $("#SimulList").append(td);
     }
@@ -25,7 +25,7 @@ var funSimulViewInit = function() {
 
     $("#ddlWeaponMain").val("");
     $("#ddlWeaponOption1").val("");
-    $("#ddlWeaponOption2").val("");
+    $("#ddlWeaponOption2").val("");    
 
     $("#ddlDefenseMain").val("");
     $("#ddlDefenseOption1").val("");
@@ -41,6 +41,17 @@ var funSimulViewInit = function() {
     $("#ddlSkillSpeedControl1").val("0");
     $("#ddlSkillSpeedControl2").val("0");
 
+    $("#lblW").removeAttr("placeholder")
+    $("#lblWOption1").removeAttr("placeholder")
+    $("#lblWOption2").removeAttr("placeholder")
+
+    $("#lblD").removeAttr("placeholder")
+    $("#lblDOption1").removeAttr("placeholder")
+    $("#lblDOption2").removeAttr("placeholder")
+
+    $("#lblA").removeAttr("placeholder")
+    $("#lblAOption1").removeAttr("placeholder")
+    $("#lblAOption2").removeAttr("placeholder")
 }
 
 var funSimulView = function(v) {
@@ -60,7 +71,7 @@ var funSimulView = function(v) {
         $("#hidActSkill2").val(result[i].cardactive2);
         $("#hidActSkill2_w").val(result[i].cardactive2_waiting);
 
-        console.log(td);
+        //console.log(td);
     }
 
     $("#pSimulView").append(td);        
@@ -193,8 +204,24 @@ var funGetEach = function(v) {
     return sumVal.toPrecision(4); // 소수점 자리 반올림처리
 }
 
-var funAllCalc = function() {
-    
+var funAllCalc = function(v) {
+        
+    switch (v) {
+        case "ddlWeaponMain" : $("#lblW").attr("placeholder", $("#"+v).val()); break;
+        case "ddlWeaponOption1" : $("#lblWOption1").attr("placeholder", $("#"+v).val()); break;
+        case "ddlWeaponOption2" : $("#lblWOption2").attr("placeholder", $("#"+v).val()); break;
+
+        case "ddlDefenseMain" : $("#lblD").attr("placeholder", $("#"+v).val()); break;
+        case "ddlDefenseOption1" : $("#lblDOption1").attr("placeholder", $("#"+v).val()); break;
+        case "ddlDefenseOption2" : $("#lblDOption2").attr("placeholder", $("#"+v).val()); break;
+
+        case "ddlAssMain" : $("#lblA").attr("placeholder", $("#"+v).val()); break;
+        case "ddlAssOption1" : $("#lblAOption1").attr("placeholder", $("#"+v).val()); break;
+        case "ddlAssOption2" : $("#lblAOption2").attr("placeholder", $("#"+v).val()); break;
+        default : break;
+    }
+
+
     var vAttSpeed = funGetEach("공속");
     var vSkillSpeed = funGetEach("스속");
     var vResult;
