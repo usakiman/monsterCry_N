@@ -13,7 +13,7 @@ router.use('/card', require('./card'));
 
 router.get('/', (req, res) => {
     const ip = req.headers['x-forwarded-for'] ||  req.connection.remoteAddress;
-    var sql = "SELECT * FROM card_info WHERE maineffect <> '' ORDER BY cardlevel desc, cardname";
+    var sql = "SELECT * FROM card_info WHERE maineffect <> '' and cardlevel = 'SSS+' ORDER BY cardlevel desc, cardname";
     var sqlInsert = "insert into access_list (user_ip, cre_date, code) values (?, now(), ?)";
     var sqlMerge = "INSERT INTO access_log (ymd, cnt) VALUES (DATE_FORMAT( NOW(), '%Y%m%d'), 1) ON DUPLICATE KEY UPDATE cnt = cnt + 1";
     var params = [ip, ""];
