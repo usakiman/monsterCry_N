@@ -16,12 +16,12 @@ router.get('/', (req, res) => {
     var sql = "SELECT * FROM card_info WHERE maineffect <> '' ORDER BY cardlevel desc, cardname";
     var sqlInsert = "insert into access_list (user_ip, cre_date, code) values (?, now(), ?)";
     var sqlMerge = "INSERT INTO access_log (ymd, cnt) VALUES (DATE_FORMAT( NOW(), '%Y%m%d'), 1) ON DUPLICATE KEY UPDATE cnt = cnt + 1";
-    var params = [ip, ""];        
+    var params = [ip, ""];
 
-    console.log(req.session);
-    req.session.isLogin = true;
-    req.session.loginID = "test";
-    console.log(req.session.loginID);
+    //console.log(req.session);
+    //req.session.isLogin = true;
+    //req.session.loginID = "test";
+    //console.log(req.session.loginID);
 
     conn.query(sql, function (err, rows, fields) {
         if(err) console.log('query is not excuted.\n' + err);

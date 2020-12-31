@@ -14,25 +14,21 @@
     <nav id="sidebar-wrapper">
     <ul class="sidebar-nav">
         <li class="sidebar-brand">
-        <span class="smooth-scroll" id="loginInfo"></span>        
-        </li>
-        <li class="sidebar-nav-item" id="lLogin">
-        <button class="btn btn-danger" id="btnLogin" onclick="funNav('Login');">Login</button>        
-        </li>
-        <li class="sidebar-nav-item" id="lLogout">                
-        <button class="btn btn-danger" id="btnLogout" onclick="vLogout();">Logout</button>
-        </li><p/>
+        <span class="smooth-scroll" id="loginInfo"><%=loginID%></span>        
+        </li>        
+        <li class="sidebar-nav-item" id="lLogin"><button class="btn btn-danger" id="btnLoginG" onclick="funNav('Login');"></button></li>        
+        <p/>
         <li class="sidebar-nav-item">        
         <button class="btn btn-danger" id="btnSimul" onclick="funNav('Simul');">시뮬레이터</button>
         </li><p/>
         <li class="sidebar-nav-item">        
-        <button class="btn btn-danger" id="btnBanner" onclick="funNav('Banner');">준비중</button>
+        <button class="btn btn-danger" id="btnBanner" onclick="goUrl('Banner');">준비중</button>
         </li><p/>  
         <li class="sidebar-nav-item">        
-        <button class="btn btn-danger" id="btnBanner" onclick="funNav('Banner');">준비중</button>
+        <button class="btn btn-danger" id="btnBanner" onclick="goUrl('Banner');">준비중</button>
         </li><p/>  
         <li class="sidebar-nav-item">        
-        <button class="btn btn-danger" id="btnMCE" onclick="funNav('MCE');">MonsteryCryEternal</button>
+        <button class="btn btn-danger" id="btnMCE" onclick="goUrl('MCE');">MonsteryCryEternal</button>
         </li>
     </ul>
     </nav>

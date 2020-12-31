@@ -29,3 +29,59 @@ npm install uuid4
 npm update -> package.json dependencies 에 기술된 모듈 모두 최신버전 업데이트
 npm install -> package.json dependencies 에 기술된 모듈 모두 설치
 
+
+#mysql 
+SHOW CREATE TABLE card_info;
+
+CREATE TABLE `access_list` (
+  `seq` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_ip` VARCHAR(15) NOT NULL,
+  `cre_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `code` VARCHAR(50) DEFAULT NULL,
+  PRIMARY KEY (`seq`)
+) ENGINE=MYISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `access_log` (
+  `seq` INT(11) NOT NULL AUTO_INCREMENT,
+  `ymd` VARCHAR(8) NOT NULL,
+  `cnt` INT(11) DEFAULT '0',
+  PRIMARY KEY (`seq`),
+  UNIQUE KEY `ymd` (`ymd`)
+) ENGINE=MYISAM AUTO_INCREMENT=639 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `card_info` (
+  `seq` INT(11) NOT NULL AUTO_INCREMENT,
+  `cardname` VARCHAR(255) NOT NULL,
+  `cardlevel` VARCHAR(25) NOT NULL,
+  `cardtype` VARCHAR(25) NOT NULL,
+  `cardrace` VARCHAR(25) NOT NULL,
+  `cardactpower` VARCHAR(25) NOT NULL,
+  `cardactive1` VARCHAR(255) DEFAULT NULL,
+  `cardactive1_waiting` VARCHAR(5) DEFAULT '0',
+  `cardactive2` VARCHAR(255) DEFAULT NULL,
+  `cardactive2_waiting` VARCHAR(5) DEFAULT '0',
+  `cardpassive1` VARCHAR(255) DEFAULT NULL,
+  `cardpassive2` VARCHAR(255) DEFAULT NULL,
+  `maineffect` VARCHAR(255) DEFAULT NULL,
+  `cardimage` VARCHAR(255) DEFAULT NULL,
+  PRIMARY KEY (`seq`)
+) ENGINE=MYISAM AUTO_INCREMENT=164 DEFAULT CHARSET=utf8;
+
+SELECT * FROM card_info;
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '사용할 패스워드';
+
+CREATE TABLE user_table
+(
+	seq INT NOT NULL AUTO_INCREMENT,
+	uid VARCHAR(50) NOT NULL,
+	pwd VARCHAR(64) NOT NULL,
+	nickname VARCHAR(50) NOT NULL,
+	last_login TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (seq)
+);
+
+ALTER TABLE user_table ADD UNIQUE user_table_unique (uid);
+
+INSERT INTO user_table (uid, pwd, nickname) VALUES ('choiyw2', SHA2('choiyw2',256), 'usaki')
+

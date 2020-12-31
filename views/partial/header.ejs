@@ -42,7 +42,20 @@ $(document).ready(function() {
     $("#SimulView").css("display", "none");  
     $("#MCE").css("display", "none");    
     $("#Join").css("display", "none");
-    $("#lLogout").css("display", "none");
+    //$("#lLogout").css("display", "none");        
+
+    var loginid = "<%=loginID%>";
+    if (loginid != "") {
+        $("#btnLoginG").removeAttr("onclick");
+        $("#btnLoginG").attr("onclick", "vLogout();");
+        $("#btnLoginG").html("로그아웃");
+    }
+    else {
+        $("#btnLoginG").removeAttr("onclick");
+        $("#btnLoginG").attr("onclick", "funNav('Login');");
+        $("#btnLoginG").html("로그인");        
+    }
+        
 
     $("#ddlLevel").on("change", function() {
         var lvl = $("#ddlLevel").val();
@@ -222,6 +235,16 @@ var vItem = function(v) {
     
 }
 
+var goUrl = function(v) {
+    var loginid = "<%=loginID%>";
+
+    if (loginid != "") {
+        funNav(v);
+    } else {        
+        funNav('Login');
+    }    
+}
+
 var vItemReturn = function() {
     $("#Simul").css("display", "block");
     $("#SimulView").css("display", "none");  
@@ -233,27 +256,72 @@ var vJoin = function() {
 }
 
 var vJoinConfirm = function() {
-    $("#lLogin").css("display", "none");
-    $("#lLogout").css("display", "block");
+    //$("#lLogin").css("display", "none");
+    //$("#lLogout").css("display", "block");
     $("#loginInfo").html("후후 로그인중");
 
     funNav("");
 }
 
 var vLogin = function() {
-    $("#lLogin").css("display", "none");
-    $("#lLogout").css("display", "block");
-    $("#loginInfo").html("후후 로그인중");
+    //$("#lLogin").css("display", "none");
+    //$("#lLogout").css("display", "block");
+    //$("#loginInfo").html("후후 로그인중");
 
-    funNav("");
+    var uid = $("#txtUid").val();
+    var pwd = $("#txtPwd").val();
+
+    if (uid == "") { alert("아이디를 입력해주세요."); return; }
+    if (pwd == "") { alert("패스워드를 입력해주세요."); return; }
+
+    $.ajax({
+            type : "POST",
+            url : "/card/login",
+            dataType : "JSON",            
+            data : {
+                "uid" : uid,
+                "pwd" : pwd
+            },
+            success: function(result){
+                if (result.length > 0) {
+                    if (result == "SUCCESS") {
+                        document.location.href = "/";
+                    } else {
+                        alert(result);
+                    }                                        
+                }                                                        
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+            }
+        });            
 }
 
 var vLogout = function() {
-    $("#lLogin").css("display", "block");
-    $("#lLogout").css("display", "none");
-    $("#loginInfo").html("");
+    //$("#lLogin").css("display", "block");
+    //$("#lLogout").css("display", "none");
+    //$("#loginInfo").html("");
 
-    funNav("");
+    $.ajax({
+            type : "POST",
+            url : "/card/logout",
+            dataType : "JSON",            
+            data : {
+                
+            },
+            success: function(result){
+                if (result.length > 0) {
+                    if (result == "SUCCESS") {
+                        document.location.href = "/";
+                    } else {
+                        alert(result);
+                    }                                        
+                }                                                        
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+            }
+        });    
 }
 
 </script>

@@ -61,6 +61,8 @@ class App {
         var sessionStore = null;
         if(hostname === 'MSDN-SPECIAL') {  
             sessionStore = new mysqlStore(sessionMysql.dev);                    
+        } else if (hostname === 'LAPTOP-DI6GLDAU') {
+            sessionStore = new mysqlStore(sessionMysql.company);                    
         } else {
             sessionStore = new mysqlStore(sessionMysql.real);
         }        
@@ -102,7 +104,7 @@ class App {
 
         // 템플릿 변수
         this.app.use( (req, res, next) => {
-            this.app.locals.isLogin = true;
+            this.app.locals.isLogin = false;
             this.app.locals.reqPath = req.path;
             this.app.locals.loginCode = "";
             this.app.locals.title = "Dragon Chronicles - monster corp (usaki)";

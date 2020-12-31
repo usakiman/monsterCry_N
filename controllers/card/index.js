@@ -20,6 +20,10 @@ router.post('/view', ctrl.post_card_view );
 
 router.post("/actResult", ctrl.post_card_result);
 
+router.post("/login", ctrl.post_card_login);
+router.post("/logout", ctrl.post_card_logout);
+
+
 router.post('/write', ctrl.post_card_write );
 
 module.exports = router;

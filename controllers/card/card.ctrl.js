@@ -36,6 +36,68 @@ exports.post_card_view = ( req , res) => {
     });  
 }
 
+exports.post_card_logout = (req, res) => {
+    req.session.destroy(function(err) {
+        
+        //req.session.isLogin = false;
+        //req.isLogin = true;
+        //req.session.loginID = "";        
+
+        res.json("SUCCESS");
+    });  
+}
+
+exports.post_card_login = (req, res) => {    
+    const ip = req.headers['x-forwarded-for'] ||  req.connection.remoteAddress;
+    var uid = req.body.uid.toLowerCase();
+    var pwd = req.body.pwd.toLowerCase();    
+    var sql = "SELECT count(*) as cnt FROM user_table WHERE uid = ':uid';";
+    sql = sql.replace(":uid", uid);
+    var sqlLogin = "SELECT count(*) as cnt FROM user_table WHERE uid = ? AND pwd = SHA2(?, 256);";
+    var params = [uid, pwd];    
+    var vFlag = 0;
+    var returnMsg = "";
+
+    console.log(sql);
+    conn.query(sql, function (err, result, fields) {
+        if(err) console.log('query is not excuted. select fail\n' + err);
+        else {              
+            if (result[0].cnt === 1) {
+                vFlag = 1;
+            } else {
+                returnMsg = "해당 아이디는 존재 하지 않습니다.";
+            }                        
+        }
+    });
+    
+    console.log(vFlag);
+    if (1) {
+        console.log(sqlLogin);
+        conn.query(sqlLogin, params, function (err, result, fields) {
+            if(err) console.log('query is not excuted. select fail\n' + err);
+            else {                  
+                if (result[0].cnt == 1) {
+
+                    console.log(req.session);
+                    req.session.isLogin = true;
+                    //req.isLogin = true;
+                    req.session.loginID = uid;
+                    console.log(req.session.loginID);
+                    req.session.save(function() {
+
+                    })
+
+                    res.json("SUCCESS");
+                } else {
+                    res.json("패스워드가 일치하지 않습니다.");
+                }                        
+            }
+        });  
+    } else {
+        res.json(returnMsg);
+    }
+};
+
 exports.post_card_write = ( req , res ) => {
     res.send(req.body);
     console.log(req.body);
