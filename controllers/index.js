@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
     util.mySqlConn.query(sql, function (err, rows, fields) {
         if(err) console.log('query is not excuted.\n' + err);
         else { 
-            console.log(itemList);
+            //console.log(itemList);
             res.render('index', {
                 eList : rows,
                 itemList : itemList,            
