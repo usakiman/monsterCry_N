@@ -1,10 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 
-const db_config = require('../conf/db.js');
-// console.log(db_config.init);
-var conn = db_config.init();
-db_config.connect(conn);
+const util = require("./util");
 
 const itemList = require("../conf/item_info");
  
@@ -21,9 +18,9 @@ router.get('/', (req, res) => {
     //console.log(req.session);
     //req.session.isLogin = true;
     //req.session.loginID = "test";
-    //console.log(req.session.loginID);
+    //console.log(req.session.loginID);    
 
-    conn.query(sql, function (err, rows, fields) {
+    util.mySqlConn.query(sql, function (err, rows, fields) {
         if(err) console.log('query is not excuted.\n' + err);
         else { 
             console.log(itemList);
@@ -32,19 +29,20 @@ router.get('/', (req, res) => {
                 itemList : itemList,            
                 path: req.url,
                 isLogin : req.session.isLogin,
-                loginID : req.session.loginID            
+                loginID : req.session.loginID,
+                loginType : req.session.loginType
             });                        
         }
     });
 
-    conn.query(sqlInsert, params, function(err, rows, fields) {
+    util.mySqlConn.query(sqlInsert, params, function(err, rows, fields) {
         if (err) console.log('query is not excuted.\n' + err);
         else {
             console.log("insert execute --> accessID = "+rows.insertId);
         }
     });
 
-    conn.query(sqlMerge, function(err, rows, fields) {
+    util.mySqlConn.query(sqlMerge, function(err, rows, fields) {
         if (err) console.log('query is not excuted.\n' + err);
         else {
             console.log("merge execute");

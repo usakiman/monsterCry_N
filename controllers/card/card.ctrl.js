@@ -1,8 +1,10 @@
-const { json } = require('express');
-const db_config = require('../../conf/db.js');
-//console.log(db_config.init);
-var conn = db_config.init();
-db_config.connect(conn);
+//const { json } = require('express');
+
+// const db_config = require('../../conf/db.js');
+// var conn = db_config.init();
+// db_config.connect(conn);
+
+const util = require("../util");
 
 exports.post_card_list = (req , res) => {        
     var lvl = req.body.lvl;
@@ -12,7 +14,7 @@ exports.post_card_list = (req , res) => {
     console.log(sql);
     if (req.session.isLogin == null) res.json(null);
 
-    conn.query(sql, function (err, rows, fields) {
+    util.mySqlConn.query(sql, function (err, rows, fields) {
         if(err) console.log('query is not excuted. select fail\n' + err);
         else {            
             res.json(rows);
@@ -29,7 +31,7 @@ exports.post_card_view = ( req , res) => {
     console.log(sql);
     if (req.session.isLogin == null) res.json(null);
 
-    conn.query(sql, function (err, rows, fields) {
+    util.mySqlConn.query(sql, function (err, rows, fields) {
         if(err) console.log('query is not excuted. select fail\n' + err);
         else {            
             res.json(rows);
@@ -41,17 +43,26 @@ exports.post_card_view = ( req , res) => {
 exports.post_card_join = (req, res) => {
     const ip = req.headers['x-forwarded-for'] ||  req.connection.remoteAddress;
     var uid = req.body.uid.toLowerCase();
-    var pwd = req.body.pwd.toLowerCase();    
+    var pwd = req.body.pwd.toLowerCase();
+    var email = req.body.email.toLowerCase();
     var nickname = req.body.nickname;
     var sql = "SELECT count(*) as cnt FROM user_table WHERE uid = LOWER(?)";
-    var sqlInsert = "INSERT INTO user_table (uid, pwd, nickname) VALUES (?, MD5(?), ?)";
+    var sqlInsert = "INSERT INTO user_table (uid, pwd, nickname, email) VALUES (?, MD5(?), ?, ?)";
     var params = [uid];
-    var params2 = [uid, pwd, nickname];
+    var params2 = [uid, pwd, nickname, email];
     var vFlag = 0;
+
+    var emailTemplete = "uid : " + uid + "<br/>";
+    emailTemplete += "email : " + email + "<br/>";
+    emailTemplete += "nickname : " + nickname + "<br/>";
+    emailTemplete += "ip : " + ip + "<br/>";
+    emailTemplete += "<a href='http://www.usaki.co.kr' target='_blank'>사이트로 이동</a>";
+
+    util.emailSender("choiyw2@gmail.com", "[사이트 회원가입 신청] "+nickname+" 님의 신청이 들어왔습니다.", emailTemplete);
     
     console.log(sql);
 
-    conn.query(sql, params, function (err, result, fields) {
+    util.mySqlConn.query(sql, params, function (err, result, fields) {
         if(err) console.log('query is not excuted.\n' + err);
         else {            
             if (result[0].cnt === 1) {
@@ -62,7 +73,7 @@ exports.post_card_join = (req, res) => {
     });  
 
     if (vFlag == 0) {
-        conn.query(sqlInsert, params2, function(err, rows, fields) {
+        util.mySqlConn.query(sqlInsert, params2, function(err, rows, fields) {
             if (err) console.log('query is not excuted.\n' + err);
             else {
                 console.log("insert execute --> UserID = "+rows.insertId);
@@ -89,11 +100,12 @@ exports.post_card_login = (req, res) => {
     const ip = req.headers['x-forwarded-for'] ||  req.connection.remoteAddress;
     var uid = req.body.uid.toLowerCase();
     var pwd = req.body.pwd.toLowerCase();    
+    var code = req.body.code.toLowerCase();    
     // 아이디체크
     var sql = "SELECT count(*) as cnt FROM user_table WHERE uid = ':uid';";
     sql = sql.replace(":uid", uid);
     // 비번체크
-    var sqlLogin = "SELECT count(*) as cnt FROM user_table WHERE uid = ? AND pwd = md5(?)";
+    var sqlLogin = "SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)";
     var params = [uid, pwd];
     // ip입력
     var sqlIP = "INSERT INTO user_login_info (seq_fk, user_ip, cre_date) SELECT (SELECT seq FROM user_table WHERE uid = ?), ?, NOW()";
@@ -103,44 +115,64 @@ exports.post_card_login = (req, res) => {
     sqlUpdate = sqlUpdate.replace(":uid", uid);
     
     console.log(sql);
-    conn.query(sql, function (err, result, fields) {
+    util.mySqlConn.query(sql, function (err, result, fields) {
         if(err) console.log('query is not excuted. select fail\n' + err);
         else {              
             // 아이디 체크
             if (result[0].cnt == 1) {
                 console.log(sqlLogin);
-                conn.query(sqlLogin, params, function (err, result, fields) {
+                util.mySqlConn.query(sqlLogin, params, function (err, result, fields) {
                     if(err) console.log('query is not excuted. select fail\n' + err);
                     else {                  
-                        if (result[0].cnt == 1) {
 
-                            console.log(req.session);
-                            req.session.isLogin = true;
-                            //req.isLogin = true;
-                            req.session.loginID = uid;
-                            console.log(req.session.loginID);
-                            req.session.save(function() {
+                        var correct = 0;
+                        var status = -1;
+                        var vcode = "";
 
-                            })
+                        result.forEach(element => {
+                            correct = 1;
+                            status = element.status;
+                            vcode = element.loginCode;
+                        });
 
-                            conn.query(sqlIP, params2, function(err, rows, fields) {
-                                if (err) console.log('query is not excuted.\n' + err);
-                                else {
-                                    console.log("insert execute --> user_login_info seq = "+rows.insertId);                            
-                                }
-                            });
-
-                            conn.query(sqlUpdate, function(err, rows, fields) {
-                                if (err) console.log('query is not excuted.\n' + err);
-                                else {
-                                    console.log("insert execute --> last login update");
-                                }
-                            });
-
-                            res.json("SUCCESS");
-                        } else {
-                            res.json("패스워드가 일치하지 않습니다.");
-                        }                        
+                        if (status == 0) {
+                            res.json("승인이 필요합니다.");
+                        } else {                            
+                            if (correct == 1) {
+                                
+                                if (vcode == code) {
+                                    console.log(req.session);
+                                    req.session.isLogin = true;                            
+                                    req.session.loginID = uid;
+                                    req.session.loginType = status;
+                                    console.log(req.session.loginID);
+                                    req.session.save(function() {
+        
+                                    })
+        
+                                    util.mySqlConn.query(sqlIP, params2, function(err, rows, fields) {
+                                        if (err) console.log('query is not excuted.\n' + err);
+                                        else {
+                                            console.log("insert execute --> user_login_info seq = "+rows.insertId);                            
+                                        }
+                                    });
+        
+                                    util.mySqlConn.query(sqlUpdate, function(err, rows, fields) {
+                                        if (err) console.log('query is not excuted.\n' + err);
+                                        else {
+                                            console.log("insert execute --> last login update");
+                                        }
+                                    });
+        
+                                    res.json("SUCCESS");
+                                } else {
+                                    res.json("코드가 일치하지 않습니다.");
+                                }                                                        
+                            } else{
+                                res.json("패스워드가 일치하지 않습니다.");
+                            }
+                        }
+                                                                                                
                     }
                 });  
                 

@@ -136,9 +136,7 @@ class App {
                 title : this.app.locals.title
             });
         });
-
-    }
-
+    }    
 }
 
 module.exports = new App().app; 

@@ -17,6 +17,19 @@ var funSimulList = function(v) {
     }
 };
 
+var goUrl = function(v) {
+    var loginid = $("#hidloginID").val();
+    var type = $("#hidloginType").val();
+
+    if (loginid != "") {
+        if (type == 0) { alert("승인이 필요합니다"); return ;}
+
+        funNav(v);
+    } else {        
+        funNav('Login');
+    }    
+}
+
 var funSimulViewInit = function() {
     $("#pSimulView").empty();
     $("#spnResult").empty();
@@ -324,4 +337,9 @@ function getCookie(cookieName) {
         cookieValue = cookieData.substring(start, end);
     }
     return unescape(cookieValue);
+}
+
+function isEmail(asValue) {
+	var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	return regExp.test(asValue);
 }

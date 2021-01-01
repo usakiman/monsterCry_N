@@ -5,6 +5,8 @@
     <input type="hidden" id="hidActSkill2" name="hidActSkill2"/>
     <input type="hidden" id="hidActSkill2_w" name="hidActSkill2_w"/>
     <input type="hidden" id="hidloginID" name="hidloginID" value="<%=loginID%>"/>
+    <input type="hidden" id="hidloginType" name="hidloginType" value="<%=loginType%>"/>
+    
     <header>
     <div class="mobile-logo">
     <a href=""><img src="/theme/images/logo.gif"></a>
@@ -50,8 +52,9 @@
 <section id="Login"> 
     <div class="container">
     <h2>로그인</h2>
-    <p>모든 메뉴는 회원 가입을 해주셔야 접근 가능합니다~!<br> 추후에 다른 메뉴에 활용할 예정이니 가입해주세요~<br>민감한 정보는 하나도 입력받지 않습니다</p>
+    <p>모든 메뉴는 회원 가입을 해주셔야 접근 가능합니다~!<br> 추후에 다른 메뉴에 활용할 예정이니 가입해주세요~<br>민감한 정보는 입력받지 않습니다</p>
     <p>로그인 유지는 1시간동안 지속됩니다.</p>
+    <p>승인코드는 한번 입력하시면 쭉 유지됩니다.</p>
     <div class="blog-wrap">                  
         <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -64,6 +67,12 @@
             <span class="input-group-text" id="basic-addon3">패스워드</span>
         </div>
         <input type="password" class="form-control" placeholder="최대 20자리, 대소문자 구분 없음" id="txtPwd" onkeyup="vEnter();" maxlength="20" aria-describedby="basic-addon3">
+        </div>
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">승인코드</span>
+        </div>
+        <input type="text" class="form-control" placeholder="XXXXXX" id="txtCode" maxlength="10" aria-describedby="basic-addon3">
         </div>
         <div class="form-check">
             <input type="checkbox" class="form-check-input" id="cbIDSave">
@@ -81,8 +90,8 @@
 <section id="Join"> 
     <div class="container">
     <h2>회원가입</h2>
-    <p>아이디는 중복 불가능 합니다. <br>비밀번호는 암호화 되지만 간단한걸로 해주세요. <br><br>**다른정보를 받지않기 때문에 비밀번호는 찾을수 없습니다**<br>
-        기억하기 쉽게 지정해주세요.
+    <p>아이디는 중복 불가능 합니다. <br>비밀번호는 암호화 되지만 간단한걸로 해주세요. <br><br> 비밀번호 초기화는 당분간 지원하지않습니다. <br>
+        기억하기 쉽게 지정해주세요.<br><br><font style="font-weight: bold;">이메일은 승인 후 코드가 발송되는 루트 입니다. 입력 안하실시 게임내에서 길마 또는 길원에게 귓말주세요~~</font>
     </p>    
     <div class="blog-wrap">                  
         <div class="input-group mb-3">
@@ -108,6 +117,12 @@
             <span class="input-group-text" id="basic-addon3">닉네임</span>
         </div>
         <input type="text" class="form-control" placeholder="최대 20자리" id="txtJoinNickname" maxlength="20" aria-describedby="basic-addon3">
+        </div>
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">이메일</span>
+        </div>
+        <input type="email" class="form-control" placeholder="name@example.com" id="txtJoinEmail" maxlength="50" aria-describedby="basic-addon3">            
         </div>
         
         <button type="button" id="btnJoinConfirm" class="btn btn-success" onclick="vJoinConfirm()">회원가입</button>
