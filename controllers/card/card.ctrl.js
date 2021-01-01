@@ -128,12 +128,16 @@ exports.post_card_login = (req, res) => {
                         var correct = 0;
                         var status = -1;
                         var vcode = "";
-
+                        
                         result.forEach(element => {
                             correct = 1;
                             status = element.status;
                             vcode = element.loginCode;
                         });
+
+                        console.log(status);
+                        console.log(vcode);
+                        console.log(code);
 
                         if (status <= 0) {
                             res.json("승인이 필요합니다.");
