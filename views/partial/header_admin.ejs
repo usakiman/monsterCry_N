@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><%= title %></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" shrink-to-fit="no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- favicons -->
+<link rel="apple-touch-icon" sizes="57x57" href="/theme/images/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/theme/images/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/theme/images/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/theme/images/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/theme/images/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/theme/images/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/theme/images/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/theme/images/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/theme/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/theme/images/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/theme/images/favicon-16x16.png">
+<!-- favicons -->
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/theme/css/style.css">
+<link rel="stylesheet" type="text/css" href="/theme/css/custom-responsive-style.css">
+
+<script type="text/javascript" src="/theme/scripts/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/theme/scripts/plugin-active.js"></script>
+<script type="text/javascript" src="/theme/scripts/jquery-usaki.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+    
+});
+
+
+var vEnter = function() {
+    if (event.keyCode == 13) {
+        
+    }
+}
+
+
+var vLogin = function() {
+    //$("#lLogin").css("display", "none");
+    //$("#lLogout").css("display", "block");
+    //$("#loginInfo").html("후후 로그인중");
+
+    var uid = $("#txtUid").val();
+    var pwd = $("#txtPwd").val();
+    var code = $("#txtCode").val();
+
+    if (uid == "") { alert("아이디를 입력해주세요."); return; }
+    if (pwd == "") { alert("패스워드를 입력해주세요."); return; }
+    if (code == "") { alert("승인코드를 입력해주세요."); return; }
+
+    $.ajax({
+            type : "POST",
+            url : "/card/login",
+            dataType : "JSON",            
+            data : {
+                "uid" : uid,
+                "pwd" : pwd,
+                "code" : code
+            },
+            success: function(result){
+                if (result.length > 0) {
+                    if (result == "SUCCESS") {       
+                        var code = $("#txtCode").val();
+                        setCookie("userInputCode", code, 31);
+                        document.location.href = "/";
+                    } else {
+                        alert(result);
+                    }                                        
+                }                                                        
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+            }
+        });            
+}
+
+var vLogout = function() {
+    //$("#lLogin").css("display", "block");
+    //$("#lLogout").css("display", "none");
+    //$("#loginInfo").html("");
+
+    $.ajax({
+            type : "POST",
+            url : "/card/logout",
+            dataType : "JSON",            
+            data : {
+                
+            },
+            success: function(result){
+                if (result.length > 0) {
+                    if (result == "SUCCESS") {
+                        document.location.href = "/";
+                    } else {
+                        alert(result);
+                    }                                        
+                }                                                        
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+            }
+        });    
+}
+
+var goList = function(v) {
+    document.location.href = v;
+}
+
+var loginConfirm = function(v) {
+    if (!confirm("승인합니까?")) { return; }
+
+    var selValue = $("#selType_" + v).val();
+
+    if (selValue == "") {
+        alert("승인 타입을 선택해주세요.");
+        return;
+    }
+
+    $.ajax({
+            type : "POST",
+            url : "/admin/confirm_process",
+            dataType : "JSON",            
+            data : {
+                "seq" : v,
+                "type" : selValue                
+            },
+            success: function(result){
+                if (result.length > 0) {
+                    if (result == "SUCCESS") {                               
+                        document.location.href = "./confirm";
+                    } else {
+                        alert(result);
+                    }                                        
+                }                                                        
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+            }
+        });       
+    
+}
+
+var loginChange = function(v) {
+    if (!confirm("변경합니까?")) { return; }
+
+    var selValue = $("#selType_" + v).val();
+
+    if (selValue == "") {
+        alert("타입을 선택해주세요.");
+        return;
+    }
+
+    $.ajax({
+            type : "POST",
+            url : "/admin/confirm_change_process",
+            dataType : "JSON",            
+            data : {
+                "seq" : v,
+                "type" : selValue                
+            },
+            success: function(result){
+                if (result.length > 0) {
+                    if (result == "SUCCESS") {                               
+                        document.location.href = "./userlist";
+                    } else {
+                        alert(result);
+                    }                                        
+                }                                                        
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+            }
+        });      
+}
+
+</script>
+</head>

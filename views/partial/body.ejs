@@ -17,8 +17,11 @@
     <nav id="sidebar-wrapper">
     <ul class="sidebar-nav">
         <li class="sidebar-brand">
-        <span class="smooth-scroll" id="loginInfo"><%=loginID%></span>        
-        </li>        
+        <span class="smooth-scroll" id="loginInfo"><%=loginID%></span>
+        </li>             
+        <% if (link != null && link != "") { %>
+            <li class="sidebar-nav-item"><button class="btn btn-danger" onclick="document.location.href='<%=link%>';">ADMIN</button></li><p/>
+        <% } %>
         <li class="sidebar-nav-item" id="lLogin"><button class="btn btn-danger" id="btnLoginG" onclick="funNav('Login');"></button></li>        
         <p/>
         <li class="sidebar-nav-item">        

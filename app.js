@@ -13,7 +13,6 @@ const nunjucks = require("nunjucks");
 const ejs = require("ejs");
 const logger = require('morgan');
 const bodyParser = require('body-parser');	
-const uuid = require("uuid4");
 const session = require('express-session');                      
 const { response } = require('express');
 const mysqlStore = require('express-mysql-session')(session);    

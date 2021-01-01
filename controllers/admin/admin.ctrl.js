@@ -1,3 +1,5 @@
+const util = require("../util");
+
 exports.get_products = ( req , res) => {
     res.render( './admin/products' , 
         { message : "hello",
@@ -20,4 +22,126 @@ exports.get_products_write = ( req , res) => {
 exports.post_products_write = ( req , res ) => {
     res.send(req.body);
     console.log(req.body);
+} 
+
+exports.get_confirm = ( req , res) => {
+        
+    var sql = "SELECT * FROM user_table WHERE STATUS = 0 order by seq desc";    
+    util.mySqlConn.query(sql, function (err, rows, fields) {
+        if(err) console.log('query is not excuted. select fail\n' + err);
+        else {            
+            res.render( './admin/confirm' , 
+            { 
+                list:rows,
+                title: "관리자 메뉴",
+                bodyId: req.url        
+            }
+        ); 
+        }
+    });        
+}
+
+exports.get_userlist = (req, res) => {
+    var sql = "SELECT a.*, CASE STATUS WHEN 0 THEN '승인전' WHEN 1 THEN '외부' WHEN 2 THEN '몬주' WHEN 3 THEN '관리자' END AS statusHan FROM user_table a WHERE a.STATUS > 0 and a.STATUS < 4 order by a.seq desc";
+    util.mySqlConn.query(sql, function (err, rows, fields) {
+        if(err) console.log('query is not excuted. select fail\n' + err);
+        else {            
+            res.render( './admin/userlist' , 
+            { 
+                list:rows,
+                title: "관리자 메뉴",
+                bodyId: req.url        
+            }
+        ); 
+        }
+    });        
+}
+
+exports.post_confirm = ( req , res ) => {
+
+    console.log(req.body);
+
+    var seq = req.body.seq;
+    var type = req.body.type;
+    var rWord = util.randomWord().substr(0, 6);
+
+    var sql = "UPDATE user_table SET STATUS = ?, loginCode = ? WHERE seq = ?";    
+    var params = [type, rWord, seq];            
+    
+    var sqlUser = "SELECT * FROM user_table WHERE seq = ? ";
+    var params2 = [seq];            
+        
+    util.mySqlConn.query(sqlUser, params2, function (err, result, fields) {
+        if(err) console.log('query is not excuted. select fail\n' + err);
+        else {            
+            if (result[0].seq == seq) {
+                var uid = result[0].uid;
+                var email = result[0].email;
+                var nickname = result[0].nickname;
+
+                var emailTemplete = "안녕하세요<br/>";
+                emailTemplete += "신청하신 id의 승인코드 입니다. <br/>";
+                emailTemplete += "id : " + uid + "<br/>";
+                emailTemplete += "email : " + email + "<br/>";
+                emailTemplete += "nickname : " + nickname + "<br/>";
+                emailTemplete += "승인코드 : " + rWord + "<br/>";
+                emailTemplete += "<a href=':hostAddress' target='_blank'>사이트로 이동</a>";
+
+                util.mySqlConn.query(sql, params, function (err, result, fields) {
+                    if(err) console.log('query is not excuted.\n' + err);
+                    else {                        
+                        if (email != "") {
+                            util.emailSender(email, "[usaki.co.kr 승인완료 되었습니다 코드확인하세요]", emailTemplete);
+                        }
+
+                        res.json("SUCCESS");
+                    }
+                });                                                          
+            }
+        }
+    });              
+} 
+
+exports.post_confirm_change = ( req , res ) => {
+
+    console.log(req.body);
+
+    var seq = req.body.seq;
+    var type = req.body.type;    
+
+    var sql = "UPDATE user_table SET STATUS = ? WHERE seq = ?";    
+    var params = [type, seq];            
+    
+    var sqlUser = "SELECT * FROM user_table WHERE seq = ? ";
+    var params2 = [seq];            
+        
+    util.mySqlConn.query(sqlUser, params2, function (err, result, fields) {
+        if(err) console.log('query is not excuted. select fail\n' + err);
+        else {            
+            if (result[0].seq == seq) {
+                var uid = result[0].uid;
+                var email = result[0].email;
+                var nickname = result[0].nickname;
+
+                var emailTemplete = "안녕하세요<br/>";
+                emailTemplete += "신청하신 id의 승인이 취소 되었습니다. <br/>";
+                emailTemplete += "id : " + uid + "<br/>";
+                emailTemplete += "email : " + email + "<br/>";
+                emailTemplete += "nickname : " + nickname + "<br/>";                
+                emailTemplete += "<a href='http://usaki.cafe24app.com' target='_blank'>사이트로 이동</a>";
+
+                util.mySqlConn.query(sql, params, function (err, result, fields) {
+                    if(err) console.log('query is not excuted.\n' + err);
+                    else {                        
+                        if (email != "" && type == 0) {
+                            util.emailSender(email, "[usaki.co.kr 승인이 취소되었습니다.]", emailTemplete);
+                        }
+
+                        res.json("SUCCESS");
+                    }
+                });                                                          
+            }
+        }
+    });          
+    
 } 

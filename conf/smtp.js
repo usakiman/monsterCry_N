@@ -12,7 +12,7 @@ var smtp = {
         host: 'smtp.gmail.com',
         port: '587',
         user: 'choiyw2',
-        password: 'sailorqw',
+        password: 'hqeisrmotqiybjfi',
         email : 'choiyw2@gmail.com'          
       }
   };

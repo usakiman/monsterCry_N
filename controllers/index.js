@@ -23,14 +23,15 @@ router.get('/', (req, res) => {
     util.mySqlConn.query(sql, function (err, rows, fields) {
         if(err) console.log('query is not excuted.\n' + err);
         else { 
-            //console.log(itemList);
+            
             res.render('index', {
                 eList : rows,
                 itemList : itemList,            
                 path: req.url,
                 isLogin : req.session.isLogin,
                 loginID : req.session.loginID,
-                loginType : req.session.loginType
+                loginType : req.session.loginType,
+                link : req.session.link
             });                        
         }
     });

@@ -1,0 +1,35 @@
+<%- include("../partial/header_admin") %>
+<body>
+
+<div class="container" style="padding-top: 10px;">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>일자</th>
+            <th>ID</th>
+            <th>닉네임</th>
+            <th>이메일</th>
+            <th>승인</th>
+        </tr>        
+            <% if(list != null && list.length > 0) { %>
+                <% for (var i = 0; i < list.length; i++) { %>
+                <tr>
+                    <td><%=list[i].cre_date%></td>
+                    <td><%=list[i].uid%></td>
+                    <td><%=list[i].nickname%></td>
+                    <td><%=list[i].email%></td>
+                    <td>
+                        <select id="selType_<%=list[i].seq%>">
+                            <option value="">--select--</option>
+                            <option value="1">외부</option>
+                            <option value="2">몬주</option>
+                            <option value="3">관리자</option>
+                        </select>
+                        <input type="button" id="btnConfirm" onclick="loginConfirm('<%=list[i].seq%>');" value="승인처리">
+                    </td>
+                </tr>
+                <% } %>
+            <% } %>                                        
+    </table>        
+</div>    
+
+<%- include("../partial/footer_admin") %>

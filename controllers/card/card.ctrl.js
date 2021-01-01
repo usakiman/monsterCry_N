@@ -47,7 +47,7 @@ exports.post_card_join = (req, res) => {
     var email = req.body.email.toLowerCase();
     var nickname = req.body.nickname;
     var sql = "SELECT count(*) as cnt FROM user_table WHERE uid = LOWER(?)";
-    var sqlInsert = "INSERT INTO user_table (uid, pwd, nickname, email) VALUES (?, MD5(?), ?, ?)";
+    var sqlInsert = "INSERT INTO user_table (uid, pwd, nickname, email, cre_date) VALUES (?, MD5(?), ?, ?, CAST(NOW() AS DATE))";
     var params = [uid];
     var params2 = [uid, pwd, nickname, email];
     var vFlag = 0;
@@ -56,7 +56,7 @@ exports.post_card_join = (req, res) => {
     emailTemplete += "email : " + email + "<br/>";
     emailTemplete += "nickname : " + nickname + "<br/>";
     emailTemplete += "ip : " + ip + "<br/>";
-    emailTemplete += "<a href='http://www.usaki.co.kr' target='_blank'>사이트로 이동</a>";
+    emailTemplete += "<a href=':hostAddress' target='_blank'>사이트로 이동</a>";
 
     util.emailSender("choiyw2@gmail.com", "[사이트 회원가입 신청] "+nickname+" 님의 신청이 들어왔습니다.", emailTemplete);
     
@@ -131,13 +131,9 @@ exports.post_card_login = (req, res) => {
                         
                         result.forEach(element => {
                             correct = 1;
-                            status = element.status;
+                            status = element.STATUS || element.status;
                             vcode = element.loginCode;
                         });
-
-                        console.log(status);
-                        console.log(vcode);
-                        console.log(code);
 
                         if (status <= 0) {
                             res.json("승인이 필요합니다.");
@@ -149,7 +145,10 @@ exports.post_card_login = (req, res) => {
                                     req.session.isLogin = true;                            
                                     req.session.loginID = uid;
                                     req.session.loginType = status;
-                                    console.log(req.session.loginID);
+                                    req.session.link = null;
+                                    if (status == 3 || status == 4) {
+                                        req.session.link = "/admin/confirm";
+                                    }                                    
                                     req.session.save(function() {
         
                                     })

@@ -19,7 +19,7 @@ var dbconnInfo = {
 		multipleStatements : true
 	},
 	real:{
-        host     : 'usaki.cafe24app.com',        
+        host     : 'usaki.cafe24app.com',
 		port: '3306',
 		user     : 'choiyw22',
 		password : 'eago25!@',
