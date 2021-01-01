@@ -135,7 +135,7 @@ exports.post_card_login = (req, res) => {
                             vcode = element.loginCode;
                         });
 
-                        if (status == 0) {
+                        if (status <= 0) {
                             res.json("승인이 필요합니다.");
                         } else {                            
                             if (correct == 1) {
