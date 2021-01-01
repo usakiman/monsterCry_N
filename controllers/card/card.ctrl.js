@@ -135,11 +135,13 @@ exports.post_card_login = (req, res) => {
                             vcode = element.loginCode;
                         });
 
-                        if (status <= 0) {
-                            res.json("승인이 필요합니다.");
-                        } else {                            
-                            if (correct == 1) {
-                                
+                        console.log("status["+status+"] vcode["+vcode+"] code["+code+"]");
+
+                        if (correct == 1) {
+                                                        
+                            if (status <= 0 || status == undefined) {
+                                res.json("승인이 필요합니다.");
+                            } else {                            
                                 if (vcode == code) {
                                     console.log(req.session);
                                     req.session.isLogin = true;                            
@@ -170,11 +172,12 @@ exports.post_card_login = (req, res) => {
                                     res.json("SUCCESS");
                                 } else {
                                     res.json("코드가 일치하지 않습니다.");
-                                }                                                        
-                            } else{
-                                res.json("패스워드가 일치하지 않습니다.");
+                                }                                         
                             }
-                        }
+                                                                           
+                        } else{
+                            res.json("패스워드가 일치하지 않습니다.");
+                        }                        
                                                                                                 
                     }
                 });  
