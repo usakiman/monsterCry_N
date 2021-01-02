@@ -281,10 +281,10 @@ var funAllCalc = function(v) {
                 var vDamageReflection = funGetEach("피해반사량");
                 var vBloodSuckingA = funGetEach("흡혈량");
                 
-                var msgResult = msg + "<br/><br/>";
-
-                msgResult += "공속:" + parseFloat(vAttSpeed+100) + "<br>";
-                msgResult += "스속:" + parseFloat(vSkillSpeed+100) + "<br>";
+                var msgResult = msg + "<br/><br/>";   
+                                
+                msgResult += "공속:" + (parseFloat(vAttSpeed) + 100.0) + "<br>"; 
+                msgResult += "스속:" + (parseFloat(vSkillSpeed) + 100.0 )+ "<br>";
                 msgResult += "최대생명력:" + vTotalHealth + "<br>";
                 msgResult += "치명타:" + vCritical + "<br>";
                 msgResult += "반격:" + vCounterAttack + "<br>";

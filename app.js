@@ -74,6 +74,7 @@ class App {
             saveUninitialized:true,
             store : sessionStore            
           }))
+        console.log("expires : " + new Date(Date.now() + hour));
     }
 
     setViewEngine (){

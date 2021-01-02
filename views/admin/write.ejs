@@ -1,29 +1,77 @@
-<%- include("../partial/header") %>
+<%- include("../partial/header_admin") %>
+<body style="background-color: rgba(58, 123, 153, 0.596);">
 
 <div class="container" style="padding-top: 10px;">
-    <form action="" method="post">
+    <form action="" id="cardForm" method="post">
         <table class="table table-bordered">
             <tr>
-                <th>제품명 <%= message %></th>
-                <td><input type="text" name="name" class="form-control"></td>
+                <th>카드명</th>
+                <td><input type="text" id="name" name="name" class="form-control"></td>
             </tr>
             <tr>
-                <th>가격</th>
-                <td><input type="text" name="price" class="form-control"></td>
-            </tr>
-            <tr>
-                <th>설명</th>
-                <td><input type="text" name="description" class="form-control"></td>
-            </tr>
-            <tr>
-                <th>이미지</th>
+                <th>카드레벨</th>
                 <td>
-                    <img src="<%=img1%>" id="img1" style="width: 250px; height: 150px;" title="<%=img1_title%>">
+                    <select name="level" id="level" class="form-control">
+                        <option value="SSS+">SSS+</option>
+                        <option value="SSS">SSS</option>
+                        <option value="SS">SS</option>
+                    </select>
                 </td>
             </tr>
-        </table>        
-        <button class="btn btn-primary">작성</button>
-
+            <tr>
+                <th>카드타입</th>
+                <td>
+                    <select name="type" id="type" class="form-control">
+                        <option value="공격">공격</option>
+                        <option value="만능">만능</option>
+                        <option value="방어">방어</option>
+                        <option value="전략">전략</option>
+                        <option value="지원">지원</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>카드종족</th>
+                <td>
+                    <select name="race" id="race" class="form-control">
+                        <option value="드래곤">드래곤</option>
+                        <option value="몬스터">몬스터</option>
+                        <option value="악마">악마</option>
+                        <option value="요정">요정</option>
+                        <option value="인간">인간</option>
+                        <option value="천사">천사</option>
+                        <option value="튜톤">튜톤</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>행동력</th>
+                <td><input type="text" id="actpower" name="actpower" class="form-control"></td>
+            </tr>
+            <tr>
+                <th>액티브1</th>
+                <td><input type="text" id="active1" name="active1" class="form-control"></td>
+            </tr>
+            <tr>
+                <th>액티브1 쿨타임</th>
+                <td><input type="text" id="active1_cooltime" name="active1_cooltime" class="form-control"></td>
+            </tr>
+            <tr>
+                <th>액티브2</th>
+                <td><input type="text" id="active2" name="active2" class="form-control"></td>
+            </tr>
+            <tr>
+                <th>액티브2 쿨타임</th>
+                <td><input type="text" id="active2_cooltime" name="active2_cooltime" class="form-control"></td>
+            </tr>            
+            <tr>
+                <th>대표카드효과</th>
+                <td><input type="text" id="effect" name="effect" class="form-control"></td>
+            </tr>
+        </table>                
     </form>
+    <button class="btn btn-primary" onclick="cardInsert();">작성</button>
+    <button class="btn btn-primary" onclick="cardUpdate();">업데이트</button>
+    <button class="btn btn-primary" onclick="cardDelete();">삭제</button>
 </div>
-    <%- include("../partial/footer") %>
+    <%- include("../partial/footer_admin") %>

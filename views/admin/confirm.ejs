@@ -1,5 +1,5 @@
 <%- include("../partial/header_admin") %>
-<body>
+<body style="background-color: rgba(58, 123, 153, 0.596);">
 
 <div class="container" style="padding-top: 10px;">
     <table class="table table-bordered table-hover">
@@ -25,6 +25,7 @@
                             <option value="3">관리자</option>
                         </select>
                         <input type="button" id="btnConfirm" onclick="loginConfirm('<%=list[i].seq%>');" value="승인처리">
+                        <input type="button" id="btnEject" onclick="loginEject('<%=list[i].seq%>');" value="거부">                        
                     </td>
                 </tr>
                 <% } %>
