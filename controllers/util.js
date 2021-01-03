@@ -31,8 +31,8 @@ exports.emailSender = function(send, title, html) {
     } else if (hostname === 'LAPTOP-DI6GLDAU') {
         html = html.replace(":hostAddress", "http://localhost:8001");
     } else {
-        html = html.replace(":hostAddress", "http://usaki.cafe24app.com");
-        //html = html.replace(":hostAddress", "http://www.usaki.co.kr");
+        //html = html.replace(":hostAddress", "http://usaki.cafe24app.com");
+        html = html.replace(":hostAddress", "http://www.usaki.co.kr");
     }
     
     var transporter = nodemailer.createTransport({
