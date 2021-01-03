@@ -166,7 +166,7 @@
     <p id="pSimulView"></p>
     
     <div class="input-group-prepend">
-        <span class="input-group-text"><font color="black">대표카드효과</font></span>
+        <span class="input-group-text"><font color="black" style="font-size: smaller;">대표카드효과</font></span>
         <select class="custom-select mr-sm-2" id="ddlMainEffect" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(eList != null && eList.length > 0) { %>
@@ -180,7 +180,7 @@
     <div>-</div>
 
     <div class="input-group-prepend">
-        <span class="input-group-text"><font color="black">무기</font></span>
+        <span class="input-group-text"><font color="black" style="font-size: smaller;">무기</font></span>
         <select id="ddlWeaponMain" class="form-control" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(itemList.weaponList != null && itemList.weaponList.length > 0) { %>
@@ -189,7 +189,7 @@
                 <% } %>
             <% } %>
         </select>
-        <span class="input-group-text"><font color="black">마석</font></span>
+        <span class="input-group-text"><font color="black" style="font-size: smaller;">마석</font></span>
         <select id="ddlWeaponOption1" class="form-control" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(itemList.stoneList != null && itemList.stoneList.length > 0) { %>
@@ -198,7 +198,7 @@
                 <% } %>
             <% } %>
         </select>
-        <span class="input-group-text"><font color="black">마석</font></span>
+        <span class="input-group-text"><font color="black" style="font-size: smaller;">마석</font></span>
         <select id="ddlWeaponOption2" class="form-control" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(itemList.stoneList != null && itemList.stoneList.length > 0) { %>
@@ -219,7 +219,7 @@
     <div>-</div>
 
     <div class="input-group-prepend">
-        <span class="input-group-text"><font color="black">방어구</font></span>
+        <span class="input-group-text"><font color="black" style="font-size: smaller;">방어구</font></span>
         <select id="ddlDefenseMain" class="form-control" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(itemList.defenseList != null && itemList.defenseList.length > 0) { %>
@@ -228,7 +228,7 @@
                 <% } %>
             <% } %>
         </select>
-        <span class="input-group-text"><font color="black">마석</font></span>
+        <span class="input-group-text"><font color="black" style="font-size: smaller;">마석</font></span>
         <select id="ddlDefenseOption1" class="form-control" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(itemList.stoneList != null && itemList.stoneList.length > 0) { %>
@@ -237,7 +237,7 @@
                 <% } %>
             <% } %>
         </select>
-        <span class="input-group-text"><font color="black">마석</font></span>
+        <span class="input-group-text"><font color="black" style="font-size: smaller;">마석</font></span>
         <select id="ddlDefenseOption2" class="form-control" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(itemList.stoneList != null && itemList.stoneList.length > 0) { %>
@@ -257,7 +257,7 @@
     <div>-</div>
 
     <div class="input-group-prepend">
-        <span class="input-group-text"><font color="black">악세</font></span>
+        <span class="input-group-text"><font color="black" style="font-size: smaller;">악세</font></span>
         <select id="ddlAssMain" class="form-control" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(itemList.assList != null && itemList.assList.length > 0) { %>
@@ -266,7 +266,7 @@
                 <% } %>
             <% } %>
         </select>
-        <span class="input-group-text"><font color="black">마석</font></span>
+        <span class="input-group-text"><font color="black" style="font-size: smaller;">마석</font></span>
         <select id="ddlAssOption1" class="form-control" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(itemList.stoneList != null && itemList.stoneList.length > 0) { %>
@@ -275,7 +275,7 @@
                 <% } %>
             <% } %>
         </select>
-        <span class="input-group-text"><font color="black">마석</font></span>
+        <span class="input-group-text"><font color="black" style="font-size: smaller;">마석</font></span>
         <select id="ddlAssOption2" class="form-control" style="font-size:small;">
             <option value="" selected>--선택--</option>
             <% if(itemList.stoneList != null && itemList.stoneList.length > 0) { %>
@@ -295,42 +295,45 @@
     <div>-</div>
 
     <div class="input-group-prepend">
-        <span class="input-group-text"><font color="black">추가 공속</font></span>
+        <span class="input-group-text"><font color="black" style="font-size: smaller;">추가 공속</font></span>
         <select id="ddlAttSpeedControl1" class="form-control">            
             <% for (var i = 0; i <= 100; i++) { %>                
                 <option value="<%=i%>"><%=i%></option>
             <% } %>            
         </select>
-        <span class="input-group-text"><font color="black">.</font></span>
+        <span class="input-group-text"><font color="black" style="font-size: smaller;">.</font></span>
         <select id="ddlAttSpeedControl2" class="form-control">            
             <% for (var i = 0; i <= 100; i++) { %>
                 <option value="<%=i%>"><%=i%></option>
             <% } %>            
-        </select>        
-        <span class="input-group-text"><font color="black">추가 스속</font></span>
+        </select>                
+    </div>        
+
+    <div class="input-group-prepend">
+        <span class="input-group-text"><font color="black" style="font-size: smaller;">추가 스속</font></span>
         <select id="ddlSkillSpeedControl1" class="form-control">            
             <% for (var i = 0; i <= 100; i++) { %>
                 <option value="<%=i%>"><%=i%></option>
             <% } %>            
         </select>
-        <span class="input-group-text"><font color="black">.</font></span>
+        <span class="input-group-text"><font color="black" style="font-size: smaller;">.</font></span>
         <select id="ddlSkillSpeedControl2" class="form-control">            
             <% for (var i = 0; i <= 100; i++) { %>
                 <option value="<%=i%>"><%=i%></option>
             <% } %>            
         </select>
-    </div>        
+    </div>
 
     <div>-</div>
 
     <div class="input-group-prepend">        
-        <span class="input-group-text"><font color="black">스속에 따른 캐스팅 변화</font></span>
+        <span class="input-group-text"><font color="black" style="font-size: smaller;">캐스팅 변화</font></span>
         <select id="ddlSkillSpeedEtc1" class="form-control">            
             <% for (var i = 0; i <= 5; i++) { %>
                 <option value="<%=i%>"><%=i%>초</option>
             <% } %>            
         </select>
-        <span class="input-group-text"><font color="black">스속에 따른 캐스팅 초기화</font></span>
+        <span class="input-group-text"><font color="black" style="font-size: smaller;">캐스팅 초기화</font></span>
         <select id="ddlSkillSpeedEtc2" class="form-control">            
             <% for (var i = 0; i <= 5; i++) { %>
                 <option value="<%=i%>"><%=i%>초</option>

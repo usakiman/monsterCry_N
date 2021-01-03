@@ -267,8 +267,8 @@ var funAllCalc = function(v) {
                 msg += $("#hidActSkill2").val() + " 쿨타임 ("+vResult[2]+") 초" + "<br/>";
                 msg += vResult[4] + " 번째 턴 올때 초기화" + "<br/><br/>";
                 
-                var vSpeed = (parseFloat(vAttSpeed) + 100.0); // 공속
-                var vSkill = (parseFloat(vSkillSpeed) + 100.0 ); // 스속
+                var vSpeed = (parseFloat(vAttSpeed) + 100).toFixed(2); // 공속
+                var vSkill = (parseFloat(vSkillSpeed) + 100).toFixed(2); // 스속
 
                 msg += "[추가 결과]" + "<br/>";    
                 msg += "스속 ("+vSkill+") 기준 - 캐스팅 ("+$("#ddlSkillSpeedEtc1").val()+") 초 -> ("+vResult[5]+") 초" + "<br/>";
