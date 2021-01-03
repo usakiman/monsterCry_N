@@ -209,6 +209,8 @@ exports.post_card_result = (req, res) => {
     var returnSkill2_Wtime = 0.0;
     var returnSkill1_chance = 0;
     var returnSkill2_chance = 0;
+    var returnSkill1_etc = 0;
+    var returnSkill2_etc = 0;
     var tempData = 0.0;
 
     // 공속
@@ -235,7 +237,23 @@ exports.post_card_result = (req, res) => {
 
     // 스킬 2번째 초기화 순번
     returnSkill2_chance = returnSkill1_Wtime / returnActPower;
-    returnSkill2_chance = Math.ceil(returnSkill2_chance);            
+    returnSkill2_chance = Math.ceil(returnSkill2_chance);
 
-    res.json(returnActPower + "," + returnSkill1_Wtime + "," + returnSkill2_Wtime + "," + returnSkill1_chance + "," + returnSkill2_chance);
+    // 스속에 따른 캐스팅 및 초기화 skillSpeedEtc1, skillSpeedEtc2
+    //actEtctime1 = Math.Round((Convert.ToDouble(this.ddlEtcTime1.SelectedValue) / Convert.ToDouble(skillSpeed)) * 100, 3);
+    //actEtctime2 = Math.Round((Convert.ToDouble(this.ddlEtcTime2.SelectedValue) / Convert.ToDouble(skillSpeed)) * 100, 3);
+
+    // 스속에 따른 캐스팅 skillSpeedEtc1
+    returnSkill1_etc = (parseFloat(req.body.skillSpeedEtc1) / tempdata) * 100;
+    returnSkill1_etc = returnSkill1_etc.toPrecision(4);
+
+    console.log(returnSkill1_etc);
+
+    // 스속에 따른 캐스팅 초기화 skillSpeedEtc2
+    returnSkill2_etc = (parseFloat(req.body.skillSpeedEtc2) / tempdata) * 100;
+    returnSkill2_etc = returnSkill2_etc.toPrecision(4);
+
+    console.log(returnSkill2_etc);
+
+    res.json(returnActPower + "," + returnSkill1_Wtime + "," + returnSkill2_Wtime + "," + returnSkill1_chance + "," + returnSkill2_chance + "," + returnSkill1_etc + "," + returnSkill2_etc);
 }

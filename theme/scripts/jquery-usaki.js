@@ -54,6 +54,9 @@ var funSimulViewInit = function() {
     $("#ddlSkillSpeedControl1").val("0");
     $("#ddlSkillSpeedControl2").val("0");
 
+    $("#ddlSkillSpeedEtc1").val("0");
+    $("#ddlSkillSpeedEtc2").val("0");    
+
     $("#lblW").removeAttr("placeholder")
     $("#lblWOption1").removeAttr("placeholder")
     $("#lblWOption2").removeAttr("placeholder")
@@ -248,7 +251,9 @@ var funAllCalc = function(v) {
             "skill1_w" : $("#hidActSkill1_w").val(),
             "skill2_w" : $("#hidActSkill2_w").val(),
             "attSpeed" : vAttSpeed,
-            "skillSpeed" : vSkillSpeed
+            "skillSpeed" : vSkillSpeed,
+            "skillSpeedEtc1" : $("#ddlSkillSpeedEtc1").val(),
+            "skillSpeedEtc2" : $("#ddlSkillSpeedEtc2").val()
         },
         success: function(result){       
             if (result.length > 0) {
@@ -260,7 +265,14 @@ var funAllCalc = function(v) {
                 msg += $("#hidActSkill1").val() + " 쿨타임 ("+vResult[1]+") 초" + "<br/>";
                 msg += vResult[3] + " 번째 턴 올때 초기화" + "<br/>";
                 msg += $("#hidActSkill2").val() + " 쿨타임 ("+vResult[2]+") 초" + "<br/>";
-                msg += vResult[4] + " 번째 턴 올때 초기화" + "<br/>";    
+                msg += vResult[4] + " 번째 턴 올때 초기화" + "<br/><br/>";
+                
+                var vSpeed = (parseFloat(vAttSpeed) + 100.0); // 공속
+                var vSkill = (parseFloat(vSkillSpeed) + 100.0 ); // 스속
+
+                msg += "[추가 결과]" + "<br/>";    
+                msg += "스속 ("+vSkill+") 기준 - 캐스팅 ("+$("#ddlSkillSpeedEtc1").val()+") 초 -> ("+vResult[5]+") 초" + "<br/>";
+                msg += "스속 ("+vSkill+") 기준 - 캐스팅 초기화 ("+$("#ddlSkillSpeedEtc2").val()+") 초 -> ("+vResult[6]+") 초" + "<br/>";
 
                 var vTotalHealth = funGetEach("최대생명력");
                 var vCritical = funGetEach("치명타");
@@ -281,10 +293,10 @@ var funAllCalc = function(v) {
                 var vDamageReflection = funGetEach("피해반사량");
                 var vBloodSuckingA = funGetEach("흡혈량");
                 
-                var msgResult = msg + "<br/><br/>";   
+                var msgResult = msg + "<br/>";   
                                 
-                msgResult += "공속:" + (parseFloat(vAttSpeed) + 100.0) + "<br>"; 
-                msgResult += "스속:" + (parseFloat(vSkillSpeed) + 100.0 )+ "<br>";
+                msgResult += "공속:" + vSpeed + "<br>"; 
+                msgResult += "스속:" + vSkill + "<br>";
                 msgResult += "최대생명력:" + vTotalHealth + "<br>";
                 msgResult += "치명타:" + vCritical + "<br>";
                 msgResult += "반격:" + vCounterAttack + "<br>";
