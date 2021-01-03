@@ -70,7 +70,7 @@ class App {
         this.app.use(session({                                                          
             secret: "usaki key",
             resave:true,
-            cookie:{ expires : new Date(Date.now() + hour)},
+            //cookie:{ expires : new Date(Date.now() + hour)},
             saveUninitialized:true,
             store : sessionStore            
           }))
