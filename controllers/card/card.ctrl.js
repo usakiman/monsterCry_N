@@ -142,18 +142,20 @@ exports.post_card_login = (req, res) => {
                             if (status <= 0 || status == undefined) {
                                 res.json("승인이 필요합니다.");
                             } else {                            
-                                if (vcode == code) {
-                                    console.log(req.session);
+                                if (vcode == code) {                                    
                                     req.session.isLogin = true;                            
                                     req.session.loginID = uid;
                                     req.session.loginType = status;
+                                    req.session.cookie.maxAge = (60 * 60000); // 세션 시간 60분
                                     req.session.link = null;
                                     if (status == 3 || status == 4) {
                                         req.session.link = "/admin/confirm";
                                     }                                    
-                                    // req.session.save(function() {
+                                    req.session.save(function() {
         
-                                    // })
+                                    })
+                                    req.session.touch();
+                                    console.log(req.session);
         
                                     util.mySqlConn.query(sqlIP, params2, function(err, rows, fields) {
                                         if (err) console.log('query is not excuted.\n' + err);

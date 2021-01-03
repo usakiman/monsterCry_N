@@ -69,12 +69,14 @@ class App {
         var hour = 3600000; // 60000 = 1분
         this.app.use(session({                                                          
             secret: "usaki key",
-            resave:true,
-            //cookie:{ expires : new Date(Date.now() + hour)},
-            saveUninitialized:true,
+            resave:false,
+            saveUninitialized:false,
+            rolling:false,
+            cookie: {  path: '/', httpOnly: true, maxAge: null },
+            //cookie:{ expires : new Date(Date.now() + hour)},            
             store : sessionStore            
           }))
-        console.log("expires : " + new Date(Date.now() + hour));
+        //console.log("expires : " + new Date(Date.now() + hour));
     }
 
     setViewEngine (){
