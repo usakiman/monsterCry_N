@@ -50,5 +50,7 @@ router.post("/cardinsert", postMiddleWareRoot, ctrl.post_card_insert);
 router.post("/cardupdate", postMiddleWareRoot, ctrl.post_card_update);
 router.post("/carddelete", postMiddleWareRoot, ctrl.post_card_delete);
 
+router.post("/cardview", postMiddleWareRoot, ctrl.post_card_view);
+
 module.exports = router;
 

@@ -31,6 +31,39 @@
 
 $(document).ready(function() {
     
+    $("#ddlCardList").on("change", function() {
+        var selcard = $("#ddlCardList").val();
+
+        $.ajax({
+            type : "POST",
+            url : "/admin/cardview",
+            dataType : "JSON",            
+            data : {
+                "seq" : selcard                
+            },
+            success: function(result){                                                 
+                if (result.length > 0) {                    
+                    $("#name").val(result[0].cardname);
+
+                    $("#level").val(result[0].cardlevel);
+                    $("#type").val(result[0].cardtype);
+                    $("#race").val(result[0].cardrace);
+
+                    $("#actpower").val(result[0].cardactpower);
+                    $("#active1").val(result[0].cardactive1);
+                    $("#active1_cooltime").val(result[0].cardactive1_waiting);
+                    $("#active2").val(result[0].cardactive2);
+                    $("#active2_cooltime").val(result[0].cardactive2_waiting);
+                    $("#effect").val(result[0].maineffect);                    
+                }                                                        
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+            }
+        });     
+        
+    });
+
 });
 
 

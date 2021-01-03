@@ -222,10 +222,35 @@ exports.post_confirm_del = (req, res) => {
 }
 
 exports.get_confirm_write = ( req , res) => {
-    res.render( './admin/write',  {        
-        title: "카드 정보 관리"    
-    });
+
+    var sql = "select * from card_info ORDER BY cardlevel DESC, cardname";
+    util.mySqlConn.query(sql, function (err, rows, fields) {
+        if(err) console.log('query is not excuted. select fail\n' + err);
+        else {            
+            res.render( './admin/write' , 
+            { 
+                list:rows,
+                title: "카드 정보 관리",
+                bodyId: req.url        
+            }
+        ); 
+        }
+    });            
 }
+
+exports.post_card_view = ( req , res ) => {
+    var seq = req.body.seq;
+    var sql = "SELECT * FROM card_info WHERE seq = :seq ";
+    sql = sql.replace(":seq", seq);        
+    
+    util.mySqlConn.query(sql, function (err, rows, fields) {
+        if(err) console.log('query is not excuted. select fail\n' + err);
+        else {            
+            res.json(rows);
+            //console.log(rows);
+        }
+    });          
+} 
 
 exports.post_card_insert = ( req , res ) => {
 

@@ -72,6 +72,15 @@
     </form>
     <button class="btn btn-primary" onclick="cardInsert();">작성</button>
     <button class="btn btn-primary" onclick="cardUpdate();">업데이트</button>
-    <button class="btn btn-primary" onclick="cardDelete();">삭제</button>
+    <button class="btn btn-primary" onclick="cardDelete();">삭제</button>            
+    <select class="custom-select" id="ddlCardList" style="margin-top:10px;">
+    <option value="" selected>--선택--</option>    
+    <% if(list != null && list.length > 0) { %>
+        <% for (var i = 0; i < list.length; i++) { %>
+            <option value="<%=list[i].seq%>"><%=list[i].cardname%>-<%=list[i].cardlevel%></option>
+        <% } %>
+    <% } %>           
+    </select>
+    
 </div>
-    <%- include("../partial/footer_admin") %>
+<%- include("../partial/footer_admin") %>
