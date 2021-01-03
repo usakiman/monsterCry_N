@@ -302,7 +302,7 @@ var vJoinConfirm = function() {
             success: function(result){
                 if (result.length > 0) {
                     if (result == "SUCCESS") {
-                        alert("가입 신청 완료. [게임상에서 몬스터주식회사 직원분들에게 승인 요청 주세요~!]");
+                        alert("가입 신청 완료. [게임상에서 몬스터주식회사 직원 분들에게 승인 요청 주세요~!]\n" + "직원분에게 확인했다는 응답까지 받으셔야 다음 단계가 진행됩니다!");
                         funNav("");
                     } else {
                         alert(result);
