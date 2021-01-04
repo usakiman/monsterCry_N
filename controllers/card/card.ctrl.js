@@ -20,7 +20,7 @@ exports.post_card_list = (req , res) => {
             res.json(rows);
             //console.log(rows);
         }
-    });    
+    });        
 }
 
 exports.post_card_view = ( req , res) => {
@@ -86,8 +86,7 @@ exports.post_card_join = (req, res) => {
 }
 
 exports.post_card_logout = (req, res) => {
-    req.session.destroy(function(err) {
-        
+    req.session.destroy(function(err) {                
         //req.session.isLogin = false;
         //req.isLogin = true;
         //req.session.loginID = "";        
@@ -117,7 +116,7 @@ exports.post_card_login = (req, res) => {
     console.log(sql);
     util.mySqlConn.query(sql, function (err, result, fields) {
         if(err) console.log('query is not excuted. select fail\n' + err);
-        else {              
+        else {            
             // 아이디 체크
             if (result[0].cnt == 1) {
                 console.log(sqlLogin);
@@ -136,6 +135,7 @@ exports.post_card_login = (req, res) => {
                         });
 
                         console.log("status["+status+"] vcode["+vcode+"] code["+code+"]");
+                        util.log("status["+status+"] vcode["+vcode+"] code["+code+"]");
 
                         if (correct == 1) {
                                                         
@@ -155,7 +155,7 @@ exports.post_card_login = (req, res) => {
         
                                     })
                                     req.session.touch();
-                                    console.log(req.session);
+                                    console.log(req.session);                                    
         
                                     util.mySqlConn.query(sqlIP, params2, function(err, rows, fields) {
                                         if (err) console.log('query is not excuted.\n' + err);

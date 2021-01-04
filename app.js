@@ -11,7 +11,7 @@ const os = require('os');
 const express = require("express");
 const nunjucks = require("nunjucks");
 const ejs = require("ejs");
-const logger = require('morgan');
+const morgan = require('morgan');
 const bodyParser = require('body-parser');	
 const session = require('express-session');                      
 const { response } = require('express');
@@ -51,9 +51,9 @@ class App {
     setMiddleWare (){
 
         // 미들웨어 셋팅
-        this.app.use(logger('dev'));
+        this.app.use(morgan('dev'));        
         this.app.use(bodyParser.json());
-        this.app.use(bodyParser.urlencoded({ extended: false }));
+        this.app.use(bodyParser.urlencoded({ extended: false }));        
         
         const sessionMysql = require(__dirname + "/conf/sessionMysql");
         var hostname = os.hostname();

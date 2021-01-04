@@ -1,5 +1,5 @@
-// const { Router } = require('express');
-// const router = Router();
+//const { Router } = require('express');
+//const router = Router();
 
 const nodemailer = require("nodemailer");
 const smtp = require("../conf/smtp");
@@ -7,13 +7,76 @@ const emails = require("../conf/emails");
 const uuid = require("uuid4");
 const os = require('os');
 
+var winston = require('winston');
+var moment = require('moment');   //한국시간을 나타내기 위한 모듈
+const fs = require('fs'); 
+const appRoot = require('app-root-path')
+const logDir = appRoot + "/logs";
+const date = new Date().toLocaleDateString().replace("-", "_");
+
+const logFileApp = appRoot + "/logs/app_" + date + ".log";
+const logFileError = appRoot + "/logs/error_" + date + ".log";
+
+var options = {
+  file: {
+    level: 'info',
+    name: 'file.info',
+    filename: logFileApp,    
+    handleExceptions: true,    
+    json: true,
+    maxsize: 5242880, // 5MB
+    maxFiles: 100,
+    colorize: true,
+  },
+  errorFile: {
+    level: 'error',
+    name: 'file.error',
+    filename: logFileError,
+    handleExceptions: true,
+    json: true,
+    maxsize: 5242880, // 5MB
+    maxFiles: 100,
+    colorize: true,
+  },
+  console: {
+    level: 'debug',
+    handleExceptions: true,
+    json: false,
+    colorize: true,
+  },
+};
+
+exports.log = function (info){
+    console.log(info);
+    if (!fs.existsSync(logDir)) {
+        fs.mkdirSync(logDir);
+    }
+
+    let logger = winston.createLogger({
+        transports: [
+          new (winston.transports.Console)(options.console),
+          new (winston.transports.File)(options.errorFile),
+          new (winston.transports.File)(options.file)          
+        ],
+        exitOnError: false, // do not exit on handled exceptions
+      });
+      
+    
+  try{
+      logger.info(new Date().toLocaleTimeString() + " | " + info);
+    }catch(exception){
+      logger.error("ERROR=>" +exception);
+    }
+}
+
+
 class mysql {
     constructor() {
         const db_config = require('../conf/db.js');
         var conn = db_config.init();
         db_config.connect(conn);
         
-        this.conn = conn;
+        this.conn = conn;        
     }
 }
 
