@@ -1,0 +1,21 @@
+<%- include("../partial/header_admin") %>
+<body style="background-color: rgba(58, 123, 153, 0.596);">
+
+<div class="container" style="padding-top: 10px;">    
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>로그명</th>
+            <th>-</th>
+        </tr>        
+    <% if(list != null && list.length > 0) { %>
+        <% for (var i = 0; i < list.length; i++) { %>
+        <tr>
+            <td><a href="/usaki_logs/<%=list[i]%>" target="_blank"><%=list[i]%></a></td>
+            <td></td>
+        </tr>
+        <% } %>
+    <% } %>               
+    </table>
+    <button class="btn btn-primary" onclick="document.location.href='/admin/write';">ROOT</button>
+</div>
+<%- include("../partial/footer_admin") %>

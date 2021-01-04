@@ -297,3 +297,25 @@ exports.post_card_delete = ( req , res ) => {
         }
     });                                                                      
 } 
+
+
+exports.get_log_list = (req, res) => {
+    
+    var fs = require('fs');
+    const appRoot = require('app-root-path')
+    var dir = '\\logs';
+
+    if (!fs.existsSync(appRoot + dir)) {
+        fs.mkdirSync(appRoot + dir);
+    }
+
+    var files = fs.readdirSync(appRoot + dir); // 디렉토리를 읽어온다    
+    
+    res.render( './admin/loglist' , 
+    { 
+        list:files,
+        title: "로그 리스트",
+        bodyId: req.url        
+    }
+    )
+}

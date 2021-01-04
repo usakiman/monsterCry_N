@@ -52,5 +52,7 @@ router.post("/carddelete", postMiddleWareRoot, ctrl.post_card_delete);
 
 router.post("/cardview", postMiddleWareRoot, ctrl.post_card_view);
 
+router.get("/loglist", getMiddleWareRoot, ctrl.get_log_list);
+
 module.exports = router;
 
