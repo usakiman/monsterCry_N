@@ -20,7 +20,7 @@ exports.post_card_list = (req , res) => {
             res.json(rows);
             //console.log(rows);
         }
-    });        
+    });    
 }
 
 exports.post_card_view = ( req , res) => {
@@ -37,7 +37,7 @@ exports.post_card_view = ( req , res) => {
             res.json(rows);
             //console.log(rows);
         }
-    });  
+    });      
 }
 
 exports.post_card_join = (req, res) => {
@@ -70,7 +70,7 @@ exports.post_card_join = (req, res) => {
                 res.json("해당 아이디는 사용중입니다.");
             }                                    
         }
-    });  
+    });      
 
     if (vFlag == 0) {
         util.mySqlConn.query(sqlInsert, params2, function(err, rows, fields) {
@@ -79,7 +79,7 @@ exports.post_card_join = (req, res) => {
                 console.log("insert execute --> UserID = "+rows.insertId);
                 res.json("SUCCESS");
             }
-        });
+        });        
     }
     
 
@@ -188,7 +188,7 @@ exports.post_card_login = (req, res) => {
                 res.json("해당 아이디는 존재 하지 않습니다.");
             }
         }
-    });            
+    });      
 };
 
 exports.post_card_write = ( req , res ) => {

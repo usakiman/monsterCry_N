@@ -74,9 +74,18 @@ class mysql {
     constructor() {
         const db_config = require('../conf/db.js');
         var conn = db_config.init();
-        db_config.connect(conn);
-        
-        this.conn = conn;        
+
+        try {
+            db_config.connect(conn);
+        } catch (err) {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                console.log("PROTOCOL_CONNECTION_LOST ERR : " + err);
+                setTimeout(conn = db_config.init(), 2000);
+                db_config.connect(conn);
+            }
+        } finally {
+            this.conn = conn;
+        }                        
     }
 }
 

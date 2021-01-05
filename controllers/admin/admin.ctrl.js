@@ -29,7 +29,7 @@ exports.get_confirm = ( req , res) => {
             }
         ); 
         }
-    });        
+    });          
 }
 
 exports.get_userlist = (req, res) => {
@@ -45,7 +45,7 @@ exports.get_userlist = (req, res) => {
             }
         ); 
         }
-    });        
+    });            
 }
 
 exports.post_confirm = ( req , res ) => {
@@ -90,7 +90,7 @@ exports.post_confirm = ( req , res ) => {
                 });                                                          
             }
         }
-    });              
+    });          
 } 
 
 exports.post_confirm_change = ( req , res ) => {
@@ -133,7 +133,7 @@ exports.post_confirm_change = ( req , res ) => {
                 });                                                          
             }
         }
-    });              
+    });               
 } 
 
 exports.post_confirm_eject = (req, res) => {
@@ -175,7 +175,7 @@ exports.post_confirm_eject = (req, res) => {
                 });                                                          
             }
         }
-    });              
+    });                 
 }
 
 
@@ -218,7 +218,7 @@ exports.post_confirm_del = (req, res) => {
                 });                                                          
             }
         }
-    });              
+    });                  
 }
 
 exports.get_confirm_write = ( req , res) => {
@@ -235,7 +235,7 @@ exports.get_confirm_write = ( req , res) => {
             }
         ); 
         }
-    });            
+    });                
 }
 
 exports.post_card_view = ( req , res ) => {
@@ -249,7 +249,7 @@ exports.post_card_view = ( req , res ) => {
             res.json(rows);
             //console.log(rows);
         }
-    });          
+    });              
 } 
 
 exports.post_card_insert = ( req , res ) => {
@@ -265,8 +265,7 @@ exports.post_card_insert = ( req , res ) => {
         else {
             res.redirect("./write");
         }
-    });                                                          
-    
+    });                                                              
 } 
 
 exports.post_card_update = ( req , res ) => {
@@ -280,7 +279,7 @@ exports.post_card_update = ( req , res ) => {
         else {
             res.redirect("./write");
         }
-    });                                                                      
+    });      
 } 
 
 
@@ -295,7 +294,7 @@ exports.post_card_delete = ( req , res ) => {
         else {
             res.redirect("./write");
         }
-    });                                                                      
+    });          
 } 
 
 

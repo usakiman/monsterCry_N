@@ -49,10 +49,10 @@ var dbconnection = {
 	connect : function(con){
 		con.connect(function(err){
 			if(err){
-				console.error("mysql connection error : " + err);
+				console.error("mysql connection error : " + err);				
 			}else{
 				console.info("mysql connection successfully.");
-			}
+			}			
         });                
 	}
 };
