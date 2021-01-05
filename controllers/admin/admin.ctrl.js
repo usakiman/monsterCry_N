@@ -1,6 +1,6 @@
 const util = require("../util");
 
-exports.get_products = ( req , res) => {
+exports.get_products = ( req , res) => {    
     res.render( './admin/products' , 
         { message : "hello",
         online : "express",
@@ -12,14 +12,13 @@ exports.get_products = ( req , res) => {
 
 exports.post_products_write = ( req , res ) => {
     res.send(req.body);
-    console.log(req.body);
+    util.log(req.body);
 } 
 
-exports.get_confirm = ( req , res) => {
-        
+exports.get_confirm = ( req , res) => {        
     var sql = "SELECT * FROM user_table WHERE STATUS = 0 order by seq desc";    
     util.mySqlConn.query(sql, function (err, rows, fields) {
-        if(err) console.log('query is not excuted. select fail\n' + err);
+        if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             res.render( './admin/confirm' , 
             { 
@@ -35,7 +34,7 @@ exports.get_confirm = ( req , res) => {
 exports.get_userlist = (req, res) => {
     var sql = "SELECT a.*, CASE STATUS WHEN 0 THEN '승인전' WHEN 1 THEN '외부' WHEN 2 THEN '몬주' WHEN 3 THEN '관리자' END AS statusHan FROM user_table a WHERE a.STATUS > 0 and a.STATUS < 4 order by a.seq desc";
     util.mySqlConn.query(sql, function (err, rows, fields) {
-        if(err) console.log('query is not excuted. select fail\n' + err);
+        if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             res.render( './admin/userlist' , 
             { 
@@ -50,7 +49,7 @@ exports.get_userlist = (req, res) => {
 
 exports.post_confirm = ( req , res ) => {
 
-    console.log(req.body);
+    util.log(req.body);
 
     var seq = req.body.seq;
     var type = req.body.type;
@@ -63,7 +62,7 @@ exports.post_confirm = ( req , res ) => {
     var params2 = [seq];            
         
     util.mySqlConn.query(sqlUser, params2, function (err, result, fields) {
-        if(err) console.log('query is not excuted. select fail\n' + err);
+        if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             if (result[0].seq == seq) {
                 var uid = result[0].uid;
@@ -79,7 +78,7 @@ exports.post_confirm = ( req , res ) => {
                 emailTemplete += "<a href=':hostAddress' target='_blank'>사이트로 이동</a>";
 
                 util.mySqlConn.query(sql, params, function (err, result, fields) {
-                    if(err) console.log('query is not excuted.\n' + err);
+                    if(err) util.log('query is not excuted.\n' + err);
                     else {                        
                         if (email != "") {
                             util.emailSender(email, "[usaki.co.kr 승인완료 되었습니다 코드확인하세요]", emailTemplete);
@@ -95,7 +94,7 @@ exports.post_confirm = ( req , res ) => {
 
 exports.post_confirm_change = ( req , res ) => {
 
-    console.log(req.body);
+    util.log(req.body);
 
     var seq = req.body.seq;
     var type = req.body.type;    
@@ -107,7 +106,7 @@ exports.post_confirm_change = ( req , res ) => {
     var params2 = [seq];            
         
     util.mySqlConn.query(sqlUser, params2, function (err, result, fields) {
-        if(err) console.log('query is not excuted. select fail\n' + err);
+        if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             if (result[0].seq == seq) {
                 var uid = result[0].uid;
@@ -122,7 +121,7 @@ exports.post_confirm_change = ( req , res ) => {
                 emailTemplete += "<a href=':hostAddress' target='_blank'>사이트로 이동</a>";
 
                 util.mySqlConn.query(sql, params, function (err, result, fields) {
-                    if(err) console.log('query is not excuted.\n' + err);
+                    if(err) util.log('query is not excuted.\n' + err);
                     else {                        
                         if (email != "" && type == 0) {
                             util.emailSender(email, "[usaki.co.kr 승인이 취소되었습니다.]", emailTemplete);
@@ -137,7 +136,7 @@ exports.post_confirm_change = ( req , res ) => {
 } 
 
 exports.post_confirm_eject = (req, res) => {
-    console.log(req.body);
+    util.log(req.body);
 
     var seq = req.body.seq;    
 
@@ -148,7 +147,7 @@ exports.post_confirm_eject = (req, res) => {
     var params2 = [seq];            
         
     util.mySqlConn.query(sqlUser, params2, function (err, result, fields) {
-        if(err) console.log('query is not excuted. select fail\n' + err);
+        if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             if (result[0].seq == seq) {
                 var uid = result[0].uid;
@@ -161,10 +160,10 @@ exports.post_confirm_eject = (req, res) => {
                 emailTemplete += "email : " + email + "<br/>";
                 emailTemplete += "nickname : " + nickname + "<br/>";                
                 emailTemplete += "<a href=':hostAddress' target='_blank'>사이트로 이동</a>";
-                console.log(emailTemplete);
+                util.log(emailTemplete);
 
                 util.mySqlConn.query(sql, params, function (err, result, fields) {
-                    if(err) console.log('query is not excuted.\n' + err);
+                    if(err) util.log('query is not excuted.\n' + err);
                     else {                        
                         if (email != "") {
                             util.emailSender(email, "[usaki.co.kr 승인이 거부 되었습니다.]", emailTemplete);
@@ -180,7 +179,7 @@ exports.post_confirm_eject = (req, res) => {
 
 
 exports.post_confirm_del = (req, res) => {
-    console.log(req.body);
+    util.log(req.body);
 
     var seq = req.body.seq;    
 
@@ -191,7 +190,7 @@ exports.post_confirm_del = (req, res) => {
     var params2 = [seq];            
         
     util.mySqlConn.query(sqlUser, params2, function (err, result, fields) {
-        if(err) console.log('query is not excuted. select fail\n' + err);
+        if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             if (result[0].seq == seq) {
                 var uid = result[0].uid;
@@ -204,10 +203,10 @@ exports.post_confirm_del = (req, res) => {
                 emailTemplete += "email : " + email + "<br/>";
                 emailTemplete += "nickname : " + nickname + "<br/>";                
                 emailTemplete += "<a href=':hostAddress' target='_blank'>사이트로 이동</a>";
-                console.log(emailTemplete);
+                util.log(emailTemplete);
 
                 util.mySqlConn.query(sql, params, function (err, result, fields) {
-                    if(err) console.log('query is not excuted.\n' + err);
+                    if(err) util.log('query is not excuted.\n' + err);
                     else {                        
                         if (email != "") {
                             //util.emailSender(email, "[usaki.co.kr 계정이 삭제 되었습니다.]", emailTemplete);
@@ -225,7 +224,7 @@ exports.get_confirm_write = ( req , res) => {
 
     var sql = "select * from card_info ORDER BY cardlevel DESC, cardname";
     util.mySqlConn.query(sql, function (err, rows, fields) {
-        if(err) console.log('query is not excuted. select fail\n' + err);
+        if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             res.render( './admin/write' , 
             { 
@@ -244,7 +243,7 @@ exports.post_card_view = ( req , res ) => {
     sql = sql.replace(":seq", seq);        
     
     util.mySqlConn.query(sql, function (err, rows, fields) {
-        if(err) console.log('query is not excuted. select fail\n' + err);
+        if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             res.json(rows);
             //console.log(rows);
@@ -254,14 +253,14 @@ exports.post_card_view = ( req , res ) => {
 
 exports.post_card_insert = ( req , res ) => {
 
-    console.log(req.body);                    
+    util.log(req.body);                    
 
     var sql = "INSERT INTO card_info (`cardname`, `cardlevel`, `cardtype`, `cardrace`, `cardactpower`, `cardactive1`, `cardactive1_waiting`, `cardactive2`, `cardactive2_waiting`, `maineffect`) VALUES ";
     sql += "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";    
     var params = [req.body.name, req.body.level, req.body.type, req.body.race, req.body.actpower, req.body.active1, req.body.active1_cooltime, req.body.active2, req.body.active2_cooltime, req.body.effect];
         
     util.mySqlConn.query(sql, params, function (err, rows, fields) {
-        if(err) console.log('query is not excuted.\n' + err);
+        if(err) util.log('query is not excuted.\n' + err);
         else {
             res.redirect("./write");
         }
@@ -269,13 +268,13 @@ exports.post_card_insert = ( req , res ) => {
 } 
 
 exports.post_card_update = ( req , res ) => {
-    console.log(req.body);                    
+    util.log(req.body);                    
 
     var sql = "update card_info set maineffect = ? where cardname = ? ";    
     var params = [req.body.effect, req.body.name];
         
     util.mySqlConn.query(sql, params, function (err, rows, fields) {
-        if(err) console.log('query is not excuted.\n' + err);
+        if(err) util.log('query is not excuted.\n' + err);
         else {
             res.redirect("./write");
         }
@@ -284,13 +283,13 @@ exports.post_card_update = ( req , res ) => {
 
 
 exports.post_card_delete = ( req , res ) => {
-    console.log(req.body);                    
+    util.log(req.body);                    
 
     var sql = "delete from card_info where cardname = ? ";    
     var params = [req.body.name];
         
     util.mySqlConn.query(sql, params, function (err, rows, fields) {
-        if(err) console.log('query is not excuted.\n' + err);
+        if(err) util.log('query is not excuted.\n' + err);
         else {
             res.redirect("./write");
         }
@@ -299,17 +298,9 @@ exports.post_card_delete = ( req , res ) => {
 
 
 exports.get_log_list = (req, res) => {
-    
-    var fs = require('fs');
-    const appRoot = require('app-root-path')
-    var dir = '\\logs';
-
-    if (!fs.existsSync(appRoot + dir)) {
-        fs.mkdirSync(appRoot + dir);
-    }
-
-    var files = fs.readdirSync(appRoot + dir); // 디렉토리를 읽어온다    
-    
+        
+    var files = util.readFolder("logs");
+        
     res.render( './admin/loglist' , 
     { 
         list:files,
@@ -318,3 +309,26 @@ exports.get_log_list = (req, res) => {
     }
     )
 }
+
+exports.post_log_del = (req, res) => {
+    var fs = require('fs');
+    var os = require('os');
+    const appRoot = require('app-root-path');
+
+    util.log(req.body);
+    util.delDirAll(req.body.url);
+
+    res.json("SUCCESS");
+}
+
+exports.post_log_del_each = (req, res) => {
+    var fs = require('fs');
+    var os = require('os');
+    const appRoot = require('app-root-path');
+
+    util.log(req.body);
+    util.delFile(req.body.url, req.body.filename);
+
+    res.json("SUCCESS");
+}
+

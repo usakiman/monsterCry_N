@@ -326,5 +326,56 @@ var cardDelete = function() {
     form.submit();
 }
 
+var logDel = function() {
+    if (!confirm("모두 삭제합니까?")) { return; }
+        
+    $.ajax({
+            type : "POST",
+            url : "/admin/log_del",
+            dataType : "JSON",            
+            data : {
+                "url" : "logs"                
+            },
+            success: function(result){
+                if (result.length > 0) {
+                    if (result == "SUCCESS") {                               
+                        document.location.href = "./loglist";
+                    } else {
+                        alert(result);
+                    }                                        
+                }                                                        
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+            }
+        });      
+}
+
+var logDelEach = function(v) {
+    if (!confirm("삭제합니까?")) { return; }
+        
+        $.ajax({
+                type : "POST",
+                url : "/admin/log_del_each",
+                dataType : "JSON",            
+                data : {
+                    "url" : "logs",
+                    "filename" : v
+                },
+                success: function(result){
+                    if (result.length > 0) {
+                        if (result == "SUCCESS") {                               
+                            document.location.href = "./loglist";
+                        } else {
+                            alert(result);
+                        }                                        
+                    }                                                        
+                },
+                error : function(e) {                
+                    console.log("ERROR: ", e);
+                }
+            });     
+}
+
 </script>
 </head>

@@ -11,14 +11,14 @@ exports.post_card_list = (req , res) => {
     var sql = "SELECT * FROM card_info WHERE cardlevel = ':lvl' ORDER BY cardname";        
     sql = sql.replace(":lvl", lvl);        
     
-    console.log(sql);
+    util.log(sql);
     if (req.session.isLogin == null) res.json(null);
 
     util.mySqlConn.query(sql, function (err, rows, fields) {
-        if(err) console.log('query is not excuted. select fail\n' + err);
+        if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             res.json(rows);
-            //console.log(rows);
+            //util.log(rows);
         }
     });    
 }
@@ -28,14 +28,14 @@ exports.post_card_view = ( req , res) => {
     var sql = "SELECT * FROM card_info WHERE seq = :seq ";
     sql = sql.replace(":seq", seq);        
     
-    console.log(sql);
+    util.log(sql);
     if (req.session.isLogin == null) res.json(null);
 
     util.mySqlConn.query(sql, function (err, rows, fields) {
-        if(err) console.log('query is not excuted. select fail\n' + err);
+        if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             res.json(rows);
-            //console.log(rows);
+            //util.log(rows);
         }
     });      
 }
@@ -60,10 +60,10 @@ exports.post_card_join = (req, res) => {
 
     util.emailSender("choiyw2@gmail.com", "[사이트 회원가입 신청] "+nickname+" 님의 신청이 들어왔습니다.", emailTemplete);
     
-    console.log(sql);
+    util.log(sql);
 
     util.mySqlConn.query(sql, params, function (err, result, fields) {
-        if(err) console.log('query is not excuted.\n' + err);
+        if(err) util.log('query is not excuted.\n' + err);
         else {            
             if (result[0].cnt === 1) {
                 vFlag == 1;
@@ -74,9 +74,9 @@ exports.post_card_join = (req, res) => {
 
     if (vFlag == 0) {
         util.mySqlConn.query(sqlInsert, params2, function(err, rows, fields) {
-            if (err) console.log('query is not excuted.\n' + err);
+            if (err) util.log('query is not excuted.\n' + err);
             else {
-                console.log("insert execute --> UserID = "+rows.insertId);
+                util.log("insert execute --> UserID = "+rows.insertId);
                 res.json("SUCCESS");
             }
         });        
@@ -113,15 +113,15 @@ exports.post_card_login = (req, res) => {
     var sqlUpdate = "UPDATE user_table SET last_login = NOW() WHERE uid = ':uid'";
     sqlUpdate = sqlUpdate.replace(":uid", uid);
     
-    console.log(sql);
+    util.log(sql);
     util.mySqlConn.query(sql, function (err, result, fields) {
-        if(err) console.log('query is not excuted. select fail\n' + err);
+        if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             // 아이디 체크
             if (result[0].cnt == 1) {
-                console.log(sqlLogin);
+                util.log(sqlLogin);
                 util.mySqlConn.query(sqlLogin, params, function (err, result, fields) {
-                    if(err) console.log('query is not excuted. select fail\n' + err);
+                    if(err) util.log('query is not excuted. select fail\n' + err);
                     else {                  
 
                         var correct = 0;
@@ -134,7 +134,7 @@ exports.post_card_login = (req, res) => {
                             vcode = element.loginCode;
                         });
 
-                        console.log("status["+status+"] vcode["+vcode+"] code["+code+"]");
+                        util.log("status["+status+"] vcode["+vcode+"] code["+code+"]");
                         util.log("status["+status+"] vcode["+vcode+"] code["+code+"]");
 
                         if (correct == 1) {
@@ -155,19 +155,19 @@ exports.post_card_login = (req, res) => {
         
                                     })
                                     req.session.touch();
-                                    console.log(req.session);                                    
+                                    util.log(req.session);                                    
         
                                     util.mySqlConn.query(sqlIP, params2, function(err, rows, fields) {
-                                        if (err) console.log('query is not excuted.\n' + err);
+                                        if (err) util.log('query is not excuted.\n' + err);
                                         else {
-                                            console.log("insert execute --> user_login_info seq = "+rows.insertId);                            
+                                            util.log("insert execute --> user_login_info seq = "+rows.insertId);                            
                                         }
                                     });
         
                                     util.mySqlConn.query(sqlUpdate, function(err, rows, fields) {
-                                        if (err) console.log('query is not excuted.\n' + err);
+                                        if (err) util.log('query is not excuted.\n' + err);
                                         else {
-                                            console.log("insert execute --> last login update");
+                                            util.log("insert execute --> last login update");
                                         }
                                     });
         
@@ -193,7 +193,7 @@ exports.post_card_login = (req, res) => {
 
 exports.post_card_write = ( req , res ) => {
     res.send(req.body);
-    console.log(req.body);
+    util.log(req.body);
 }
 
 exports.post_card_result = (req, res) => {
@@ -203,7 +203,7 @@ exports.post_card_result = (req, res) => {
     // "attSpeed" : vAttSpeed,
     // "skillSpeed" : vSkillSpeed   
 
-    console.log(req.body);
+    util.log(req.body);
     if (req.session.isLogin == null) res.json(null);
 
     var returnActPower = 0.0;
@@ -249,13 +249,13 @@ exports.post_card_result = (req, res) => {
     returnSkill1_etc = (parseFloat(req.body.skillSpeedEtc1) / tempdata) * 100;
     returnSkill1_etc = returnSkill1_etc.toPrecision(4);
 
-    console.log(returnSkill1_etc);
+    util.log(returnSkill1_etc);
 
     // 스속에 따른 캐스팅 초기화 skillSpeedEtc2
     returnSkill2_etc = (parseFloat(req.body.skillSpeedEtc2) / tempdata) * 100;
     returnSkill2_etc = returnSkill2_etc.toPrecision(4);
 
-    console.log(returnSkill2_etc);
+    util.log(returnSkill2_etc);
 
     res.json(returnActPower + "," + returnSkill1_Wtime + "," + returnSkill2_Wtime + "," + returnSkill1_chance + "," + returnSkill2_chance + "," + returnSkill1_etc + "," + returnSkill2_etc);
 }

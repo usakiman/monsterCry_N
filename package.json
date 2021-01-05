@@ -20,6 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "app-root-path": "^3.0.0",
+    "date-utils": "^1.2.21",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "express-mysql-session": "^2.1.5",
@@ -30,6 +31,7 @@
     "nodemailer": "^6.4.17",
     "nodemon": "^2.0.6",
     "nunjucks": "^3.2.2",
+    "path": "^0.12.7",
     "uuid4": "^2.0.2",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.0"

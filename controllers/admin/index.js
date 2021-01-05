@@ -3,7 +3,7 @@ const router = Router();
 const ctrl = require('./admin.ctrl');
 
 function getMiddleWare( req, res, next ){
-    if (!(req.session.loginType == 3 || req.session.loginType == 4)) {
+    if (!(req.session.loginType == 3 || req.session.loginType == 4)) {        
         res.redirect("./");
     }
     next();
@@ -53,6 +53,8 @@ router.post("/carddelete", postMiddleWareRoot, ctrl.post_card_delete);
 router.post("/cardview", postMiddleWareRoot, ctrl.post_card_view);
 
 router.get("/loglist", getMiddleWareRoot, ctrl.get_log_list);
+router.post("/log_del", postMiddleWareRoot, ctrl.post_log_del);
+router.post("/log_del_each", postMiddleWareRoot, ctrl.post_log_del_each);
 
 module.exports = router;
 

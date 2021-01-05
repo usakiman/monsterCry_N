@@ -6,17 +6,20 @@ const smtp = require("../conf/smtp");
 const emails = require("../conf/emails");
 const uuid = require("uuid4");
 const os = require('os');
+const path = require('path');   
+
+var dt = require("date-utils");
 
 var winston = require('winston');
-var moment = require('moment');   //한국시간을 나타내기 위한 모듈
 const fs = require('fs'); 
 const appRoot = require('app-root-path')
 const logDir = appRoot + "/logs";
-const date = new Date().toLocaleDateString().replace("-", "_");
+const date = new Date().toFormat("YYYYMMDD");
 
 const logFileApp = appRoot + "/logs/app_" + date + ".log";
 const logFileError = appRoot + "/logs/error_" + date + ".log";
 
+// morgan 로그 옵션
 var options = {
   file: {
     level: 'info',
@@ -46,6 +49,7 @@ var options = {
   },
 };
 
+// 로그 쓰기
 exports.log = function (info){
     console.log(info);
     if (!fs.existsSync(logDir)) {
@@ -69,7 +73,7 @@ exports.log = function (info){
     }
 }
 
-
+// mysql 커넥터
 class mysql {
     constructor() {
         const db_config = require('../conf/db.js');
@@ -88,13 +92,14 @@ class mysql {
         }                        
     }
 }
-
 module.exports.mySqlConn = new mysql().conn;
 
+// 랜덤워드
 exports.randomWord = function() {
     return uuid();
 }
 
+//이메일전송
 exports.emailSender = function(send, title, html) {
 
     var hostname = os.hostname();        
@@ -130,4 +135,72 @@ exports.emailSender = function(send, title, html) {
             console.log('Message sent : ', info);
         }
     });    
+}
+
+//폴더 리스트읽기
+exports.readFolder = function(url) {     
+    var dir = "";
+    var hostname = os.hostname();        
+    if(hostname === 'MSDN-SPECIAL'){
+        dir = "\\" + url;
+    } else {
+        dir = "/" + url;
+    }
+        
+    if (!fs.existsSync(appRoot + dir)) {
+        fs.mkdirSync(appRoot + dir);
+    }
+
+    var files = fs.readdirSync(appRoot + dir); // 디렉토리를 읽어온다
+    console.log(files);
+
+    return files;
+}
+
+exports.delFile = function (url,filename) {
+    var dir = "";
+    var hostname = os.hostname();         
+    if(hostname === 'MSDN-SPECIAL'){
+        dir = "\\" + url;
+    } else {
+        dir = "/" + url;
+    }
+               
+    // path join 플래폼별로 정규화해서 리턴해줌        
+    dir = path.join(appRoot.toString(),dir, filename);        
+    console.log(dir);
+
+    fs.unlinkSync(dir);
+}
+
+// 디렉토리 안에 모든 파일 삭제후 폴더도 삭제
+exports.delDirAll = function (url) {
+    var dir = "";
+    var hostname = os.hostname();         
+    if(hostname === 'MSDN-SPECIAL'){
+        dir = "\\" + url;
+    } else {
+        dir = "/" + url;
+    }
+               
+    // path join 플래폼별로 정규화해서 리턴해줌        
+    dir = path.join(appRoot.toString(),dir);        
+    console.log(dir);
+    
+    var list = fs.readdirSync(dir);
+    for(var i = 0; i < list.length; i++) {
+        var filename = path.join(dir, list[i]);
+        var stat = fs.statSync(filename);
+
+        if(filename == "." || filename == "..") {
+            // pass these files
+        } else if(stat.isDirectory()) {
+            // rmdir recursively
+            rmdir(filename);
+        } else {
+            // rm fiilename
+            fs.unlinkSync(filename);
+        }
+    }
+    fs.rmdirSync(dir);    
 }

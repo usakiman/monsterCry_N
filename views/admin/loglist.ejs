@@ -11,11 +11,12 @@
         <% for (var i = 0; i < list.length; i++) { %>
         <tr>
             <td><a href="/usaki_logs/<%=list[i]%>" target="_blank"><%=list[i]%></a></td>
-            <td></td>
+            <td><button class="btn btn-primary" onclick="logDelEach('<%=list[i]%>');">삭제</button></td>
         </tr>
         <% } %>
     <% } %>               
     </table>
     <button class="btn btn-primary" onclick="document.location.href='/admin/write';">ROOT</button>
+    <button class="btn btn-primary" onclick="logDel();">전체삭제</button>    
 </div>
 <%- include("../partial/footer_admin") %>

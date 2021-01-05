@@ -23,8 +23,6 @@ router.post("/login", ctrl.post_card_login);
 router.post("/logout", ctrl.post_card_logout);
 router.post("/join", ctrl.post_card_join);
 
-
-
 router.post('/write', ctrl.post_card_write );
 
 module.exports = router;
