@@ -63,16 +63,27 @@ $(document).ready(function() {
         });     
         
     });
+    
+    $("#ddlYm").on("change", function() {        
+        var form = $("#userstat");
 
+        $("#userstat").attr("action", "/admin/userstat");    
+        form.submit();        
+    })    
 });
 
+var userStat = function() {
+    var form = $("#userstat");
+
+    form.attr("action", "/admin/userstat");
+    form.submit();        
+}
 
 var vEnter = function() {
     if (event.keyCode == 13) {
         
     }
 }
-
 
 var vLogin = function() {
     //$("#lLogin").css("display", "none");

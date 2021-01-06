@@ -237,6 +237,104 @@ exports.get_confirm_write = ( req , res) => {
     });                
 }
 
+exports.get_user_stat = ( req , res) => {
+
+    var sql = "SELECT uid, nickname, last_login, SUM(CASE WHEN ym = ? THEN cnt ELSE 0 END) AS tot_ym, SUM(cnt) AS tot ";
+    sql += "FROM ( ";
+    sql += "SELECT a.uid, MIN(a.nickname) AS nickname, DATE_FORMAT(MIN(a.last_login), '%Y%m%d %r') AS last_login, b.user_ip, DATE_FORMAT(b.cre_date, '%Y%m') AS ym, COUNT(*) AS cnt ";
+    sql += "FROM user_table a INNER JOIN user_login_info b ON a.seq = b.seq_fk ";
+    sql += "WHERE uid <> 'choiyw2' GROUP BY a.uid, b.user_ip, DATE_FORMAT(b.cre_date, '%Y%m') ";
+    sql += ") a GROUP BY uid, nickname, last_login ";    
+
+    var sqlTot = "SELECT ymd, cnt, (SELECT SUM(cnt) FROM access_log WHERE SUBSTR(ymd, 1, 6) = SUBSTR(a.ymd, 1,6)) AS m_cnt FROM access_log a WHERE ymd = DATE_FORMAT(NOW(), '%Y%m%d')";
+
+    var newDate = new Date();
+    var nowYm = newDate.toFormat("YYYYMM");    
+    var params;
+    var totMsg = "";
+
+    console.log(req.body);
+
+    if (req.body.ddlYm != null) {
+        params = [req.body.ddlYm];
+    } else {
+        params = [nowYm];
+    }
+
+    util.mySqlConn.query(sqlTot, function (err, result, fields) {
+        if(err) util.log('query is not excuted. select fail\n' + err);
+        else {            
+            if (result[0] != null) {
+                totMsg = result[0].ymd + " - 당일 접속수 : ("+result[0].cnt+"), 월 접속수 : ("+result[0].m_cnt+")";   
+            }
+        }
+    });                
+        
+    util.mySqlConn.query(sql, params, function (err, rows, fields) {
+        if(err) util.log('query is not excuted. select fail\n' + err);
+        else {            
+            res.render( './admin/userstat' , 
+            { 
+                list:rows,
+                nowYm:nowYm,
+                todayMsg:totMsg,
+                title: "회원 접속 통계",
+                bodyId: req.url        
+            }
+        ); 
+        }
+    });                
+}
+
+exports.post_user_stat = ( req , res) => {
+
+    var sql = "SELECT uid, nickname, last_login, SUM(CASE WHEN ym = ? THEN cnt ELSE 0 END) AS tot_ym, SUM(cnt) AS tot ";
+    sql += "FROM ( ";
+    sql += "SELECT a.uid, MIN(a.nickname) AS nickname, DATE_FORMAT(MIN(a.last_login), '%Y%m%d %r') AS last_login, b.user_ip, DATE_FORMAT(b.cre_date, '%Y%m') AS ym, COUNT(*) AS cnt ";
+    sql += "FROM user_table a INNER JOIN user_login_info b ON a.seq = b.seq_fk ";
+    sql += "WHERE uid <> 'choiyw2' GROUP BY a.uid, b.user_ip, DATE_FORMAT(b.cre_date, '%Y%m') ";
+    sql += ") a GROUP BY uid, nickname, last_login ";    
+
+    var sqlTot = "SELECT ymd, cnt, (SELECT SUM(cnt) FROM access_log WHERE SUBSTR(ymd, 1, 6) = SUBSTR(a.ymd, 1,6)) AS m_cnt FROM access_log a WHERE ymd = DATE_FORMAT(NOW(), '%Y%m%d')";
+
+    var newDate = new Date();
+    var nowYm = newDate.toFormat("YYYYMM");    
+    var params;    
+    var totMsg = "";
+
+    console.log(req.body);
+
+    if (req.body.ddlYm != null) {
+        params = [req.body.ddlYm];
+    } else {
+        params = [nowYm];
+    }
+
+    util.mySqlConn.query(sqlTot, function (err, result, fields) {
+        if(err) util.log('query is not excuted. select fail\n' + err);
+        else {            
+            if (result[0] != null) {
+                totMsg = result[0].ymd + " - 당일 접속수 : ("+result[0].cnt+"), 월 접속수 : ("+result[0].m_cnt+")";   
+            }
+        }
+    });                
+        
+    util.mySqlConn.query(sql, params, function (err, rows, fields) {
+        if(err) util.log('query is not excuted. select fail\n' + err);
+        else {            
+            res.render( './admin/userstat' , 
+            { 
+                list:rows,
+                nowYm:req.body.ddlYm,
+                todayMsg:totMsg,
+                title: "회원 접속 통계",
+                bodyId: req.url        
+            }
+        ); 
+        }
+    });                
+}
+
 exports.post_card_view = ( req , res ) => {
     var seq = req.body.seq;
     var sql = "SELECT * FROM card_info WHERE seq = :seq ";

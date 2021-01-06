@@ -1,0 +1,71 @@
+<%- include("../partial/header_admin") %>
+
+<script type="text/javascript">
+
+var init = function() {
+    var ym = $("#ddlYm");
+
+    $('#ddlYm').empty();
+    var fdate = new Date(2020, 12, 1);
+    var nowYear = fdate.getFullYear();
+    var plusCnt = 1;
+        
+    plusCnt = nowYear - 2020;
+    plusCnt = plusCnt * 12;
+            
+    for (var i = 0; i < plusCnt; i++) {                
+        var temp = new Date();
+        temp.setMonth(fdate.getMonth() + i);
+        var mm = "";
+        var yy = "";
+        if ((temp.getMonth()+1).toString().length == 1) {
+            mm = "0" + (temp.getMonth()+1);
+            yy = temp.getFullYear();
+        } else {
+            mm = (temp.getMonth()+1);
+            yy = temp.getFullYear();
+        }
+
+        var option = $("<option value='"+yy+mm+"' >"+yy+mm+"</option>");
+        $('#ddlYm').append(option);
+    }
+
+    var pYm = "<%=nowYm%>";
+    ym.val(pYm);    
+}
+
+</script>
+
+<body style="background-color: rgba(58, 123, 153, 0.596);" onload="init();">
+
+<div class="container" style="padding-top: 10px;">
+    
+    <form action="" id="userstat" method="post">    
+    <span id="spanMsg"><%=todayMsg%></span>
+    <select class="custom-select" id="ddlYm" name="ddlYm" style="margin-top:10px; margin-bottom:10px;">    
+    </select>
+
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>ID</th>
+            <th>닉네임</th>
+            <th>마지막 로그인</th>
+            <th>당월 로그인</th>
+            <th>총 로그인</th>
+        </tr>        
+            <% if(list != null && list.length > 0) { %>
+                <% for (var i = 0; i < list.length; i++) { %>
+                <tr>
+                    <td><%=list[i].uid%></td>                    
+                    <td><%=list[i].nickname%></td>
+                    <td><%=list[i].last_login%></td>
+                    <td><%=list[i].tot_ym%></td>
+                    <td><%=list[i].tot%></td>                    
+                </tr>
+                <% } %>
+            <% } %>                                        
+    </table>        
+    </form>
+</div>    
+
+<%- include("../partial/footer_admin") %>

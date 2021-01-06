@@ -102,3 +102,18 @@ UPDATE user_table SET last_login = NOW() WHERE uid = 'choiyw2';
 
 SELECT * FROM user_login_info;
 SELECT * FROM user_table;
+
+SELECT * FROM (
+	SELECT 
+		@rownum := @rownum + 1 AS rownum,
+		a.*
+	FROM (
+		SELECT 
+			a.*, 
+			CASE STATUS WHEN 0 THEN '승인전' WHEN 1 THEN '외부' WHEN 2 THEN '몬주' WHEN 3 THEN '관리자' END AS statusHan 
+		FROM user_table a 
+		WHERE a.STATUS > 0 AND a.STATUS < 4 
+		ORDER BY a.seq ASC
+	) a, (SELECT @rownum := 0) rn
+	ORDER BY rownum DESC
+) a LIMIT 10 OFFSET 0;

@@ -1,0 +1,62 @@
+{"message":"13:53:31 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"13:53:31 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"13:53:31 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"13:53:31 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"13:53:31 | [object Object]","level":"info"}
+{"message":"13:53:31 | insert execute --> user_login_info seq = 70","level":"info"}
+{"message":"13:53:31 | insert execute --> last login update","level":"info"}
+{"message":"14:18:44 | app_20210105.log,app_20210106.log,error_20210105.log,error_20210106.log","level":"info"}
+{"message":"14:19:43 | app_20210105.log,app_20210106.log,error_20210105.log,error_20210106.log","level":"info"}
+{"message":"14:33:11 | app_20210105.log,app_20210106.log,error_20210105.log,error_20210106.log","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"14:33:24 | C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\logs\\error_20210105.log","level":"info"}
+{"message":"14:33:24 | app_20210105.log,app_20210106.log,error_20210106.log","level":"info"}
+{"message":"14:35:07 | app_20210105.log,app_20210106.log,error_20210106.log","level":"info"}
+{"message":"14:45:38 | app_20210105.log,app_20210106.log,error_20210106.log","level":"info"}
+{"message":"14:45:39 | 메인 커넥션 성공\nnull","level":"info"}
+{"message":"14:48:02 | 메인 커넥션 성공\nnull","level":"info"}
+{"message":"14:50:31 | 메인 커넥션 성공\nnull","level":"info"}
+{"error":{},"level":"error","message":"uncaughtException: Assignment to constant variable.\nTypeError: Assignment to constant variable.\n    at Query.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\index.js:32:22)\n    at Query.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\Connection.js:526:10)\n    at Query._callback (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\Connection.js:488:16)\n    at Query.Sequence.end (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Sequence.js:83:24)\n    at Query._handleFinalResultPacket (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:149:8)\n    at Query.EofPacket (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:133:8)\n    at Protocol._parsePacket (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\Protocol.js:291:23)\n    at Parser._parsePacket (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\Parser.js:433:10)\n    at Parser.write (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\Parser.js:43:10)\n    at Protocol.write (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\Protocol.js:38:16)","stack":"TypeError: Assignment to constant variable.\n    at Query.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\index.js:32:22)\n    at Query.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\Connection.js:526:10)\n    at Query._callback (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\Connection.js:488:16)\n    at Query.Sequence.end (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Sequence.js:83:24)\n    at Query._handleFinalResultPacket (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:149:8)\n    at Query.EofPacket (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:133:8)\n    at Protocol._parsePacket (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\Protocol.js:291:23)\n    at Parser._parsePacket (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\Parser.js:433:10)\n    at Parser.write (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\Parser.js:43:10)\n    at Protocol.write (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\Protocol.js:38:16)","exception":true,"date":"Wed Jan 06 2021 14:50:31 GMT+0900 (GMT+09:00)","process":{"pid":1396,"uid":null,"gid":null,"cwd":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test","execPath":"C:\\Program Files\\nodejs\\node.exe","version":"v12.13.0","argv":["C:\\Program Files\\nodejs\\node.exe","C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\web.js"],"memoryUsage":{"rss":44154880,"heapTotal":28262400,"heapUsed":9749448,"external":1339264}},"os":{"loadavg":[0,0,0],"uptime":7616},"trace":[{"column":22,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\index.js","function":null,"line":32,"method":null,"native":false},{"column":10,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\Connection.js","function":null,"line":526,"method":null,"native":false},{"column":16,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\Connection.js","function":"Query._callback","line":488,"method":"_callback","native":false},{"column":24,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Sequence.js","function":"Query.Sequence.end","line":83,"method":"end","native":false},{"column":8,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js","function":"Query._handleFinalResultPacket","line":149,"method":"_handleFinalResultPacket","native":false},{"column":8,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js","function":"Query.EofPacket","line":133,"method":"EofPacket","native":false},{"column":23,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\Protocol.js","function":"Protocol._parsePacket","line":291,"method":"_parsePacket","native":false},{"column":10,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\Parser.js","function":"Parser._parsePacket","line":433,"method":"_parsePacket","native":false},{"column":10,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\Parser.js","function":"Parser.write","line":43,"method":"write","native":false},{"column":16,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\Protocol.js","function":"Protocol.write","line":38,"method":"write","native":false}]}
+{"message":"15:05:18 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"15:05:18 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"15:05:18 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"15:05:18 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"15:05:18 | [object Object]","level":"info"}
+{"message":"15:05:18 | insert execute --> user_login_info seq = 71","level":"info"}
+{"message":"15:05:18 | insert execute --> last login update","level":"info"}
+{"message":"15:06:41 | app_20210105.log,app_20210106.log,error_20210106.log","level":"info"}
+{"message":"15:29:55 | query is not excuted. select fail\nError: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '? THEN cnt ELSE 0 END) AS tot_ym, SUM(cnt) AS tot FROM ( SELECT a.uid, MIN(a.nic' at line 1","level":"info"}
+{"message":"16:05:50 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"16:05:50 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"16:05:50 | status[-1] vcode[] code[1234]","level":"info"}
+{"message":"16:05:50 | status[-1] vcode[] code[1234]","level":"info"}
+{"message":"16:05:53 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"16:05:53 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"16:05:53 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"16:05:53 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"16:05:53 | [object Object]","level":"info"}
+{"message":"16:05:53 | insert execute --> user_login_info seq = 72","level":"info"}
+{"message":"16:05:53 | insert execute --> last login update","level":"info"}
+{"message":"16:13:21 | app_20210105.log,app_20210106.log,error_20210106.log","level":"info"}
+{"message":"17:06:09 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"17:06:09 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"17:06:09 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"17:06:09 | [object Object]","level":"info"}
+{"message":"17:06:09 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"17:06:09 | insert execute --> user_login_info seq = 73","level":"info"}
+{"message":"17:06:09 | insert execute --> last login update","level":"info"}
+{"message":"17:22:47 | app_20210105.log,app_20210106.log,error_20210106.log","level":"info"}
+{"message":"19:30:52 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"19:30:52 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"19:30:52 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"19:30:52 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"19:30:52 | [object Object]","level":"info"}
+{"message":"19:30:52 | insert execute --> user_login_info seq = 74","level":"info"}
+{"message":"19:30:52 | insert execute --> last login update","level":"info"}
+{"message":"22:09:23 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"22:09:23 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"22:09:23 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"22:09:23 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"22:09:23 | [object Object]","level":"info"}
+{"message":"22:09:23 | insert execute --> user_login_info seq = 75","level":"info"}
+{"message":"22:09:23 | insert execute --> last login update","level":"info"}

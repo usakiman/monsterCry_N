@@ -56,5 +56,8 @@ router.get("/loglist", getMiddleWareRoot, ctrl.get_log_list);
 router.post("/log_del", postMiddleWareRoot, ctrl.post_log_del);
 router.post("/log_del_each", postMiddleWareRoot, ctrl.post_log_del_each);
 
+router.get("/userstat", getMiddleWare, ctrl.get_user_stat);
+router.post("/userstat", getMiddleWare, ctrl.post_user_stat);
+
 module.exports = router;
 

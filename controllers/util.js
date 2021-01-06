@@ -77,22 +77,18 @@ exports.log = function (info){
 class mysql {
     constructor() {
         const db_config = require('../conf/db.js');
-        var conn = db_config.init();
-
-        try {
-            db_config.connect(conn);
-        } catch (err) {
-            if (err.code === "PROTOCOL_CONNECTION_LOST") {
-                console.log("PROTOCOL_CONNECTION_LOST ERR : " + err);
-                setTimeout(conn = db_config.init(), 2000);
-                db_config.connect(conn);
-            }
-        } finally {
-            this.conn = conn;
-        }                        
+        var conn = db_config.init(); // createConnection
+        db_config.connect(conn); // connect
+        this.conn = conn;            
     }
 }
 module.exports.mySqlConn = new mysql().conn;
+
+// 커넥션 초기화
+exports.mysqlInit = function() {    
+    this.mysql = new mysql();
+    return this.mysql;
+}
 
 // 랜덤워드
 exports.randomWord = function() {
@@ -129,10 +125,10 @@ exports.emailSender = function(send, title, html) {
 
     transporter.sendMail(mailOption, function(err, info) {
         if ( err ) {
-            console.error('Send Mail error : ', err);
+            this.log('Send Mail error : ', err);
         }
         else {
-            console.log('Message sent : ', info);
+            this.log('Message sent : ', info);
         }
     });    
 }
@@ -152,7 +148,7 @@ exports.readFolder = function(url) {
     }
 
     var files = fs.readdirSync(appRoot + dir); // 디렉토리를 읽어온다
-    console.log(files);
+    this.log(files);
 
     return files;
 }
@@ -168,7 +164,7 @@ exports.delFile = function (url,filename) {
                
     // path join 플래폼별로 정규화해서 리턴해줌        
     dir = path.join(appRoot.toString(),dir, filename);        
-    console.log(dir);
+    this.log(dir);
 
     fs.unlinkSync(dir);
 }
@@ -185,7 +181,7 @@ exports.delDirAll = function (url) {
                
     // path join 플래폼별로 정규화해서 리턴해줌        
     dir = path.join(appRoot.toString(),dir);        
-    console.log(dir);
+    this.log(dir);
     
     var list = fs.readdirSync(dir);
     for(var i = 0; i < list.length; i++) {
