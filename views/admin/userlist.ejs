@@ -4,6 +4,7 @@
 <div class="container" style="padding-top: 10px;">
     <table class="table table-bordered table-hover">
         <tr>
+            <th>순번</th>
             <th>일자</th>
             <th>ID</th>
             <th>닉네임</th>
@@ -15,6 +16,7 @@
             <% if(list != null && list.length > 0) { %>
                 <% for (var i = 0; i < list.length; i++) { %>
                 <tr>
+                    <td><%=list[i].rownum%></td>
                     <td><%=list[i].cre_date%></td>
                     <td><%=list[i].uid%></td>
                     <td><%=list[i].nickname%></td>
@@ -36,6 +38,34 @@
                 <% } %>
             <% } %>                                        
     </table>            
+
+    <label for="formGroupExampleInput">총 <%=tot%> 명</label>
+    <div class="form-group">
+        <ul class="pagination">        
+            <% if (result.startPage > result.maxPost) { %>
+                <li><a href="/admin/userlist/<%- result.startPage - 1 %>"><span>«</span></a></li>            
+            <% } else { %>
+                <li class="disabled"><span>«</span></a></li>
+            <% } %>                        
+                    
+            <% for (var i = result.startPage; i <= result.endPage; i++) { %>
+                <% if (result.currentPage == i) { %>
+                    <li class="active"><a href="/admin/userlist/<%- i %>"><%- i %></a></li>
+                <% } else { %>
+                    <li><a href="/admin/userlist/<%- i %>"><%- i %></a></li>
+                <% } %>            
+            <% } %>        
+            
+            <% if (result.endPage < result.totalPage) { %>
+                <li><a href="/admin/userlist/<%- result.currentPage + 1 %>"><span>»</span></a></li>            
+            <% } else { %>
+                <li class="disabled"><span>»</span></li>
+            <% } %>                                
+        </ul>        
+    </div>
+
+    
+
     
 </div>    
 

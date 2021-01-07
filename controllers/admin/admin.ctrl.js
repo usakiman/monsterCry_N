@@ -34,21 +34,65 @@ exports.get_confirm = ( req , res) => {
 }
 
 exports.get_userlist = (req, res) => {
-    var sql = "SELECT a.*, CASE STATUS WHEN 0 THEN '승인전' WHEN 1 THEN '외부' WHEN 2 THEN '몬주' WHEN 3 THEN '관리자' END AS statusHan FROM user_table a WHERE a.STATUS > 0 and a.STATUS < 4 order by a.seq desc";
+    var sqlTotal = "SELECT COUNT(*) AS cnt,	CASE WHEN COUNT(*) = 0 THEN 1 ELSE CEIL(COUNT(*) / ?) END AS gcnt ";
+    sqlTotal += " FROM ( SELECT @rownum := @rownum + 1 AS rownum, a.* ";
+    sqlTotal += " FROM ( SELECT a.*, CASE STATUS WHEN 0 THEN '승인전' WHEN 1 THEN '외부' WHEN 2 THEN '몬주' WHEN 3 THEN '관리자' END AS statusHan  ";
+    sqlTotal += " FROM user_table a WHERE a.STATUS > 0 AND a.STATUS < 4 ORDER BY a.seq ASC ";
+    sqlTotal += " ) a, (SELECT @rownum := 0) rn ORDER BY rownum DESC ";
+    sqlTotal += " ) a ";                                    
+    
+    //var sql = "SELECT a.*, CASE STATUS WHEN 0 THEN '승인전' WHEN 1 THEN '외부' WHEN 2 THEN '몬주' WHEN 3 THEN '관리자' END AS statusHan FROM user_table a WHERE a.STATUS > 0 and a.STATUS < 4 order by a.seq desc";
 
+    var sql = "SELECT * FROM (	SELECT @rownum := @rownum + 1 AS rownum, a.* ";
+    sql += " FROM ( SELECT a.*, CASE STATUS WHEN 0 THEN '승인전' WHEN 1 THEN '외부' WHEN 2 THEN '몬주' WHEN 3 THEN '관리자' END AS statusHan  ";
+    sql += " FROM user_table a WHERE a.STATUS > 0 AND a.STATUS < 4 ORDER BY a.seq ASC) a, (SELECT @rownum := 0) rn ORDER BY rownum DESC ";
+    sql += " ) a LIMIT ? OFFSET ? ";                            
+
+    var tot_cnt = 0;
+    var page_cnt = 0;
+    var page_size = 5;
+    var page_list_size = 5;
+
+    var noPage = 0;
+
+    if (req.params.noParam == undefined)
+        noPage = 1;
+    else
+        noPage = req.params.noParam;
+    
+    var paramsTotal = [page_size];
+    
     var mysql = util.mysqlConnecter();
-    mysql.query(sql, function (err, rows, fields) {
+    mysql.query(sqlTotal, paramsTotal, function (err, result, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
-            res.render( './admin/userlist' , 
-            { 
-                list:rows,
-                title: "관리자 메뉴",
-                bodyId: req.url        
+            if (result != null) {
+                tot_cnt = result[0].cnt;
+                page_cnt = result[0].gcnt;
+                
+                var paging = util.paging(noPage, tot_cnt, page_size, page_list_size);
+                var params = [page_size, paging.hidePost];    
+
+                console.log(paging);
+                    
+                mysql.query(sql, params, function (err, rows, fields) {
+                    if(err) util.log('query is not excuted. select fail\n' + err);
+                    else {            
+                        res.render( './admin/userlist' , 
+                        { 
+                            list:rows,
+                            result:paging,
+                            tot:tot_cnt,
+                            gcnt:page_cnt,
+                            title: "관리자 메뉴",
+                            bodyId: req.url        
+                        }
+                    ); 
+                    }
+                });            
             }
-        ); 
         }
-    });            
+    });                
 }
 
 exports.post_confirm = ( req , res ) => {

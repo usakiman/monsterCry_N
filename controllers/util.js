@@ -212,3 +212,28 @@ exports.delDirAll = function (url) {
     }
     fs.rmdirSync(dir);    
 }
+
+exports.paging = (page, totalPost, maxPost, maxPage) => {    
+
+    // maxPost와 maxPage가 같으면 됨
+    // 다르면 마지막 페이지에서 startPage가 먹지 않는 버그..
+
+    if (page == 0) page = 1;
+
+    let currentPage = page ? parseInt(page) : 1; // (3)
+    const hidePost = page === 1 ? 0 : (page - 1) * maxPost; // (4)
+    const totalPage = Math.ceil(totalPost / maxPost); // (5)
+    
+    if (currentPage > totalPage) { // (6)
+      currentPage = totalPage;
+    }
+  
+    const startPage = Math.floor(((currentPage - 1) / maxPage)) * maxPage + 1; // (7)
+    let endPage = startPage + maxPage - 1; // (8)
+  
+    if (endPage > totalPage) { // (9)
+      endPage = totalPage;
+    }
+  
+    return { startPage, endPage, hidePost, maxPost, totalPage, currentPage }; // (10)
+  };
