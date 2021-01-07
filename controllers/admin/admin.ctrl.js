@@ -17,7 +17,9 @@ exports.post_products_write = ( req , res ) => {
 
 exports.get_confirm = ( req , res) => {        
     var sql = "SELECT * FROM user_table WHERE STATUS = 0 order by seq desc";    
-    util.mySqlConn.query(sql, function (err, rows, fields) {
+
+    var mysql = util.mysqlConnecter();
+    mysql.query(sql, function (err, rows, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             res.render( './admin/confirm' , 
@@ -33,7 +35,9 @@ exports.get_confirm = ( req , res) => {
 
 exports.get_userlist = (req, res) => {
     var sql = "SELECT a.*, CASE STATUS WHEN 0 THEN '승인전' WHEN 1 THEN '외부' WHEN 2 THEN '몬주' WHEN 3 THEN '관리자' END AS statusHan FROM user_table a WHERE a.STATUS > 0 and a.STATUS < 4 order by a.seq desc";
-    util.mySqlConn.query(sql, function (err, rows, fields) {
+
+    var mysql = util.mysqlConnecter();
+    mysql.query(sql, function (err, rows, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             res.render( './admin/userlist' , 
@@ -61,7 +65,8 @@ exports.post_confirm = ( req , res ) => {
     var sqlUser = "SELECT * FROM user_table WHERE seq = ? ";
     var params2 = [seq];            
         
-    util.mySqlConn.query(sqlUser, params2, function (err, result, fields) {
+    var mysql = util.mysqlConnecter();
+    mysql.query(sqlUser, params2, function (err, result, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             if (result[0].seq == seq) {
@@ -77,7 +82,7 @@ exports.post_confirm = ( req , res ) => {
                 emailTemplete += "승인코드 : " + rWord + "<br/>";
                 emailTemplete += "<a href=':hostAddress' target='_blank'>사이트로 이동</a>";
 
-                util.mySqlConn.query(sql, params, function (err, result, fields) {
+                mysql.query(sql, params, function (err, result, fields) {
                     if(err) util.log('query is not excuted.\n' + err);
                     else {                        
                         if (email != "") {
@@ -105,7 +110,8 @@ exports.post_confirm_change = ( req , res ) => {
     var sqlUser = "SELECT * FROM user_table WHERE seq = ? ";
     var params2 = [seq];            
         
-    util.mySqlConn.query(sqlUser, params2, function (err, result, fields) {
+    var mysql = util.mysqlConnecter();
+    mysql.query(sqlUser, params2, function (err, result, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             if (result[0].seq == seq) {
@@ -120,7 +126,7 @@ exports.post_confirm_change = ( req , res ) => {
                 emailTemplete += "nickname : " + nickname + "<br/>";                
                 emailTemplete += "<a href=':hostAddress' target='_blank'>사이트로 이동</a>";
 
-                util.mySqlConn.query(sql, params, function (err, result, fields) {
+                mysql.query(sql, params, function (err, result, fields) {
                     if(err) util.log('query is not excuted.\n' + err);
                     else {                        
                         if (email != "" && type == 0) {
@@ -146,7 +152,8 @@ exports.post_confirm_eject = (req, res) => {
     var sqlUser = "SELECT * FROM user_table WHERE seq = ? ";
     var params2 = [seq];            
         
-    util.mySqlConn.query(sqlUser, params2, function (err, result, fields) {
+    var mysql = util.mysqlConnecter();
+    mysql.query(sqlUser, params2, function (err, result, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             if (result[0].seq == seq) {
@@ -162,7 +169,7 @@ exports.post_confirm_eject = (req, res) => {
                 emailTemplete += "<a href=':hostAddress' target='_blank'>사이트로 이동</a>";
                 util.log(emailTemplete);
 
-                util.mySqlConn.query(sql, params, function (err, result, fields) {
+                mysql.query(sql, params, function (err, result, fields) {
                     if(err) util.log('query is not excuted.\n' + err);
                     else {                        
                         if (email != "") {
@@ -188,8 +195,9 @@ exports.post_confirm_del = (req, res) => {
     
     var sqlUser = "SELECT * FROM user_table WHERE seq = ? ";
     var params2 = [seq];            
-        
-    util.mySqlConn.query(sqlUser, params2, function (err, result, fields) {
+    
+    var mysql = util.mysqlConnecter();
+    mysql.query(sqlUser, params2, function (err, result, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             if (result[0].seq == seq) {
@@ -205,7 +213,7 @@ exports.post_confirm_del = (req, res) => {
                 emailTemplete += "<a href=':hostAddress' target='_blank'>사이트로 이동</a>";
                 util.log(emailTemplete);
 
-                util.mySqlConn.query(sql, params, function (err, result, fields) {
+                mysql.query(sql, params, function (err, result, fields) {
                     if(err) util.log('query is not excuted.\n' + err);
                     else {                        
                         if (email != "") {
@@ -223,7 +231,9 @@ exports.post_confirm_del = (req, res) => {
 exports.get_confirm_write = ( req , res) => {
 
     var sql = "select * from card_info ORDER BY cardlevel DESC, cardname";
-    util.mySqlConn.query(sql, function (err, rows, fields) {
+
+    var mysql = util.mysqlConnecter();
+    mysql.query(sql, function (err, rows, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             res.render( './admin/write' , 
@@ -261,7 +271,8 @@ exports.get_user_stat = ( req , res) => {
         params = [nowYm];
     }
 
-    util.mySqlConn.query(sqlTot, function (err, result, fields) {
+    var mysql = util.mysqlConnecter();
+    mysql.query(sqlTot, function (err, result, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             if (result[0] != null) {
@@ -270,7 +281,7 @@ exports.get_user_stat = ( req , res) => {
         }
     });                
         
-    util.mySqlConn.query(sql, params, function (err, rows, fields) {
+    mysql.query(sql, params, function (err, rows, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             res.render( './admin/userstat' , 
@@ -310,7 +321,8 @@ exports.post_user_stat = ( req , res) => {
         params = [nowYm];
     }
 
-    util.mySqlConn.query(sqlTot, function (err, result, fields) {
+    var mysql = util.mysqlConnecter();
+    mysql.query(sqlTot, function (err, result, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             if (result[0] != null) {
@@ -319,7 +331,7 @@ exports.post_user_stat = ( req , res) => {
         }
     });                
         
-    util.mySqlConn.query(sql, params, function (err, rows, fields) {
+    mysql.query(sql, params, function (err, rows, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             res.render( './admin/userstat' , 
@@ -340,7 +352,8 @@ exports.post_card_view = ( req , res ) => {
     var sql = "SELECT * FROM card_info WHERE seq = :seq ";
     sql = sql.replace(":seq", seq);        
     
-    util.mySqlConn.query(sql, function (err, rows, fields) {
+    var mysql = util.mysqlConnecter();
+    mysql.query(sql, function (err, rows, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             res.json(rows);
@@ -357,7 +370,8 @@ exports.post_card_insert = ( req , res ) => {
     sql += "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";    
     var params = [req.body.name, req.body.level, req.body.type, req.body.race, req.body.actpower, req.body.active1, req.body.active1_cooltime, req.body.active2, req.body.active2_cooltime, req.body.effect];
         
-    util.mySqlConn.query(sql, params, function (err, rows, fields) {
+    var mysql = util.mysqlConnecter();
+    mysql.query(sql, params, function (err, rows, fields) {
         if(err) util.log('query is not excuted.\n' + err);
         else {
             res.redirect("./write");
@@ -371,7 +385,8 @@ exports.post_card_update = ( req , res ) => {
     var sql = "update card_info set maineffect = ? where cardname = ? ";    
     var params = [req.body.effect, req.body.name];
         
-    util.mySqlConn.query(sql, params, function (err, rows, fields) {
+    var mysql = util.mysqlConnecter();
+    mysql.query(sql, params, function (err, rows, fields) {
         if(err) util.log('query is not excuted.\n' + err);
         else {
             res.redirect("./write");
@@ -386,7 +401,8 @@ exports.post_card_delete = ( req , res ) => {
     var sql = "delete from card_info where cardname = ? ";    
     var params = [req.body.name];
         
-    util.mySqlConn.query(sql, params, function (err, rows, fields) {
+    var mysql = util.mysqlConnecter();
+    mysql.query(sql, params, function (err, rows, fields) {
         if(err) util.log('query is not excuted.\n' + err);
         else {
             res.redirect("./write");

@@ -33,15 +33,15 @@ var dbconnection = {
         var hostname = os.hostname();
         console.log(hostname);
 		if(hostname === 'MSDN-SPECIAL'){
-            console.log(dbconnInfo.dev);
+            //console.log(dbconnInfo.dev);
 			return mysql.createConnection(dbconnInfo.dev);	//로컬개발환경
 		}
 		else if (hostname === 'LAPTOP-DI6GLDAU') {
-			console.log(dbconnInfo.company);
+			//console.log(dbconnInfo.company);
 			return mysql.createConnection(dbconnInfo.company);	//회사개발환경
 		}
 		else{
-            console.log(dbconnInfo.real);
+            //console.log(dbconnInfo.real);
 			return mysql.createConnection(dbconnInfo.real);	//cafe24 서버환경
 		}
 	},

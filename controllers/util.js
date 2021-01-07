@@ -78,7 +78,7 @@ class mysql {
     constructor() {
         const db_config = require('../conf/db.js');
         var conn = db_config.init(); // createConnection
-        db_config.connect(conn); // connect
+        //db_config.connect(conn); // connect
         this.conn = conn;            
     }
 }
@@ -88,6 +88,18 @@ module.exports.mySqlConn = new mysql().conn;
 exports.mysqlInit = function() {    
     this.mysql = new mysql();
     return this.mysql;
+}
+
+exports.mysqlConnecter = function() {
+    const db_config = require("../conf/db.js");
+    var conn = db_config.init();
+
+    if (conn.state == "authenticated") {
+        conn.end();        
+    }
+    db_config.connect(conn);
+
+    return conn;
 }
 
 // 랜덤워드

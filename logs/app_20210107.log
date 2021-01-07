@@ -1,0 +1,29 @@
+{"message":"12:45:21 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"12:45:21 | status[-1] vcode[] code[123456]","level":"info"}
+{"message":"12:45:21 | status[-1] vcode[] code[123456]","level":"info"}
+{"message":"12:45:21 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"12:45:24 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"12:45:24 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"12:45:24 | status[-1] vcode[] code[123456]","level":"info"}
+{"message":"12:45:24 | status[-1] vcode[] code[123456]","level":"info"}
+{"message":"12:45:27 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"12:45:27 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"12:45:27 | status[4] vcode[123456] code[123456]","level":"info"}
+{"message":"12:45:27 | status[4] vcode[123456] code[123456]","level":"info"}
+{"message":"12:45:27 | [object Object]","level":"info"}
+{"message":"12:45:28 | insert execute --> user_login_info seq = 0","level":"info"}
+{"message":"12:45:28 | insert execute --> last login update","level":"info"}
+{"message":"12:45:40 | app_20210105.log,app_20210106.log,app_20210107.log,error_20210106.log,error_20210107.log","level":"info"}
+{"message":"13:38:17 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"13:38:17 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"13:38:17 | status[4] vcode[123456] code[123456]","level":"info"}
+{"message":"13:38:17 | [object Object]","level":"info"}
+{"message":"13:38:17 | insert execute --> user_login_info seq = 0","level":"info"}
+{"message":"13:38:17 | status[4] vcode[123456] code[123456]","level":"info"}
+{"message":"13:38:17 | insert execute --> last login update","level":"info"}
+{"message":"13:38:23 | SELECT * FROM card_info WHERE cardlevel = 'SSS+' ORDER BY cardname","level":"info"}
+{"message":"13:38:25 | SELECT * FROM card_info WHERE seq = 39 ","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"13:38:27 | 0.000","level":"info"}
+{"message":"13:38:27 | 0.000","level":"info"}
+{"message":"13:38:46 | app_20210105.log,app_20210106.log,app_20210107.log,error_20210106.log,error_20210107.log","level":"info"}
