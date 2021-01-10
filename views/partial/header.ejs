@@ -21,13 +21,16 @@
 <link rel="icon" type="image/png" sizes="96x96" href="/theme/images/favicon-96x96.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/theme/images/favicon-16x16.png">
 <!-- favicons -->
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="/theme/css/style.css">
 <link rel="stylesheet" type="text/css" href="/theme/css/custom-responsive-style.css">
 
 <script type="text/javascript" src="/theme/scripts/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/theme/scripts/plugin-active.js"></script>
 <script type="text/javascript" src="/theme/scripts/jquery-usaki.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -178,6 +181,7 @@ $(document).ready(function() {
         })
     });
     */
+    
 });
 
 function funNav(v) {  
@@ -217,6 +221,15 @@ function funNav(v) {
             }
         });
 
+    break;
+
+    case "Chat" : 
+        $("#btnChat").attr("data-toggle", "modal");
+        $("#btnChat").attr("data-target", "#chatModal");
+        $("#btnChat").attr("data-whatever", "@mdo");
+        $("#btnChat").click();
+
+        //document.location.href = "/chat";        
     break;
 
     case "MCE" : 

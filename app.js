@@ -17,6 +17,7 @@ const session = require('express-session');
 const { response } = require('express');
 const mysqlStore = require('express-mysql-session')(session);    
 
+global.gSocket = null;
 
 class App {
 
@@ -42,9 +43,7 @@ class App {
         this.status404();
 
         // 에러처리
-        this.errorHandler();
-
-
+        this.errorHandler();        
     }
 
 
@@ -106,16 +105,14 @@ class App {
     }
 
     setLocals(){
-
         // 템플릿 변수
         this.app.use( (req, res, next) => {
             this.app.locals.isLogin = false;
             this.app.locals.reqPath = req.path;
             this.app.locals.loginCode = "";
-            this.app.locals.title = "Dragon Chronicles - monster corp (usaki)";
+            this.app.locals.title = "Dragon Chronicles - monster corp (usaki)";            
             next();
         });
-
     }
 
     getRouting (){
@@ -142,4 +139,4 @@ class App {
     }    
 }
 
-module.exports = new App().app; 
+module.exports = new App().app;

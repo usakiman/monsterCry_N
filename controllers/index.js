@@ -4,9 +4,10 @@ const router = Router();
 let util = require("./util");
 
 const itemList = require("../conf/item_info");
- 
+
 router.use('/admin', require('./admin'));
 router.use('/card', require('./card'));
+router.use('/chat', require('./chat'));
 
 router.get('/', (req, res) => {
     const ip = req.headers['x-forwarded-for'] ||  req.connection.remoteAddress;

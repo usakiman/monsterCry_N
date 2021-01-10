@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><%= title %></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font: 13px Helvetica, Arial; }
+    form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+    form input { border: 0; padding: 10px; width: 90%; margin-right: 0.5%; }
+    form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+    #chatLog { list-style-type: none; margin: 0; padding: 0; }
+    #chatLog li { padding: 5px 10px; }
+    #chatLog li:nth-child(odd) { background: #eee; }
+</style>
+
+<script type="text/javascript" src="/theme/scripts/jquery-usaki.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>  
+<script>
+var socket = io();
+
+socket.on('server message', function(data){
+    $('#chatLog').append('<li> '+ data.username +' : ' + data.message + ' </li>');
+ });
+
+socket.on('join', function(data){
+    $('#chatLog').append('<li> ' + data.username + '님이 방을 들어왔습니다 </li>');
+});
+
+socket.on('leave', function(data){
+    $('#chatLog').append('<li> ' + data.username + '님이 방을 나갔습니다 </li>');
+});
+
+$(document).ready(function(){
+    $('#sendForm').submit(function(){
+        var message = $('#sendForm input[name=message]');
+        socket.emit('client message', { message : message.val()});
+        message.val('');
+        return false;
+    });
+});
+</script>
+
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $("#Login").css("display", "none");
+    $("#Simul").css("display", "none");  
+    $("#SimulView").css("display", "none");  
+    $("#MCE").css("display", "none");    
+    $("#Join").css("display", "none");
+    //$("#lLogout").css("display", "none");        
+
+    var loginid = $("#hidloginID").val();    
+    if (loginid != "") {
+        $("#btnLoginG").removeAttr("onclick");
+        $("#btnLoginG").attr("onclick", "vLogout();");
+        $("#btnLoginG").html("로그아웃");
+    }
+    else {
+        $("#btnLoginG").removeAttr("onclick");
+        $("#btnLoginG").attr("onclick", "funNav('Login');");
+        $("#btnLoginG").html("로그인");        
+    }
+
+    var userInputId = getCookie("userInputId");
+    var userInputCode = getCookie("userInputCode");
+    $("#txtUid").val(userInputId);
+    $("#txtCode").val(userInputCode);
+     
+    if($("#txtUid").val() != ""){                                         
+        $("#cbIDSave").attr("checked", true); 
+    }
+     
+    $("#cbIDSave").change(function(){ 
+        if($("#cbIDSave").is(":checked")){
+            var userInputId = $("#txtUid").val();
+            setCookie("userInputId", userInputId, 7);
+        }else{
+            deleteCookie("userInputId");
+        }
+    });
+         
+    $("#txtUid").keyup(function(){ 
+        if($("#cbIDSave").is(":checked")){
+            var userInputId = $("#txtUid").val();
+            setCookie("userInputId", userInputId, 7);
+        }
+    });
+        
+
+    $("#ddlLevel").on("change", function() {
+        var lvl = $("#ddlLevel").val();
+        $.ajax({
+            type : "POST",
+            url : "/card/list",
+            dataType : "JSON",
+            //data : {"lvl" : JSON.stringify(lvl)},
+            data : {"lvl" : lvl},
+            success: function(result){       
+                if (result.length > 0) {
+                    funSimulList(result);
+                }                                                        
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+            }
+        });
+    });
+
+    $("#ddlMainEffect").on("change", function() {
+        funAllCalc("");
+    });
+
+    $("#ddlWeaponMain").on("change", function() {        
+        funAllCalc("ddlWeaponMain");
+    });
+
+    $("#ddlWeaponOption1").on("change", function() {        
+        funAllCalc("ddlWeaponOption1");
+    });
+
+    $("#ddlWeaponOption2").on("change", function() {        
+        funAllCalc("ddlWeaponOption2");
+    });
+
+    $("#ddlDefenseMain").on("change", function() {        
+        funAllCalc("ddlDefenseMain");
+    });
+
+    $("#ddlDefenseOption1").on("change", function() {        
+        funAllCalc("ddlDefenseOption1");
+    });
+
+    $("#ddlDefenseOption2").on("change", function() {        
+        funAllCalc("ddlDefenseOption2");
+    });
+
+    $("#ddlAssMain").on("change", function() {        
+        funAllCalc("ddlAssMain");
+    });
+
+    $("#ddlAssOption1").on("change", function() {        
+        funAllCalc("ddlAssOption1");
+    });
+
+    $("#ddlAssOption2").on("change", function() {        
+        funAllCalc("ddlAssOption2");
+    });
+
+    $("#ddlAttSpeedControl1").on("change", function() {        
+        funAllCalc("");
+    });
+
+    $("#ddlAttSpeedControl2").on("change", function() {        
+        funAllCalc("");
+    });
+
+    $("#ddlSkillSpeedControl1").on("change", function() {        
+        funAllCalc("");
+    });
+
+    $("#ddlSkillSpeedControl2").on("change", function() {        
+        funAllCalc("");
+    });
+
+    $("#ddlSkillSpeedEtc1").on("change", function() {        
+        funAllCalc("");
+    });
+
+    $("#ddlSkillSpeedEtc2").on("change", function() {        
+        funAllCalc("");
+    });    
+
+    /*
+    $(".ajaxSend").on("click", function(){
+        var email = $('input[name=email]').val();
+        $.ajax({
+            url : "/ajax",
+            type : "POST",
+            dataType : "JSON",
+            data : {"email" : email}
+        })
+
+        .done(function (json){
+            $(".result").text(json.email) 
+        })
+
+        .fail(function (xhr, status, errorThrown){
+            alert("Ajax failed")
+        })
+    });
+    */
+});
+
+function funNav(v) {  
+
+    switch (v) {
+    case "Login" : 
+        $("#Banner").css("display", "none");
+        $("#Login").css("display", "block");
+        $("#Simul").css("display", "none");
+        $("#SimulView").css("display", "none");  
+        $("#Join").css("display", "none");
+        $("#MCE").css("display", "none");
+    break;
+
+    case "Simul" : 
+        $("#Banner").css("display", "none");
+        $("#Login").css("display", "none");
+        $("#Simul").css("display", "block");
+        $("#SimulView").css("display", "none");  
+        $("#Join").css("display", "none");
+        $("#MCE").css("display", "none");
+
+        var lvl = $("#ddlLevel").val();
+        $.ajax({
+            type : "POST",
+            url : "/card/list",
+            dataType : "JSON",
+            //data : {"lvl" : JSON.stringify(lvl)},
+            data : {"lvl" : lvl},
+            success: function(result){       
+                if (result.length > 0) {
+                    funSimulList(result);
+                }
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+            }
+        });
+
+    break;
+
+    case "Chat" : 
+        document.location.href = "/chat";        
+    break;
+
+    case "MCE" : 
+        $("#Banner").css("display", "none");
+        $("#Login").css("display", "none");
+        $("#Simul").css("display", "none");
+        $("#SimulView").css("display", "none");  
+        $("#Join").css("display", "none");
+        $("#MCE").css("display", "block");
+    break;
+
+    default : 
+        $("#Banner").css("display", "block");
+        $("#Login").css("display", "none");
+        $("#Simul").css("display", "none");
+        $("#SimulView").css("display", "none");  
+        $("#Join").css("display", "none");
+        $("#MCE").css("display", "none"); 
+    break;
+    }  
+    
+    document.location.href = "#" + v;
+}
+
+var vItem = function(v) {
+    $("#Simul").css("display", "none");
+    $("#SimulView").css("display", "block");  
+
+    $.ajax({
+            type : "POST",
+            url : "/card/view",
+            dataType : "JSON",            
+            data : {"seq" : v},
+            success: function(result){       
+                if (result.length > 0) {
+                    funSimulView(result);
+                }                                                        
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+            }
+        });        
+    
+}
+
+var vEnter = function() {
+    if (event.keyCode == 13) {
+        vLogin();
+    }
+}
+
+var vItemReturn = function() {
+    $("#Simul").css("display", "block");
+    $("#SimulView").css("display", "none");  
+}
+
+var vJoin = function() {
+    $("#Login").css("display", "none");
+    $("#Join").css("display", "block");
+}
+
+var vJoinConfirm = function() {
+    //$("#lLogin").css("display", "none");
+    //$("#lLogout").css("display", "block");
+    //$("#loginInfo").html("후후 로그인중");
+    
+    var uid = $("#txtJoinUid").val();
+    var pwd = $("#txtJoinPwd").val();
+    var pwdconfirm = $("#txtJoinPwdConfirm").val();
+    var nickname = $("#txtJoinNickname").val();
+    var email = $("#txtJoinEmail").val();
+
+    if (uid == "") { alert("아이디를 입력해주세요."); return; }
+    if (pwd == "") { alert("패스워드를 입력해주세요."); return; }
+    if (pwdconfirm == "") { alert("패스워드 재확인을 해주세요."); return; }
+    if (pwd != pwdconfirm) { alert("패스워드가 동일하지 않습니다."); return; }
+    if (nickname == "") { alert("닉네임을 입력해주세요."); return; }
+    if (email != "") {  
+        if (!isEmail(email)) { alert("이메일 형식이 맞지 않습니다."); return; }
+    }        
+
+    $.ajax({
+            type : "POST",
+            url : "/card/join",
+            dataType : "JSON",            
+            data : {
+                "uid" : uid,
+                "pwd" : pwd,
+                "nickname" : nickname,
+                "email" : email
+            },
+            success: function(result){
+                if (result.length > 0) {
+                    if (result == "SUCCESS") {
+                        alert("가입 신청 완료. [게임상에서 몬스터주식회사 직원 분들에게 승인 요청 주세요~!]\n" + "직원분에게 확인했다는 응답까지 받으셔야 다음 단계가 진행됩니다!");
+                        funNav("");
+                    } else {
+                        alert(result);
+                    }                                        
+                }                                                        
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+            }
+        });            
+}
+
+var vLogin = function() {
+    //$("#lLogin").css("display", "none");
+    //$("#lLogout").css("display", "block");
+    //$("#loginInfo").html("후후 로그인중");
+
+    var uid = $("#txtUid").val();
+    var pwd = $("#txtPwd").val();
+    var code = $("#txtCode").val();
+
+    if (uid == "") { alert("아이디를 입력해주세요."); return; }
+    if (pwd == "") { alert("패스워드를 입력해주세요."); return; }
+    if (code == "") { alert("승인코드를 입력해주세요."); return; }
+
+    $.ajax({
+            type : "POST",
+            url : "/card/login",
+            dataType : "JSON",            
+            data : {
+                "uid" : uid,
+                "pwd" : pwd,
+                "code" : code
+            },
+            success: function(result){
+                if (result.length > 0) {
+                    if (result == "SUCCESS") {       
+                        var code = $("#txtCode").val();
+                        setCookie("userInputCode", code, 31);
+                        document.location.href = "/";
+                    } else {
+                        alert(result);
+                    }                                        
+                }                                                        
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+            }
+        });            
+}
+
+var vLogout = function() {
+    //$("#lLogin").css("display", "block");
+    //$("#lLogout").css("display", "none");
+    //$("#loginInfo").html("");
+
+    $.ajax({
+            type : "POST",
+            url : "/card/logout",
+            dataType : "JSON",            
+            data : {
+                
+            },
+            success: function(result){
+                if (result.length > 0) {
+                    if (result == "SUCCESS") {
+                        document.location.href = "/";
+                    } else {
+                        alert(result);
+                    }                                        
+                }                                                        
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+            }
+        });    
+}
+
+</script>
+</head>

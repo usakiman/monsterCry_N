@@ -28,18 +28,18 @@
         <button class="btn btn-danger" id="btnSimul" onclick="goUrl('Simul');">시뮬레이터</button>
         </li><p/>
         <li class="sidebar-nav-item">        
-        <button class="btn btn-danger" id="btnBanner" onclick="goUrl('Banner');">준비중</button>
+        <button class="btn btn-danger" id="btnChat" onclick="goUrl('Chat');">채팅</button>
         </li><p/>  
         <li class="sidebar-nav-item">        
         <button class="btn btn-danger" id="btnBanner" onclick="goUrl('Banner');">준비중</button>
         </li><p/>  
         <li class="sidebar-nav-item">        
         <button class="btn btn-danger" id="btnMCE" onclick="goUrl('MCE');">MonsteryCryEternal</button>
-        </li>
+        </li>        
     </ul>
     </nav>
-    </header>
-
+    </header>    
+        
 <section id="Banner">
     <div class="logo">
     <img src="/theme/images/logo.gif">
@@ -366,4 +366,21 @@
     </div>    
 </section>    
 
+<div class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="chatModalLabel" aria-hidden="true">    
+    <div class="modal-dialog modal-fullsize" role="document">
+        <div class="modal-content modal-fullsize">
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="myModalLabel">채팅 모달</h4>                
+              </div>
+            <div class="modal-body">
+                <div class="form-group">                    
+                    <iframe style="display:block; overflow:hidden; position:absolute; width:90%; height: 100%" class="embed-responsive-item" src="/chat"></iframe>
+                </div>            
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>          
+            </div>
+      </div>
+    </div>
+</div>    
 
