@@ -17,7 +17,9 @@ const session = require('express-session');
 const { response } = require('express');
 const mysqlStore = require('express-mysql-session')(session);    
 
+global.gLoginID = null;
 global.gSocket = null;
+global.gSocketCount = 0;
 
 class App {
 

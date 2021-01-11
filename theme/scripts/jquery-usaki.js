@@ -23,8 +23,8 @@ var goUrl = function(v) {
 
     if (loginid != "") {
         if (type == 0) { alert("승인이 필요합니다"); return ;}
-
-        funNav(v);
+        
+        funNav(v);        
     } else {        
         funNav('Login');
     }    

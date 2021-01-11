@@ -369,18 +369,19 @@
 <div class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="chatModalLabel" aria-hidden="true">    
     <div class="modal-dialog modal-fullsize" role="document">
         <div class="modal-content modal-fullsize">
-            <div class="modal-header">
-                <h4 class="modal-title w-100" id="myModalLabel">채팅 모달</h4>                
+            <div class="modal-header" style="background-color:rgb(214, 80, 27);">
+                <h4 class="modal-title w-100" id="myModalLabel">접속 로그 및 채팅</h4>                
               </div>
-            <div class="modal-body">
+            <div class="modal-body" style="background-color:rgb(243, 249, 250);">
                 <div class="form-group">                    
                     <iframe style="display:block; overflow:hidden; position:absolute; width:90%; height: 100%" class="embed-responsive-item" src="/chat"></iframe>
                 </div>            
             </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>          
+            <div class="modal-footer" style="background-color:rgb(230, 207, 207);">
+            <button type="button" style="width:100%;" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
       </div>
     </div>
 </div>    
 
+<div class='error' style='display:none'>Error</div>

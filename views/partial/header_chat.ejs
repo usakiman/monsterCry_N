@@ -8,30 +8,68 @@
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font: 13px Helvetica, Arial; }
-    form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-    form input { border: 0; padding: 10px; width: 90%; margin-right: 0.5%; }
-    form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-    #chatLog { list-style-type: none; margin: 0; padding: 0; }
+    form { background: #ffffff; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+    form input { border: 1; padding: 10px; width: 90%; margin-right: 0.5%;}     
+    #chatLog { list-style-type: none; margin: 0; padding: 0;}
     #chatLog li { padding: 5px 10px; }
     #chatLog li:nth-child(odd) { background: #eee; }
 </style>
 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/theme/css/style.css">
+<link rel="stylesheet" type="text/css" href="/theme/css/custom-responsive-style.css">
+
+<script type="text/javascript" src="/theme/scripts/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/theme/scripts/plugin-active.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/theme/scripts/jquery-usaki.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>  
 <script>
 var socket = io();
 
 socket.on('server message', function(data){
-    $('#chatLog').append('<li> '+ data.username +' : ' + data.message + ' </li>');
+    //$('#chatLog').append('<li> '+ data.username +' : ' + data.message + ' </li>');    
+    $("#txtChat").append(data.username +' : ' + data.message + "\n");
+    
+    if ($(top.document).find('#chatModal').is(':visible')) { // 모달창 닫혔을때
+        //console.log(data.username +' : ' + data.message);
+    } else {
+        $(top.document).find('.error').html(data.username +' : ' + data.message);
+        $(top.document).find('.error').fadeIn(400).delay(1000).fadeOut(400);
+    }
+    
+    $('#txtChat').scrollTop($('#txtChat').prop('scrollHeight')); // 스크롤 이동
+    //console.log($(top.document).find('#chatModal').is(':visible'));    
  });
 
-socket.on('join', function(data){
-    $('#chatLog').append('<li> ' + data.username + '님이 방을 들어왔습니다 </li>');
+socket.on('join', function(data){    
+    //$('#chatLog').append('<li> ' + data.username + '님이 로그인하셨습니다. </li>');    
+    $("#txtChat").append(data.username + '님이 로그인하셨습니다.' + "\n");            
+    $("#spMsg").html("현재 로그인 수 : " + data.cnt)    
+
+    $(top.document).find('.error').html(data.username + '님이 로그인하셨습니다.');
+    $(top.document).find('.error').fadeIn(400).delay(2000).fadeOut(400);
+
+    $('#txtChat').scrollTop($('#txtChat').prop('scrollHeight'));
+    //$('.error').fadeIn(400).delay(1000).fadeOut(400);
 });
 
-socket.on('leave', function(data){
-    $('#chatLog').append('<li> ' + data.username + '님이 방을 나갔습니다 </li>');
+socket.on('leave', function(data){    
+    //$('#chatLog').append('<li> ' + data.username + '님이 로그아웃하셨습니다. </li>');    
+
+    $("#txtChat").append(data.username + '님이 로그아웃하셨습니다.' + "\n");
+    $("#spMsg").html("현재 로그인 수 : " + data.cnt)
+    
+    $(top.document).find('.error').html(data.username + '님이 로그아웃하셨습니다.');
+    $(top.document).find('.error').fadeIn(400).delay(2000).fadeOut(400);
+
+    $('#txtChat').scrollTop($('#txtChat').prop('scrollHeight'));
+    //$('.error').fadeIn(400).delay(1000).fadeOut(400);
+});
+
+socket.on('users.count', function(number) {
+    $("#spMsg").html("현재 로그인 수 : " + number)    
 });
 
 $(document).ready(function(){

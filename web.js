@@ -14,30 +14,39 @@ const server = app.listen( port, function(){
 const listen = require("socket.io");
 const io = listen(server);
 
-const color = [
-    "yellow",
-    "green",
-    "red",
-    "blue",
-    "white",
-    "black",
-]
 
+gSocketCount = 0;
 io.on('connection', (socket) => { 
+    const username = gLoginID;
+        
+    gSocketCount = gSocketCount + 1;    
+    io.emit('users.count',gSocketCount);
 
-    const username = color[ Math.floor(Math.random() * 6) ];
-
-    socket.broadcast.emit( 'join',  {  username  } );
+    socket.broadcast.emit('join',  
+        {  
+            username : username,
+            cnt : gSocketCount  
+        }        
+    );
 
     socket.on('client message', (data) => {
         io.emit('server message', {
-            username ,
+            username : username ,
             message : data.message
         });
     });
 
-    socket.on('disconnect', () => {
-        socket.broadcast.emit('leave', { username });
+    //socket.on('connect', function() { connectCounter++; });
+    //socket.on('disconnect', function() { connectCounter--; });
+    
+    socket.on('disconnect', () => {        
+        gSocketCount = gSocketCount - 1;        
+        socket.broadcast.emit('leave', { 
+            username : username,
+            cnt : gSocketCount }
+        );
+        
+        //io.emit('users.count',gSocketCount);        
     });
 });
 

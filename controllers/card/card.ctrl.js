@@ -159,6 +159,8 @@ exports.post_card_login = (req, res) => {
         
                                     })
                                     req.session.touch();
+
+                                    global.gLoginID = uid;
                                     util.log(req.session);                                    
         
                                     mysql.query(sqlIP, params2, function(err, rows, fields) {

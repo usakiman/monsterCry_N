@@ -227,7 +227,7 @@ function funNav(v) {
         $("#btnChat").attr("data-toggle", "modal");
         $("#btnChat").attr("data-target", "#chatModal");
         $("#btnChat").attr("data-whatever", "@mdo");
-        $("#btnChat").click();
+        //$("#btnChat").click();
 
         //document.location.href = "/chat";        
     break;
@@ -363,7 +363,7 @@ var vLogin = function() {
                 if (result.length > 0) {
                     if (result == "SUCCESS") {       
                         var code = $("#txtCode").val();
-                        setCookie("userInputCode", code, 31);
+                        setCookie("userInputCode", code, 31);                        
                         document.location.href = "/";
                     } else {
                         alert(result);

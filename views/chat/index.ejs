@@ -1,10 +1,15 @@
 <%- include("../partial/header_chat") %>
 
 <body>
-    <ul id="chatLog"></ul>
+    <div class="container" style="padding-top:20px;">
+    <span id="spMsg"></span>
+    <!--<ul id="chatLog"></ul>-->
+    <textarea id="txtChat" cols="50" rows="15" readonly></textarea>
     <form action="" id="sendForm">
-        <input name="message" autocomplete="off" /><button>전송</button>
+        <input name="message" autocomplete="off" style="width:70%;"/>
+        <button class="btn btn-danger" style="width:20%;" >전송</button>        
     </form>
+    </div>    
 </body>
 </html>
 

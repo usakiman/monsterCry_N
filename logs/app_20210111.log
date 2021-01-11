@@ -1,0 +1,339 @@
+{"message":"20:15:05 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"20:15:05 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"20:15:05 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"20:15:05 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"20:15:05 | [object Object]","level":"info"}
+{"message":"20:15:05 | insert execute --> user_login_info seq = 85","level":"info"}
+{"message":"20:15:05 | insert execute --> last login update","level":"info"}
+{"message":"20:18:08 | SELECT * FROM card_info WHERE cardlevel = 'SSS+' ORDER BY cardname","level":"info"}
+{"message":"21:21:58 | SELECT * FROM card_info WHERE cardlevel = 'SSS+' ORDER BY cardname","level":"info"}
+{"error":{"code":"ERR_HTTP_HEADERS_SENT"},"level":"error","message":"uncaughtException: Cannot set headers after they are sent to the client\nError [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client\n    at ServerResponse.setHeader (_http_outgoing.js:485:11)\n    at ServerResponse.header (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\express\\lib\\response.js:771:10)\n    at ServerResponse.send (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\express\\lib\\response.js:170:12)\n    at ServerResponse.json (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\express\\lib\\response.js:267:15)\n    at Query.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\card\\card.ctrl.js:21:17)\n    at Query.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\Connection.js:526:10)\n    at Query._callback (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\Connection.js:488:16)\n    at Query.Sequence.end (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Sequence.js:83:24)\n    at Query._handleFinalResultPacket (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:149:8)\n    at Query.EofPacket (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:133:8)","stack":"Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client\n    at ServerResponse.setHeader (_http_outgoing.js:485:11)\n    at ServerResponse.header (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\express\\lib\\response.js:771:10)\n    at ServerResponse.send (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\express\\lib\\response.js:170:12)\n    at ServerResponse.json (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\express\\lib\\response.js:267:15)\n    at Query.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\card\\card.ctrl.js:21:17)\n    at Query.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\Connection.js:526:10)\n    at Query._callback (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\Connection.js:488:16)\n    at Query.Sequence.end (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Sequence.js:83:24)\n    at Query._handleFinalResultPacket (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:149:8)\n    at Query.EofPacket (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:133:8)","exception":true,"date":"Mon Jan 11 2021 21:21:58 GMT+0900 (GMT+09:00)","process":{"pid":14712,"uid":null,"gid":null,"cwd":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test","execPath":"C:\\Program Files\\nodejs\\node.exe","version":"v12.13.0","argv":["C:\\Program Files\\nodejs\\node.exe","C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\web.js"],"memoryUsage":{"rss":37683200,"heapTotal":12271616,"heapUsed":11099712,"external":1367549}},"os":{"loadavg":[0,0,0],"uptime":5926},"trace":[{"column":11,"file":"_http_outgoing.js","function":"ServerResponse.setHeader","line":485,"method":"setHeader","native":false},{"column":10,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\express\\lib\\response.js","function":"ServerResponse.header","line":771,"method":"header","native":false},{"column":12,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\express\\lib\\response.js","function":"ServerResponse.send","line":170,"method":"send","native":false},{"column":15,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\express\\lib\\response.js","function":"ServerResponse.json","line":267,"method":"json","native":false},{"column":17,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\card\\card.ctrl.js","function":null,"line":21,"method":null,"native":false},{"column":10,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\Connection.js","function":null,"line":526,"method":null,"native":false},{"column":16,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\Connection.js","function":"Query._callback","line":488,"method":"_callback","native":false},{"column":24,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Sequence.js","function":"Query.Sequence.end","line":83,"method":"end","native":false},{"column":8,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js","function":"Query._handleFinalResultPacket","line":149,"method":"_handleFinalResultPacket","native":false},{"column":8,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js","function":"Query.EofPacket","line":133,"method":"EofPacket","native":false}]}
+{"message":"21:22:03 | SELECT * FROM card_info WHERE seq = 135 ","level":"info"}
+{"error":{"code":"ERR_HTTP_HEADERS_SENT"},"level":"error","message":"uncaughtException: Cannot set headers after they are sent to the client\nError [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client\n    at ServerResponse.setHeader (_http_outgoing.js:485:11)\n    at ServerResponse.header (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\express\\lib\\response.js:771:10)\n    at ServerResponse.send (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\express\\lib\\response.js:170:12)\n    at ServerResponse.json (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\express\\lib\\response.js:267:15)\n    at Query.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\card\\card.ctrl.js:39:17)\n    at Query.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\Connection.js:526:10)\n    at Query._callback (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\Connection.js:488:16)\n    at Query.Sequence.end (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Sequence.js:83:24)\n    at Query._handleFinalResultPacket (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:149:8)\n    at Query.EofPacket (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:133:8)","stack":"Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client\n    at ServerResponse.setHeader (_http_outgoing.js:485:11)\n    at ServerResponse.header (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\express\\lib\\response.js:771:10)\n    at ServerResponse.send (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\express\\lib\\response.js:170:12)\n    at ServerResponse.json (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\express\\lib\\response.js:267:15)\n    at Query.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\card\\card.ctrl.js:39:17)\n    at Query.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\Connection.js:526:10)\n    at Query._callback (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\Connection.js:488:16)\n    at Query.Sequence.end (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Sequence.js:83:24)\n    at Query._handleFinalResultPacket (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:149:8)\n    at Query.EofPacket (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:133:8)","exception":true,"date":"Mon Jan 11 2021 21:22:03 GMT+0900 (GMT+09:00)","process":{"pid":14712,"uid":null,"gid":null,"cwd":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test","execPath":"C:\\Program Files\\nodejs\\node.exe","version":"v12.13.0","argv":["C:\\Program Files\\nodejs\\node.exe","C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\web.js"],"memoryUsage":{"rss":38281216,"heapTotal":12533760,"heapUsed":10827392,"external":1352059}},"os":{"loadavg":[0,0,0],"uptime":5931},"trace":[{"column":11,"file":"_http_outgoing.js","function":"ServerResponse.setHeader","line":485,"method":"setHeader","native":false},{"column":10,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\express\\lib\\response.js","function":"ServerResponse.header","line":771,"method":"header","native":false},{"column":12,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\express\\lib\\response.js","function":"ServerResponse.send","line":170,"method":"send","native":false},{"column":15,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\express\\lib\\response.js","function":"ServerResponse.json","line":267,"method":"json","native":false},{"column":17,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\card\\card.ctrl.js","function":null,"line":39,"method":null,"native":false},{"column":10,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\Connection.js","function":null,"line":526,"method":null,"native":false},{"column":16,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\Connection.js","function":"Query._callback","line":488,"method":"_callback","native":false},{"column":24,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Sequence.js","function":"Query.Sequence.end","line":83,"method":"end","native":false},{"column":8,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js","function":"Query._handleFinalResultPacket","line":149,"method":"_handleFinalResultPacket","native":false},{"column":8,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js","function":"Query.EofPacket","line":133,"method":"EofPacket","native":false}]}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:22:06 | 0.000","level":"info"}
+{"message":"21:22:06 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:22:08 | 0.000","level":"info"}
+{"message":"21:22:08 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:22:09 | 0.000","level":"info"}
+{"message":"21:22:09 | 0.000","level":"info"}
+{"message":"21:22:11 | 0.000","level":"info"}
+{"message":"21:22:11 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:22:13 | 0.000","level":"info"}
+{"message":"21:22:13 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:22:14 | 0.000","level":"info"}
+{"message":"21:22:14 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:22:28 | 0.000","level":"info"}
+{"message":"21:22:28 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:22:29 | 0.000","level":"info"}
+{"message":"21:22:29 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:22:31 | 0.000","level":"info"}
+{"message":"21:22:31 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:25:56 | 0.000","level":"info"}
+{"message":"21:25:56 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:26:40 | 0.000","level":"info"}
+{"message":"21:26:40 | 0.000","level":"info"}
+{"message":"21:27:01 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"21:27:01 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"21:27:01 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"21:27:01 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"21:27:01 | [object Object]","level":"info"}
+{"message":"21:27:01 | insert execute --> user_login_info seq = 86","level":"info"}
+{"message":"21:27:01 | insert execute --> last login update","level":"info"}
+{"message":"21:27:03 | SELECT * FROM card_info WHERE cardlevel = 'SSS+' ORDER BY cardname","level":"info"}
+{"message":"21:27:11 | SELECT * FROM card_info WHERE seq = 135 ","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:27:13 | 0.000","level":"info"}
+{"message":"21:27:13 | 0.000","level":"info"}
+{"message":"21:27:14 | 0.000","level":"info"}
+{"message":"21:27:14 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:27:15 | 0.000","level":"info"}
+{"message":"21:27:15 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:27:18 | 0.000","level":"info"}
+{"message":"21:27:18 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:27:20 | 0.000","level":"info"}
+{"message":"21:27:20 | 0.000","level":"info"}
+{"message":"21:27:23 | 0.000","level":"info"}
+{"message":"21:27:23 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:27:31 | 0.000","level":"info"}
+{"message":"21:27:31 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:27:33 | 0.000","level":"info"}
+{"message":"21:27:33 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:27:37 | 0.000","level":"info"}
+{"message":"21:27:37 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:27:39 | 0.000","level":"info"}
+{"message":"21:27:39 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:28:35 | 0.000","level":"info"}
+{"message":"21:28:35 | 0.000","level":"info"}
+{"message":"21:28:39 | 0.000","level":"info"}
+{"message":"21:28:39 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:28:42 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:28:42 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:28:55 | 0.000","level":"info"}
+{"message":"21:28:55 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:28:56 | 0.000","level":"info"}
+{"message":"21:28:56 | 0.000","level":"info"}
+{"message":"22:23:48 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"22:23:48 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"22:23:48 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"22:23:48 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"22:23:48 | [object Object]","level":"info"}
+{"message":"22:23:48 | insert execute --> user_login_info seq = 87","level":"info"}
+{"message":"22:23:48 | insert execute --> last login update","level":"info"}
+{"message":"22:24:46 | SELECT count(*) as cnt FROM user_table WHERE uid = LOWER(?)","level":"info"}
+{"message":"22:24:46 | query is not excuted.\nError: ER_DUP_ENTRY: Duplicate entry 'usaki' for key 'user_table.user_table_unique'","level":"info"}
+{"message":"22:25:24 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"22:25:24 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"22:25:24 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"22:25:24 | [object Object]","level":"info"}
+{"message":"22:25:24 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"22:25:24 | insert execute --> user_login_info seq = 88","level":"info"}
+{"message":"22:25:24 | insert execute --> last login update","level":"info"}
+{"message":"22:27:13 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"22:27:13 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"22:27:13 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"22:27:13 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"22:27:13 | [object Object]","level":"info"}
+{"message":"22:27:13 | insert execute --> user_login_info seq = 89","level":"info"}
+{"message":"22:27:13 | insert execute --> last login update","level":"info"}
+{"message":"22:32:44 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"22:32:44 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"22:32:44 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"22:32:44 | [object Object]","level":"info"}
+{"message":"22:32:44 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"22:32:44 | insert execute --> user_login_info seq = 90","level":"info"}
+{"message":"22:32:44 | insert execute --> last login update","level":"info"}
+{"error":{},"level":"error","message":"uncaughtException: io is not defined\nReferenceError: io is not defined\n    at Socket.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js:12:13)\n    at Socket.emit (events.js:215:7)\n    at C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js:423:28\n    at processTicksAndRejections (internal/process/task_queues.js:75:11)","stack":"ReferenceError: io is not defined\n    at Socket.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js:12:13)\n    at Socket.emit (events.js:215:7)\n    at C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js:423:28\n    at processTicksAndRejections (internal/process/task_queues.js:75:11)","exception":true,"date":"Mon Jan 11 2021 22:32:49 GMT+0900 (GMT+09:00)","process":{"pid":16316,"uid":null,"gid":null,"cwd":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test","execPath":"C:\\Program Files\\nodejs\\node.exe","version":"v12.13.0","argv":["C:\\Program Files\\nodejs\\node.exe","C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\web.js"],"memoryUsage":{"rss":41586688,"heapTotal":17928192,"heapUsed":13141960,"external":1493100}},"os":{"loadavg":[0,0,0],"uptime":10177},"trace":[{"column":13,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js","function":null,"line":12,"method":null,"native":false},{"column":7,"file":"events.js","function":"Socket.emit","line":215,"method":"emit","native":false},{"column":28,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js","function":null,"line":423,"method":null,"native":false},{"column":11,"file":"internal/process/task_queues.js","function":"processTicksAndRejections","line":75,"method":null,"native":false}]}
+{"error":{},"level":"error","message":"uncaughtException: io is not defined\nReferenceError: io is not defined\n    at Socket.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js:12:13)\n    at Socket.emit (events.js:215:7)\n    at C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js:423:28\n    at processTicksAndRejections (internal/process/task_queues.js:75:11)","stack":"ReferenceError: io is not defined\n    at Socket.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js:12:13)\n    at Socket.emit (events.js:215:7)\n    at C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js:423:28\n    at processTicksAndRejections (internal/process/task_queues.js:75:11)","exception":true,"date":"Mon Jan 11 2021 22:32:49 GMT+0900 (GMT+09:00)","process":{"pid":16316,"uid":null,"gid":null,"cwd":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test","execPath":"C:\\Program Files\\nodejs\\node.exe","version":"v12.13.0","argv":["C:\\Program Files\\nodejs\\node.exe","C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\web.js"],"memoryUsage":{"rss":42168320,"heapTotal":17928192,"heapUsed":13204544,"external":1501348}},"os":{"loadavg":[0,0,0],"uptime":10177},"trace":[{"column":13,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js","function":null,"line":12,"method":null,"native":false},{"column":7,"file":"events.js","function":"Socket.emit","line":215,"method":"emit","native":false},{"column":28,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js","function":null,"line":423,"method":null,"native":false},{"column":11,"file":"internal/process/task_queues.js","function":"processTicksAndRejections","line":75,"method":null,"native":false}]}
+{"error":{},"level":"error","message":"uncaughtException: io is not defined\nReferenceError: io is not defined\n    at Socket.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js:12:13)\n    at Socket.emit (events.js:215:7)\n    at C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js:423:28\n    at processTicksAndRejections (internal/process/task_queues.js:75:11)","stack":"ReferenceError: io is not defined\n    at Socket.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js:12:13)\n    at Socket.emit (events.js:215:7)\n    at C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js:423:28\n    at processTicksAndRejections (internal/process/task_queues.js:75:11)","exception":true,"date":"Mon Jan 11 2021 22:32:49 GMT+0900 (GMT+09:00)","process":{"pid":16316,"uid":null,"gid":null,"cwd":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test","execPath":"C:\\Program Files\\nodejs\\node.exe","version":"v12.13.0","argv":["C:\\Program Files\\nodejs\\node.exe","C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\web.js"],"memoryUsage":{"rss":42176512,"heapTotal":17928192,"heapUsed":13236416,"external":1501348}},"os":{"loadavg":[0,0,0],"uptime":10177},"trace":[{"column":13,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js","function":null,"line":12,"method":null,"native":false},{"column":7,"file":"events.js","function":"Socket.emit","line":215,"method":"emit","native":false},{"column":28,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js","function":null,"line":423,"method":null,"native":false},{"column":11,"file":"internal/process/task_queues.js","function":"processTicksAndRejections","line":75,"method":null,"native":false}]}
+{"error":{},"level":"error","message":"uncaughtException: io is not defined\nReferenceError: io is not defined\n    at Socket.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js:12:13)\n    at Socket.emit (events.js:215:7)\n    at C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js:423:28\n    at processTicksAndRejections (internal/process/task_queues.js:75:11)","stack":"ReferenceError: io is not defined\n    at Socket.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js:12:13)\n    at Socket.emit (events.js:215:7)\n    at C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js:423:28\n    at processTicksAndRejections (internal/process/task_queues.js:75:11)","exception":true,"date":"Mon Jan 11 2021 22:32:49 GMT+0900 (GMT+09:00)","process":{"pid":16316,"uid":null,"gid":null,"cwd":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test","execPath":"C:\\Program Files\\nodejs\\node.exe","version":"v12.13.0","argv":["C:\\Program Files\\nodejs\\node.exe","C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\web.js"],"memoryUsage":{"rss":42180608,"heapTotal":17928192,"heapUsed":13266208,"external":1509540}},"os":{"loadavg":[0,0,0],"uptime":10177},"trace":[{"column":13,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js","function":null,"line":12,"method":null,"native":false},{"column":7,"file":"events.js","function":"Socket.emit","line":215,"method":"emit","native":false},{"column":28,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js","function":null,"line":423,"method":null,"native":false},{"column":11,"file":"internal/process/task_queues.js","function":"processTicksAndRejections","line":75,"method":null,"native":false}]}
+{"error":{},"level":"error","message":"uncaughtException: io is not defined\nReferenceError: io is not defined\n    at Socket.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js:12:13)\n    at Socket.emit (events.js:215:7)\n    at C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js:423:28\n    at processTicksAndRejections (internal/process/task_queues.js:75:11)","stack":"ReferenceError: io is not defined\n    at Socket.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js:12:13)\n    at Socket.emit (events.js:215:7)\n    at C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js:423:28\n    at processTicksAndRejections (internal/process/task_queues.js:75:11)","exception":true,"date":"Mon Jan 11 2021 22:32:49 GMT+0900 (GMT+09:00)","process":{"pid":16316,"uid":null,"gid":null,"cwd":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test","execPath":"C:\\Program Files\\nodejs\\node.exe","version":"v12.13.0","argv":["C:\\Program Files\\nodejs\\node.exe","C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\web.js"],"memoryUsage":{"rss":42184704,"heapTotal":17928192,"heapUsed":13296024,"external":1509540}},"os":{"loadavg":[0,0,0],"uptime":10177},"trace":[{"column":13,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js","function":null,"line":12,"method":null,"native":false},{"column":7,"file":"events.js","function":"Socket.emit","line":215,"method":"emit","native":false},{"column":28,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js","function":null,"line":423,"method":null,"native":false},{"column":11,"file":"internal/process/task_queues.js","function":"processTicksAndRejections","line":75,"method":null,"native":false}]}
+{"error":{},"level":"error","message":"uncaughtException: io is not defined\nReferenceError: io is not defined\n    at Socket.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js:12:13)\n    at Socket.emit (events.js:215:7)\n    at C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js:423:28\n    at processTicksAndRejections (internal/process/task_queues.js:75:11)","stack":"ReferenceError: io is not defined\n    at Socket.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js:12:13)\n    at Socket.emit (events.js:215:7)\n    at C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js:423:28\n    at processTicksAndRejections (internal/process/task_queues.js:75:11)","exception":true,"date":"Mon Jan 11 2021 22:32:49 GMT+0900 (GMT+09:00)","process":{"pid":16316,"uid":null,"gid":null,"cwd":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test","execPath":"C:\\Program Files\\nodejs\\node.exe","version":"v12.13.0","argv":["C:\\Program Files\\nodejs\\node.exe","C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\web.js"],"memoryUsage":{"rss":42188800,"heapTotal":17928192,"heapUsed":13326008,"external":1517732}},"os":{"loadavg":[0,0,0],"uptime":10177},"trace":[{"column":13,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js","function":null,"line":12,"method":null,"native":false},{"column":7,"file":"events.js","function":"Socket.emit","line":215,"method":"emit","native":false},{"column":28,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js","function":null,"line":423,"method":null,"native":false},{"column":11,"file":"internal/process/task_queues.js","function":"processTicksAndRejections","line":75,"method":null,"native":false}]}
+{"error":{},"level":"error","message":"uncaughtException: io is not defined\nReferenceError: io is not defined\n    at Socket.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js:12:13)\n    at Socket.emit (events.js:215:7)\n    at C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js:423:28\n    at processTicksAndRejections (internal/process/task_queues.js:75:11)","stack":"ReferenceError: io is not defined\n    at Socket.<anonymous> (C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js:12:13)\n    at Socket.emit (events.js:215:7)\n    at C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js:423:28\n    at processTicksAndRejections (internal/process/task_queues.js:75:11)","exception":true,"date":"Mon Jan 11 2021 22:32:49 GMT+0900 (GMT+09:00)","process":{"pid":16316,"uid":null,"gid":null,"cwd":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test","execPath":"C:\\Program Files\\nodejs\\node.exe","version":"v12.13.0","argv":["C:\\Program Files\\nodejs\\node.exe","C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\web.js"],"memoryUsage":{"rss":42192896,"heapTotal":17928192,"heapUsed":13355128,"external":1517732}},"os":{"loadavg":[0,0,0],"uptime":10177},"trace":[{"column":13,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\controllers\\chat\\chat.ctrl.js","function":null,"line":12,"method":null,"native":false},{"column":7,"file":"events.js","function":"Socket.emit","line":215,"method":"emit","native":false},{"column":28,"file":"C:\\Users\\Administrator\\Desktop\\nodejs_study\\nodejs-test\\node_modules\\socket.io\\dist\\socket.js","function":null,"line":423,"method":null,"native":false},{"column":11,"file":"internal/process/task_queues.js","function":"processTicksAndRejections","line":75,"method":null,"native":false}]}
+{"message":"22:34:23 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"22:34:23 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"22:34:23 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"22:34:23 | [object Object]","level":"info"}
+{"message":"22:34:23 | query is not excuted.\nError: ER_DATA_TOO_LONG: Data too long for column 'user_ip' at row 2","level":"info"}
+{"message":"22:34:23 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"22:34:23 | insert execute --> last login update","level":"info"}
+{"message":"22:36:45 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"22:36:45 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"22:36:45 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"22:36:45 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"22:36:45 | [object Object]","level":"info"}
+{"message":"22:36:45 | insert execute --> user_login_info seq = 91","level":"info"}
+{"message":"22:36:45 | insert execute --> last login update","level":"info"}
+{"message":"22:37:03 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"22:37:03 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"22:37:03 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"22:37:03 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"22:37:03 | [object Object]","level":"info"}
+{"message":"22:37:03 | insert execute --> user_login_info seq = 92","level":"info"}
+{"message":"22:37:03 | insert execute --> last login update","level":"info"}
+{"message":"22:48:09 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"22:48:09 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"22:48:09 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"22:48:09 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"22:48:09 | [object Object]","level":"info"}
+{"message":"22:48:09 | insert execute --> user_login_info seq = 93","level":"info"}
+{"message":"22:48:09 | insert execute --> last login update","level":"info"}
+{"message":"22:48:36 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"22:48:36 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"22:48:36 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"22:48:36 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"22:48:36 | [object Object]","level":"info"}
+{"message":"22:48:36 | insert execute --> user_login_info seq = 94","level":"info"}
+{"message":"22:48:36 | insert execute --> last login update","level":"info"}
+{"message":"22:50:20 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"22:50:20 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"22:50:20 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"22:50:20 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"22:50:20 | [object Object]","level":"info"}
+{"message":"22:50:20 | insert execute --> user_login_info seq = 95","level":"info"}
+{"message":"22:50:20 | insert execute --> last login update","level":"info"}
+{"message":"22:50:27 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"22:50:27 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"22:50:27 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"22:50:27 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"22:50:27 | [object Object]","level":"info"}
+{"message":"22:50:27 | insert execute --> user_login_info seq = 96","level":"info"}
+{"message":"22:50:27 | insert execute --> last login update","level":"info"}
+{"message":"23:16:37 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"23:16:37 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:16:37 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:16:37 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:16:37 | [object Object]","level":"info"}
+{"message":"23:16:37 | insert execute --> user_login_info seq = 97","level":"info"}
+{"message":"23:16:37 | insert execute --> last login update","level":"info"}
+{"message":"23:16:57 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"23:16:57 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:16:57 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:16:57 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:16:57 | [object Object]","level":"info"}
+{"message":"23:16:57 | insert execute --> user_login_info seq = 98","level":"info"}
+{"message":"23:16:57 | insert execute --> last login update","level":"info"}
+{"message":"23:27:34 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"23:27:34 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:27:34 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:27:34 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:27:34 | [object Object]","level":"info"}
+{"message":"23:27:34 | insert execute --> user_login_info seq = 99","level":"info"}
+{"message":"23:27:34 | insert execute --> last login update","level":"info"}
+{"message":"23:27:50 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"23:27:50 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:27:50 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:27:50 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:27:50 | [object Object]","level":"info"}
+{"message":"23:27:50 | insert execute --> user_login_info seq = 100","level":"info"}
+{"message":"23:27:50 | insert execute --> last login update","level":"info"}
+{"message":"23:28:19 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"23:28:19 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:28:19 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:28:19 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:28:19 | [object Object]","level":"info"}
+{"message":"23:28:19 | insert execute --> user_login_info seq = 101","level":"info"}
+{"message":"23:28:19 | insert execute --> last login update","level":"info"}
+{"message":"23:29:23 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"23:29:23 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:29:23 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:29:23 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:29:23 | [object Object]","level":"info"}
+{"message":"23:29:23 | insert execute --> user_login_info seq = 102","level":"info"}
+{"message":"23:29:23 | insert execute --> last login update","level":"info"}
+{"message":"23:31:06 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"23:31:06 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:31:06 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:31:06 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:31:06 | [object Object]","level":"info"}
+{"message":"23:31:06 | insert execute --> user_login_info seq = 103","level":"info"}
+{"message":"23:31:06 | insert execute --> last login update","level":"info"}
+{"message":"23:31:27 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"23:31:27 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:31:27 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:31:27 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:31:27 | [object Object]","level":"info"}
+{"message":"23:31:27 | insert execute --> user_login_info seq = 104","level":"info"}
+{"message":"23:31:27 | insert execute --> last login update","level":"info"}
+{"message":"23:37:45 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"23:37:45 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:37:45 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:37:45 | [object Object]","level":"info"}
+{"message":"23:37:45 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:37:45 | insert execute --> user_login_info seq = 105","level":"info"}
+{"message":"23:37:45 | insert execute --> last login update","level":"info"}
+{"message":"23:37:51 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"23:37:51 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:37:51 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:37:51 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:37:51 | [object Object]","level":"info"}
+{"message":"23:37:51 | insert execute --> user_login_info seq = 106","level":"info"}
+{"message":"23:37:51 | insert execute --> last login update","level":"info"}
+{"message":"23:38:24 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"23:38:24 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:38:24 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:38:24 | [object Object]","level":"info"}
+{"message":"23:38:24 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:38:24 | insert execute --> user_login_info seq = 107","level":"info"}
+{"message":"23:38:24 | insert execute --> last login update","level":"info"}
+{"message":"23:40:34 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"23:40:34 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:40:34 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:40:34 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:40:34 | [object Object]","level":"info"}
+{"message":"23:40:34 | insert execute --> user_login_info seq = 108","level":"info"}
+{"message":"23:40:34 | insert execute --> last login update","level":"info"}
+{"message":"23:40:47 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"23:40:47 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:40:47 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:40:47 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:40:47 | [object Object]","level":"info"}
+{"message":"23:40:47 | insert execute --> user_login_info seq = 109","level":"info"}
+{"message":"23:40:47 | insert execute --> last login update","level":"info"}
+{"message":"23:42:19 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"23:42:19 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:42:19 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:42:19 | [object Object]","level":"info"}
+{"message":"23:42:19 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:42:19 | insert execute --> user_login_info seq = 110","level":"info"}
+{"message":"23:42:19 | insert execute --> last login update","level":"info"}
+{"message":"23:43:58 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"23:43:58 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:43:58 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:43:58 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:43:58 | [object Object]","level":"info"}
+{"message":"23:43:58 | insert execute --> user_login_info seq = 111","level":"info"}
+{"message":"23:43:58 | insert execute --> last login update","level":"info"}
+{"message":"23:44:11 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"23:44:11 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:44:11 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:44:11 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:44:11 | [object Object]","level":"info"}
+{"message":"23:44:11 | insert execute --> user_login_info seq = 112","level":"info"}
+{"message":"23:44:11 | insert execute --> last login update","level":"info"}
+{"message":"23:45:06 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"23:45:06 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:45:06 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:45:06 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:45:06 | [object Object]","level":"info"}
+{"message":"23:45:06 | insert execute --> user_login_info seq = 113","level":"info"}
+{"message":"23:45:06 | insert execute --> last login update","level":"info"}
+{"message":"23:45:17 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"23:45:17 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:45:17 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:45:17 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:45:17 | [object Object]","level":"info"}
+{"message":"23:45:17 | insert execute --> user_login_info seq = 114","level":"info"}
+{"message":"23:45:17 | insert execute --> last login update","level":"info"}
+{"message":"23:47:12 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"23:47:12 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:47:12 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:47:12 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:47:12 | [object Object]","level":"info"}
+{"message":"23:47:12 | insert execute --> user_login_info seq = 115","level":"info"}
+{"message":"23:47:12 | insert execute --> last login update","level":"info"}
+{"message":"23:47:37 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"23:47:37 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:47:37 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:47:37 | [object Object]","level":"info"}
+{"message":"23:47:37 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:47:37 | insert execute --> user_login_info seq = 116","level":"info"}
+{"message":"23:47:37 | insert execute --> last login update","level":"info"}
+{"message":"23:48:10 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"23:48:10 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:48:10 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:48:10 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"23:48:10 | [object Object]","level":"info"}
+{"message":"23:48:10 | insert execute --> user_login_info seq = 117","level":"info"}
+{"message":"23:48:10 | insert execute --> last login update","level":"info"}
+{"message":"23:49:00 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"23:49:00 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:49:00 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:49:00 | status[3] vcode[b6a3b3] code[b6a3b3]","level":"info"}
+{"message":"23:49:00 | [object Object]","level":"info"}
+{"message":"23:49:00 | insert execute --> user_login_info seq = 118","level":"info"}
+{"message":"23:49:00 | insert execute --> last login update","level":"info"}
