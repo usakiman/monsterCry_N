@@ -73,7 +73,7 @@ exports.get_userlist = (req, res) => {
                 var paging = util.paging(noPage, tot_cnt, page_size, page_list_size);
                 var params = [page_size, paging.hidePost];    
 
-                console.log(paging);
+                util.log(paging);
                     
                 mysql.query(sql, params, function (err, rows, fields) {
                     if(err) util.log('query is not excuted. select fail\n' + err);
@@ -307,7 +307,7 @@ exports.get_user_stat = ( req , res) => {
     var params;
     var totMsg = "";
 
-    console.log(req.body);
+    util.log(req.body);
 
     if (req.body.ddlYm != null) {
         params = [req.body.ddlYm];
@@ -357,7 +357,7 @@ exports.post_user_stat = ( req , res) => {
     var params;    
     var totMsg = "";
 
-    console.log(req.body);
+    util.log(req.body);
 
     if (req.body.ddlYm != null) {
         params = [req.body.ddlYm];

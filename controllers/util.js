@@ -51,7 +51,14 @@ var options = {
 
 // 로그 쓰기
 exports.log = function (info){
-    console.log(info);
+
+    var hostname = os.hostname();        
+    if(hostname === 'MSDN-SPECIAL') {  
+        console.log(info);
+    } else if (hostname === 'LAPTOP-DI6GLDAU') {
+        console.log(info);
+    } 
+    
     if (!fs.existsSync(logDir)) {
         fs.mkdirSync(logDir);
     }

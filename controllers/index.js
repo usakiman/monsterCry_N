@@ -26,7 +26,8 @@ router.get('/', (req, res) => {
 
     mysql.query(sql, function (err, rows, fields) {
         if(err) {
-            console.log('query is not excuted.\n' + err);
+            //console.log('query is not excuted.\n' + err);
+            util.log('query is not excuted.\n' + err);            
         }
         else {             
             res.render('index', {
@@ -42,14 +43,14 @@ router.get('/', (req, res) => {
     });
         
     mysql.query(sqlInsert, params, function(err, rows, fields) {
-        if (err) console.log('query is not excuted.\n' + err);
+        if (err) util.log('query is not excuted.\n' + err);
         else {
             console.log("insert execute --> accessID = "+rows.insertId + " ,IP =" + ip);
         }
     });
 
     mysql.query(sqlMerge, function(err, rows, fields) {
-        if (err) console.log('query is not excuted.\n' + err);
+        if (err) util.log('query is not excuted.\n' + err);
         else {
             console.log("access merge execute");
         }

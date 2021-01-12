@@ -132,7 +132,7 @@ class App {
 
     errorHandler() {
         this.app.use( (err, req, res,  _ ) => {
-            console.log(err);
+            //console.log(err);
             res.status(500).render('common/500', {
                 msg : err.msg,
                 title : this.app.locals.title

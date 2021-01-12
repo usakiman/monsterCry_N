@@ -184,3 +184,10 @@
 {"message":"1:01:38 | [object Object]","level":"info"}
 {"message":"1:01:38 | insert execute --> user_login_info seq = 143","level":"info"}
 {"message":"1:01:38 | insert execute --> last login update","level":"info"}
+{"message":"21:31:49 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"21:31:49 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"21:31:49 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"21:31:49 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"21:31:49 | [object Object]","level":"info"}
+{"message":"21:31:49 | insert execute --> user_login_info seq = 144","level":"info"}
+{"message":"21:31:49 | insert execute --> last login update","level":"info"}
