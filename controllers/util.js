@@ -76,15 +76,17 @@ exports.log = function (info){
   try{
       logger.info(new Date().toLocaleTimeString() + " | " + info);
     }catch(exception){
-      logger.error("ERROR=>" +exception);
+      logger.error("ERROR=>" +exception);      
     }
+    return;
 }
 
 // mysql 커넥터
 class mysql {
     constructor() {
         const db_config = require('../conf/db.js');
-        var conn = db_config.init(); // createConnection
+        var conn;
+        //var conn = db_config.init(); // createConnection
         //db_config.connect(conn); // connect
         this.conn = conn;            
     }
@@ -97,14 +99,40 @@ exports.mysqlInit = function() {
     return this.mysql;
 }
 
-exports.mysqlConnecter = function() {
+// connector 오류시 503
+exports.mysqlConnecter = function() {    
+    var conn;
+    conn = handleDisconnect();
+    return conn;
+}
+
+var handleDisconnect = function() {
     const db_config = require("../conf/db.js");
     var conn = db_config.init();
 
-    if (conn.state == "authenticated") {
-        conn.end();        
-    }
-    db_config.connect(conn);
+    conn.connect(function(err) {
+        if(err) {
+            console.log('error when connecting to db:', err);
+            setTimeout(handleDisconnect, 2000);
+        }else{
+            console.info("mysql connection successfully.");
+        }	
+    });
+    
+    conn.on('error', function(err) { 
+        console.log('db error :', err); 
+        if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
+            handleDisconnect(); 
+        } else { 
+            console.info(err);
+            throw err;
+        } 
+    });
+    
+    // if (conn.state == "authenticated") {
+    //     conn.end();        
+    // }
+    //db_config.connect(conn);
 
     return conn;
 }

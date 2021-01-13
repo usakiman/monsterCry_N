@@ -122,7 +122,7 @@ class App {
     }
 
     status404() {        
-        this.app.use( (req , res, _ ) => {            
+        this.app.use( (req , res, _ ) => {
             res.status(404).render('common/404', {
                 msg : response.status404,
                 title : this.app.locals.title

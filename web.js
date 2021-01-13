@@ -14,7 +14,6 @@ const server = app.listen( port, function(){
 const listen = require("socket.io");
 const io = listen(server);
 
-
 gSocketCount = 0;
 io.on('connection', (socket) => { 
     const username = gLoginID;

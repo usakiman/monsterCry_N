@@ -92,7 +92,9 @@ exports.post_card_logout = (req, res) => {
     req.session.destroy(function(err) {                
         //req.session.isLogin = false;
         //req.isLogin = true;
-        //req.session.loginID = "";        
+        //req.session.loginID = "";    
+        
+        util.log("logout");
 
         res.json("SUCCESS");
     });  

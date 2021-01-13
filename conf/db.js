@@ -31,7 +31,7 @@ var dbconnInfo = {
 var dbconnection = {
 	init : function(){
         var hostname = os.hostname();
-        console.log(hostname);
+        console.log("hostname : " + hostname);
 		if(hostname === 'MSDN-SPECIAL'){
             //console.log(dbconnInfo.dev);
 			return mysql.createConnection(dbconnInfo.dev);	//로컬개발환경
