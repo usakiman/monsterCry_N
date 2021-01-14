@@ -51,7 +51,6 @@ var options = {
 
 // 로그 쓰기
 exports.log = function (info){
-
     var hostname = os.hostname();        
     if(hostname === 'MSDN-SPECIAL') {  
         console.log(info);
@@ -59,6 +58,29 @@ exports.log = function (info){
         console.log(info);
     } 
     
+    if (!fs.existsSync(logDir)) {
+        fs.mkdirSync(logDir);
+    }
+
+    let logger = winston.createLogger({
+        transports: [
+          new (winston.transports.Console)(options.console),
+          new (winston.transports.File)(options.errorFile),
+          new (winston.transports.File)(options.file)          
+        ],
+        exitOnError: false, // do not exit on handled exceptions
+      });
+      
+    
+  try{
+      logger.info(new Date().toLocaleTimeString() + " | " + info);
+    }catch(exception){
+      logger.error("ERROR=>" +exception);      
+    }
+    return;
+}
+
+var inLog = function(info) {
     if (!fs.existsSync(logDir)) {
         fs.mkdirSync(logDir);
     }
@@ -112,7 +134,7 @@ var handleDisconnect = function() {
 
     conn.connect(function(err) {
         if(err) {
-            this.log('error when connecting to db:' + err);
+            inLog('error when connecting to db:' + err);
             setTimeout(handleDisconnect, 2000);
         }else{
             console.info("mysql connection successfully.");
@@ -120,7 +142,7 @@ var handleDisconnect = function() {
     });
     
     conn.on('error', function(err) { 
-        this.log('db error :' + err); 
+        inLog('db error :' + err); 
         if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
             handleDisconnect(); 
         } else { 
@@ -172,10 +194,10 @@ exports.emailSender = function(send, title, html) {
 
     transporter.sendMail(mailOption, function(err, info) {
         if ( err ) {
-            this.log('Send Mail error : ' + err);
+            inLog('Send Mail error : ' + err);            
         }
         else {
-            this.log('Message sent : ' + info);
+            inLog('Message sent : ' + info);            
         }
     });    
 }
@@ -195,7 +217,7 @@ exports.readFolder = function(url) {
     }
 
     var files = fs.readdirSync(appRoot + dir); // 디렉토리를 읽어온다
-    this.log(files);
+    inLog(files);
 
     return files;
 }
@@ -211,7 +233,7 @@ exports.delFile = function (url,filename) {
                
     // path join 플래폼별로 정규화해서 리턴해줌        
     dir = path.join(appRoot.toString(),dir, filename);        
-    this.log(dir);
+    inLog(dir);
 
     fs.unlinkSync(dir);
 }
@@ -228,7 +250,7 @@ exports.delDirAll = function (url) {
                
     // path join 플래폼별로 정규화해서 리턴해줌        
     dir = path.join(appRoot.toString(),dir);        
-    this.log(dir);
+    inLog(dir);
     
     var list = fs.readdirSync(dir);
     for(var i = 0; i < list.length; i++) {
