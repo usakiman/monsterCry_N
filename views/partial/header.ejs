@@ -223,6 +223,11 @@ function funNav(v) {
 
     break;
 
+    case "Simul2" : 
+        $("#divError").html("준비중입니다~!");
+        $("#divError").fadeIn(400).delay(2000).fadeOut(400);
+    break;
+
     case "Chat" : 
         $("#btnChat").attr("data-toggle", "modal");
         $("#btnChat").attr("data-target", "#chatModal");

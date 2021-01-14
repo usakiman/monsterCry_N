@@ -112,7 +112,7 @@ var handleDisconnect = function() {
 
     conn.connect(function(err) {
         if(err) {
-            console.log('error when connecting to db:', err);
+            this.log('error when connecting to db:' + err);
             setTimeout(handleDisconnect, 2000);
         }else{
             console.info("mysql connection successfully.");
@@ -120,7 +120,7 @@ var handleDisconnect = function() {
     });
     
     conn.on('error', function(err) { 
-        console.log('db error :', err); 
+        this.log('db error :' + err); 
         if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
             handleDisconnect(); 
         } else { 
@@ -172,10 +172,10 @@ exports.emailSender = function(send, title, html) {
 
     transporter.sendMail(mailOption, function(err, info) {
         if ( err ) {
-            this.log('Send Mail error : ', err);
+            this.log('Send Mail error : ' + err);
         }
         else {
-            this.log('Message sent : ', info);
+            this.log('Message sent : ' + info);
         }
     });    
 }
