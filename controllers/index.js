@@ -4,10 +4,12 @@ const router = Router();
 let util = require("./util");
 
 const itemList = require("../conf/item_info");
+const { resolve } = require('app-root-path');
 
 router.use('/admin', require('./admin'));
 router.use('/card', require('./card'));
 router.use('/chat', require('./chat'));
+router.use('/asmonel', require('./asmonel'));
 
 router.get('/', (req, res) => {
     const ip = req.headers['x-forwarded-for'] ||  req.connection.remoteAddress;
@@ -37,8 +39,9 @@ router.get('/', (req, res) => {
                 isLogin : req.session.isLogin,
                 loginID : req.session.loginID,
                 loginType : req.session.loginType,
-                link : req.session.link
-            });                        
+                link : req.session.link,
+                link2 : req.session.link2
+            });            
         }
     });
         

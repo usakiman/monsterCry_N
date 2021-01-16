@@ -154,8 +154,13 @@ exports.post_card_login = (req, res) => {
                                     req.session.loginType = status;
                                     req.session.cookie.maxAge = (60 * 60000); // 세션 시간 60분
                                     req.session.link = null;
+                                    req.session.link2 = null;
                                     if (status == 3 || status == 4) {
                                         req.session.link = "/admin/confirm";
+                                        req.session.link2 = "/asmonel";
+                                    }
+                                    if (status == 2) {
+                                        req.session.link2 = "/asmonel";
                                     }                                    
                                     req.session.save(function() {
         
@@ -246,7 +251,7 @@ exports.post_card_result = (req, res) => {
     returnSkill1_chance = Math.ceil(returnSkill1_chance);
 
     // 스킬 2번째 초기화 순번
-    returnSkill2_chance = returnSkill1_Wtime / returnActPower;
+    returnSkill2_chance = returnSkill2_Wtime / returnActPower;
     returnSkill2_chance = Math.ceil(returnSkill2_chance);
 
     // 스속에 따른 캐스팅 및 초기화 skillSpeedEtc1, skillSpeedEtc2

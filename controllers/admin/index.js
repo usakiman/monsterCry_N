@@ -42,6 +42,7 @@ router.post('/confirm_process', postMiddleWare, ctrl.post_confirm );
 router.post('/confirm_change_process', postMiddleWare, ctrl.post_confirm_change );
 router.post('/confirm_eject', postMiddleWare, ctrl.post_confirm_eject );
 router.post('/confirm_del', postMiddleWare, ctrl.post_confirm_del );
+router.post('/pwd_init', postMiddleWare, ctrl.post_pwd_init);
 
 
 router.get('/userlist', getMiddleWare, ctrl.get_userlist);

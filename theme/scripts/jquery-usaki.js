@@ -258,6 +258,8 @@ var funAllCalc = function(v) {
         success: function(result){       
             if (result.length > 0) {
                 
+                //console.log(result);
+
                 vResult = result.split(',');
 
                 var msg = "[계산 결과]" + "<br/>";

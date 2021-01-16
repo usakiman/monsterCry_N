@@ -144,8 +144,13 @@ var handleDisconnect = function() {
     conn.on('error', function(err) { 
         inLog('db error :' + err); 
         if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
+            conn.destroy();
             handleDisconnect(); 
-        } else { 
+        } else if(err.code === 'ER_TOO_MANY_USER_CONNECTIONS') {
+            conn.destroy();
+            throw err;
+        }        
+        else { 
             console.info(err);
             throw err;
         } 

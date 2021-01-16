@@ -33,6 +33,8 @@
                         </select>
                         <input type="button" id="btnConfirm" onclick="loginChange('<%=list[i].seq%>');" value="권한변경">
                         <input type="button" id="btnDel" onclick="loginDel('<%=list[i].seq%>');" value="삭제">
+                        <input type="text" id="txtPwd_<%=list[i].seq%>" placeholder="pwd init" maxlength="10" style="width:80px;">
+                        <input type="button" id="btnPwdInit" onclick="loginPwdInit('<%=list[i].seq%>');" value="초기화">
                     </td>
                 </tr>
                 <% } %>

@@ -185,8 +185,7 @@ var loginConfirm = function(v) {
             success: function(result){
                 if (result.length > 0) {
                     if (result == "SUCCESS") {                               
-                        //document.location.href = "/admin/confirm";
-                        document.location.reload();
+                        document.location.href = "./confirm";
                     } else {
                         alert(result);
                     }                                        
@@ -211,8 +210,7 @@ var loginEject = function(v) {
             success: function(result){
                 if (result.length > 0) {
                     if (result == "SUCCESS") {                               
-                        //document.location.href = "/admin/confirm";
-                        document.location.reload();
+                        document.location.href = "./confirm";
                     } else {
                         alert(result);
                     }                                        
@@ -237,8 +235,7 @@ var loginDel = function(v) {
             success: function(result){
                 if (result.length > 0) {
                     if (result == "SUCCESS") {                               
-                        //document.location.href = "./";
-                        document.location.reload();
+                        document.location.href = "./userlist";
                     } else {
                         alert(result);
                     }                                        
@@ -271,8 +268,7 @@ var loginChange = function(v) {
             success: function(result){
                 if (result.length > 0) {
                     if (result == "SUCCESS") {                               
-                        //document.location.href = "/admin/userlist";
-                        document.location.reload();
+                        document.location.href = "./userlist";
                     } else {
                         alert(result);
                     }                                        
@@ -282,41 +278,6 @@ var loginChange = function(v) {
                 console.log("ERROR: ", e);
             }
         });      
-}
-
-var loginPwdInit = function(v) {
-    if (!confirm("패스워드를 초기화 합니까?")) { return; }
-
-    var pwd = $("#txtPwd_" + v).val();
-
-    if (pwd == "") {
-        alert("패스워드를 입력해주세요.");
-        return;
-    }
-
-    $.ajax({
-        type : "POST",
-        url : "/admin/pwd_init",
-        dataType : "JSON",            
-        data : {
-            "seq" : v,
-            "pwd" : pwd                
-        },
-        success: function(result){
-            if (result.length > 0) {
-                if (result == "SUCCESS") {                 
-                    alert("초기화 완료");              
-                    //document.location.href = "/admin/userlist";
-                    document.location.reload();
-                } else {
-                    alert(result);
-                }                                        
-            }                                                        
-        },
-        error : function(e) {                
-            console.log("ERROR: ", e);
-        }
-    });      
 }
 
 var cardInsert = function() {

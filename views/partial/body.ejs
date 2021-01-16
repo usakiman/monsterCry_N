@@ -22,11 +22,14 @@
         <% if (link != null && link != "") { %>
             <li class="sidebar-nav-item"><button class="btn btn-danger" onclick="document.location.href='<%=link%>';">ADMIN</button></li><p/>
         <% } %>
-        <li class="sidebar-nav-item" id="lLogin"><button class="btn btn-danger" id="btnLoginG" onclick="funNav('Login');"></button></li>        
+        <li class="sidebar-nav-item" id="lLogin"><button class="btn btn-danger" id="btnLoginG" onclick="funNav('Login');"></button></li>
         <p/>
         <li class="sidebar-nav-item">        
         <button class="btn btn-danger" id="btnSimul" onclick="goUrl('Simul');">시뮬레이터</button>
         </li><p/>
+        <% if (link2 != null && link2 != "") { %>
+            <li class="sidebar-nav-item"><button class="btn btn-danger" onclick="document.location.href='<%=link2%>';">아스모넬</button></li><p/>
+        <% } %>        
         <li class="sidebar-nav-item">        
         <button class="btn btn-danger" id="btnChat" onclick="goUrl('Chat');">채팅</button>
         </li><p/>  

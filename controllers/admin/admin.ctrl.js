@@ -185,6 +185,22 @@ exports.post_confirm_change = ( req , res ) => {
     });               
 } 
 
+exports.post_pwd_init = (req, res) => {    
+    var seq = req.body.seq;
+    var pwd = req.body.pwd;    
+    
+    var sql = "UPDATE user_table SET pwd = MD5(?) WHERE seq = ?";    
+    var params = [pwd, seq];                    
+        
+    var mysql = util.mysqlConnecter();
+    mysql.query(sql, params, function (err, result, fields) {
+        if(err) util.log('query is not excuted.\n' + err);
+        else {            
+            res.json("SUCCESS");                        
+        }
+    });                                                          
+}
+
 exports.post_confirm_eject = (req, res) => {
     util.log(req.body);
 
