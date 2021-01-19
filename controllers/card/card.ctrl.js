@@ -14,8 +14,8 @@ exports.post_card_list = (req , res) => {
     util.log(sql);
     if (req.session.isLogin == null) res.json(null);
 
-    var mysql = util.mysqlConnecter();
-    mysql.query(sql, function (err, rows, fields) {
+    //var mysql = util.mysqlConnecter();
+    gMysqlConn.query(sql, function (err, rows, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             res.json(rows);
@@ -32,8 +32,8 @@ exports.post_card_view = ( req , res) => {
     util.log(sql);
     if (req.session.isLogin == null) res.json(null);
 
-    var mysql = util.mysqlConnecter();
-    mysql.query(sql, function (err, rows, fields) {
+    //var mysql = util.mysqlConnecter();
+    gMysqlConn.query(sql, function (err, rows, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             res.json(rows);
@@ -64,8 +64,8 @@ exports.post_card_join = (req, res) => {
     
     util.log(sql);
 
-    var mysql = util.mysqlConnecter();
-    mysql.query(sql, params, function (err, result, fields) {
+    //var mysql = util.mysqlConnecter();
+    gMysqlConn.query(sql, params, function (err, result, fields) {
         if(err) util.log('query is not excuted.\n' + err);
         else {            
             if (result[0].cnt === 1) {
@@ -76,7 +76,7 @@ exports.post_card_join = (req, res) => {
     });      
 
     if (vFlag == 0) {
-        mysql.query(sqlInsert, params2, function(err, rows, fields) {
+        gMysqlConn.query(sqlInsert, params2, function(err, rows, fields) {
             if (err) util.log('query is not excuted.\n' + err);
             else {
                 util.log("insert execute --> UserID = "+rows.insertId);
@@ -119,14 +119,14 @@ exports.post_card_login = (req, res) => {
     sqlUpdate = sqlUpdate.replace(":uid", uid);
     
     util.log(sql);
-    var mysql = util.mysqlConnecter();
-    mysql.query(sql, function (err, result, fields) {
+    //var mysql = util.mysqlConnecter();
+    gMysqlConn.query(sql, function (err, result, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
             // 아이디 체크
             if (result[0].cnt == 1) {
                 util.log(sqlLogin);
-                mysql.query(sqlLogin, params, function (err, result, fields) {
+                gMysqlConn.query(sqlLogin, params, function (err, result, fields) {
                     if(err) util.log('query is not excuted. select fail\n' + err);
                     else {                  
 
@@ -170,14 +170,14 @@ exports.post_card_login = (req, res) => {
                                     global.gLoginID = uid;
                                     util.log(req.session);                                    
         
-                                    mysql.query(sqlIP, params2, function(err, rows, fields) {
+                                    gMysqlConn.query(sqlIP, params2, function(err, rows, fields) {
                                         if (err) util.log('query is not excuted.\n' + err);
                                         else {
                                             util.log("insert execute --> user_login_info seq = "+rows.insertId);                            
                                         }
                                     });
         
-                                    mysql.query(sqlUpdate, function(err, rows, fields) {
+                                    gMysqlConn.query(sqlUpdate, function(err, rows, fields) {
                                         if (err) util.log('query is not excuted.\n' + err);
                                         else {
                                             util.log("insert execute --> last login update");

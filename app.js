@@ -20,6 +20,7 @@ const mysqlStore = require('express-mysql-session')(session);
 global.gLoginID = null;
 global.gSocket = null;
 global.gSocketCount = 0;
+global.gMysqlConn = null;
 
 class App {
 

@@ -24,9 +24,9 @@ router.get('/', (req, res) => {
     //req.session.loginID = "test";
     //console.log(req.session.loginID);  
     
-    var mysql = util.mysqlConnecter();
+    //var mysql = util.mysqlConnecter();
 
-    mysql.query(sql, function (err, rows, fields) {
+    gMysqlConn.query(sql, function (err, rows, fields) {
         if(err) {
             //console.log('query is not excuted.\n' + err);
             util.log('query is not excuted.\n' + err);            
@@ -45,14 +45,14 @@ router.get('/', (req, res) => {
         }
     });
         
-    mysql.query(sqlInsert, params, function(err, rows, fields) {
+    gMysqlConn.query(sqlInsert, params, function(err, rows, fields) {
         if (err) util.log('query is not excuted.\n' + err);
         else {
             console.log("insert execute --> accessID = "+rows.insertId + " ,IP =" + ip);
         }
     });
 
-    mysql.query(sqlMerge, function(err, rows, fields) {
+    gMysqlConn.query(sqlMerge, function(err, rows, fields) {
         if (err) util.log('query is not excuted.\n' + err);
         else {
             console.log("access merge execute");

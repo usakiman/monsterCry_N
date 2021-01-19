@@ -7,9 +7,19 @@ const port = process.env.port || 8001
 //   res.render('index')
 // })
 
+let util = require("./controllers/util");
+gMysqlConn = util.mysqlConnecter();
+
+process.setMaxListeners(20);
+
 const server = app.listen( port, function(){
     console.log('Express listening on port', port);
 }); 
+
+// 인터벌 쿼리 30분마다 (커넥션 안끊기게 하기 위해.)
+let tID = setInterval(() => {
+    util.intervalSelect();
+}, (1000*60)*30);
 
 const listen = require("socket.io");
 const io = listen(server);

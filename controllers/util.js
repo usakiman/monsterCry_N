@@ -106,11 +106,12 @@ var inLog = function(info) {
 // mysql 커넥터
 class mysql {
     constructor() {
-        const db_config = require('../conf/db.js');
+        //const db_config = require('../conf/db.js');
         var conn;
         //var conn = db_config.init(); // createConnection
         //db_config.connect(conn); // connect
-        this.conn = conn;            
+        //conn = handleDisconnect();
+        //this.conn = conn;
     }
 }
 module.exports.mySqlConn = new mysql().conn;
@@ -126,6 +127,15 @@ exports.mysqlConnecter = function() {
     var conn;
     conn = handleDisconnect();
     return conn;
+}
+
+exports.intervalSelect = function() {
+    gMysqlConn.query("SELECT 1", function (err, rows, fields) {
+        if(err) console.log('query is not excuted. select fail\n' + err);
+        else {            
+            console.log("인터벌 실행 : " + new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString());
+        }
+    });          
 }
 
 var handleDisconnect = function() {
