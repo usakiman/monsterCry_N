@@ -1,0 +1,66 @@
+{"message":"11:39:41 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"11:39:41 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"11:39:41 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"11:39:41 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"11:39:41 | [object Object]","level":"info"}
+{"message":"11:39:41 | insert execute --> user_login_info seq = 178","level":"info"}
+{"message":"11:39:41 | insert execute --> last login update","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"12:39:58 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"12:39:58 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"12:39:58 | status[3] vcode[1234] code[1234]","level":"info"}
+{"message":"12:39:58 | [object Object]","level":"info"}
+{"message":"12:39:58 | status[3] vcode[1234] code[1234]","level":"info"}
+{"message":"12:39:58 | insert execute --> user_login_info seq = 179","level":"info"}
+{"message":"12:39:58 | insert execute --> last login update","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"15:57:24 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"15:57:24 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"15:57:24 | status[3] vcode[1234] code[1234]","level":"info"}
+{"message":"15:57:24 | status[3] vcode[1234] code[1234]","level":"info"}
+{"message":"15:57:24 | [object Object]","level":"info"}
+{"message":"15:57:24 | insert execute --> user_login_info seq = 180","level":"info"}
+{"message":"15:57:24 | insert execute --> last login update","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"16:21:04 | query is not excuted. select fail\nError: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1","level":"info"}
+{"message":"16:23:01 | query is not excuted. select fail\nError: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1","level":"info"}
+{"message":"16:58:46 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"16:58:47 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"16:58:47 | status[3] vcode[1234] code[1234]","level":"info"}
+{"message":"16:58:47 | status[3] vcode[1234] code[1234]","level":"info"}
+{"message":"16:58:47 | [object Object]","level":"info"}
+{"message":"16:58:47 | insert execute --> user_login_info seq = 181","level":"info"}
+{"message":"16:58:47 | insert execute --> last login update","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"17:17:13 | query is not excuted. select fail\nError: ER_AGGREGATE_ORDER_FOR_UNION: Expression #3 of ORDER BY contains aggregate function and applies to a UNION","level":"info"}
+{"message":"17:17:28 | query is not excuted. select fail\nError: ER_AGGREGATE_ORDER_FOR_UNION: Expression #3 of ORDER BY contains aggregate function and applies to a UNION","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"18:12:52 | query is not excuted. select fail\nError: ER_WRONG_NUMBER_OF_COLUMNS_IN_SELECT: The used SELECT statements have a different number of columns","level":"info"}
+{"message":"18:12:57 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"18:12:57 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"18:12:57 | status[3] vcode[1234] code[1234]","level":"info"}
+{"message":"18:12:57 | status[3] vcode[1234] code[1234]","level":"info"}
+{"message":"18:12:57 | [object Object]","level":"info"}
+{"message":"18:12:57 | insert execute --> user_login_info seq = 182","level":"info"}
+{"message":"18:12:57 | insert execute --> last login update","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"18:13:01 | query is not excuted. select fail\nError: ER_WRONG_NUMBER_OF_COLUMNS_IN_SELECT: The used SELECT statements have a different number of columns","level":"info"}
+{"message":"18:14:39 | query is not excuted. select fail\nError: ER_WRONG_NUMBER_OF_COLUMNS_IN_SELECT: The used SELECT statements have a different number of columns","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"18:14:44 | query is not excuted. select fail\nError: ER_WRONG_NUMBER_OF_COLUMNS_IN_SELECT: The used SELECT statements have a different number of columns","level":"info"}
+{"message":"18:24:42 | query is not excuted. select fail\nError: ER_SUBQUERY_NO_1_ROW: Subquery returns more than 1 row","level":"info"}
+{"message":"18:24:43 | query is not excuted. select fail\nError: ER_SUBQUERY_NO_1_ROW: Subquery returns more than 1 row","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"18:48:38 | 안녕하세요<br/>신청하신 id의 승인이 거부 되었습니다. <br/>id : usaki2<br/>email : choiyw2@gmail.com<br/>nickname : 111111111111<br/><a href=':hostAddress' target='_blank'>사이트로 이동</a>","level":"info"}
+{"message":"18:48:41 | Message sent : [object Object]","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}

@@ -4,7 +4,7 @@ const ctrl = require('./admin.ctrl');
 
 function getMiddleWare( req, res, next ){
     if (!(req.session.loginType == 3 || req.session.loginType == 4)) {        
-        res.redirect("./");
+        res.redirect("/");
     }
     next();
 }

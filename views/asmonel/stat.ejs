@@ -1,0 +1,94 @@
+<%- include("../partial/header_asmonel_stat") %>
+
+    <script type="text/javascript">
+            
+    </script>
+    
+    <body style="background-color: rgba(58, 123, 153, 0.596);">
+    
+    <div class="container" style="padding-top: 10px;">
+        
+        <form action="" id="userstat" method="post">    
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            <label class="input-group-text">년</label>
+            </div>
+            <select class="custom-select" id="ddlYear">
+            </select>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            <label class="input-group-text">월</label>
+            </div>
+            <select class="custom-select" id="ddlMonth">
+            </select>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            <label class="input-group-text">일</label>
+            </div>
+            <select class="custom-select" id="ddlDay">
+            </select>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            <label class="input-group-text">유저</label>
+            </div>
+            <select class="custom-select" id="ddlUser">
+            <option value="" selected>--전체--</option>
+            <% if(users != null && users.length > 0) { %>
+                <% for (var i = 0; i < users.length; i++) { %>
+                <option value="<%=users[i].uid%>"><%=users[i].uid%>-<%=users[i].nickname%></option>
+                <% } %>
+            <% } %>                                        
+            </select>
+        </div>                        
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            <label class="input-group-text">정렬</label>
+            </div>
+            <select class="custom-select" id="ddlOrder">
+            <option value="" selected>기본</option>
+            <option value="1">점수 높은순</option>
+            <option value="2">점수 낮은순</option>
+            <option value="3">평균 높은순</option>
+            <option value="4">평균 낮은순</option>
+            </select>
+        </div>                        
+
+        <span id="spanMsg"></span>                                        
+
+        <fieldset disabled>
+        <div class="form-group" style="padding-top:20px;">
+            <input type="text" id="disabledTextInput" class="form-control" placeholder="계정별 해당년도 통계">
+        </div>        
+        </fieldset>
+
+        <table class="table table-bordered table-hover">
+            <tr>                
+                <th>년월일</th>
+                <th>아이디</th>                
+                <th>합계</th>                
+                <th>평균</th>  
+                <th>증감</th>
+                <th>증감율</th>              
+            </tr>        
+                <% if(list != null && list.length > 0) { %>
+                    <% for (var i = 0; i < list.length; i++) { %>
+                    <tr>
+                        <td><%=list[i].ym%></td>
+                        <td><%=list[i].uid%></td>                                                
+                        <td><%=list[i].scoresum%> - 총 (<%=list[i].scorecnt%>) 건</td>                                                
+                        <td><%=list[i].scoreavg%></td>                   
+                        <td><%=list[i].rate_sum%></td>
+                        <td><%=list[i].rate_avg%></td>                             
+                    </tr>
+                    <% } %>
+                <% } %>                                        
+        </table>                
+
+        </form>
+    </div>    
+
+<%- include("../partial/footer_asmonel_stat") %>

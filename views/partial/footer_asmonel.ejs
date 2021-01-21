@@ -1,15 +1,21 @@
 <div class="container" style="padding-top: 10px;">    
+    <button class="btn btn-danger" onclick="goList('/asmonel');">점수 입력</button>
+    <button class="btn btn-danger" onclick="goList('/asmonel/stat');">통계</button>
     <button class="btn btn-danger" onclick="goList('/');">메인으로</button>
 </div>
 
 <div class="container" style="padding-top: 10px;">
     <p>
-        <font style="font-weight: bolder; color: rgb(60, 18, 211);">% 작업중</font><br>    
+        <font style="font-weight: bolder; color: rgb(60, 18, 211);">% 합계 입력시 전체 점수 입력</font><br>
+        <font style="font-weight: bolder; color: rgb(60, 18, 211);">% 각각 입력시 첫번째, 두번째 점수 각각 입력</font><br>
+        <font style="font-weight: bolder; color: rgb(60, 18, 211);">% 한번 입력후 수정할 일자 선택후 업데이트 가능</font><br>
+        <font style="font-weight: bolder; color: rgb(60, 18, 211);">% 계정이 여러개일 경우 모두 합산해서 입력하세요</font><br>
     </p>    
     
 </div>
 
-<div class="copyright"><p>usaki - theme dgs</p>  
-</div>
+<div class="copyright"><p>usaki - theme dgs</p></div>
+
+<div id="divError" class='error' style='display:none'>Error</div>
 </body>
 </html>

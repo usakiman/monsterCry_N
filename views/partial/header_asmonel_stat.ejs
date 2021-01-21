@@ -71,28 +71,70 @@ $(document).ready(function() {
     if (mm < 10) mm = "0" + mm;
     var dd = new Date().getDate();
     if (dd < 10) dd = "0" + dd;
+    
+    var selYear = "<%=year%>";
+    var sYear = "2021";
+    var ddlYear = $("#ddlYear");
+    ddlYear.empty();
+    for (let index = sYear; index <= yy; index++) {
+        ddlYear.append("<option value='"+index+"'>"+index+" 년</option>");        
+    }
+    if (selYear != "") ddlYear.val(selYear);
+    else ddlYear.val(yy);
+    
+    var selMonth = "<%=month%>";
+    var ddlMonth = $("#ddlMonth");
+    ddlMonth.empty();
+    ddlMonth.append("<option value=''>--전체--</option>");        
+    for (let index = 1; index <= 12; index++) {
+        var month = index;
+        if (month < 10) month = "0" + month;
+        ddlMonth.append("<option value='"+month+"'>"+month+" 월</option>");        
+    }
+    if (selMonth != "") ddlMonth.val(selMonth);
+    
+    var selDay = "<%=day%>";
+    var ddlDay = $("#ddlDay");
+    ddlDay.empty();
+    ddlDay.append("<option value=''>--전체--</option>");        
+    for (let index = 1; index <= 31; index++) {
+        var day = index;
+        if (day < 10) day = "0" + day;
+        ddlDay.append("<option value='"+day+"'>"+day+" 일</option>");        
+    }    
+    if (selDay != "") ddlDay.val(selDay);
 
-    $("#datePick").val(yy.toString()+"-"+mm.toString()+"-"+dd.toString());    
+    var selUser = "<%=uid%>";
+    var ddlUser = $("#ddlUser");
+    if (selUser != "") ddlUser.val(selUser);
 
-    $("#rdType1").on("click", function() {        
-        $("#gSum").css("display", "");
-        $("#gOne").css("display", "none");
-        $("#gTwo").css("display", "none");
+    var selOrder = "<%=order%>";
+    var ddlOrder = $("#ddlOrder");
+    if (selOrder != "") ddlOrder.val(selOrder);
 
-        $("#txtScore1").val("");
-        $("#txtScore2").val("");
+    $("#ddlYear").on("change", function() {
+
+        $("#ddlMonth").val("");
+        $("#ddlDay").val("");
+
+        changeSel();
     });
+    $("#ddlMonth").on("change", function() {
 
-    $("#rdType2").on("click", function() {
-        $("#gSum").css("display", "none");
-        $("#gOne").css("display", "");
-        $("#gTwo").css("display", "");
-
-        $("#txtScoreSum").val("");
+        $("#ddlDay").val("");
+        
+        changeSel();
     });
-
-    $("#txtScoreSum").focus();
-
+    $("#ddlDay").on("change", function() {
+        changeSel();
+    });
+    $("#ddlUser").on("change", function() {
+        changeSel();
+    });
+    $("#ddlOrder").on("change", function() {
+        changeSel();
+    });    
+    
     $("#btnSave").on("click", function() {        
         var scoresum = 0;
         var score1 = 0;
@@ -142,8 +184,6 @@ $(document).ready(function() {
                         if (result == "SUCCESS") {       
                             $("#divError").html("업데이트 완료");
                             $("#divError").fadeIn(400).delay(2000).fadeOut(400);
-
-                            document.location.reload();
                         }                    
                     }                                                        
                 },
@@ -170,8 +210,6 @@ $(document).ready(function() {
                         if (result == "SUCCESS") {       
                             $("#divError").html("입력 완료");
                             $("#divError").fadeIn(400).delay(2000).fadeOut(400);
-
-                            document.location.reload();
                         }                    
                     }                                                        
                 },
@@ -225,44 +263,24 @@ $(document).ready(function() {
 
         $("#userstat").attr("action", "/admin/userstat");    
         form.submit();        
-    })    
-
-    dupleCheck();
+    })        
 });
 
+var changeSel = function () {
+    var year = $("#ddlYear").val();
+    var month = $("#ddlMonth").val();
+    var day = $("#ddlDay").val();
+    var uid = $("#ddlUser").val();
+    var order = $("#ddlOrder").val();
 
-var dupleCheck = function() {
-    var selDate = $("#datePick").val();
-
-    $.ajax({
-        type : "POST",
-        url : "/asmonel/saveChk",
-        dataType : "JSON",            
-        data : {
-            "date" : selDate                    
-        },
-        success: function(result){                                                 
-            
-            if (result == "") {
-                bExist = false;
-            } else {                
-                var msg = "해당일자에는 자료가 입력되어 있습니다. <br/>입력하시면 덮어 씌워집니다. <br>";
-                msg += "점수 합계 : " + result.scoresum;
-
-                $("#divError").html(msg);
-                $("#divError").fadeIn(400).delay(2000).fadeOut(400);
-
-                bExist = true;
-            }                                                                                                                 
-        },
-        error : function(e) {                
-            console.log("ERROR: ", e);
-
-            $("#divError").html("오류입니다 : " + e);
-            $("#divError").fadeIn(400).delay(2000).fadeOut(400);
-        }
-    });     
+    document.location.href="/asmonel/stat?year=" + year + 
+        "&month=" + month +
+        "&day=" + day +
+        "&uid=" + uid +
+        "&ord=" + order;
 }
+
+
 
 
 var userStat = function() {
@@ -348,7 +366,7 @@ var goList = function(v) {
     if (v == "/admin/write") {
         alert("Root만 접근 가능");
     }
-
+    
     document.location.href = v;
 }
 
