@@ -26,7 +26,7 @@ exports.get_index = ( req , res) => {
     sql += " WHERE u_seq = (SELECT seq FROM user_table WHERE uid = ?) ";
     sql += " AND SUBSTR(ymd,1,6) = ? ";
 
-    sql += " ORDER BY gubun DESC, ymd DESC";    
+    sql += " ORDER BY gubun asc, ymd DESC";    
 
     var params = [req.session.loginID, date, req.session.loginID, date, req.session.loginID, date];    
     
@@ -69,6 +69,7 @@ exports.get_stat = ( req , res) => {
             gMysqlConn.query(sql, function (err, rows, fields) {
                 if(err) util.log('query is not excuted. select fail\n' + err);
                 else {            
+                    
                     res.render( './asmonel/stat' , 
                     { 
                         list:rows,
@@ -78,6 +79,7 @@ exports.get_stat = ( req , res) => {
                         uid:uid,
                         users:users,
                         order:order,
+                        myid:req.session.loginID,
                         title: "아스모넬 통계 메뉴"
                     }
                 ); 
@@ -182,6 +184,17 @@ var statQuery = function(yy, mm, dd, uid, ord) {
         where = " and ymd = '"+day+"' ";
         select = " ymd AS ym, ";
         group = " GROUP BY ymd, uid ";        
+
+        rate_sel = " ,FORMAT(CASE WHEN IFNULL((SELECT scoresum FROM asmonel WHERE u_seq = a.u_seq AND ymd = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 DAY), '%Y%m%d')), 0) = 0 THEN 0 ";
+        rate_sel += " ELSE SUM(scoresum) - IFNULL((SELECT scoresum FROM asmonel WHERE u_seq = a.u_seq AND ymd = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 DAY), '%Y%m%d')), 0) END,0) AS rate_sum, ";    
+        rate_sel += " ROUND(CASE WHEN  ";
+        rate_sel += " (SUM(scoresum) - IFNULL((SELECT scoresum FROM asmonel WHERE u_seq = a.u_seq AND ymd = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 DAY), '%Y%m%d')), 0))  ";
+        rate_sel += " / SUM(scoresum) = 1 THEN 0 ";
+        rate_sel += " ELSE ";
+        rate_sel += " IFNULL(((SUM(scoresum) - IFNULL((SELECT scoresum FROM asmonel WHERE u_seq = a.u_seq AND ymd = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 DAY), '%Y%m%d')), 0))  ";
+        rate_sel += " / SUM(scoresum)) * 100,0) ";
+        rate_sel += " END,2) ";
+        rate_sel += " AS rate_avg ";
     } else if (mm != "") {
         month = yy.toString() + mm.toString();
         
@@ -195,8 +208,8 @@ var statQuery = function(yy, mm, dd, uid, ord) {
         rate_sel += " (SUM(scoresum) - IFNULL((SELECT scoresum FROM asmonel WHERE u_seq = a.u_seq AND ymd = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 DAY), '%Y%m%d')), 0))  ";
         rate_sel += " / SUM(scoresum) = 1 THEN 0 ";
         rate_sel += " ELSE ";
-        rate_sel += " ((SUM(scoresum) - IFNULL((SELECT scoresum FROM asmonel WHERE u_seq = a.u_seq AND ymd = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 DAY), '%Y%m%d')), 0))  ";
-        rate_sel += " / SUM(scoresum)) * 100 ";
+        rate_sel += " IFNULL(((SUM(scoresum) - IFNULL((SELECT scoresum FROM asmonel WHERE u_seq = a.u_seq AND ymd = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 DAY), '%Y%m%d')), 0))  ";
+        rate_sel += " / SUM(scoresum)) * 100,0) ";
         rate_sel += " END,2) ";
         rate_sel += " AS rate_avg ";
     } else {
@@ -244,7 +257,7 @@ var statQuery = function(yy, mm, dd, uid, ord) {
 
     sql += select;
     
-    sql += " (SELECT CONCAT(uid, '(' ,nickname, ')') FROM user_table WHERE seq = a.u_seq) AS uid, ";
+    sql += " (SELECT nickname FROM user_table WHERE seq = a.u_seq) AS uid, ";
 
     sql += " FORMAT(SUM(score1),0) AS score1, FORMAT(SUM(score2),0) AS score2, FORMAT(COUNT(scoresum),0) AS scorecnt, FORMAT(SUM(scoresum),0) AS scoresum, FORMAT(ROUND(AVG(scoresum)),0) AS scoreavg ";
 

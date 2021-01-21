@@ -266,6 +266,14 @@ $(document).ready(function() {
     })        
 });
 
+var goList = function(v) {
+    if (v == "/admin/write") {
+        alert("Root만 접근 가능");
+    }
+
+    document.location.href = v;
+}
+
 var changeSel = function () {
     var year = $("#ddlYear").val();
     var month = $("#ddlMonth").val();
@@ -280,324 +288,40 @@ var changeSel = function () {
         "&ord=" + order;
 }
 
-
-
-
-var userStat = function() {
-    var form = $("#userstat");
-
-    form.attr("action", "/admin/userstat");
-    form.submit();        
-}
-
-var vEnter = function() {
-    if (event.keyCode == 13) {
+var todaySel = function () {
+    var yy = new Date().getFullYear();
+    var mm = new Date().getMonth() + 1;
+    if (mm < 10) mm = "0" + mm;
+    var dd = new Date().getDate();
+    if (dd < 10) dd = "0" + dd;
         
-    }
-}
-
-var vLogin = function() {
-    //$("#lLogin").css("display", "none");
-    //$("#lLogout").css("display", "block");
-    //$("#loginInfo").html("후후 로그인중");
-
-    var uid = $("#txtUid").val();
-    var pwd = $("#txtPwd").val();
-    var code = $("#txtCode").val();
-
-    if (uid == "") { alert("아이디를 입력해주세요."); return; }
-    if (pwd == "") { alert("패스워드를 입력해주세요."); return; }
-    if (code == "") { alert("승인코드를 입력해주세요."); return; }
-
-    $.ajax({
-            type : "POST",
-            url : "/card/login",
-            dataType : "JSON",            
-            data : {
-                "uid" : uid,
-                "pwd" : pwd,
-                "code" : code
-            },
-            success: function(result){
-                if (result.length > 0) {
-                    if (result == "SUCCESS") {       
-                        var code = $("#txtCode").val();
-                        setCookie("userInputCode", code, 31);
-                        document.location.href = "/";
-                    } else {
-                        alert(result);
-                    }                                        
-                }                                                        
-            },
-            error : function(e) {                
-                console.log("ERROR: ", e);
-            }
-        });            
-}
-
-var vLogout = function() {
-    //$("#lLogin").css("display", "block");
-    //$("#lLogout").css("display", "none");
-    //$("#loginInfo").html("");
-
-    $.ajax({
-            type : "POST",
-            url : "/card/logout",
-            dataType : "JSON",            
-            data : {
-                
-            },
-            success: function(result){
-                if (result.length > 0) {
-                    if (result == "SUCCESS") {
-                        document.location.href = "/";
-                    } else {
-                        alert(result);
-                    }                                        
-                }                                                        
-            },
-            error : function(e) {                
-                console.log("ERROR: ", e);
-            }
-        });    
-}
-
-var goList = function(v) {
-    if (v == "/admin/write") {
-        alert("Root만 접근 가능");
-    }
+    var year = yy;
+    var month = mm;
+    var day = dd;
+    var uid = $("#ddlUser").val();
+    var order = $("#ddlOrder").val();
     
-    document.location.href = v;
+    document.location.href="/asmonel/stat?year=" + year + 
+        "&month=" + month +
+        "&day=" + day +
+        "&uid=" + uid +
+        "&ord=" + order;    
 }
 
-var loginConfirm = function(v) {
-    if (!confirm("승인합니까?")) { return; }
+var meSel = function () {
+    var myid = "<%=myid%>";    
 
-    var selValue = $("#selType_" + v).val();
+    var year = $("#ddlYear").val();
+    var month = $("#ddlMonth").val();
+    var day = $("#ddlDay").val();
+    var uid = myid;
+    var order = $("#ddlOrder").val();
 
-    if (selValue == "") {
-        alert("승인 타입을 선택해주세요.");
-        return;
-    }
-
-    $.ajax({
-            type : "POST",
-            url : "/admin/confirm_process",
-            dataType : "JSON",            
-            data : {
-                "seq" : v,
-                "type" : selValue                
-            },
-            success: function(result){
-                if (result.length > 0) {
-                    if (result == "SUCCESS") {                               
-                        document.location.href = "./confirm";
-                    } else {
-                        alert(result);
-                    }                                        
-                }                                                        
-            },
-            error : function(e) {                
-                console.log("ERROR: ", e);
-            }
-        });           
-}
-
-var loginEject = function(v) {
-    if (!confirm("거부합니까? 해당 내역은 삭제됩니다.")) { return; }
-    
-    $.ajax({
-            type : "POST",
-            url : "/admin/confirm_eject",
-            dataType : "JSON",            
-            data : {
-                "seq" : v                
-            },
-            success: function(result){
-                if (result.length > 0) {
-                    if (result == "SUCCESS") {                               
-                        document.location.href = "./confirm";
-                    } else {
-                        alert(result);
-                    }                                        
-                }                                                        
-            },
-            error : function(e) {                
-                console.log("ERROR: ", e);
-            }
-        });    
-}
-
-var loginDel = function(v) {
-    if (!confirm("해당 계정을 삭제하시겠습니까?")) { return; }
-    
-    $.ajax({
-            type : "POST",
-            url : "/admin/confirm_del",
-            dataType : "JSON",            
-            data : {
-                "seq" : v                
-            },
-            success: function(result){
-                if (result.length > 0) {
-                    if (result == "SUCCESS") {                               
-                        document.location.href = "./userlist";
-                    } else {
-                        alert(result);
-                    }                                        
-                }                                                        
-            },
-            error : function(e) {                
-                console.log("ERROR: ", e);
-            }
-        });    
-}
-
-var loginChange = function(v) {
-    if (!confirm("변경합니까?")) { return; }
-
-    var selValue = $("#selType_" + v).val();
-
-    if (selValue == "") {
-        alert("타입을 선택해주세요.");
-        return;
-    }
-
-    $.ajax({
-            type : "POST",
-            url : "/admin/confirm_change_process",
-            dataType : "JSON",            
-            data : {
-                "seq" : v,
-                "type" : selValue                
-            },
-            success: function(result){
-                if (result.length > 0) {
-                    if (result == "SUCCESS") {                               
-                        document.location.href = "./userlist";
-                    } else {
-                        alert(result);
-                    }                                        
-                }                                                        
-            },
-            error : function(e) {                
-                console.log("ERROR: ", e);
-            }
-        });      
-}
-
-var cardInsert = function() {
-    if (!confirm("입력합니까?")) { return; }
-
-    var form = $("#cardForm");
-
-    var name = $("#name").val();
-    var actpower = $("#actpower").val();
-    var active1 = $("#active1").val();
-    var active1_cooltime = $("#active1_cooltime").val();
-    var active2 = $("#active2").val();
-    var active2_cooltime = $("#active2_cooltime").val();
-    var effect = $("#effect").val();
-
-    if (name == "") { alert("이름 필요함"); return; }
-    if (actpower == "") { alert("행동력 필요함"); return; }
-    if (active1 == "") { alert("액티브1 필요함"); return; }
-    if (active1_cooltime == "") { alert("액티브1 쿨타임 필요함"); return; }
-    if (active2 == "") { alert("액티브2 필요함"); return; }
-    if (active2_cooltime == "") { alert("액티브2 쿨타임 필요함"); return; }
-    
-    $("#cardForm").attr("action", "/admin/cardinsert");    
-    form.submit();
-}
-
-var cardUpdate = function() {
-    if (!confirm("대표효과 업데이트?")) { return; }
-
-    var form = $("#cardForm");
-
-    var name = $("#name").val();
-    var actpower = $("#actpower").val();
-    var active1 = $("#active1").val();
-    var active1_cooltime = $("#active1_cooltime").val();
-    var active2 = $("#active2").val();
-    var active2_cooltime = $("#active2_cooltime").val();
-    var effect = $("#effect").val();    
-
-    if (name == "") { alert("이름 필요함"); return; }
-    if (effect == "") { alert("대표효과 필요함"); return; }    
-
-    $("#cardForm").attr("action", "/admin/cardupdate");    
-    form.submit();
-}
-
-var cardDelete = function() {
-    if (!confirm("삭제합니까?")) { return; }
-
-    var form = $("#cardForm");
-
-    var name = $("#name").val();
-    var actpower = $("#actpower").val();
-    var active1 = $("#active1").val();
-    var active1_cooltime = $("#active1_cooltime").val();
-    var active2 = $("#active2").val();
-    var active2_cooltime = $("#active2_cooltime").val();
-    var effect = $("#effect").val();    
-
-    if (name == "") { alert("이름 필요함"); return; }
-
-    $("#cardForm").attr("action", "/admin/carddelete");    
-    form.submit();
-}
-
-var logDel = function() {
-    if (!confirm("모두 삭제합니까?")) { return; }
-        
-    $.ajax({
-            type : "POST",
-            url : "/admin/log_del",
-            dataType : "JSON",            
-            data : {
-                "url" : "logs"                
-            },
-            success: function(result){
-                if (result.length > 0) {
-                    if (result == "SUCCESS") {                               
-                        document.location.href = "./loglist";
-                    } else {
-                        alert(result);
-                    }                                        
-                }                                                        
-            },
-            error : function(e) {                
-                console.log("ERROR: ", e);
-            }
-        });      
-}
-
-var logDelEach = function(v) {
-    if (!confirm("삭제합니까?")) { return; }
-        
-        $.ajax({
-                type : "POST",
-                url : "/admin/log_del_each",
-                dataType : "JSON",            
-                data : {
-                    "url" : "logs",
-                    "filename" : v
-                },
-                success: function(result){
-                    if (result.length > 0) {
-                        if (result == "SUCCESS") {                               
-                            document.location.href = "./loglist";
-                        } else {
-                            alert(result);
-                        }                                        
-                    }                                                        
-                },
-                error : function(e) {                
-                    console.log("ERROR: ", e);
-                }
-            });     
+    document.location.href="/asmonel/stat?year=" + year + 
+        "&month=" + month +
+        "&day=" + day +
+        "&uid=" + uid +
+        "&ord=" + order;
 }
 
 </script>
