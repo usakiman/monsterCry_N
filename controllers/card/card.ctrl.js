@@ -132,12 +132,12 @@ exports.post_card_login = (req, res) => {
 
                         var correct = 0;
                         var status = -1;
-                        var vcode = "";
+                        var vcode = "";                        
                         
                         result.forEach(element => {
                             correct = 1;
                             status = element.STATUS || element.status;
-                            vcode = element.loginCode;
+                            vcode = element.loginCode;                            
                         });
 
                         util.log("status["+status+"] vcode["+vcode+"] code["+code+"]");
@@ -151,7 +151,7 @@ exports.post_card_login = (req, res) => {
                                 if (vcode == code) {                                    
                                     req.session.isLogin = true;                            
                                     req.session.loginID = uid;
-                                    req.session.loginType = status;
+                                    req.session.loginType = status;                                    
                                     req.session.cookie.maxAge = (60 * 60000); // 세션 시간 60분
                                     req.session.link = null;
                                     req.session.link2 = null;

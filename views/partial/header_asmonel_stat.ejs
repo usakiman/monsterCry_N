@@ -66,10 +66,10 @@ $(document).ready(function() {
         }
     });
 
-    var yy = new Date().getFullYear();
-    var mm = new Date().getMonth() + 1;
+    var yy = new Date().getUTCFullYear();
+    var mm = new Date().getUTCMonth() + 1;
     if (mm < 10) mm = "0" + mm;
-    var dd = new Date().getDate();
+    var dd = new Date().getUTCDate();
     if (dd < 10) dd = "0" + dd;
     
     var selYear = "<%=year%>";
@@ -289,10 +289,10 @@ var changeSel = function () {
 }
 
 var todaySel = function () {
-    var yy = new Date().getFullYear();
-    var mm = new Date().getMonth() + 1;
+    var yy = new Date().getUTCFullYear();
+    var mm = new Date().getUTCMonth() + 1;
     if (mm < 10) mm = "0" + mm;
-    var dd = new Date().getDate();
+    var dd = new Date().getUTCDate();
     if (dd < 10) dd = "0" + dd;
         
     var year = yy;

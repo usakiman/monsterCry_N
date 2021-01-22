@@ -1,6 +1,6 @@
 const util = require("../util");
 
-exports.get_index = ( req , res) => {    
+exports.get_index = (req , res) => {    
 
     var yy = new Date().getFullYear();
     var mm = new Date().getMonth() + 1;
@@ -28,17 +28,29 @@ exports.get_index = ( req , res) => {
 
     sql += " ORDER BY gubun asc, ymd DESC";    
 
-    var params = [req.session.loginID, date, req.session.loginID, date, req.session.loginID, date];    
+    var params = [req.session.loginID, date, req.session.loginID, date, req.session.loginID, date];        
     
     gMysqlConn.query(sql, params, function (err, rows, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
-            res.render( './asmonel' , 
-            { 
-                list:rows,                
-                title: "아스모넬 입력 메뉴"
-            }
-        ); 
+            var sql2 = "select * from user_table where uid = ?";
+            var parmas2 = [req.session.loginID];
+
+            gMysqlConn.query(sql2, parmas2, function (err, results, fields) {
+                if(err) util.log('query is not excuted. select fail\n' + err);
+                else {            
+                    if (results != null) {
+                        res.render( './asmonel' , 
+                        { 
+                            list:rows,
+                            acc_cnt:results[0].account_cnt,
+                            title: "아스모넬 입력 메뉴"
+                        }
+                        ); 
+                    }
+                }
+            });   
+            
         }
     });            
 }
@@ -97,15 +109,24 @@ exports.set_save = (req, res) => {
     var scoresum = req.body.scoresum.replace(/,/g, "");
     var score1 = req.body.score1.replace(/,/g, "");
     var score2 = req.body.score2.replace(/,/g, "");
+    var acc_cnt = req.body.acc_cnt.replace(/,/g, "");
 
     var sql = "INSERT INTO asmonel (u_seq, ymd, scoresum, score1, score2) VALUES ((SELECT seq FROM user_table WHERE uid = ?), ?, ?, ?, ?);";
-    var params = [req.session.loginID, date, scoresum, score1, score2];
-                
+    var params = [req.session.loginID, date, scoresum, score1, score2, acc_cnt];    
+        
     //var mysql = util.mysqlConnecter();
     gMysqlConn.query(sql, params, function (err, rows, fields) {
         if(err) util.log('query is not excuted.\n' + err);
         else {                                    
-            res.json("SUCCESS");
+            var sql2 = "update user_table set account_cnt = ? where uid = ?";
+            var params2 = [acc_cnt, req.session.loginID];
+                                    
+            gMysqlConn.query(sql2, params2, function (err, results, fields) {
+                if(err) util.log('query is not excuted.\n' + err);
+                else {                                                        
+                    res.json("SUCCESS");
+                }
+            });                            
         }
     });                                                          
 }
@@ -143,26 +164,31 @@ exports.set_update = (req, res) => {
     var scoresum = req.body.scoresum.replace(/,/g, "");
     var score1 = req.body.score1.replace(/,/g, "");
     var score2 = req.body.score2.replace(/,/g, "");
+    var acc_cnt = req.body.acc_cnt.replace(/,/g, "");
 
     var sql = "UPDATE asmonel ";
-    sql += " SET scoresum = ?, score1 = ?, score2 = ? ";
+    sql += " SET scoresum = ?, score1 = ?, score2 = ?";
     sql += " WHERE u_seq = (SELECT seq FROM user_table WHERE uid = ?) ";
     sql += " AND ymd = ? ";
 
     var params = [scoresum, score1, score2, req.session.loginID, date];
-                
+        
     //var mysql = util.mysqlConnecter();
     gMysqlConn.query(sql, params, function (err, rows, fields) {
         if(err) util.log('query is not excuted.\n' + err);
         else {                                    
-            res.json("SUCCESS");
+            var sql2 = "update user_table set account_cnt = ? where uid = ?";
+            var params2 = [acc_cnt, req.session.loginID];
+                                    
+            gMysqlConn.query(sql2, params2, function (err, results, fields) {
+                if(err) util.log('query is not excuted.\n' + err);
+                else {                                                        
+                    res.json("SUCCESS");
+                }
+            });                
         }
     });                                                          
 }
-
-
-
-
 
 var statQuery = function(yy, mm, dd, uid, ord) {
 
@@ -257,7 +283,7 @@ var statQuery = function(yy, mm, dd, uid, ord) {
 
     sql += select;
     
-    sql += " (SELECT nickname FROM user_table WHERE seq = a.u_seq) AS uid, ";
+    sql += " (SELECT concat(nickname, concat(' - [계정', concat(account_cnt, '개]')) ) FROM user_table WHERE seq = a.u_seq) AS uid, ";
 
     sql += " FORMAT(SUM(score1),0) AS score1, FORMAT(SUM(score2),0) AS score2, FORMAT(COUNT(scoresum),0) AS scorecnt, FORMAT(SUM(scoresum),0) AS scoresum, FORMAT(ROUND(AVG(scoresum)),0) AS scoreavg ";
 

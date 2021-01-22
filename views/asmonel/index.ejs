@@ -13,9 +13,9 @@
                                 
         <div class="input-group">
         <div class="input-group-prepend">
-            <span class="input-group-text" id="">날짜</span>
+            <span class="input-group-text" id="">날짜 [UTC]</span>
         </div>
-        <input type="text" id="datePick">            
+        <input type="text" id="datePick">
         </div>        
 
         <div class="input-group">
@@ -32,7 +32,14 @@
             <label class="custom-control-label" for="rdType2">각각</label>
         </div>
         </div>
-        </div>        
+        </div>
+
+        <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">계정 수</span>
+        </div>
+        <input type="number" class="form-control" id="txtAccountCnt" maxlength="2" numberOnly placeholder="1" value="<%=acc_cnt%>">
+        </div>
         
         <div class="input-group" id="gSum">
         <div class="input-group-prepend">

@@ -66,10 +66,10 @@ $(document).ready(function() {
         }
     });
 
-    var yy = new Date().getFullYear();
-    var mm = new Date().getMonth() + 1;
+    var yy = new Date().getUTCFullYear();
+    var mm = new Date().getUTCMonth() + 1;
     if (mm < 10) mm = "0" + mm;
-    var dd = new Date().getDate();
+    var dd = new Date().getUTCDate();
     if (dd < 10) dd = "0" + dd;
 
     $("#datePick").val(yy.toString()+"-"+mm.toString()+"-"+dd.toString());    
@@ -97,7 +97,9 @@ $(document).ready(function() {
         var scoresum = 0;
         var score1 = 0;
         var score2 = 0;
+        var acc_cnt = 0;
         
+        acc_cnt = $("#txtAccountCnt").val();
         var rdtype1 = $("#rdType1").is(":checked");
         var rdtype2 = $("#rdType2").is(":checked");
         var selDate = $("#datePick").val();
@@ -135,7 +137,8 @@ $(document).ready(function() {
                     "date" : selDate,
                     "scoresum" : scoresum,
                     "score1" : score1,
-                    "score2" : score2
+                    "score2" : score2,
+                    "acc_cnt" : acc_cnt
                 },
                 success: function(result){                                                 
                     if (result.length > 0) {                    
@@ -163,7 +166,8 @@ $(document).ready(function() {
                     "date" : selDate,
                     "scoresum" : scoresum,
                     "score1" : score1,
-                    "score2" : score2
+                    "score2" : score2,
+                    "acc_cnt" : acc_cnt
                 },
                 success: function(result){                                                 
                     if (result.length > 0) {                    
