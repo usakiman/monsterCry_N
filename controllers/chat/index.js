@@ -3,6 +3,19 @@ const router = Router();
 const ctrl = require('./chat.ctrl');
 
 function getMiddleWare( req, res, next ){
+
+    /*
+    if (req.session.loginType == undefined) {
+        //res.redirect("/");        
+    } else {
+        if (!(req.session.loginType == 3 || req.session.loginType == 4)) {
+            //res.redirect("/");
+        } else {
+            next();
+        }
+    }
+    */       
+
     if (!(req.session.loginType == 3 || req.session.loginType == 4)) {        
         //res.redirect("/");
     }   

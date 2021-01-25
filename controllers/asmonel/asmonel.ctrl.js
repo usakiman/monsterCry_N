@@ -35,15 +35,15 @@ exports.get_index = (req , res) => {
         else {            
             var sql2 = "select * from user_table where uid = ?";
             var parmas2 = [req.session.loginID];
-
+            
             gMysqlConn.query(sql2, parmas2, function (err, results, fields) {
                 if(err) util.log('query is not excuted. select fail\n' + err);
-                else {            
+                else {                                
                     if (results != null) {
                         res.render( './asmonel' , 
                         { 
                             list:rows,
-                            acc_cnt:results[0].account_cnt,
+                            acc_cnt:(req.session.loginID == undefined)?1:results[0].account_cnt,
                             title: "아스모넬 입력 메뉴"
                         }
                         ); 
@@ -69,7 +69,7 @@ exports.get_stat = ( req , res) => {
         year = new Date().getFullYear();
     }      
     
-    var sql = statQuery(year, month, day, uid, order);    
+    var sql = statQuery(year, month, day, uid, order);            
 
     var sqlUsers = "SELECT * FROM user_table WHERE STATUS >= 2 AND STATUS <= 3";            
     var users;
@@ -197,6 +197,7 @@ var statQuery = function(yy, mm, dd, uid, ord) {
     var month = "";
     var day = "";
     var where = "";
+    var where2 = "";
     var select = "";
     var group = "";  
     var orderby = "";
@@ -207,56 +208,60 @@ var statQuery = function(yy, mm, dd, uid, ord) {
         month = yy.toString() + mm.toString();
         day = yy.toString() + mm.toString() + dd.toString();
 
-        where = " and ymd = '"+day+"' ";
-        select = " ymd AS ym, ";
+        where = " and (ymd = '"+day+"' or ymd is null) ";
+        select = " ifnull(ymd,'미입력') AS ym, ";
         group = " GROUP BY ymd, uid ";        
 
-        rate_sel = " ,FORMAT(CASE WHEN IFNULL((SELECT scoresum FROM asmonel WHERE u_seq = a.u_seq AND ymd = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 DAY), '%Y%m%d')), 0) = 0 THEN 0 ";
-        rate_sel += " ELSE SUM(scoresum) - IFNULL((SELECT scoresum FROM asmonel WHERE u_seq = a.u_seq AND ymd = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 DAY), '%Y%m%d')), 0) END,0) AS rate_sum, ";    
-        rate_sel += " ROUND(CASE WHEN  ";
+        rate_sel = " ,ifnull(FORMAT(CASE WHEN IFNULL((SELECT scoresum FROM asmonel WHERE u_seq = a.u_seq AND ymd = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 DAY), '%Y%m%d')), 0) = 0 THEN 0 ";
+        rate_sel += " ELSE SUM(scoresum) - IFNULL((SELECT scoresum FROM asmonel WHERE u_seq = a.u_seq AND ymd = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 DAY), '%Y%m%d')), 0) END,0),'-') AS rate_sum, ";    
+
+        rate_sel += " ifnull(ROUND(CASE WHEN  ";
         rate_sel += " (SUM(scoresum) - IFNULL((SELECT scoresum FROM asmonel WHERE u_seq = a.u_seq AND ymd = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 DAY), '%Y%m%d')), 0))  ";
         rate_sel += " / SUM(scoresum) = 1 THEN 0 ";
         rate_sel += " ELSE ";
         rate_sel += " IFNULL(((SUM(scoresum) - IFNULL((SELECT scoresum FROM asmonel WHERE u_seq = a.u_seq AND ymd = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 DAY), '%Y%m%d')), 0))  ";
         rate_sel += " / SUM(scoresum)) * 100,0) ";
-        rate_sel += " END,2) ";
+        rate_sel += " END,2),'-') ";
         rate_sel += " AS rate_avg ";
     } else if (mm != "") {
         month = yy.toString() + mm.toString();
         
-        where = " and substr(ymd,1,6) = '"+month+"' ";
-        select = " SUBSTR(ymd,1,8) AS ym, ";
+        where = " and (substr(ymd,1,6) = '"+month+"' or substr(ymd,1,6) is null) ";
+        select = " ifnull(SUBSTR(ymd,1,8),'미입력') AS ym, ";
         group = " GROUP BY SUBSTR(ymd,1,8), uid ";
 
-        rate_sel = " ,FORMAT(CASE WHEN IFNULL((SELECT scoresum FROM asmonel WHERE u_seq = a.u_seq AND ymd = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 DAY), '%Y%m%d')), 0) = 0 THEN 0 ";
-        rate_sel += " ELSE SUM(scoresum) - IFNULL((SELECT scoresum FROM asmonel WHERE u_seq = a.u_seq AND ymd = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 DAY), '%Y%m%d')), 0) END,0) AS rate_sum, ";    
-        rate_sel += " ROUND(CASE WHEN  ";
+        rate_sel = " ,ifnull(FORMAT(CASE WHEN IFNULL((SELECT scoresum FROM asmonel WHERE u_seq = a.u_seq AND ymd = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 DAY), '%Y%m%d')), 0) = 0 THEN 0 ";
+        rate_sel += " ELSE SUM(scoresum) - IFNULL((SELECT scoresum FROM asmonel WHERE u_seq = a.u_seq AND ymd = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 DAY), '%Y%m%d')), 0) END,0),'-') AS rate_sum, ";    
+
+        rate_sel += " ifnull(ROUND(CASE WHEN  ";
         rate_sel += " (SUM(scoresum) - IFNULL((SELECT scoresum FROM asmonel WHERE u_seq = a.u_seq AND ymd = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 DAY), '%Y%m%d')), 0))  ";
         rate_sel += " / SUM(scoresum) = 1 THEN 0 ";
         rate_sel += " ELSE ";
         rate_sel += " IFNULL(((SUM(scoresum) - IFNULL((SELECT scoresum FROM asmonel WHERE u_seq = a.u_seq AND ymd = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 DAY), '%Y%m%d')), 0))  ";
         rate_sel += " / SUM(scoresum)) * 100,0) ";
-        rate_sel += " END,2) ";
+        rate_sel += " END,2),'-') ";
         rate_sel += " AS rate_avg ";
     } else {
         where = "  ";
-        select = " SUBSTR(ymd,1,6) AS ym, ";
+        select = " ifnull(SUBSTR(ymd,1,6),'미입력') AS ym, ";
         group = " GROUP BY SUBSTR(ymd,1,6), uid ";
 
-        rate_sel = " ,FORMAT(CASE WHEN IFNULL((SELECT sum(scoresum) FROM asmonel WHERE u_seq = a.u_seq AND SUBSTR(ymd,1,6) = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 MONTH), '%Y%m')), 0) = 0 THEN 0 ";
-        rate_sel += " ELSE SUM(scoresum) - IFNULL((SELECT sum(scoresum) FROM asmonel WHERE u_seq = a.u_seq AND SUBSTR(ymd,1,6) = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 MONTH), '%Y%m')), 0) END,0) AS rate_sum, ";    
-        rate_sel += " ROUND(CASE WHEN  ";
+        rate_sel = " ,ifnull(FORMAT(CASE WHEN IFNULL((SELECT sum(scoresum) FROM asmonel WHERE u_seq = a.u_seq AND SUBSTR(ymd,1,6) = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 MONTH), '%Y%m')), 0) = 0 THEN 0 ";
+        rate_sel += " ELSE SUM(scoresum) - IFNULL((SELECT sum(scoresum) FROM asmonel WHERE u_seq = a.u_seq AND SUBSTR(ymd,1,6) = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 MONTH), '%Y%m')), 0) END,0),'-') AS rate_sum, ";    
+
+        rate_sel += " ifnull(ROUND(CASE WHEN  ";
         rate_sel += " (SUM(scoresum) - IFNULL((SELECT sum(scoresum) FROM asmonel WHERE u_seq = a.u_seq AND SUBSTR(ymd,1,6) = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 MONTH), '%Y%m')), 0))  ";
         rate_sel += " / SUM(scoresum) = 1 THEN 0 ";
         rate_sel += " ELSE ";
         rate_sel += " ((SUM(scoresum) - IFNULL((SELECT sum(scoresum) FROM asmonel WHERE u_seq = a.u_seq AND SUBSTR(ymd,1,6) = DATE_FORMAT(DATE_SUB(a.ymd, INTERVAL 1 MONTH), '%Y%m')), 0))  ";
         rate_sel += " / SUM(scoresum)) * 100 ";
-        rate_sel += " END,2) ";
+        rate_sel += " END,2),'-') ";
         rate_sel += " AS rate_avg ";
     }        
 
     if (uid != "") {                
-        where += " AND u_seq = (SELECT seq FROM user_table WHERE uid = '"+uid+"') ";        
+        //where += " AND u_seq = (SELECT seq FROM user_table WHERE uid = '"+uid+"') ";
+        where2 += " AND uid_ori = '"+uid+"' ";
     }   
         
     switch (ord) {
@@ -278,28 +283,39 @@ var statQuery = function(yy, mm, dd, uid, ord) {
             break;
     }     
 
+    sql += " select * from (";
     sql += " SELECT ";
-    sql += " '1' AS gubun,  ";
+    sql += " '1' AS gubun, b.status, b.uid as uid_ori,  ";
 
     sql += select;
     
-    sql += " (SELECT concat(nickname, concat(' - [계정', concat(account_cnt, '개]')) ) FROM user_table WHERE seq = a.u_seq) AS uid, ";
+    sql += " CONCAT(b.nickname, CONCAT(' - [계정', CONCAT(b.account_cnt, '개]')) ) AS uid, ";
+    //sql += " (SELECT concat(nickname, concat(' - [계정', concat(account_cnt, '개]')) ) FROM user_table WHERE seq = a.u_seq) AS uid, ";
 
-    sql += " FORMAT(SUM(score1),0) AS score1, FORMAT(SUM(score2),0) AS score2, FORMAT(COUNT(scoresum),0) AS scorecnt, FORMAT(SUM(scoresum),0) AS scoresum, FORMAT(ROUND(AVG(scoresum)),0) AS scoreavg ";
+    sql += " ifnull(FORMAT(SUM(score1),0),'-') AS score1, ifnull(FORMAT(SUM(score2),0),'-') AS score2, ";
+    sql += " ifnull(FORMAT(COUNT(scoresum),0),'-') AS scorecnt, ";
+    sql += " ifnull(FORMAT(SUM(scoresum),0),'-') AS scoresum, ifnull(FORMAT(ROUND(AVG(scoresum)),0),'-') AS scoreavg ";
 
     sql += rate_sel;
 
-    sql += " FROM asmonel a WHERE SUBSTR(ymd, 1,4) = '"+yy+"'  ";
+    sql += " FROM asmonel a RIGHT OUTER JOIN user_table b ON a.u_seq = b.seq ";
+
+    // outer join - on 조건후 where 있으면 같이 합산으로 봄으로 and로 연결함.
+    sql += " AND (SUBSTR(ymd, 1,4) = '"+yy+"' OR SUBSTR(ymd, 1,4) IS NULL)  ";
 
     sql += where;
 
     sql += group;
 
+    sql += " ) a where status in (2,3) ";
+    sql += where2;
+
     sql += " UNION ALL ";
     sql += " SELECT  ";
-    sql += " '2' AS gubun, '합계 or 평균' AS ym, '' AS uid, ";
-    sql += " FORMAT(SUM(score1),0) AS score1, FORMAT(SUM(score2),0) AS score2, FORMAT(count(scoresum),0) AS scorecnt, FORMAT(SUM(scoresum),0) AS scoresum, FORMAT(ROUND(AVG(scoresum)),0) AS scoreavg, '-', '-' ";
-    sql += " FROM asmonel a WHERE SUBSTR(ymd, 1,4) = '"+yy+"'  ";
+    sql += " '2' AS gubun, '' as status, '' as uid_ori, '합계 or 평균' AS ym, '' AS uid, ";
+    sql += " FORMAT(SUM(score1),0) AS score1, FORMAT(SUM(score2),0) AS score2, FORMAT(count(scoresum),0) AS scorecnt, ";
+    sql += " FORMAT(SUM(scoresum),0) AS scoresum, FORMAT(ROUND(AVG(scoresum)),0) AS scoreavg, '-', '-' ";
+    sql += " FROM asmonel a RIGHT OUTER JOIN user_table b ON a.u_seq = b.seq WHERE SUBSTR(ymd, 1,4) = '"+yy+"'  ";
 
     sql += where;
 
@@ -312,8 +328,8 @@ var statQuery = function(yy, mm, dd, uid, ord) {
     
     sql += where;
     */
-    
-    sql += orderby;    
+        
+    sql += orderby;
 
     return sql;
 }
