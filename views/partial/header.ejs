@@ -26,6 +26,7 @@
 <link rel="stylesheet" type="text/css" href="/theme/css/style.css">
 <link rel="stylesheet" type="text/css" href="/theme/css/custom-responsive-style.css">
 
+<script data-ad-client="ca-pub-5608519208071530" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script type="text/javascript" src="/theme/scripts/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/theme/scripts/plugin-active.js"></script>
 <script type="text/javascript" src="/theme/scripts/jquery-usaki.js"></script>
@@ -223,9 +224,12 @@ function funNav(v) {
 
     break;
 
-    case "Simul2" : 
-        $("#divError").html("준비중입니다~!");
-        $("#divError").fadeIn(400).delay(2000).fadeOut(400);
+    case "Battle" : 
+        document.location.href = v;
+    break;
+    
+    case "Asmonel" : 
+        document.location.href = v;
     break;
 
     case "Chat" : 

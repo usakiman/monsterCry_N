@@ -198,6 +198,7 @@ var statQuery = function(yy, mm, dd, uid, ord) {
     var day = "";
     var where = "";
     var where2 = "";
+    var where3 = "";
     var select = "";
     var group = "";  
     var orderby = "";
@@ -259,9 +260,9 @@ var statQuery = function(yy, mm, dd, uid, ord) {
         rate_sel += " AS rate_avg ";
     }        
 
-    if (uid != "") {                
-        //where += " AND u_seq = (SELECT seq FROM user_table WHERE uid = '"+uid+"') ";
+    if (uid != "") {                        
         where2 += " AND uid_ori = '"+uid+"' ";
+        where3 += " AND u_seq = (SELECT seq FROM user_table WHERE uid = '"+uid+"') ";
     }   
         
     switch (ord) {
@@ -303,21 +304,21 @@ var statQuery = function(yy, mm, dd, uid, ord) {
     // outer join - on 조건후 where 있으면 같이 합산으로 봄으로 and로 연결함.
     sql += " AND (SUBSTR(ymd, 1,4) = '"+yy+"' OR SUBSTR(ymd, 1,4) IS NULL)  ";
 
-    sql += where;
-
+    sql += where; // 기본 조건
     sql += group;
 
     sql += " ) a where status in (2,3) ";
-    sql += where2;
+    sql += where2; // 둘러싼후 조건
 
     sql += " UNION ALL ";
     sql += " SELECT  ";
     sql += " '2' AS gubun, '' as status, '' as uid_ori, '합계 or 평균' AS ym, '' AS uid, ";
     sql += " FORMAT(SUM(score1),0) AS score1, FORMAT(SUM(score2),0) AS score2, FORMAT(count(scoresum),0) AS scorecnt, ";
     sql += " FORMAT(SUM(scoresum),0) AS scoresum, FORMAT(ROUND(AVG(scoresum)),0) AS scoreavg, '-', '-' ";
-    sql += " FROM asmonel a RIGHT OUTER JOIN user_table b ON a.u_seq = b.seq WHERE SUBSTR(ymd, 1,4) = '"+yy+"'  ";
+    sql += " FROM asmonel WHERE SUBSTR(ymd, 1,4) = '"+yy+"'  ";
 
-    sql += where;
+    sql += where; // 기본 조건
+    sql += where3; // 합계 만을 위한 조건
 
     /*
     sql += " UNION ALL ";

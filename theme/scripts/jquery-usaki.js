@@ -21,8 +21,23 @@ var goUrl = function(v) {
     var loginid = $("#hidloginID").val();
     var type = $("#hidloginType").val();
 
+    console.log(loginid);
+    console.log(type);
+
     if (loginid != "") {
-        if (type == 0) { alert("승인이 필요합니다"); return ;}
+        if (type == 0) { 
+            $("#divError").html("승인이 필요합니다.");
+            $("#divError").fadeIn(400).delay(2000).fadeOut(400);
+            return;
+        }
+
+        if (v == "Battle" || v == "Asmonel") {
+            if (type == 1) { 
+                $("#divError").html("권한이 없습니다. 운영진에게 문의주세요.");
+                $("#divError").fadeIn(400).delay(2000).fadeOut(400);
+                return;
+            }
+        }        
         
         funNav(v);        
     } else {        

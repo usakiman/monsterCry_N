@@ -1,0 +1,26 @@
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"1:02:32 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"1:02:32 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"1:02:32 | status[4] vcode[123456] code[1234]","level":"info"}
+{"message":"1:02:32 | status[4] vcode[123456] code[1234]","level":"info"}
+{"message":"1:02:35 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"1:02:35 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"1:02:35 | status[4] vcode[123456] code[123456]","level":"info"}
+{"message":"1:02:35 | [object Object]","level":"info"}
+{"message":"1:02:35 | status[4] vcode[123456] code[123456]","level":"info"}
+{"message":"1:02:35 | insert execute --> user_login_info seq = 410","level":"info"}
+{"message":"1:02:35 | insert execute --> last login update","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"1:03:21 | logout","level":"info"}
+{"message":"1:09:03 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"1:09:03 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"1:09:03 | status[4] vcode[1234] code[123456]","level":"info"}
+{"message":"1:09:03 | status[4] vcode[1234] code[123456]","level":"info"}
+{"message":"1:09:07 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"1:09:07 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"1:09:07 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"1:09:07 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"1:09:07 | [object Object]","level":"info"}
+{"message":"1:09:07 | insert execute --> user_login_info seq = 206","level":"info"}
+{"message":"1:09:07 | insert execute --> last login update","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}

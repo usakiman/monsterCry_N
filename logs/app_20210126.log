@@ -1,0 +1,40 @@
+{"message":"21:21:58 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"21:21:58 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"21:21:58 | status[2] vcode[123456] code[123456]","level":"info"}
+{"message":"21:21:58 | status[2] vcode[123456] code[123456]","level":"info"}
+{"message":"21:21:58 | [object Object]","level":"info"}
+{"message":"21:21:58 | insert execute --> user_login_info seq = 375","level":"info"}
+{"message":"21:21:58 | insert execute --> last login update","level":"info"}
+{"message":"21:22:02 | SELECT * FROM card_info WHERE cardlevel = 'SSS+' ORDER BY cardname","level":"info"}
+{"message":"21:22:10 | SELECT * FROM card_info WHERE seq = 116 ","level":"info"}
+{"message":"21:22:19 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:22:19 | 0.000","level":"info"}
+{"message":"21:30:50 | SELECT * FROM card_info WHERE seq = 76 ","level":"info"}
+{"message":"21:30:53 | 0.000","level":"info"}
+{"message":"21:30:53 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:39:16 | 0.000","level":"info"}
+{"message":"21:39:16 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"21:39:17 | 0.000","level":"info"}
+{"message":"21:39:17 | 0.000","level":"info"}
+{"message":"0:20:57 | 0.000","level":"info"}
+{"message":"0:20:57 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"0:21:37 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"0:21:37 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"0:21:59 | 0.000","level":"info"}
+{"message":"0:21:59 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"0:22:14 | 0.000","level":"info"}
+{"message":"0:22:14 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"0:22:48 | 0.000","level":"info"}
+{"message":"0:22:48 | 0.000","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"0:24:02 | 0.000","level":"info"}
+{"message":"0:24:02 | 0.000","level":"info"}

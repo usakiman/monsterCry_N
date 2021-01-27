@@ -103,3 +103,11 @@
 {"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
 {"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
 {"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"23:09:28 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"23:09:28 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"23:09:28 | status[2] vcode[123456] code[123456]","level":"info"}
+{"message":"23:09:28 | status[2] vcode[123456] code[123456]","level":"info"}
+{"message":"23:09:28 | [object Object]","level":"info"}
+{"message":"23:09:28 | insert execute --> user_login_info seq = 352","level":"info"}
+{"message":"23:09:28 | insert execute --> last login update","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}

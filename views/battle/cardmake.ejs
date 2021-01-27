@@ -1,0 +1,403 @@
+<%- include("../partial/header_battle") %>
+
+    <script type="text/javascript">
+        var cardSave = function() {
+
+        var t_seq = "<%=t_seq%>";
+
+        var vcard = $("#ddlCard").val();
+        var vcardname = $("#txtCardName").val();
+
+        var w_seq = $("#ddlWeaponMain").val();
+        var w_stone1 = $("#ddlWeaponOption1").val();
+        var w_stone2 = $("#ddlWeaponOption2").val();
+        var w_skill1 = $("#ddlWeaponSkill1").val();
+        var w_skill2 = $("#ddlWeaponSkill2").val();
+
+        var d_seq = $("#ddlDefenseMain").val();
+        var d_stone1 = $("#ddlDefenseOption1").val();
+        var d_stone2 = $("#ddlDefenseOption2").val();
+        var d_skill1 = $("#ddlDefenseSkill1").val();
+        var d_skill2 = $("#ddlDefenseSkill2").val();
+
+        var a_seq = $("#ddlAssMain").val();
+        var a_stone1 = $("#ddlAssOption1").val();
+        var a_stone2 = $("#ddlAssOption2").val();
+        var a_skill1 = $("#ddlAssSkill1").val();
+        var a_skill2 = $("#ddlAssSkill2").val();
+
+        if (vcard == "") { msg("카드를 먼저 선택해주세요."); return; }
+        if (vcardname == "") { msg("카드이름이 필요합니다."); return; }
+
+        if (w_seq == "") { msg("무기를 선택해주세요."); return; }
+        if (d_seq == "") { msg("방어구를 선택해주세요."); return; }
+        if (a_seq == "") { msg("악세를 선택해주세요."); return; }    
+
+        $.ajax({
+            type : "POST",
+            url : "/battle/cardmake_save",
+            dataType : "JSON",            
+            data : {
+                "t_seq": t_seq,
+                "seq" : vcard,
+                "cardname" : vcardname,
+
+                "w_seq" : w_seq,
+                "w_stone1" : w_stone1,
+                "w_stone2" : w_stone2,
+                "w_skill1" : w_skill1,
+                "w_skill2" : w_skill2,
+
+                "d_seq" : d_seq,
+                "d_stone1" : d_stone1,
+                "d_stone2" : d_stone2,
+                "d_skill1" : d_skill1,
+                "d_skill2" : d_skill2,
+
+                "a_seq" : a_seq,
+                "a_stone1" : a_stone1,
+                "a_stone2" : a_stone2,
+                "a_skill1" : a_skill1,
+                "a_skill2" : a_skill2
+            },
+            success: function(result){                                                 
+                if (result.length > 0) {                    
+                    if (result == "SUCCESS") {       
+                        if (t_seq == "") alert("입력 완료");
+                        else alert("수정 완료");
+
+                        document.location.reload();
+                    }                    
+                }                                                        
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+                msg("오류 : " + e);                                
+            }
+        });     
+    }            
+    </script>
+    
+    <body style="background-color: rgba(58, 123, 153, 0.596);">
+    
+    <div class="container" style="padding-top: 10px;">    
+
+        <div class="input-group-prepend">
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">카드</font></span>
+            <select class="custom-select mr-sm-2" id="ddlCard" style="font-size:small;">
+                <option value="" selected>--선택--</option>
+                <% if(cardlist != null && cardlist.length > 0) { %>
+                    <% for (var i = 0; i < cardlist.length; i++) { %>
+
+                        <% if (cardlist[i].seq == card_seq) { %>
+                            <option value="<%=cardlist[i].seq%>" selected>
+                        <% } else { %>
+                            <option value="<%=cardlist[i].seq%>">
+                        <% } %>
+
+                            <%=cardlist[i].cardname%> - 
+                            [<%=cardlist[i].cardlevel%>][<%=cardlist[i].cardtype%>][<%=cardlist[i].cardrace%>]
+                            레벨 : <%=cardlist[i].card_lv%> 강화 : [<%=cardlist[i].card_star%>]
+                            체력 : <%=cardlist[i].card_health%> 공격력 : [<%=cardlist[i].card_attack%>]
+                            방어력 : <%=cardlist[i].card_defense%>
+                        </option>
+                    <% } %>
+                <% } %>                        
+            </select>    
+        </div>
+
+        <div style="text-align:center;">▼</div>
+
+        <div class="input-group-prepend">
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">카드 저장 이름</font></span>
+            <input type="text" id="txtCardName" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" 
+            placeholder="구분가능 하도록 작성하셔야 합니다." value="<%=b_name%>">
+        </div>
+                  
+        <div style="text-align:center;">▲</div>
+                
+        <div class="input-group-prepend">
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">무기</font></span>
+            <select id="ddlWeaponMain" class="form-control" style="font-size:small;">
+                <option value="" selected>--선택--</option>
+                <% if(wlist != null && wlist.length > 0) { %>
+                    <% for (var i = 0; i < wlist.length; i++) { %>
+
+                        <% if (wlist[i].seq == w_seq) { %>
+                            <option value="<%=wlist[i].seq%>" selected>
+                        <% } else { %>
+                            <option value="<%=wlist[i].seq%>">
+                        <% } %>
+
+                        [<%=wlist[i].w_type%>]<%=wlist[i].w_name%>-<%=wlist[i].w_option1%>,<%=wlist[i].w_option2%>%</option>
+                    <% } %>
+                <% } %>
+            </select>
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">마석</font></span>
+            <select id="ddlWeaponOption1" class="form-control" style="font-size:small;">
+                <option value="" selected>--선택--</option>
+                <% if(itemlist.stoneList != null && itemlist.stoneList.length > 0) { %>
+                    <% for (var i = 0; i < itemlist.stoneList.length; i++) { %>
+
+                        <% if ((itemlist.stoneList[i].effect_w + " " + itemlist.stoneList[i].effect_w_v) == w_stone1) { %>
+                            <option value="<%=itemlist.stoneList[i].effect_w%> <%=itemlist.stoneList[i].effect_w_v%>%>" selected>
+                        <% } else { %>
+                            <option value="<%=itemlist.stoneList[i].effect_w%> <%=itemlist.stoneList[i].effect_w_v%>">
+                        <% } %>
+
+                        <%=itemlist.stoneList[i].level%><%=itemlist.stoneList[i].kind%>-<%=itemlist.stoneList[i].effect_w%> <%=itemlist.stoneList[i].effect_w_v%>%</option>
+                    <% } %>
+                <% } %>
+            </select>
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">마석</font></span>
+            <select id="ddlWeaponOption2" class="form-control" style="font-size:small;">
+                <option value="" selected>--선택--</option>
+                <% if(itemlist.stoneList != null && itemlist.stoneList.length > 0) { %>
+                    <% for (var i = 0; i < itemlist.stoneList.length; i++) { %>
+
+                        <% if ((itemlist.stoneList[i].effect_w + " " + itemlist.stoneList[i].effect_w_v) == w_stone2) { %>
+                            <option value="<%=itemlist.stoneList[i].effect_w%> <%=itemlist.stoneList[i].effect_w_v%>%>" selected>
+                        <% } else { %>
+                            <option value="<%=itemlist.stoneList[i].effect_w%> <%=itemlist.stoneList[i].effect_w_v%>">
+                        <% } %>
+
+                        <%=itemlist.stoneList[i].level%><%=itemlist.stoneList[i].kind%>-<%=itemlist.stoneList[i].effect_w%> <%=itemlist.stoneList[i].effect_w_v%>%</option>
+                    <% } %>
+                <% } %>
+            </select>            
+        </div>                
+        
+        <div class="input-group-prepend">
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">장비스킬1</font></span>
+            <select class="custom-select mr-sm-2" id="ddlWeaponSkill1" style="font-size:small;">
+                <option value="" selected>--선택--</option>   
+                <% if(wlist_skill1 != null && wlist_skill1.length > 0) { %>
+                    <% for (var i = 0; i < wlist_skill1.length; i++) { %>                                                
+
+                        <% if ((wlist_skill1[i].seq) == w_skill1) { %>
+                            <option value="<%=wlist_skill1[i].seq%>" selected>
+                        <% } else { %>
+                            <option value="<%=wlist_skill1[i].seq%>">
+                        <% } %>
+                        
+                        <%=wlist_skill1[i].s_name%> -> <%=wlist_skill1[i].skill_text%>
+                        </option>
+                    <% } %>
+                <% } %>             
+            </select>    
+        </div>
+
+        <div class="input-group-prepend">
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">장비스킬2</font></span>
+            <select class="custom-select mr-sm-2" id="ddlWeaponSkill2" style="font-size:small;">
+                <option value="" selected>--선택--</option>      
+                <% if(wlist_skill2 != null && wlist_skill2.length > 0) { %>
+                    <% for (var i = 0; i < wlist_skill2.length; i++) { %>               
+
+                        <% if ((wlist_skill2[i].seq) == w_skill2) { %>
+                            <option value="<%=wlist_skill2[i].seq%>" selected>
+                        <% } else { %>
+                            <option value="<%=wlist_skill2[i].seq%>">
+                        <% } %>
+                        
+                        <%=wlist_skill2[i].s_name%> -> <%=wlist_skill2[i].skill_text%>
+                    <% } %>
+                <% } %>                       
+            </select>    
+        </div>
+
+        <div style="text-align:center;">[무기]</div>
+
+
+        <div class="input-group-prepend">
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">무기</font></span>
+            <select id="ddlDefenseMain" class="form-control" style="font-size:small;">
+                <option value="" selected>--선택--</option>
+                <% if(dlist != null && dlist.length > 0) { %>
+                    <% for (var i = 0; i < dlist.length; i++) { %>
+
+                        <% if (dlist[i].seq == d_seq) { %>
+                            <option value="<%=dlist[i].seq%>" selected>
+                        <% } else { %>
+                            <option value="<%=dlist[i].seq%>">
+                        <% } %>
+
+                        [<%=dlist[i].d_type%>]<%=dlist[i].d_name%>-<%=dlist[i].d_option1%>,<%=dlist[i].d_option2%>%</option>
+                    <% } %>
+                <% } %>
+            </select>
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">마석</font></span>
+            <select id="ddlDefenseOption1" class="form-control" style="font-size:small;">
+                <option value="" selected>--선택--</option>
+                <% if(itemlist.stoneList != null && itemlist.stoneList.length > 0) { %>
+                    <% for (var i = 0; i < itemlist.stoneList.length; i++) { %>
+
+                        <% if ((itemlist.stoneList[i].effect_d + " " + itemlist.stoneList[i].effect_d_v) == d_stone1) { %>
+                            <option value="<%=itemlist.stoneList[i].effect_d%> <%=itemlist.stoneList[i].effect_d_v%>%>" selected>
+                        <% } else { %>
+                            <option value="<%=itemlist.stoneList[i].effect_d%> <%=itemlist.stoneList[i].effect_d_v%>">
+                        <% } %>
+
+                        <%=itemlist.stoneList[i].level%><%=itemlist.stoneList[i].kind%>-<%=itemlist.stoneList[i].effect_d%> <%=itemlist.stoneList[i].effect_d_v%>%</option>
+                    <% } %>
+                <% } %>
+            </select>
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">마석</font></span>
+            <select id="ddlDefenseOption2" class="form-control" style="font-size:small;">
+                <option value="" selected>--선택--</option>
+                <% if(itemlist.stoneList != null && itemlist.stoneList.length > 0) { %>
+                    <% for (var i = 0; i < itemlist.stoneList.length; i++) { %>
+
+                        <% if ((itemlist.stoneList[i].effect_d + " " + itemlist.stoneList[i].effect_d_v) == d_stone2) { %>
+                            <option value="<%=itemlist.stoneList[i].effect_d%> <%=itemlist.stoneList[i].effect_d_v%>%>" selected>
+                        <% } else { %>
+                            <option value="<%=itemlist.stoneList[i].effect_d%> <%=itemlist.stoneList[i].effect_d_v%>">
+                        <% } %>
+
+                        <%=itemlist.stoneList[i].level%><%=itemlist.stoneList[i].kind%>-<%=itemlist.stoneList[i].effect_d%> <%=itemlist.stoneList[i].effect_d_v%>%</option>
+                    <% } %>
+                <% } %>
+            </select>            
+        </div>        
+        
+        <div class="input-group-prepend">
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">장비스킬1</font></span>
+            <select class="custom-select mr-sm-2" id="ddlDefenseSkill1" style="font-size:small;">
+                <option value="" selected>--선택--</option>         
+                <% if(dlist_skill1 != null && dlist_skill1.length > 0) { %>
+                    <% for (var i = 0; i < dlist_skill1.length; i++) { %>                                                
+
+                        <% if ((dlist_skill1[i].seq) == d_skill1) { %>
+                            <option value="<%=dlist_skill1[i].seq%>" selected>
+                        <% } else { %>
+                            <option value="<%=dlist_skill1[i].seq%>">
+                        <% } %>
+                        
+                        <%=dlist_skill1[i].s_name%> -> <%=dlist_skill1[i].skill_text%>
+                        </option>
+                    <% } %>
+                <% } %>             
+            </select>    
+        </div>
+
+        <div class="input-group-prepend">
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">장비스킬2</font></span>
+            <select class="custom-select mr-sm-2" id="ddlDefenseSkill2" style="font-size:small;">
+                <option value="" selected>--선택--</option>     
+                <% if(dlist_skill2 != null && dlist_skill2.length > 0) { %>
+                    <% for (var i = 0; i < dlist_skill2.length; i++) { %>                                                
+
+                        <% if ((dlist_skill2[i].seq) == d_skill2) { %>
+                            <option value="<%=dlist_skill2[i].seq%>" selected>
+                        <% } else { %>
+                            <option value="<%=dlist_skill2[i].seq%>">
+                        <% } %>
+                        
+                        <%=dlist_skill2[i].s_name%> -> <%=dlist_skill2[i].skill_text%>
+                        </option>
+                    <% } %>
+                <% } %>    
+            </select>    
+        </div>
+
+        <div style="text-align:center;">[방어구]</div>
+
+
+        <div class="input-group-prepend">
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">악세</font></span>
+            <select id="ddlAssMain" class="form-control" style="font-size:small;">
+                <option value="" selected>--선택--</option>
+                <% if(alist != null && alist.length > 0) { %>
+                    <% for (var i = 0; i < alist.length; i++) { %>
+
+                        <% if (alist[i].seq == a_seq) { %>
+                            <option value="<%=alist[i].seq%>" selected>
+                        <% } else { %>
+                            <option value="<%=alist[i].seq%>">
+                        <% } %>
+
+                        [<%=alist[i].a_type%>]<%=alist[i].a_name%>-<%=alist[i].a_option1%>,<%=alist[i].a_option2%>%</option>
+                    <% } %>
+                <% } %>
+            </select>
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">마석</font></span>
+            <select id="ddlAssOption1" class="form-control" style="font-size:small;">
+                <option value="" selected>--선택--</option>
+                <% if(itemlist.stoneList != null && itemlist.stoneList.length > 0) { %>
+                    <% for (var i = 0; i < itemlist.stoneList.length; i++) { %>
+
+                        <% if ((itemlist.stoneList[i].effect_a + " " + itemlist.stoneList[i].effect_a_v) == a_stone1) { %>
+                            <option value="<%=itemlist.stoneList[i].effect_a%> <%=itemlist.stoneList[i].effect_a_v%>%>" selected>
+                        <% } else { %>
+                            <option value="<%=itemlist.stoneList[i].effect_a%> <%=itemlist.stoneList[i].effect_a_v%>">
+                        <% } %>
+
+                        <%=itemlist.stoneList[i].level%><%=itemlist.stoneList[i].kind%>-<%=itemlist.stoneList[i].effect_a%> <%=itemlist.stoneList[i].effect_a_v%>%</option>
+                    <% } %>
+                <% } %>
+            </select>
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">마석</font></span>
+            <select id="ddlAssOption2" class="form-control" style="font-size:small;">
+                <option value="" selected>--선택--</option>
+                <% if(itemlist.stoneList != null && itemlist.stoneList.length > 0) { %>
+                    <% for (var i = 0; i < itemlist.stoneList.length; i++) { %>
+
+                        <% if ((itemlist.stoneList[i].effect_a + " " + itemlist.stoneList[i].effect_a_v) == a_stone2) { %>
+                            <option value="<%=itemlist.stoneList[i].effect_a%> <%=itemlist.stoneList[i].effect_a_v%>%>" selected>
+                        <% } else { %>
+                            <option value="<%=itemlist.stoneList[i].effect_a%> <%=itemlist.stoneList[i].effect_a_v%>">
+                        <% } %>
+
+                        <%=itemlist.stoneList[i].level%><%=itemlist.stoneList[i].kind%>-<%=itemlist.stoneList[i].effect_a%> <%=itemlist.stoneList[i].effect_a_v%>%</option>
+                    <% } %>
+                <% } %>
+            </select>            
+        </div>        
+
+        <div class="input-group-prepend">
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">장비스킬1</font></span>
+            <select class="custom-select mr-sm-2" id="ddlAssSkill1" style="font-size:small;">
+                <option value="" selected>--선택--</option>     
+                <% if(alist_skill1 != null && alist_skill1.length > 0) { %>
+                    <% for (var i = 0; i < alist_skill1.length; i++) { %>                                                
+
+                        <% if ((alist_skill1[i].seq) == a_skill1) { %>
+                            <option value="<%=alist_skill1[i].seq%>" selected>
+                        <% } else { %>
+                            <option value="<%=alist_skill1[i].seq%>">
+                        <% } %>
+                        
+                        <%=alist_skill1[i].s_name%> -> <%=alist_skill1[i].skill_text%>
+                        </option>
+                    <% } %>
+                <% } %>                             
+            </select>    
+        </div>
+
+        <div class="input-group-prepend">
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">장비스킬2</font></span>
+            <select class="custom-select mr-sm-2" id="ddlAssSkill2" style="font-size:small;">
+                <option value="" selected>--선택--</option>                
+                <% if(alist_skill2 != null && alist_skill2.length > 0) { %>
+                    <% for (var i = 0; i < alist_skill2.length; i++) { %>                                                
+
+                        <% if ((alist_skill2[i].seq) == a_skill2) { %>
+                            <option value="<%=alist_skill2[i].seq%>" selected>
+                        <% } else { %>
+                            <option value="<%=alist_skill2[i].seq%>">
+                        <% } %>
+                        
+                        <%=alist_skill2[i].s_name%> -> <%=alist_skill2[i].skill_text%>
+                        </option>
+                    <% } %>
+                <% } %>             
+            </select>    
+        </div>
+
+        <div style="text-align:center;">[악세]</div>
+
+
+        <button class="btn btn-primary" onclick="cardSave();">저장</button>
+    </div>    
+
+<%- include("../partial/footer_battle") %>

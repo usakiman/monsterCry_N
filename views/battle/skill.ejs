@@ -1,0 +1,165 @@
+<%- include("../partial/header_battle") %>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            var type = "<%=type%>";
+            var num = "<%=num%>";
+            var skill = "<%=skill%>";
+
+            if (type != "") $("#ddlItemType").val(type);
+            if (num != "") $("#ddlItemNum").val(num);
+            if (skill != "") $("#ddlSkill").val(skill);
+
+            $("#ddlItemType").on("change", function() {
+                getSkill();
+            });
+
+            $("#ddlItemNum").on("change", function() {
+                getSkill();
+            });
+
+            $("#ddlSkill").on("change", function() {
+                getSkill();
+            });
+        });
+
+        var getSkill = function() {
+            var type = $("#ddlItemType").val();
+            var num = $("#ddlItemNum").val();
+            var skill = $("#ddlSkill").val();
+
+            var query = "?type=" + type + "&num=" + num + "&skill=" + skill;
+            //if (type != "" && num != "") {
+                document.location.href = "./Skill" + query;
+            //}
+        }
+
+        var skillSave = function() {
+            var type = $("#ddlItemType").val();
+            var num = $("#ddlItemNum").val();
+            var skill = $("#ddlSkill").val();
+            var skillset1 = $("#ddlSkillSet1").val();
+            var skillset2 = $("#ddlSkillSet2").val();
+            var s1_min = "<%=skill1_min%>";
+            var s2_min = "<%=skill2_min%>";
+
+            if (type == "") { msg("장비 종류를 선택해주세요."); return;}
+            if (num == "") { msg("스킬 종류를 선택해주세요."); return;}
+            if (skill == "") { msg("스킬을 선택해주세요."); return;}            
+
+            if (skillset1 == "" && s1_min != "0") { msg("첫번째 확률을 선택해주세요."); return;}
+            if (skillset2 == "" && s2_min != "0")  { msg("두번째 확률을 선택해주세요."); return;}                        
+            
+            $.ajax({
+                type : "POST",
+                url : "/battle/skill_save",
+                dataType : "JSON",            
+                data : {                
+                    type:type,
+                    num:num,
+                    skill:skill,
+                    skillset1:skillset1,
+                    skillset2:skillset2
+                },
+                success: function(result){                                                 
+                    if (result.length > 0) {                    
+                        if (result == "SUCCESS") {
+                            msg("저장 완료 되었습니다.");
+                        }                    
+                    }                                                        
+                },
+                error : function(e) {                
+                    console.log("ERROR: ", e);
+                    msg("오류 : " + e);                                
+                }
+            });                         
+        }
+
+    </script>
+    
+    <body style="background-color: rgba(58, 123, 153, 0.596);">
+    
+    <div class="container" style="padding-top: 10px;">
+        
+        <div class="input-group-prepend">
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">장비 종류</font></span>
+            <select class="custom-select mr-sm-2" id="ddlItemType" style="font-size:small;">
+                <option value="">--선택--</option>
+                <option value="w">무기</option>
+                <option value="d">방어구</option>
+                <option value="a">악세</option>
+            </select>    
+        </div>
+
+        <div style="text-align:center;">▼</div>
+
+        <div class="input-group-prepend">
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">스킬 종류</font></span>
+            <select class="custom-select mr-sm-2" id="ddlItemNum" style="font-size:small;">
+                <option value="">--선택--</option>
+                <option value="1">스킬 1</option>
+                <option value="2">스킬 2</option>                
+            </select>    
+        </div>
+
+        <div style="text-align:center;">▼</div>
+
+        <div class="input-group-prepend">
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">스킬</font></span>
+            <select class="custom-select mr-sm-2" id="ddlSkill" style="font-size:small;">
+                <option value="">--선택--</option>    
+                <% if(skillList != null && skillList.length > 0) { %>
+                    <% for (var i = 0; i < skillList.length; i++) { %>
+                        <option value="<%=skillList[i].name%>"><%=skillList[i].name%></option>
+                    <% } %>
+                <% } %>                                    
+            </select>    
+        </div>        
+
+        <fieldset disabled>
+            <div class="form-group" style="padding-top:20px;">
+                <input type="text" id="txtSkill" class="form-control" placeholder="<%=skillText%>">
+            </div>        
+        </fieldset>        
+                
+        <div class="input-group-prepend">
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">첫번째 확률</font></span>
+            <select id="ddlSkillSet1" class="form-control" style="font-size:small;">
+                <option value="">--선택--</option>                
+                <% if(skill1_min != null && skill1_min > 0) { %>
+                    <% if(skill1_min.indexOf('.') > 0) { %>
+                        <% for (var i = parseFloat(skill1_min); i <= parseFloat(skill1_max); i=i+0.01) { %>
+                            <option value="<%=i.toFixed(2)%>"><%=i.toFixed(2)%>%</option>
+                        <% } %>
+                    <% } else { %>
+                        <% for (var i = parseFloat(skill1_min); i <= parseFloat(skill1_max); i++) { %>
+                            <option value="<%=i.toFixed(2)%>"><%=i.toFixed(2)%>%</option>
+                        <% } %>
+                    <% } %>                    
+                <% } %>
+            </select>
+            <span class="input-group-text"><font color="black" style="font-size: smaller;">두번째 확률</font></span>
+            <select id="ddlSkillSet2" class="form-control" style="font-size:small;">
+                <option value="" selected>--선택--</option>
+                <% if(skill2_min != null && skill2_min > 0) { %>
+                    <% if(skill2_min.indexOf('.') > 0) { %>
+                        <% for (var i = parseFloat(skill2_min); i <= parseFloat(skill2_max); i=i+0.01) { %>
+                            <option value="<%=i.toFixed(2)%>"><%=i.toFixed(2)%>%</option>
+                        <% } %>
+                    <% } else { %>
+                        <% for (var i = parseFloat(skill2_min); i <= parseFloat(skill2_max); i++) { %>
+                            <option value="<%=i.toFixed(2)%>"><%=i.toFixed(2)%>%</option>
+                        <% } %>
+                    <% } %>                    
+                <% } %>
+            </select>            
+        </div>       
+
+        <div style="text-align:center;">▼</div>
+
+        <button class="btn btn-primary" onclick="skillSave();">저장</button>
+
+    </div>    
+
+<%- include("../partial/footer_battle") %>

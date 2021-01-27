@@ -44,63 +44,63 @@ var itemList = {
             seq: 6
         },
         {
-            level: '승천자',
+            level: '승천자의',
             kind: '검',
             effect: '공속',
             effect_v: '7.84',
             seq: 7
         },
         {
-            level: '승천자',
+            level: '승천자의',
             kind: '도끼',
             effect: '치명타',
             effect_v: '10.5',
             seq: 8
         },
         {
-            level: '승천자',
+            level: '승천자의',
             kind: '활',
             effect: '공격량',
             effect_v: '7.84',
             seq: 9
         },
         {
-            level: '군단장',
+            level: '군단장의',
             kind: '검',
             effect: '공속',
             effect_v: '6.72',
             seq: 10
         },
         {
-            level: '군단장',
+            level: '군단장의',
             kind: '도끼',
             effect: '치명타',
             effect_v: '9',
             seq: 11
         },
         {
-            level: '군단장',
+            level: '군단장의',
             kind: '활',
             effect: '공격량',
             effect_v: '6.72',
             seq: 12
         },
         {
-            level: '천인장',
+            level: '천인장의',
             kind: '검',
             effect: '공속',
             effect_v: '5.6',
             seq: 13
         },
         {
-            level: '천인장',
+            level: '천인장의',
             kind: '도끼',
             effect: '치명타',
             effect_v: '7.5',
             seq: 14
         },
         {
-            level: '천인장',
+            level: '천인장의',
             kind: '활',
             effect: '공격량',
             effect_v: '5.6',
@@ -153,21 +153,21 @@ var itemList = {
         },
     
         {
-            level: '승천자',
+            level: '승천자의',
             kind: '갑옷',
             effect: '방어량',
             effect_v: '6.3',
             seq: 7
         },
         {
-            level: '승천자',
+            level: '승천자의',
             kind: '방패',
             effect: '막기',
             effect_v: '14',
             seq: 8
         },
         {
-            level: '승천자',
+            level: '승천자의',
             kind: '투구',
             effect: '회피',
             effect_v: '7',
@@ -175,21 +175,21 @@ var itemList = {
         },
     
         {
-            level: '군단장',
+            level: '군단장의',
             kind: '갑옷',
             effect: '방어량',
             effect_v: '5.4',
             seq: 10
         },
         {
-            level: '군단장',
+            level: '군단장의',
             kind: '방패',
             effect: '막기',
             effect_v: '12',
             seq: 11
         },
         {
-            level: '군단장',
+            level: '군단장의',
             kind: '투구',
             effect: '회피',
             effect_v: '6',
@@ -197,21 +197,21 @@ var itemList = {
         },
     
         {
-            level: '천인장',
+            level: '천인장의',
             kind: '갑옷',
             effect: '방어량',
             effect_v: '4.5',
             seq: 13
         },
         {
-            level: '천인장',
+            level: '천인장의',
             kind: '방패',
             effect: '막기',
             effect_v: '10',
             seq: 14
         },
         {
-            level: '천인장',
+            level: '천인장의',
             kind: '투구',
             effect: '회피',
             effect_v: '5',
@@ -265,21 +265,21 @@ var itemList = {
             },
             
             {
-            level: '승천자',
+            level: '승천자의',
             kind: '목걸이',
             effect: '스속',
             effect_v: '23.52',
             seq: 7
             },
             {
-            level: '승천자',
+            level: '승천자의',
             kind: '반지',
             effect: '반격',
             effect_v: '7.84',
             seq: 8
             },
             {
-            level: '승천자',
+            level: '승천자의',
             kind: '귀걸이',
             effect: '흡혈량',
             effect_v: '10.64',
@@ -287,21 +287,21 @@ var itemList = {
             },
             
             {
-            level: '군단장',
+            level: '군단장의',
             kind: '목걸이',
             effect: '스속',
             effect_v: '20.16',
             seq: 10
             },
             {
-            level: '군단장',
+            level: '군단장의',
             kind: '반지',
             effect: '반격',
             effect_v: '6.72',
             seq: 11
             },
             {
-            level: '군단장',
+            level: '군단장의',
             kind: '귀걸이',
             effect: '흡혈량',
             effect_v: '9.12',
@@ -309,21 +309,21 @@ var itemList = {
             },
             
             {
-            level: '천인장',
+            level: '천인장의',
             kind: '목걸이',
             effect: '스속',
             effect_v: '16.8',
             seq: 13
             },
             {
-            level: '천인장',
+            level: '천인장의',
             kind: '반지',
             effect: '반격',
             effect_v: '5.6',
             seq: 14
             },
             {
-            level: '천인장',
+            level: '천인장의',
             kind: '귀걸이',
             effect: '흡혈량',
             effect_v: '7.6',
