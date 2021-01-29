@@ -15,11 +15,9 @@
             success: function(result){                                                                                 
                 if (result.length > 0) {
                                         
-                    var temp = "<img src='/files/"+result[0].cardname+".jpg' style='width:50px; height:50px;'' onerror='this.src=''/theme/images/non.jpg''' >";
+                    var temp = "<img src='/files/img_small/"+result[0].cardname+".jpg' style='width:50px; height:50px;'' onerror='this.src=''/theme/images/non.jpg''' >";
                     temp += "<b>"+result[0].cardname+"</b> - 레벨 ["+result[0].card_lv+"] 강화 ["+result[0].card_star+"] 타입 ["+result[0].cardtype+"] 종족 ["+result[0].cardrace+"]";                    
-                    $("#cardBasic").html(temp);
-
-                    //w_skill1_name
+                    $("#cardBasic").html(temp);                    
                     
                     temp = "<b>대표카드효과</b> : " + result[0].maineffect;
                     $("#cardBody1").html(temp);
@@ -234,7 +232,7 @@
         <% for (var i = 0; i < list.length; i++) { %>
             <div class="card">
                 <div class="card-header">
-                    <b><%=list[i].b_name%></b> - 레벨 : [<%=list[i].card_lv%>], 강화 : [<%=list[i].card_star%>],
+                    <b><font color="purple"><%=list[i].b_name%></font></b> - 레벨 : [<%=list[i].card_lv%>], 강화 : [<%=list[i].card_star%>],
                     기본체력 : [<%=list[i].card_health%>], 기본공격력 : [<%=list[i].card_attack%>], 기본방어력 : [<%=list[i].card_defense%>],
                     기본행동력 : [<%=list[i].cardactpower%>]
                 </div>
@@ -244,7 +242,7 @@
                             <font color="yellow"><%=list[i].cardname%></font>
                         </button>                        
                         등급 : <font color="blue"><%=list[i].cardlevel%>,</font>
-                        타입 : <font color="red"><%=list[i].cardtype%>,</font>
+                        타입 : <font color="green"><%=list[i].cardtype%>,</font>
                         종족 : <font color="green"><%=list[i].cardrace%></font>
                     </h5>
                     <p class="card-text">
@@ -291,7 +289,7 @@
         </div>
 
         <div class="card">
-            <div class="card-header" id="cardBasic" style="background-color: rgb(160, 120, 172);">
+            <div class="card-header" id="cardBasic" style="background-color: gold;">
                 
             </div>
             <div class="card-body" style="background-color: rgb(190, 155, 170);">

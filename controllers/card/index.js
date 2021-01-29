@@ -16,6 +16,7 @@ router.get('/', testMiddleWare, testMiddleWare2 , (req,res) => {
 
 router.post('/list', ctrl.post_card_list );
 router.post('/view', ctrl.post_card_view );
+router.post('/exist_img', ctrl.post_img_exist );
 
 router.post("/actResult", ctrl.post_card_result);
 

@@ -237,7 +237,7 @@
         <% for (var i = 0; i < list.length; i++) { %>
             <div class="card">
                 <div class="card-header">
-                    <b><%=list[i].nickname%> 님의 <%=list[i].b_name%></b> - 레벨 : [<%=list[i].card_lv%>], 강화 : [<%=list[i].card_star%>],
+                    <b><font color="purple"><%=list[i].nickname%></font> 님의 <font color="tomato"><%=list[i].b_name%></font></b> - 레벨 : [<%=list[i].card_lv%>], 강화 : [<%=list[i].card_star%>],
                     기본체력 : [<%=list[i].card_health%>], 기본공격력 : [<%=list[i].card_attack%>], 기본방어력 : [<%=list[i].card_defense%>],
                     기본행동력 : [<%=list[i].cardactpower%>]
                 </div>
@@ -247,7 +247,7 @@
                             <font color="yellow"><%=list[i].cardname%></font>
                         </button>                        
                         등급 : <font color="blue"><%=list[i].cardlevel%>,</font>
-                        타입 : <font color="red"><%=list[i].cardtype%>,</font>
+                        타입 : <font color="green"><%=list[i].cardtype%>,</font>
                         종족 : <font color="green"><%=list[i].cardrace%></font>
                     </h5>
                     <p class="card-text">

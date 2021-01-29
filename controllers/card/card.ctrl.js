@@ -5,6 +5,8 @@
 // db_config.connect(conn);
 
 const util = require("../util");
+const fs = require("fs");
+const path = require("app-root-path");
 
 exports.post_card_list = (req , res) => {        
     var lvl = req.body.lvl;
@@ -24,6 +26,16 @@ exports.post_card_list = (req , res) => {
     });    
 }
 
+exports.post_img_exist = (req, res) => {        
+    fs.access(path.resolve("uploads") + "/img_small/" + req.body.cardname + ".jpg" , function(v) {        
+        if (v == null) {            
+            res.json("/files/img_small/" + req.body.cardname + ".jpg");
+        } else {            
+            res.json("");
+        }
+    })
+}
+
 exports.post_card_view = ( req , res) => {
     var seq = req.body.seq;
     var sql = "SELECT * FROM card_info WHERE seq = :seq ";
@@ -35,9 +47,8 @@ exports.post_card_view = ( req , res) => {
     //var mysql = util.mysqlConnecter();
     gMysqlConn.query(sql, function (err, rows, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
-        else {            
-            res.json(rows);
-            //util.log(rows);
+        else {                            
+            res.json(rows);                            
         }
     });      
 }

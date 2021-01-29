@@ -268,20 +268,20 @@ var vItem = function(v) {
     $("#SimulView").css("display", "block");  
 
     $.ajax({
-            type : "POST",
-            url : "/card/view",
-            dataType : "JSON",            
-            data : {"seq" : v},
-            success: function(result){       
-                if (result.length > 0) {
-                    funSimulView(result);
-                }                                                        
-            },
-            error : function(e) {                
-                console.log("ERROR: ", e);
-            }
-        });        
-    
+        type : "POST",
+        url : "/card/view",
+        dataType : "JSON",            
+        data : {"seq" : v},
+        success: function(result){       
+            if (result.length > 0) {
+                funSimulView(result);
+            }                                                        
+        },
+        error : function(e) {                
+            console.log("ERROR: ", e);
+        }
+    });        
+
 }
 
 var vEnter = function() {

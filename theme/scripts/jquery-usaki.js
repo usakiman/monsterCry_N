@@ -21,8 +21,8 @@ var goUrl = function(v) {
     var loginid = $("#hidloginID").val();
     var type = $("#hidloginType").val();
 
-    console.log(loginid);
-    console.log(type);
+    //console.log(loginid);
+    //console.log(type);
 
     if (loginid != "") {
         if (type == 0) { 
@@ -86,7 +86,9 @@ var funSimulViewInit = function() {
 }
 
 var funSimulView = function(v) {
-    var result = v;    
+    var result = v;
+    var temp = "";
+    var td = "";
     funSimulViewInit();
     for (var i in result) {
         // var td = "<div class='container'>";
@@ -94,7 +96,8 @@ var funSimulView = function(v) {
         // td += "<p>"+result[i].cardname+"</p>";        
         // td += "</div>";
 
-        var td = result[i].cardname + " - 기본행동력 (" + result[i].cardactpower + ")";
+        temp = result[i].cardname;
+        td = result[i].cardname + " - 기본행동력 (" + result[i].cardactpower + ")";
 
         $("#hidActPower").val(result[i].cardactpower);
         $("#hidActSkill1").val(result[i].cardactive1);
@@ -104,8 +107,22 @@ var funSimulView = function(v) {
 
         //console.log(td);
     }
-
-    $("#pSimulView").append(td);        
+    
+    $.ajax({
+        type : "POST",
+        url : "/card/exist_img",
+        dataType : "JSON",            
+        data : {"cardname" : temp},
+        success: function(result){                    
+            if (result != "") {
+                td = "<img src='"+result+"'> [" + td + "]";
+            }                                    
+            $("#pSimulView").append(td);
+        },
+        error : function(e) {                
+            console.log("ERROR: ", e);
+        }
+    });               
 };
 
 var funGetEach = function(v) {
