@@ -24,3 +24,4 @@
 {"message":"1:09:07 | insert execute --> user_login_info seq = 206","level":"info"}
 {"message":"1:09:07 | insert execute --> last login update","level":"info"}
 {"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"1:22:39 | logout","level":"info"}

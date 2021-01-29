@@ -168,11 +168,28 @@ exports.get_Skill = (req , res) => {
     if (req.query.num != undefined) num = req.query.num;
     if (req.query.skill != undefined) skill = req.query.skill;
     
-    if (type == "w" && num == "1") {
-        setList = skillList.weapon_skill_1;                
-    }
-    if (type == "w" && num == "2") {
-        setList = skillList.weapon_skill_2;
+    if (type == "w") {
+        if (num == "1") {
+            setList = skillList.weapon_skill_1;
+        } else {
+            setList = skillList.weapon_skill_2;
+        }
+    }    
+    else if (type == "d") {
+        if (num == "1") {
+            setList = skillList.defense_skill_1;
+        } else {
+            setList = skillList.defense_skill_2;
+        }
+    }    
+    else if (type == "a") {
+        if (num == "1") {
+            setList = skillList.ass_skill_1;
+        } else {
+            setList = skillList.ass_skill_2;
+        }
+    } else {
+
     }
 
     if (setList != null) {
@@ -223,11 +240,32 @@ exports.get_Skill = (req , res) => {
 
 exports.get_Simul = (req , res) => {    
     
-    res.render( './battle/simul' , 
-    {                 
-        title: "전투 시뮬레이터"
-    }
-    );               
+    var sql = " SELECT ";
+    sql += " a.seq, a.card_seq, a.b_name, b.card_lv, ";
+    sql += " (SELECT nickname FROM user_table WHERE uid = a.user_uid) AS nickname, ";
+	sql += " b.card_star, b.card_health, b.card_attack, b.card_defense, ";
+	sql += " c.cardname, c.cardlevel, c.cardtype, c.cardrace, c.cardactpower, c.maineffect, ";
+	sql += " d.w_name, d.w_type, d.w_level, d.w_option1, d.w_option2, ";
+	sql += " e.d_name, e.d_type, e.d_level, e.d_option1, e.d_option2, ";
+	sql += " f.a_name, f.a_type, f.a_level, f.a_option1, f.a_option2 ";
+    sql += " FROM battle_list a INNER JOIN card_info_detail b ON a.card_seq = b.seq ";
+    sql += " INNER JOIN card_info c ON b.main_seq = c.seq ";
+    sql += " INNER JOIN weapon_info d ON a.w_seq = d.seq ";
+    sql += " INNER JOIN defense_info e ON a.d_seq = e.seq ";
+    sql += " INNER JOIN ass_info f ON a.a_seq = f.seq ";    
+    sql += " ORDER BY a.b_name DESC ";    
+
+    gMysqlConn.query(sql, function (err, rows, fields) {
+        if(err) util.log('query is not excuted. select fail\n' + err);
+        else {            
+            res.render( './battle/simul' , 
+            {                 
+                list:rows,
+                title: "전투 시뮬레이터"
+            }
+            );               
+        }
+    });                
 }
 
 
@@ -337,13 +375,31 @@ exports.set_Skill_Save = (req, res) => {
     var data = "";
     var sql = "";
 
-    if (type == "w" && num == "1") {
-        setList = skillList.weapon_skill_1;
+    if (type == "w") {
         sql = " INSERT INTO weapon_skill (user_uid, s_name, skill_num, skill_name, skill_text, skill_data) VALUES (?, ?, ?, ?, ?, ?); ";
+        if (num == "1") {
+            setList = skillList.weapon_skill_1;            
+        } else {
+            setList = skillList.weapon_skill_2;            
+        }
     }
-    if (type == "w" && num == "2") {
-        setList = skillList.weapon_skill_2;
-        sql = " INSERT INTO weapon_skill (user_uid, s_name, skill_num, skill_name, skill_text, skill_data) VALUES (?, ?, ?, ?, ?, ?); ";
+    else if (type == "d") {
+        sql = " INSERT INTO defense_skill (user_uid, s_name, skill_num, skill_name, skill_text, skill_data) VALUES (?, ?, ?, ?, ?, ?); ";
+        if (num == "1") {
+            setList = skillList.defense_skill_1;            
+        } else {
+            setList = skillList.defense_skill_2;            
+        }
+    }
+    else if (type == "a") {
+        sql = " INSERT INTO ass_skill (user_uid, s_name, skill_num, skill_name, skill_text, skill_data) VALUES (?, ?, ?, ?, ?, ?); ";
+        if (num == "1") {
+            setList = skillList.ass_skill_1;            
+        } else {
+            setList = skillList.ass_skill_2;            
+        }
+    } else {
+
     }
     
     setList.forEach(element => {
@@ -372,6 +428,60 @@ exports.set_Skill_Save = (req, res) => {
         }
     });                                                          
 }
+
+
+exports.get_cardinfo = (req, res) => {
+    var seq = req.body.seq;
+
+    var sql = "SELECT ";
+    sql += " a.seq, a.card_seq, a.b_name, b.card_lv, ";
+    sql += " b.card_star, b.card_health, b.card_attack, b.card_defense, ";
+    sql += " b.card_active1_name, b.card_active1_text, b.card_active1_ex_time, b.card_active1_data, ";
+    sql += " b.card_active2_name, b.card_active2_text, b.card_active2_ex_time, b.card_active2_data, ";
+    sql += " b.card_passive1_name, b.card_passive1_text, b.card_passive1_data, ";
+    sql += " b.card_passive2_name, b.card_passive2_text, b.card_passive2_data, ";
+    sql += " b.card_info, ";
+    sql += " c.cardname, c.cardlevel, c.cardtype, c.cardrace, c.cardactpower, c.maineffect, ";
+    sql += " c.cardactive1_waiting, c.cardactive2_waiting, ";
+
+    sql += " (SELECT skill_name FROM weapon_skill WHERE seq = a.w_skill1_seq) AS w_skill1_name, ";
+    sql += " (SELECT skill_name FROM weapon_skill WHERE seq = a.w_skill2_seq) AS w_skill2_name, ";
+    sql += " (SELECT skill_text FROM weapon_skill WHERE seq = a.w_skill1_seq) AS w_skill1_text, ";
+    sql += " (SELECT skill_text FROM weapon_skill WHERE seq = a.w_skill2_seq) AS w_skill2_text, ";
+
+    sql += " (SELECT skill_name FROM defense_skill WHERE seq = a.d_skill1_seq) AS d_skill1_name, ";
+    sql += " (SELECT skill_name FROM defense_skill WHERE seq = a.d_skill2_seq) AS d_skill2_name, ";
+    sql += " (SELECT skill_text FROM defense_skill WHERE seq = a.d_skill1_seq) AS d_skill1_text, ";
+    sql += " (SELECT skill_text FROM defense_skill WHERE seq = a.d_skill2_seq) AS d_skill2_text, ";
+
+    sql += " (SELECT skill_name FROM ass_skill WHERE seq = a.a_skill1_seq) AS a_skill1_name, ";
+    sql += " (SELECT skill_name FROM ass_skill WHERE seq = a.a_skill2_seq) AS a_skill2_name, ";
+    sql += " (SELECT skill_text FROM ass_skill WHERE seq = a.a_skill1_seq) AS a_skill1_text, ";
+    sql += " (SELECT skill_text FROM ass_skill WHERE seq = a.a_skill2_seq) AS a_skill2_text, ";
+
+    sql += " d.w_name, d.w_type, d.w_level, d.w_option1, d.w_option2, w_stone1_option, w_stone2_option, ";
+    sql += " e.d_name, e.d_type, e.d_level, e.d_option1, e.d_option2, d_stone1_option, d_stone2_option, ";
+    sql += " f.a_name, f.a_type, f.a_level, f.a_option1, f.a_option2, a_stone1_option, a_stone2_option ";
+    sql += " FROM battle_list a INNER JOIN card_info_detail b ON a.card_seq = b.seq ";
+    sql += " INNER JOIN card_info c ON b.main_seq = c.seq ";
+    sql += " INNER JOIN weapon_info d ON a.w_seq = d.seq ";
+    sql += " INNER JOIN defense_info e ON a.d_seq = e.seq ";
+    sql += " INNER JOIN ass_info f ON a.a_seq = f.seq ";
+    sql += " WHERE a.seq = :seq ";
+
+    sql = sql.replace(":seq", seq);     
+    
+    (async () => {
+        try {
+            const res1 = await util.queryExec_rows(sql, "");
+            
+            res.json(res1);
+        } catch (err) {
+            util.log(err)
+        }
+    })();
+}
+
 
 const queryExec = (sql, params) => new Promise ((resolve, reject) => {
     gMysqlConn.query(sql, params, function (err, rows, fields) {

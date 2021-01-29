@@ -35,6 +35,10 @@ router.post('/cardmake_save', postMiddleWare, ctrl.set_CardMake_Save );
 router.post('/cardmake_delete', postMiddleWare, ctrl.set_CardMake_Delete );
 router.post('/skill_save', postMiddleWare, ctrl.set_Skill_Save );
 
+router.post('/cardinfo_get', postMiddleWare, ctrl.get_cardinfo );
+
+
+
 // ctrl.js 안에서 대소문자 체크함 render중 (cafe24)
 
 // router.get('/stat', getMiddleWare, ctrl.get_stat );

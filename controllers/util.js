@@ -174,6 +174,21 @@ var handleDisconnect = function() {
     return conn;
 }
 
+// promise 용 rows 쿼리 실행기
+exports.queryExec_rows = (sql, params) => new Promise ((resolve, reject) => {
+    gMysqlConn.query(sql, params, function (err, rows, fields) {
+        err ? reject(err) : resolve(rows) // reject는 예외 처리를 할 때 사용합니다.
+    })
+});
+
+// promise 용 results 쿼리 실행기
+exports.queryExec_results = (sql, params) => new Promise ((resolve, reject) => {
+    gMysqlConn.query(sql, params, function (err, rows, fields) {
+        err ? reject(err) : resolve(rows) // reject는 예외 처리를 할 때 사용합니다.
+    })
+});
+
+
 // 랜덤워드
 exports.randomWord = function() {
     return uuid();

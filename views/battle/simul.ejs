@@ -1,15 +1,343 @@
 <%- include("../partial/header_battle") %>
 
-    <script type="text/javascript">
+<script type="text/javascript">
+
+    $(document).on("click", ".openModal", function() {
+        var id = $(this).data("id");
+        console.log(id);
+        $.ajax({
+            type : "POST",
+            url : "/battle/cardinfo_get",
+            dataType : "JSON",            
+            data : {                
+                "seq" : id               
+            },
+            success: function(result){                                                                                 
+                if (result.length > 0) {
+                                        
+                    var temp = "<img src='/files/"+result[0].cardname+".jpg' style='width:50px; height:50px;'' onerror='this.src=''/theme/images/non.jpg''' >";
+                    temp += "<b>"+result[0].cardname+"</b> - 레벨 ["+result[0].card_lv+"] 강화 ["+result[0].card_star+"] 타입 ["+result[0].cardtype+"] 종족 ["+result[0].cardrace+"]";                    
+                    $("#cardBasic").html(temp);
+
+                    //w_skill1_name
+                    
+                    temp = "<b>대표카드효과</b> : " + result[0].maineffect;
+                    $("#cardBody1").html(temp);
+
+                    temp = "<b>무기</b> : "+result[0].w_name+"-["+result[0].w_option1+"]["+result[0].w_option2+"]" + "<br/>";
+                    if (result[0].w_stone1_option == "")
+                        temp += "<b>마석1</b> : 설정되지않음<br/>";
+                    else 
+                        temp += "<b>마석1</b> : "+result[0].w_stone1_option + "<br/>";
+
+                    if (result[0].w_stone2_option == "")
+                        temp += "<b>마석2</b> : 설정되지않음<br/>";
+                    else 
+                        temp += "<b>마석2</b> : "+result[0].w_stone2_option + "<br/>";
+                    
+                    if (result[0].w_skill1_name == null)
+                        temp += "<b>스킬1</b> : 설정되지않음<br/>";
+                    else {
+                        temp += "<b>스킬1</b> : "+result[0].w_skill1_name + "<br/>";
+                        temp += result[0].w_skill1_text + "<br/>";
+                    }                                        
+                    if (result[0].w_skill2_name == null) 
+                        temp += "<b>스킬2</b> : 설정되지않음<br/><br/>";
+                    else {
+                        temp += "<b>스킬2</b> : "+result[0].w_skill2_name + "<br/>";
+                        temp += result[0].w_skill2_text + "<br/><br/>";
+                    }
+                    
+
+                    temp += "<b>방어구</b> : "+result[0].d_name+"-["+result[0].d_option1+"]["+result[0].d_option2+"]" + "<br/>";   
+                    if (result[0].d_stone1_option == "")
+                        temp += "<b>마석1</b> : 설정되지않음<br/>";
+                    else 
+                        temp += "<b>마석1</b> : "+result[0].d_stone1_option + "<br/>";
+
+                    if (result[0].d_stone2_option == "")
+                        temp += "<b>마석2</b> : 설정되지않음<br/>";
+                    else 
+                        temp += "<b>마석2</b> : "+result[0].d_stone2_option + "<br/>";
+                 
+                    if (result[0].d_skill1_name == null)
+                        temp += "<b>스킬1</b> : 설정되지않음<br/>";
+                    else {
+                        temp += "<b>스킬1</b> : "+result[0].d_skill1_name + "<br/>";
+                        temp += result[0].d_skill1_text + "<br/>";
+                    }                        
+                    if (result[0].d_skill2_name == null) 
+                        temp += "<b>스킬2</b> : 설정되지않음<br/><br/>";
+                    else {
+                        temp += "<b>스킬2</b> : "+result[0].d_skill2_name + "<br/>";
+                        temp += result[0].d_skill2_text + "<br/><br/>";
+                    }
+                    
+                    temp += "<b>악세</b> : "+result[0].a_name+"-["+result[0].a_option1+"]["+result[0].a_option2+"]" + "<br/>";
+                    if (result[0].a_stone1_option == "")
+                        temp += "<b>마석1</b> : 설정되지않음<br/>";
+                    else 
+                        temp += "<b>마석1</b> : "+result[0].a_stone1_option + "<br/>";
+
+                    if (result[0].a_stone2_option == "")
+                        temp += "<b>마석2</b> : 설정되지않음<br/>";
+                    else 
+                        temp += "<b>마석2</b> : "+result[0].a_stone2_option + "<br/>";
+
+                    if (result[0].a_skill1_name == null) 
+                        temp += "<b>스킬1</b> : 설정되지않음<br/>";
+                    else {
+                        temp += "<b>스킬1</b> : "+result[0].a_skill1_name + "<br/>";
+                        temp += result[0].a_skill1_text + "<br/>";
+                    }
+                    if (result[0].a_skill2_name == null) 
+                        temp += "<b>스킬2</b> : 설정되지않음<br/>";
+                    else {
+                        temp += "<b>스킬2</b> : "+result[0].a_skill2_name + "<br/>";
+                        temp += result[0].a_skill2_text + "<br/><br/>";
+                    }
+
+                    $("#cardText1").html(temp);
+                                        
+                    temp = "<b>스킬 명</b> : "+result[0].card_active1_name + "<br/>";
+                    temp += "<b>스킬 시전 시간</b> : "+result[0].card_active1_ex_time + "초" + "<br/>";
+                    temp += "<b>스킬 재사용 시간</b> : "+result[0].cardactive1_waiting + "초";
+                    $("#cardBody2_1").html(temp);
+                    temp = "<b>스킬 설명</b> : "+result[0].card_active1_text.replace(/\r\n/g, "<br/>");
+                    $("#cardText2_1").html(temp);
+
+                    temp = "<b>스킬 명</b> : "+result[0].card_active2_name + "<br/>";
+                    temp += "<b>스킬 시전 시간</b> : "+result[0].card_active2_ex_time + "초" + "<br/>";
+                    temp += "<b>스킬 재사용 시간</b> : "+result[0].cardactive2_waiting + "초";
+                    $("#cardBody2_2").html(temp);
+                    temp = "<b>스킬 설명</b> : "+result[0].card_active2_text.replace(/\r\n/g, "<br/>");
+                    $("#cardText2_2").html(temp);
+
+                    temp = "<b>패시브 명</b> : "+result[0].card_passive1_name;                    
+                    $("#cardBody3_1").html(temp);
+                    temp = "<b>패시브 설명</b> : "+result[0].card_passive1_text.replace(/\r\n/g, "<br/>");                  
+                    $("#cardText3_1").html(temp);
+
+                    temp = "<b>패시브 명</b> : "+result[0].card_passive2_name;                    
+                    $("#cardBody3_2").html(temp);
+                    temp = "<b>패시브 설명</b> : "+result[0].card_passive2_text.replace(/\r\n/g, "<br/>");
+                    $("#cardText3_2").html(temp);
+
+                    temp = "<b>카드설정</b> : " +"<br/>" + result[0].card_info.replace(/\r\n/g, "<br/>");
+                    $("#cardText4").html(temp);                    
+                }                
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+                msg("오류 : " + e);                                
+            }
+        });       
+
+
+
+    })
+
+    var card_modify = function(v) {
+        document.location.href = "/battle/CardMake?t_seq=" + v;
+    }
+
+    var card_delete = function(v) {
+        if (!confirm("삭제합니까? 복구할수 없습니다.")) return;
+
+        $.ajax({
+            type : "POST",
+            url : "/battle/cardmake_delete",
+            dataType : "JSON",            
+            data : {                
+                "seq" : v                
+            },
+            success: function(result){                                                 
+                if (result.length > 0) {                    
+                    if (result == "SUCCESS") {
+                        document.location.reload();
+                    }                    
+                }                                                        
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+                msg("오류 : " + e);                                
+            }
+        });             
+    }
+
+    var cardInfoTab = function(v) {
+        var tab1 = $("#tab1");
+        var tab2 = $("#tab2");
+        var tab3 = $("#tab3");
+        var tab4 = $("#tab4");
+
+        switch (v) {
+            case "1" : 
+            tab1.attr("class", "nav-link active");
+            tab2.attr("class", "nav-link");
+            tab3.attr("class", "nav-link");
+            tab4.attr("class", "nav-link");
+
+            $("#cardInfoBody1").attr("style", "display:block");
+            $("#cardInfoBody2").attr("style", "display:none");
+            $("#cardInfoBody3").attr("style", "display:none");
+            $("#cardInfoBody4").attr("style", "display:none");
+
+            //$("#cardInfoBody1").html("1123123123123");
+            break;
+            case "2" : 
+            tab1.attr("class", "nav-link");
+            tab2.attr("class", "nav-link active");
+            tab3.attr("class", "nav-link");
+            tab4.attr("class", "nav-link");
+
+            $("#cardInfoBody1").attr("style", "display:none");
+            $("#cardInfoBody2").attr("style", "display:block");
+            $("#cardInfoBody3").attr("style", "display:none");
+            $("#cardInfoBody4").attr("style", "display:none");            
+            break;
+            case "3" : 
+            tab1.attr("class", "nav-link");
+            tab2.attr("class", "nav-link");
+            tab3.attr("class", "nav-link active");
+            tab4.attr("class", "nav-link");
+
+            $("#cardInfoBody1").attr("style", "display:none");
+            $("#cardInfoBody2").attr("style", "display:none");
+            $("#cardInfoBody3").attr("style", "display:block");
+            $("#cardInfoBody4").attr("style", "display:none");            
+            break;
+            case "4" : 
+            tab1.attr("class", "nav-link");
+            tab2.attr("class", "nav-link");
+            tab3.attr("class", "nav-link");
+            tab4.attr("class", "nav-link active");
+
+            $("#cardInfoBody1").attr("style", "display:none");
+            $("#cardInfoBody2").attr("style", "display:none");
+            $("#cardInfoBody3").attr("style", "display:none");
+            $("#cardInfoBody4").attr("style", "display:block");            
+            break;
+
+            default:  
+            break;
+        }        
+    }
             
     </script>
     
     <body style="background-color: rgba(58, 123, 153, 0.596);">
     
     <div class="container" style="padding-top: 10px;">
-        
-        %% 작업중 %%
+
+    <div><h1>작업중 입니다.</h1></div>
+    <p></p>    
+
+    <% if(list != null && list.length > 0) { %>
+        <% for (var i = 0; i < list.length; i++) { %>
+            <div class="card">
+                <div class="card-header">
+                    <b><%=list[i].nickname%> 님의 <%=list[i].b_name%></b> - 레벨 : [<%=list[i].card_lv%>], 강화 : [<%=list[i].card_star%>],
+                    기본체력 : [<%=list[i].card_health%>], 기본공격력 : [<%=list[i].card_attack%>], 기본방어력 : [<%=list[i].card_defense%>],
+                    기본행동력 : [<%=list[i].cardactpower%>]
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <button type="button" data-id="<%=list[i].seq%>" class="openModal btn btn-primary" data-toggle="modal" data-target="#modalCardInfo">
+                            <font color="yellow"><%=list[i].cardname%></font>
+                        </button>                        
+                        등급 : <font color="blue"><%=list[i].cardlevel%>,</font>
+                        타입 : <font color="red"><%=list[i].cardtype%>,</font>
+                        종족 : <font color="green"><%=list[i].cardrace%></font>
+                    </h5>
+                    <p class="card-text">
+                    
+                    </p>                    
+                </div>                
+            </div>
+            <p/>
+        <% } %>
+    <% } %>                        
 
     </div>    
+
+
+    <div class="modal fade" id="modalCardInfo" tabindex="-1" role="dialog" aria-labelledby="modalCardInfo" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="background-color: rgb(14, 12, 53);">
+        <div class="modal-header">
+            <h5 class="modal-title">
+                <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" id="tab1" href="javascript:cardInfoTab('1');">기본</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="tab2" href="javascript:cardInfoTab('2');">액티브</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="tab3" href="javascript:cardInfoTab('3');">패시브</a>
+                </li>        
+                <li class="nav-item">
+                    <a class="nav-link" id="tab4" href="javascript:cardInfoTab('4');">정보</a>
+                </li>        
+                </ul>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="card-header" id="cardBasic" style="background-color: rgb(160, 120, 172);">
+                
+            </div>
+            <div class="card-body" style="background-color: rgb(190, 155, 170);">
+                <div class="modal-body" id="cardInfoBody1">
+                    <h5 class="card-title" id="cardBody1">
+                        
+                    </h5>
+                    <p class="card-text" id="cardText1">
+                        
+                    </p>                              
+                </div>
+                <div class="modal-body" id="cardInfoBody2" style="display:none;">
+                    <h5 class="card-title" id="cardBody2_1">
+                        
+                    </h5>
+                    <p class="card-text" id="cardText2_1">
+                        
+                    </p>                              
+                    <h5 class="card-title" id="cardBody2_2">
+                        
+                    </h5>
+                    <p class="card-text" id="cardText2_2">
+                        
+                    </p>                              
+                </div>        
+                <div class="modal-body" id="cardInfoBody3" style="display:none;">
+                    <h5 class="card-title" id="cardBody3_1">
+                        
+                    </h5>
+                    <p class="card-text" id="cardText3_1">
+                        
+                    </p>                              
+                    <h5 class="card-title" id="cardBody3_2">
+                        
+                    </h5>
+                    <p class="card-text" id="cardText3_2">
+                        
+                    </p>                              
+                </div>        
+                <div class="modal-body" id="cardInfoBody4" style="display:none;">
+                    <p class="card-text" id="cardText4">
+                        
+                    </p>                              
+                </div>                        
+                
+            </div>                
+        </div>                        
+        </div>
+    </div>
+    </div>
 
 <%- include("../partial/footer_battle") %>
