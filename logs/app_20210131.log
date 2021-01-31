@@ -1,0 +1,5 @@
+{"message":"17:51:52 | SELECT count(*) as cnt FROM user_table WHERE uid = LOWER(?)","level":"info"}
+{"message":"17:51:55 | Message sent : [object Object]","level":"info"}
+{"message":"17:52:06 | SELECT count(*) as cnt FROM user_table WHERE uid = LOWER(?)","level":"info"}
+{"message":"17:52:06 | insert execute --> UserID = 70","level":"info"}
+{"message":"17:52:08 | Message sent : [object Object]","level":"info"}

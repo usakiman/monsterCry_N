@@ -11,17 +11,13 @@ const path = require("app-root-path");
 exports.post_card_list = (req , res) => {        
     var lvl = req.body.lvl;
     var sql = "SELECT * FROM card_info WHERE cardlevel = ':lvl' ORDER BY cardname";        
-    sql = sql.replace(":lvl", lvl);        
-    
-    util.log(sql);
-    if (req.session.isLogin == null) res.json(null);
+    sql = sql.replace(":lvl", lvl);                
 
     //var mysql = util.mysqlConnecter();
     gMysqlConn.query(sql, function (err, rows, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
-            res.json(rows);
-            //util.log(rows);
+            res.json(rows);            
         }
     });    
 }
@@ -39,10 +35,7 @@ exports.post_img_exist = (req, res) => {
 exports.post_card_view = ( req , res) => {
     var seq = req.body.seq;
     var sql = "SELECT * FROM card_info WHERE seq = :seq ";
-    sql = sql.replace(":seq", seq);        
-    
-    util.log(sql);
-    if (req.session.isLogin == null) res.json(null);
+    sql = sql.replace(":seq", seq);                
 
     //var mysql = util.mysqlConnecter();
     gMysqlConn.query(sql, function (err, rows, fields) {
@@ -75,7 +68,27 @@ exports.post_card_join = (req, res) => {
     
     util.log(sql);
 
-    //var mysql = util.mysqlConnecter();
+    (async () => {
+        try {
+            const res1 = await util.queryExec_results(sql, params);
+            
+            var resultMsg = "";
+            if (res1[0].cnt === 1) {
+                resultMsg = "해당 아이디는 사용중입니다.";
+            } else {
+                const res2 = await util.queryExec_rows(sqlInsert, params2);
+
+                util.log("insert execute --> UserID = "+res2.insertId);
+                resultMsg = "SUCCESS";                
+            }
+            
+            res.json(resultMsg);
+        } catch (err) {
+            util.log(err)
+        }
+    })();    
+
+    /*
     gMysqlConn.query(sql, params, function (err, result, fields) {
         if(err) util.log('query is not excuted.\n' + err);
         else {            
@@ -95,8 +108,7 @@ exports.post_card_join = (req, res) => {
             }
         });        
     }
-    
-
+    */    
 }
 
 exports.post_card_logout = (req, res) => {
@@ -130,7 +142,7 @@ exports.post_card_login = (req, res) => {
     sqlUpdate = sqlUpdate.replace(":uid", uid);
     
     util.log(sql);
-    //var mysql = util.mysqlConnecter();
+        
     gMysqlConn.query(sql, function (err, result, fields) {
         if(err) util.log('query is not excuted. select fail\n' + err);
         else {            
@@ -227,8 +239,7 @@ exports.post_card_result = (req, res) => {
     // "attSpeed" : vAttSpeed,
     // "skillSpeed" : vSkillSpeed   
 
-    util.log(req.body);
-    if (req.session.isLogin == null) res.json(null);
+    util.log(req.body);    
 
     var returnActPower = 0.0;
     var returnSkill1_Wtime = 0.0;
@@ -273,13 +284,9 @@ exports.post_card_result = (req, res) => {
     returnSkill1_etc = (parseFloat(req.body.skillSpeedEtc1) / tempdata) * 100;
     returnSkill1_etc = returnSkill1_etc.toPrecision(4);
 
-    util.log(returnSkill1_etc);
-
     // 스속에 따른 캐스팅 초기화 skillSpeedEtc2
     returnSkill2_etc = (parseFloat(req.body.skillSpeedEtc2) / tempdata) * 100;
-    returnSkill2_etc = returnSkill2_etc.toPrecision(4);
-
-    util.log(returnSkill2_etc);
+    returnSkill2_etc = returnSkill2_etc.toPrecision(4);    
 
     res.json(returnActPower + "," + returnSkill1_Wtime + "," + returnSkill2_Wtime + "," + returnSkill1_chance + "," + returnSkill2_chance + "," + returnSkill1_etc + "," + returnSkill2_etc);
 }

@@ -4,11 +4,16 @@ var funSimulList = function(v) {
     for (var i in result) {
         var td = "<div class='old-simul each-testi'>";
         td += "<div class='profile'>";
-        td += "<img src='/theme/images/non.jpg' alt=''>";
+
+        if (result[i].cardlevel == "SS") 
+            td += "<img src='/theme/images/non.jpg' alt=''>";
+        else
+            td += "<img src='/files/img_small/"+result[i].cardname+".jpg' alt=''>";
+        
         td += "<div class='designation'>";
         td += "<button class='btn btn-link' onclick='vItem("+result[i].seq+")'>"+result[i].cardname+"</button>";
         td += "<p>"+result[i].cardlevel+"-"+result[i].cardtype+"-"+result[i].cardrace+"</p>";
-        td += "<p>"+result[i].maineffect+"</p>";
+        //td += "<p>"+result[i].maineffect+"</p>";
         td += "</div></div></div>";
 
         //console.log(td);
@@ -88,7 +93,7 @@ var funSimulViewInit = function() {
 var funSimulView = function(v) {
     var result = v;
     var temp = "";
-    var td = "";
+    var td = "";    
     funSimulViewInit();
     for (var i in result) {
         // var td = "<div class='container'>";
@@ -97,7 +102,8 @@ var funSimulView = function(v) {
         // td += "</div>";
 
         temp = result[i].cardname;
-        td = result[i].cardname + " - 기본행동력 (" + result[i].cardactpower + ")";
+        td = "기본행동력 (" + result[i].cardactpower + ")<br/>";
+        td += "대표카드효과 (" + result[i].maineffect + ")";
 
         $("#hidActPower").val(result[i].cardactpower);
         $("#hidActSkill1").val(result[i].cardactive1);
@@ -115,7 +121,7 @@ var funSimulView = function(v) {
         data : {"cardname" : temp},
         success: function(result){                    
             if (result != "") {
-                td = "<img src='"+result+"'> [" + td + "]";
+                td = "<h4>[" + temp + "]</h4>" + "<img src='"+result+"' style='width:110px; height:110px;'><br/>" + td;
             }                                    
             $("#pSimulView").append(td);
         },
