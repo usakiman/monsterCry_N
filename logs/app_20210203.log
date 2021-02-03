@@ -126,3 +126,4 @@
 {"message":"20:29:58 | insert execute --> last login update","level":"info"}
 {"message":"20:34:47 | query is not excuted.\nError: ER_DATA_TOO_LONG: Data too long for column 'user_ip' at row 1","level":"info"}
 {"message":"20:35:27 | logout","level":"info"}
+{"message":"20:42:23 | query is not excuted.\nError: ER_DATA_TOO_LONG: Data too long for column 'user_ip' at row 1","level":"info"}

@@ -161,12 +161,12 @@
                     기본행동력 : [<%=list[i].cardactpower%>]
                 </div>
                 <div class="card-body" style="background-image: url('/files/img_common/back_img.jpg'); color:white;">
-                    <h5 class="card-title">
-                        <button type="button" data-id="<%=list[i].seq%>" class="openModal" data-toggle="modal" data-target="#modalCardInfo">
+                    <h5 class="card-title" style="font-size: small;">
+                        <button type="button" data-id="<%=list[i].seq%>" class="openModal btn-info" data-toggle="modal" data-target="#modalCardInfo">
                             <img src='/files/img_small/<%=list[i].cardname%>.jpg' style='width:50px; height:50px;'>
                         </button>          
                         -
-                        등급 : <img src='/files/img_common/<%=list[i].cardlevel%>.jpg' style='width:50px; height:50px;'>
+                        <img src='/files/img_common/<%=list[i].cardlevel%>.jpg' style='width:50px; height:50px;'>
                         타입 : <img src='/files/img_common/<%=list[i].cardtype%>.jpg' style='width:50px; height:50px;'>
                         종족 : <img src='/files/img_common/<%=list[i].cardrace%>.jpg' style='width:50px; height:50px;'>
                     </h5>                    
