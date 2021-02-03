@@ -82,12 +82,37 @@ $(document).ready(function() {
 
     $("#ddlLevel").on("change", function() {
         var lvl = $("#ddlLevel").val();
+        var race = $("#ddlRace").val();
         $.ajax({
             type : "POST",
             url : "/card/list",
-            dataType : "JSON",
-            //data : {"lvl" : JSON.stringify(lvl)},
-            data : {"lvl" : lvl},
+            dataType : "JSON",            
+            data : {
+                "lvl" : lvl,
+                "race" : race
+            },
+            success: function(result){       
+                if (result.length > 0) {
+                    funSimulList(result);
+                }                                                        
+            },
+            error : function(e) {                
+                console.log("ERROR: ", e);
+            }
+        });
+    });
+
+    $("#ddlRace").on("change", function() {
+        var lvl = $("#ddlLevel").val();
+        var race = $("#ddlRace").val();
+        $.ajax({
+            type : "POST",
+            url : "/card/list",
+            dataType : "JSON",            
+            data : {
+                "lvl" : lvl,
+                "race" : race
+            },
             success: function(result){       
                 if (result.length > 0) {
                     funSimulList(result);
@@ -206,12 +231,15 @@ function funNav(v) {
         $("#MCE").css("display", "none");
 
         var lvl = $("#ddlLevel").val();
+        var race = $("#ddlRace").val();
         $.ajax({
             type : "POST",
             url : "/card/list",
-            dataType : "JSON",
-            //data : {"lvl" : JSON.stringify(lvl)},
-            data : {"lvl" : lvl},
+            dataType : "JSON",            
+            data : {
+                "lvl" : lvl,
+                "race" : race
+            },
             success: function(result){       
                 if (result.length > 0) {
                     funSimulList(result);
@@ -233,7 +261,7 @@ function funNav(v) {
     break;
 
     case "CardList" :
-        document.location.href = v;
+        document.location.href = v + "?race=인간";
     break;
 
     case "Chat" : 

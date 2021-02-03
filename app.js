@@ -15,6 +15,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');	
 const session = require('express-session');                      
 const { response } = require('express');
+const path = require('path');   
 const mysqlStore = require('express-mysql-session')(session);    
 
 global.gLoginID = null;
@@ -105,6 +106,9 @@ class App {
         this.app.use('/files', express.static( __dirname +'/uploads'));
         this.app.use("/", express.static( __dirname + "/uploads/main"));
         this.app.use("/usaki_logs", express.static( __dirname + "/logs"));
+
+        this.app.use("/front", express.static(path.join(__dirname, "front")));
+        this.app.use("/static", express.static(path.join(__dirname, "front", "static")));
     }
 
     setLocals(){

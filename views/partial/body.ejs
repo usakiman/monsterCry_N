@@ -37,7 +37,7 @@
         <button class="btn btn-danger" id="btnBattle" onclick="goUrl('Battle');">전투 시뮬레이터</button>
         </li><p/>  
         <li class="sidebar-nav-item">        
-        <button class="btn btn-danger" id="btnMCE" onclick="goUrl('MCE');">MonsteryCryEternal</button>
+        <button class="btn btn-danger" id="btnMCE" onclick="funNav('Banner');">초기 화면</button>
         </li>        
     </ul>
     </nav>
@@ -162,12 +162,27 @@
     <div class="container">          
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-        <label class="input-group-text" for="inputGroupSelect01">등급</label>
+        <label class="input-group-text">등급</label>
         </div>
         <select class="custom-select" id="ddlLevel">        
         <option value="SSS+" selected>SSS+</option>
         <option value="SSS">SSS</option>
         <option value="SS">SS</option>
+        </select>
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <label class="input-group-text">종족</label>
+        </div>
+        <select class="custom-select" id="ddlRace">
+        <option value="인간" selected>인간</option>
+        <option value="몬스터">몬스터</option>
+        <option value="요정">요정</option>
+        <option value="드래곤">드래곤</option>
+        <option value="튜톤">튜톤</option>
+        <option value="천사">천사</option>
+        <option value="악마">악마</option>        
         </select>
     </div>
 

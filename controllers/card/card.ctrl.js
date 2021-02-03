@@ -10,8 +10,10 @@ const path = require("app-root-path");
 
 exports.post_card_list = (req , res) => {        
     var lvl = req.body.lvl;
-    var sql = "SELECT * FROM card_info WHERE cardlevel = ':lvl' ORDER BY cardname";        
+    var race = req.body.race;
+    var sql = "SELECT * FROM card_info WHERE cardlevel = ':lvl' and cardrace = ':race' ORDER BY cardname";
     sql = sql.replace(":lvl", lvl);                
+    sql = sql.replace(":race", race);                
 
     //var mysql = util.mysqlConnecter();
     gMysqlConn.query(sql, function (err, rows, fields) {

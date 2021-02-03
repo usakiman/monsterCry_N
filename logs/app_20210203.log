@@ -103,3 +103,26 @@
 {"message":"17:30:46 | insert execute --> user_login_info seq = 224","level":"info"}
 {"message":"17:30:46 | insert execute --> last login update","level":"info"}
 {"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"17:35:15 | logout","level":"info"}
+{"message":"19:55:03 | SELECT count(*) as cnt FROM user_table WHERE uid = 'usaki';","level":"info"}
+{"message":"19:55:03 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"19:55:03 | status[-1] vcode[] code[1234]","level":"info"}
+{"message":"19:55:03 | status[-1] vcode[] code[1234]","level":"info"}
+{"message":"19:55:14 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"19:55:14 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"19:55:14 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"19:55:14 | [object Object]","level":"info"}
+{"message":"19:55:14 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"19:55:14 | insert execute --> user_login_info seq = 225","level":"info"}
+{"message":"19:55:14 | insert execute --> last login update","level":"info"}
+{"message":"ERROR=>TypeError: Cannot convert object to primitive value","level":"error"}
+{"message":"20:22:35 | logout","level":"info"}
+{"message":"20:29:58 | SELECT count(*) as cnt FROM user_table WHERE uid = 'choiyw2';","level":"info"}
+{"message":"20:29:58 | SELECT * FROM user_table WHERE uid = ? AND pwd = md5(?)","level":"info"}
+{"message":"20:29:58 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"20:29:58 | [object Object]","level":"info"}
+{"message":"20:29:58 | status[4] vcode[1234] code[1234]","level":"info"}
+{"message":"20:29:58 | insert execute --> user_login_info seq = 226","level":"info"}
+{"message":"20:29:58 | insert execute --> last login update","level":"info"}
+{"message":"20:34:47 | query is not excuted.\nError: ER_DATA_TOO_LONG: Data too long for column 'user_ip' at row 1","level":"info"}
+{"message":"20:35:27 | logout","level":"info"}
