@@ -11,6 +11,7 @@ router.use('/card', require('./card'));
 router.use('/chat', require('./chat'));
 router.use('/asmonel', require('./asmonel'));
 router.use('/battle', require('./battle'));
+router.use('/cardlist', require('./cardlist'));
 
 router.get('/', (req, res) => {
     const ip = req.headers['x-forwarded-for'] ||  req.connection.remoteAddress;

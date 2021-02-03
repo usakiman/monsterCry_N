@@ -25,10 +25,7 @@ var funSimulList = function(v) {
 var goUrl = function(v) {
     var loginid = $("#hidloginID").val();
     var type = $("#hidloginType").val();
-
-    //console.log(loginid);
-    //console.log(type);
-
+    
     if (loginid != "") {
         if (type == 0) { 
             $("#divError").html("승인이 필요합니다.");
@@ -48,6 +45,20 @@ var goUrl = function(v) {
     } else {        
         funNav('Login');
     }    
+}
+
+var goUrlMain = function(v) {
+    var loginid = $("#hidloginID").val();
+    var type = $("#hidloginType").val();
+        
+    if (loginid == "" && type == "") {
+        console.log("1");
+        $("#divError").html("로그인 해주세요");
+        $("#divError").fadeIn(400).delay(2000).fadeOut(400);
+        return;
+    }    
+
+    goUrl(v);               
 }
 
 var funSimulViewInit = function() {

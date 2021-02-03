@@ -44,10 +44,37 @@ ul, li {
 /* Banner style begins here */
 #Banner .logo {
   position: absolute;
-  top: 25%;
-  left: 16%;
+  top: 10%;
+  left: 5%;
   opacity: 0;
 }
+
+#Banner .container .Main1 {
+  position: absolute;
+  top: 20%;
+  left:7%;
+}
+#Banner .container .Main2 {
+  position: absolute;
+  top: 30%;
+  left:7%;
+}
+#Banner .container .Main3 {
+  position: absolute;
+  top: 40%;
+  left:7%;
+}
+#Banner .container .Main4 {
+  position: absolute;
+  top: 50%;
+  left:7%;
+}
+#Banner .container .Main5 {
+  position: absolute;
+  top: 60%;
+  left:7%;
+}
+
 #Banner {
 	width: 0;
 	height: 100vh;
@@ -62,12 +89,38 @@ ul, li {
 }
 body.active #Banner .logo {
 	opacity: 1;
-	top: 47%;
+  top: 10%;
+  left: 5%;
 	transition: all 0.5s;
 	-ms-transition: all 0.5s;
 	-webkit-transition-delay: 0.5s;
 	transition-delay: 0.5s;
 	-ms-transition-delay: 0.5s;
+}
+body.active #Banner .container .Main1 {
+  position: absolute;
+  top: 20%;
+  left:7%;
+}
+body.active #Banner .container .Main2 {
+  position: absolute;
+  top: 30%;
+  left:7%;
+}
+body.active #Banner .container .Main3 {
+  position: absolute;
+  top: 40%;
+  left:7%;
+}
+body.active #Banner .container .Main {
+  position: absolute;
+  top: 50%;
+  left:7%;
+}
+body.active #Banner .container .Main5 {
+  position: absolute;
+  top: 60%;
+  left:7%;
 }
 body.active #Banner  {
 	width: 100%;
