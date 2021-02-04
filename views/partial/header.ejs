@@ -33,8 +33,17 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-
+    
 $(document).ready(function() {
+
+    $('#demo').carousel({
+        interval: 3000,
+        pause: "hover",
+        wrap: true,
+        slide: false,
+        touch: true        
+    });
+
     $("#Login").css("display", "none");
     $("#Simul").css("display", "none");  
     $("#SimulView").css("display", "none");  

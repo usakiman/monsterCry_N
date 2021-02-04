@@ -21,12 +21,8 @@ router.get('/', (req, res) => {
     var sqlMerge = "INSERT INTO access_log (ymd, cnt) VALUES (DATE_FORMAT( NOW(), '%Y%m%d'), 1) ON DUPLICATE KEY UPDATE cnt = cnt + 1";
     var params = [ip, ""];
 
-    //console.log(req.session);
-    //req.session.isLogin = true;
-    //req.session.loginID = "test";
-    //console.log(req.session.loginID);  
-    
-    //var mysql = util.mysqlConnecter();
+    var carousel = util.readFolder("uploads/carousel");        
+    carousel.shuffle();
 
     gMysqlConn.query(sql, function (err, rows, fields) {
         if(err) {
@@ -35,6 +31,7 @@ router.get('/', (req, res) => {
         }
         else {             
             res.render('index', {
+                carousel:carousel,
                 eList : rows,
                 itemList : itemList,            
                 path: req.url,
@@ -85,5 +82,20 @@ router.get('/hello/:nameParam', function(req,res){
     });
     console.log(req.session.loginID);
 });
+
+// array prototype 에 섞기 기능 추가
+Array.prototype.shuffle = function () {
+    var length = this.length;
+    
+    while (length) {
+        var index = Math.floor((length--) * Math.random());
+        var temp = this[length];
+        this[length] = this[index];
+        this[index] = temp;
+    }
+ 
+    return this;
+};
+
 
 module.exports = router; 
