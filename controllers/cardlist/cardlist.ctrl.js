@@ -14,7 +14,7 @@ exports.get_index = (req , res) => {
 	sql += " FROM card_info_detail b";
     sql += " INNER JOIN card_info c ON b.main_seq = c.seq ";
     if (race != null && race != "") sql += " where c.cardrace = ? ";    
-    sql += " ORDER BY c.cardname DESC ";
+    sql += " ORDER BY c.cardlevel desc, c.cardname ";
 
     params = [race];
 

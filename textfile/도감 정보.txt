@@ -1,0 +1,3157 @@
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 30022, 5366, 5181, 
+	'다발광선',
+	'적 모두에게 공격력의 50%만큼 관통피해를 입히고, 2초 후 시공폭탄을 발동 시킵니다.
+	시공폭탄:자신에게 공격력의 200%만큼 피해를 입힙니다.
+	(대상의 특정 패시브 효과가 적용될 수 있습니다)
+	',
+	'50|2|200',
+	0,
+	'파괴광선',
+	'적에게 공격력의 150%만큼 피해를 입힙니다.
+	대상이 무적,보호막 상태일때 적 모두에게 공격력의 50%만큼 관통 피해를 입힙니다.
+	',
+	'150|50',
+	0,
+	'관통상',
+	'공격시 적에게 3초 동안 회복량을 30%만큼 감소시킵니다.
+	(이 효과는 3초마다 적용 됩니다)
+	절망의 문장 효과:5초동안 방어력을 10%만큼 감소시킵니다.
+	',
+	'3|30|3|5|10',
+	'굴절',
+	'피격시 자신의 행동력을 30%만큼 증가시킵니다.
+	추가로 적 모두에게 절망의 문장을 1개 부여합니다.
+	(이 효과들은 1초마다 적용됩니다)	
+	',
+	'30|1',
+	'소나는 어두운 흑마법을 대항하기 위해 방어술사를 육성하던 길드의 방침을 잘못되었다고
+	생각하고 길드를 탈퇴해버린다. 
+	최선의 방어는 공격이라는 신념 하에 빛을 이용한 강력한 공격 마법을 연구하고 있다.
+	'
+FROM card_info a
+WHERE cardname = '소나';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 25188, 4487, 4811, 
+	'타오르는분노',
+	'적에게 공격력의 100%만큼 피해를 입힙니다.
+	대상이 출혈 상태일때 0.1초후 확산을 발동시킵니다
+	확산:출혈 상태인 아군 모두에게 공격력의 100%만큼 관통 피해를 입힙니다.
+	(대상의 특정 패시브 효과가 적용될수 있습니다
+	',
+	'100|100',
+	0,
+	'어둠의창',
+	'적에게 공격력의 100%만큼 관통 피해를 입히고, 2초동안 기절 상태로 만듭니다.
+	파멸의 문장 효과:5초동안 공격력의 100%만큼 흡혈 출혈 피해를 입힙니다.
+	',
+	'100|2|5|100',
+	0,
+	'추방자의인내심',
+	'공격시 적의 행동력을 20%만큼 감소시키고, 파멸의 문장을 1개 부여합니다.
+	피격시 자신에게 행동력을 50%만큼 채우고, 탈진 효과를 모두 제거합니다.
+	(이 효과는 5초마다 적용됩니다)
+	',
+	'20|50',
+	'어둠의복수',
+	'자신의 흡혈량을 20%만큼 증가시킵니다.
+	명령을 수행할 때마다 적 모두에게 3초동안 공격력의 25%만큼 출혈 피해를 입힙니다.
+	',
+	'20|3|25',
+	'"우린반드시 복수할것이다"- 타락한 자 길리언
+	
+	승천의 길에 다다르지 못하고 수행을 포기한채 도망친 추방자들은 견딜수 없는 열등감에 휩싸였고,
+	이 때를 틈타 마음속으로 흘러 들어온 검은 눈물은 추방자들로 하여금 분노에 눈이 멀어 날뛰도록 만든다.
+	갈색 고목나무 부족의 일원이었던 길리언은 이런 형제들을 이끌고 자신의 형제자매였던 승천자들을 향해 칼을 뽑는다.
+	'
+FROM card_info a
+WHERE cardname = '길리언';
+
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 22644, 3423, 4024, 
+	'마계의인장',
+	'적에게 공격력의 100% 만큼 관통 피해를 입히고, 이로운 효과를 모두 제거합니다.
+	',
+	'100',
+	0,
+	'연속가르기',
+	'적에게 공격력의 100% 만큼 피해를 2회 입힙니다.
+	',
+	'100',
+	0,
+	'정멸',
+	'회피시 자신에게 1초 동안 치명타 확률을 100%만큼 증가시키고, 즉시 공격 기회를 부여합니다.
+	(이 효과는 1초 마다 적용 됩니다)
+	치명타 공격시 자신에게 1초 후 즉시 공격 기회를 부여합니다
+	(이 효과는 1초 마다 적용됩니다)
+	',
+	'1|100|1',
+	'파멸진',
+	'공격시 자신에게 6초 동안 공격량을 20만큼 증가시킵니다.
+	절망의 문장 효과:5초 동안 방어량을 20%만큼 감소시킵니다.
+	',
+	'6|20|5|20',
+	'"내가 너희들의 고통을 끝내주겠다" - 단테
+	
+	긴 시간을 래딜의 인간 사회에서 보내온 마족 단테는 한때 인간을 알기 위하여 래딜 전역을 떠돌아 다니며
+	인간들과 교류하였지만, 
+	그가 사랑하고 이해하려 했던 수많은이들이 타락하고 변질되어 그 생을 마감하는 것을 지켜보며 인간의 생 자체를 부정하게 된다. 
+	절망의 계약을 통해 나락으로 떨어진 단테는 끝없는 허무함을 채우기 위해 살아있는 자들의 영혼을 찾아 떠돈다.
+	'
+FROM card_info a
+WHERE cardname = '단테';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 25188, 5366, 4070, 
+	'욕망의발현',
+	'아군 모두의 공격력을 4초 동안 20%만큼 증가시키고, 행동력을 20%만큼 채웁니다.
+	추가로 아군모두의 해로운 효과를 2개 제거하고, 침묵 효과를 1개 제거합니다.
+	대상의 해로운 효과 제거시 제거한 개수에 따라 대상에게 중첩 효과를 적용합니다.
+	(각 효과는 최대 1회만 적용됩니다)
+	1개 : 4초 동안 치명타 확률을 20%만큼 증가시킵니다.
+	2개 : 4초 동안 행동력을 50%만큼 채워줍니다.
+	',
+	'4|20|20|2|1|1|20|50',
+	0,
+	'유혹의 사슬',
+	'적에게 공격력의 50%만큼 관통 피해를 입히고, 이로운 효과를 3개 제거합니다.
+	대상의 이로운 효과 제거시 제거한 개수에 따라 적에게 중첩 효과를 적용합니다.
+	(각 효과는 최대 1회만 적용됩니다)
+	1개:5초동안 치명타 확률을 20%만큼 감소시킵니다.
+	2개:5초동안 공격 속도를 30%만큼 감소시킵니다.
+	3개:5초동안 방어량을 20%만큼 감소시킵니다.
+	',
+	'50|3|1|20|30|20',
+	0,
+	'몽마',
+	'치명타 공격시 아군 모두의 행동력을 50%만큼 채우고, 적 모두의 이로운 효과를 1개 제거합니다
+	(이 효과는 3초마다 적용됩니다)
+	',
+	'50|1|3',
+	'어둠의속박',
+	'공격 기회를 가질때마다 자신에게 걸린 침묵 효과를 모두 제거합니다.
+	공격시 적 모두의 행동력을 10%만큼 감소시킵니다.
+	피격시 공격한 대상의 종족이 인간/요정/천사일때 자신에게 회피 기회를 1회 부여합니다.
+	(이 효과는 5초마다 적용됩니다)
+	',
+	'10|1',
+	'"꿇어라. 미천하고 하등한 것들아" - 리리스
+	
+	몽마들의 정점에 선 악마. 
+	그녀의 주술에 현혹되면 그 누구라도 헤어나오지 못한 채 그녀의 종이 되어 평생을 살아가게 된다고 한다. 
+	그 덕에 다른 악마들조차 그녀에게 접근하길 꺼려한다.
+	다양한 종족을 자신의 종으로 만드는 괴상한 취미를 가지고 있다.
+	'
+FROM card_info a
+WHERE cardname = '리리스';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 25443, 4626, 4626, 
+	'끈적한거미줄',
+	'적에게 공격력의 100%만큼 관통 피해를 입히고,
+	3초동안 행동력을 300%만큼 감소시킵니다.
+	추가로 대상이 표적 상태 일때 공격력의 70%만큼 피해를 입힙니다.
+	',
+	'100|3|300|70',
+	0,
+	'거미독',
+	'적에게 3초 동안 공격력의 200%만큼 출혈 피해를 입히고,
+	아군 모두에게 3초 동안 공격 속도를 10% 만큼 증가시킵니다.
+	',
+	'3|200|3|10',
+	0,
+	'아라크네서식지',
+	'적 모두의 회피 확률을 10%만큼 감소시킵니다.
+	피격시 대상이 표적 상태일때 자신에게 즉시 공격 기회를 부여합니다.ㅏ
+	',
+	'10',
+	'거미의내성',
+	'자신의 침묵 면역력을 100%만큼 증가시킵니다.
+	일반 공격시 이로운 효과를 1개 제거합니다.
+	대상의 이로운 효과 제거시 3초 동안 표적 상태로 만듭니다.
+	(이 효과는 제거되지 않습니다.)
+	',
+	'100|1|3',
+	'알테가스는 에인트리 마을에 살고 있는 엘프들을 이용하여 금기시 되어온 연구를 진행하던 중
+	아라크네를 창조하게 되고, 아라크네는 자신을 이렇게 만든 알테가스를 증오하며 복수의 날을 꿈꾸고 있다.
+	'
+FROM card_info a
+WHERE cardname = '아라크네';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 23916, 3608, 3932, 
+	'가시채찍',
+	'적에게 공격력의 130%만큼 피해를 입히고, 가시 독을 발동시킵니다.
+	가시독 : 대상이 재생, 표적 상태일때 아군 모두에게 공격력의 50%만큼 관통 피해를 입힙니다.
+	(각 효과는 개별적으로 적용되고, 특정 패시브 효과가 적용될 수 있습니다.)
+	',
+	'130|50',
+	0,
+	'가시동굴포박',
+	'적에게 공격력의 70%만큼 피해를 입히고, 2초 동안 공격력의 150%만큼 흡혈 출혈 피해를 입힙니다.
+	추가로 2초 동안 공격 속도를 100%만큼 감소시키고, 절망의 문장을 2개 부여합니다.
+	',
+	'70|2|150|2|100|2',
+	0,
+	'파고드는고통',
+	'자신의 반격 확률을 15%만큼 증가시킵니다.
+	반격시 적에게 2초동안 공격력의 100%만큼 관통 출혈 피해를 입힙니다.
+	공격시 적 모두에게 행동력을 10%만큼 감소시킵니다.
+	',
+	'15|2|100|10',
+	'광란의채찍',
+	'사망 시 자신을 최대 생명력의 0.1%로 부활시킵니다.
+	부활시 적 모두에게 공격력의 100%만큼 관통 피해를 입힙니다.
+	(이 효과들은 전투중 한 번만 발동됩니다.)
+	자신의 생명력이 [80%/60%/40%/20%] 일 때마다 공격 속도를 15%만큼 증가시킵니다.
+	',
+	'0.1|100|15',
+	'자신이 태어나고 자란 하랄 마을을 재건하기 위해 누구보다 노력했던 그녀에게
+
+	하지만 기대에 미치지 못한 결과만을 마주하던 그녀는 검은 눈물의 큰 힘을 빌려야만 마을을 재건할 수있다고 믿어버렸고,
+	끝내 검은 눈물의힘에 오염되어 버린다.
+	'
+FROM card_info a
+WHERE cardname = '벨라';
+
+ 
+ INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 28496, 5227, 5273, 
+	'절망의발톱',
+	'적 모두에게 공격력의 100%만큼 피해를 입히고, 5초동안 공격력의 50%만큼 관통 출혈 피해를 입힙니다.
+	대상이 출혈 상태일때 3초 동안 방어량을 10%만큼 감소시킵니다.
+	',
+	'100|5|50|3|10',
+	0,
+	'절망의화염',
+	'적 모두에게 공격력의 40%만큼 피해를 2회 입히고, 2초동안 상태이상 면역력을 30%만큼 감소시킵니다.
+	파멸의 문장 효과:공격력의 100%만큼 피해를 입힙니다.
+	',
+	'40|2|2|30|100',
+	2,
+	'절망의포효',
+	'공격 기회를 가질때 마다 자신의 해로운 효과를 2개 제거합니다.
+	대상의 해로운 효과 제거시 2초 동안 명중 확률을 10%만큼 증가시킵니다.
+	(제거한 수만큼 효과가 증가합니다.)
+	',
+	'2|2|10',
+	'죽음의공포',
+	'적 모두의 명중 확률을 10%만큼 감소시킵니다.
+	명령을 수행할 때마다 적모두에게 3초 동안 공격력을 10%만큼 감소시킵니다.
+	',
+	'10|3|10',
+	'드래곤 종족의 정점에 있는 아크베이든은 자신을 방해하는 모든 것을 파괴해버린다. 
+	그의 압도적인 힘을 느껴본 자들은 등골이 오싹한 죽음의 공포를 느끼게 되고,
+	절망감에 사로잡혀 아무것도 할수 없는 상태가 되어버린다고 한다.
+	'
+FROM card_info a
+WHERE cardname = '아크베이든';
+
+
+ INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 25188, 4487, 4811, 
+	'기습',
+	'적에게 공격력의 110% 만큼 증폭 피해를 입힙니다.
+	대상이 도발 상태 일때 적 모두에게 5초 동안 표적 상태로 만듭니다.
+	추가로 적 모두에게 2초동안 이로운 효과를 2개 제거합니다.
+	',
+	'110|5|2|2',
+	0,
+	'상처찢기',
+	'적에게 공격력의 150%만큼 피해를 입힙니다.
+	대상이 표적 상태일때 5초동안 방어력을 30%만큼 감소시킵니다.
+	',
+	'150|5|30',
+	0,
+	'은신',
+	'자신의 생명력이 [70%/50%/30%/10%] 일때마다 회피 확률을 5%만큼 증가시킵니다.
+	회피 시 자신의 행동력을 50%만큼 채우고 적 모두의 이로운 효과를 1개 제거합니다.
+	',
+	'5|50|1',
+	'진혼곡',
+	'전투가 시작되면 아군 모두에게 5초 동안 공격량을 25%만큼 증가시킵니다.
+	(이 효과는 제거 되지 않습니다.)
+	치명타 공격시 아군 모두에게 3초 동안 공격량을 10%만큼 증가시킵니다.
+	',
+	'5|25|10',
+	'누구인지 어디서 왔는지 무엇을 원하는지 전혀 알수 없어 베일에 싸여있는 밴시
+	밴시를 본 대부분의 사람들은 죽음을 면치 못하였고 그에 대한 소문은 점점 흉흉해져 간다.
+	종잡을 수 없는 그의 행동으로 많은 이들을 긴장시키고 있고 사람들은 자기 자신이 밴시의 표적이 아니길 바랄 뿐이다.
+	'
+FROM card_info a
+WHERE cardname = '밴시';
+
+ INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 24934, 5227, 4255, 
+	'승천자의은총',
+	'아군 모두에게 3초 동안 공격력의 100%만큼 보호막을 생성하고, 해로운 효과를 3개 제거합니다.
+	대상의 해로운 효과 제거시 제거한 개수에 따라 대상에게 중첩 효과를 적용합니다.
+	(각 효과는 최대 1회만 적용 됩니다.)
+	1개: 4초 동안 공격력을 10%만큼 증가시킵니다.
+	2개: 4초 동안 방어력을 10%만큼 증가시킵니다.
+	3개: 4초 동안 치명타 확률을 10%만큼 증가시킵니다.
+	',
+	'3|100|3',
+	0,
+	'승천자의보호',
+	'아군에게 2초 동안 무적 상태로 만들고, 회복량을 25%만큼 증가시킵니다.
+	추가로 2초 후 승천의 가호를 발동시킵니다.
+	승천의 가호 : 3초 동안 공격량을 20%만큼 증가시킵니다.
+	',
+	'2|25|2|3|20',
+	0,
+	'회개의기도',
+	'자신의 회복량을 20%만큼 증가시킵니다.
+	사망 시 죽은 아군 모두를 최대 생명력의 20%로 부활시킵니다.
+	(전투 중 한번만 발동됩니다.)
+	',
+	'20|20',
+	'해브니얼의축복',
+	'전투가 시작되면 아군 모두에게 5초 동안 최대 생명력의 20%만큼 보호막을 생성합니다.
+	회피 시 자신을 0.5초 동안 무적 상태로 만듭니다.
+	추가로 적에게 공격력의 20%만큼 피해를 입힙니다.
+	(이 효과는 2초 마다 적용됩니다.)
+	',
+	'5|20|0.5|20|2',
+	'미느엘과 같이 승천의 길에 도달한 헤브니얼 하이엘프 티어스.
+	선인지 악인지 알수 없는 그녀의 종잡을 수 없는 행동으로 검은 눈물로 인해 오염된 것이 아닌지 추종자들에게 의심을 받게 된다.
+	하지만 그녀는 대수롭지 않아 하며 그녀의 알 수 없는 신념대로 행동하고 있다.
+	'
+FROM card_info a
+WHERE cardname = '티어스';
+
+--3
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 25188, 5366, 4070, 
+	'얼음파편',
+	'적에게 공격력의 100% 만큼 피해를 입히고,
+	3초 동안 빙결 상태로 만듭니다.
+	',
+	'100|3',
+	0,
+	'서리폭풍',
+	'적 모두에게 공격력의 100% 만큼 피해를 입히고, 2초 동안 공격력을 30%만큼 감소시킵니다.
+	',
+	'100|2|30',
+	0,
+	'냉기의여신',
+	'자신의 빙결 면역력을 100%, 스킬 속도를 20%만큼 증가시킵니다.
+	명령을 수행할 때마다 적 모두에게 2초 동안 방어력을 15%만큼 감소시킵니다.
+	(이 효과는 5초마다 적용됩니다.)
+	',
+	'100|20|2|15|5',
+	'빙결의저주',
+	'적 모두의 빙결 면역력을 50%만큼 감소시킵니다.
+	적이 부활 시 대상을 1초 동안 빙결 상태로 만듭니다.
+	적이 막기 시 대상을 25%확률로 1초 동안 빙결 상태로 만듭니다
+	(이 효과들은 1초 마다 적용 됩니다.)
+	',
+	'50|1|25|1|1',
+	'래딜의 북방에 존재한다고 알려진 퀸 엘리제
+	본래 그녀는 인간이었지만 알 수없는 이유로 "빙결" 이라고 전해지는 저주에 걸려
+	그녀의 피부는 얼음처럼 차가워지고 주변의 모든것을 얼려 버리고 만다.
+	그녀의 매서운 한기로 인해 주변에는 아무도 다가가지 못하고 있다.
+	'
+FROM card_info a
+WHERE cardname = '퀸엘리제';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 31549, 5366, 4996, 
+	'검은낙수',
+	'적 모두에게 공격력의 100%만큼 피해를 입힙니다.
+	추가로 대상이 재생, 침묵 상태 이때 공격력의 50%만큼 흡혈 피해를 입힙니다.
+	(각 효과는 개별적으로 적용됩니다.)
+	',
+	'100|50',
+	0,
+	'검은살수',
+	'적에게 공격력의 100% 만큼 피해를 2회 입히고, 3초 동안 회피 확률을 20%만큼 감소시킵니다.
+	추가로 대상이 보호막, 기절 상태일 때 공격력의 80%만큼 피해를 입힙니다.
+	(각 효과는 개별적으로 적용됩니다.)
+	',
+	'100|2|3|20|80',
+	0,
+	'검은물의보호',
+	'자신의 침묵 면역력을 100% 만큼 증가시킵니다.
+	자신의 생명력이 50% 이상일 때 아군 모두에게 명중 확률을 20%만큼 증가시킵니다.
+	공격 기회를 가질 때 마다 적 모두에게 2초 동안 방어량을 20%만큼 감소시킵니다.
+	',
+	'100|50|20|2|20',
+	'검은물의표식',
+	'피격시 적에게 2초 동안 방어력을 10%만큼 감소시킵니다.
+	(이 효과는 2초마다 적용됩니다.)
+	적이 부활시 적 모두에게 3초 동안 공격력을 25%만큼 감소시킵니다.
+	',
+	'2|10|2|3|25',
+	'셀바스테인과 함께 래딜에서 넘어온 알려지지 않은 최초의 모험가 중 한 명
+	신을 숭배하고 정화하기위해 많은 일을 해온 그녀지만 검은 눈물에 오염된 물에 접촉한
+	이후부터 신성하고 순결한 마음은 타락하고, 욕망과 증오로 가득 차게 된다.
+	이제 그녀는 더 이상 우리가 알고 있던 모습이 아니다.
+	'
+FROM card_info a
+WHERE cardname = '산드라';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 30022, 5366, 5181, 
+	'맹렬한불길',
+	'적 모두에게 공격력의 100%만큼 피해를 입힙니다.
+	파멸의 문장 효과:5초 동안 공격력의 50% 만큼 관통 출혈 피해를 입힙니다.
+	',
+	'100|5|50',
+	0,
+	'심연의불꽃',
+	'적에게 공격력의 120%만큼 관통 피해를 입히고, 파멸의 문장을 2개 부여합니다.
+	',
+	'120|2',
+	1,
+	'화염의지배자',
+	'공격시 적에게 파멸의 문장을 1개 부여합니다.
+	피격시 적에게 3초 동안 탈진 상태로 만들고, 방어량을 20%만큼 감소시킵니다.
+	(이 효과는 2초 마다 적용됩니다.)
+	',
+	'1|3|20|2',
+	'각성한자',
+	'자신의 공격력을 20% 만큼, 스킬 속도를 30%만큼 증가시킵니다.
+	명령을 수행 할 때마다 자신의 해로운 효과를 1개 제거합니다.
+	해로운 효과 제거시 5초 동안 공격력을 20%만큼 증가시킵니다.
+	',
+	'20|30|1|5|20',
+	'"수많은 축복을 품고 있는 이곳을 래딜과 같은 멸망의 길로 향하게 하지 않을 것이다." - 벨트로스
+
+	아주 오래전, 래딜에서 유명한 마도사였던 벨트로스는 우연히 헤브니얼로 넘어오게 되면서
+	자신의 한계를 뛰어 넘는 마도 지식을 얻게 된다.
+	그 후 각성한 존재들과 함께 헤브니얼의 검은 눈물 정화 작업에 동참하던 중 자신의 옛 동료 였던
+	알테가스의 타락을 되돌리기 위해 추방자들의 세력에 잠입하게 된다.
+	'
+FROM card_info a
+WHERE cardname = '벨트로스';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 25443, 5134, 4163, 
+	'완전한정화',
+	'아군에게 최대 생명력의 15%만큼 회복시키고, 해로운 효과를 모두제거합니다.
+	대상의 해로운 효과 제거시 5초 동안 최대 생명력의 10%만큼 재생 시킵니다.
+	(제거한 수만큼 효과가 증가됩니다.)
+	추가로 4초 동안 상태이상 면역력을 100%만큼 증가 시킵니다.
+	',
+	'15|5|10|4|100',
+	0,
+	'구원의뇌전',
+	'적 모두에게 공격력의 100% 만큼 피해를 입히고, 6초 동안 상태이상 면역력을 30%만큼 감소시킵니다.
+	추가로 5초 동안 막기 확률을 30%만큼 감소시킵니다.
+	혼돈의 문장 효과:2초 동안 침묵 상태로 만듭니다.
+	',
+	'100|6|30|5|30|2',
+	0,
+	'신성방벽',
+	'전투가 시작되면 아군 모두에게 5초 동안 상태이상 면역력을 100% 만큼 증가시킵니다.
+	(이 효과는 제거 되지 않습니다.)
+	피격시 공격한 대상의 종족이 튜톤/악마 일때 자신에게 회피 기회를 1회 부여합니다.
+	(이 효과는 5초 마다 적용됩니다.)
+	',
+	'5|100|1|5',
+	'고결한희생',
+	'공격시 적에게 3초 동안 탈진 상태로 만들고, 혼돈의 문장을 1개 부여합니다.
+	사망 시 아군모두에게 10초 동안 최대 생명력의 20% 만큼 재생시킵니다.
+	(전투 중 한번만 발동됩니다.)
+	회피 시 아군 모두에게 4초 동안 공격력의 25%만큼 증가시킵니다.
+	(이 효과는 2초 마다 적용됩니다.)
+	',
+	'3|1|10|20|4|25|2',
+	'"그대들의 내면에 자리 잡은 부정함, 제거해 드리지요." - 셀바스테인
+
+	헤브니얼의 위기가 시작될 무렵. 
+	래딜에선 넘어온 알려지지 않은 최초의 모험가 중 한 명.
+	신을 숭배하고 부정한 존재들을 정화하기 위해 자신의 모든것을 걸고 싸우고 있다.
+	'
+FROM card_info a
+WHERE cardname = '셀바스테인';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 31549, 5366, 4996, 
+	'고요한폭발',
+	'적에게 공격력의 150%만큼 피해를 입힙니다.
+	혼돈의 문장 효과:1.5초 동안 기절 상태로 만듭니다.
+	',
+	'150|1.5',
+	0,
+	'불꽃과희망의춤',
+	'적 모두에게 공격력의 125%만큼 피해를 입힙니다.
+	대상의 생명력이 50% 이상일때 5초 동안 방어량을 20%만큼 감소시킵니다.
+	대상의 생명력이 50% 이하일때 5초 동안 공격량을 20%만큼 감소시킵니다.
+	절망의 문장 효과:5초 동안 회피 확률을 10%만큼 감소시킵니다.
+	',
+	'125|5|20|5|20|5|10',
+	0,
+	'생명의순환',
+	'전투가 시작되면 아군 모두에게 8초 동안 최대 생명력을 20%만큼, 치명타 확률을 30%만큼 증가시킵니다.
+	(이 효과는 제거되지 않습니다.)
+	',
+	'8|20|30',
+	'불새의화신',
+	'치명타 공격시 적에게 공격력의 50%만큼 관통 피해를 입힙니다.
+	사망시 최대 생명력의 20%로 부활합니다.
+	(전투중 한번만 발동됩니다.)
+	부활시 자신에게 6초 동안 공격량, 공격 속도, 스킬 속도, 치명타 확률을 20%만큼 증가시킵니다.
+	(이 효과는 제거되지 않습니다.)
+	',
+	'50|20|6|20',
+	'"새로운 불꽃에는 새로운 생명이." - 카트리스
+	생명의 순환을 관장하는 신의 사도 카트리스는 생명이 타오르는 순간의 아름다움을 사랑한다.
+	특히 그녀의 마음을 사로잡는 것은 그 무엇보다도 격렬하게 타오르는 죽음을 눈앞에 둔 이들이다.
+	이렇게 아름다운 빛을 목격한 카트리스는 삶과 죽음을 초월한 축복을 용감한 이들에게 내린다.
+	죽음을 극복한 이들은 카트리스의 충직한 용사를 자처하며 기꺼이 래딜을 빛내는 희망의 등불이 된다.
+	'
+FROM card_info a
+WHERE cardname = '카트리스';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 26715, 4394, 4440, 
+	'오라캐논',
+	'적에게 공격력의 75%만큼 관통 피해를 입히고, 행동력을 50%만큼 감소시킵니다.
+	파멸의 문장 효과:6초 동안 공격력의 60%만큼 관통 출혈 피해를 입힙니다.
+	',
+	'75|50|6|60',
+	0,
+	'차크라필드',
+	'적 모두에게 6초동안 공격력의 120%만큼 흡혈 출혈 피해를 입히고, 
+	공격 속도를 20%만큼 감소시킵니다.
+	',
+	'6|120|20',
+	0,
+	'순환의대가',
+	'공격 시 적의 이로운 효과를 2개 제거합니다.
+	(이 효과는 3초 마다 적용됩니다.)
+	대상의 이로운 효과 제거시 절망의 문장을 1개 부여합니다.
+	(제거한 수만큼 효과가 증가됩니다.)
+	피격시 자신의 해로운 효과를 1개 제거합니다.
+	(이 효과는 3초 마다 적용됩니다.)
+	해로운 효과 제거시 4초동안 최대 생명력의 10%만큼 보호막을 생성합니다.
+	',
+	'2|3|1|1|3|4|10',
+	'전설의마스터',
+	'자신의 치명타 확률, 반격 확률을 15%만큼 증가시킵니다.
+	치명타 공격시 아군 모두에게 4초 동안 공격력을 20%만큼 증가시킵니다.
+	(이 효과는 1초 마다 적용됩니다.)
+	반격 시 아군 모두에게 4초 동안 공격 속도를 30%만큼 증가시킵니다.
+	(이 효과는 4초 마다 적용됩니다.)
+	',
+	'15|4|20|1|4|30|4',
+	'"진정한 강함은 눈에 보이지 않는 법이지." - 딜라이트
+
+	래딜에서 수많은 용사들을 단련시켜준 수련의장은 그곳의 가장 위대한 마스터인 딜라이트에 의해 만들어졌다.
+	전설적인 마스터라 불리는 딜라이트는 수많은 제자 마스터들을 육성 하였으며 이들은 늘 약하고 
+	힘없는 자들을 돕는데 힘을 아끼지 않았다.
+	오랜 세월이 지나 딜라이트의 강력함이 예전 같지는 않지만 그녀의 무구한 지혜는
+	래딜의 안녕을 위협하는 이들에게 여전히 두려움의 대상이다.
+	'
+FROM card_info a
+WHERE cardname = '딜라이트';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 22644, 3423, 4024, 
+	'심판하는은빛칼날',
+	'적에게 공격력의 200%만큼 피해를 입히고, 5초동안 회복량을 50%만큼 감소시킵니다.
+	추가로 이로운 효과를 1개 제거합니다.
+	대상의 이로운 효과 제거시 공격력의 100% 만큼 관통 피해를 입힙니다.
+	',
+	'200|5|50|1|100',
+	0,
+	'어둠의장막',
+	'적 모두에게 공격력의 50%만큼 관통 피해를 입히고, 3초동안 공격량을 40%만큼 감소시킵니다.
+	',
+	'50|3|40',
+	0,
+	'굴하지않는용기',
+	'최대 생명력의 20% 이상일때 한번의 피해로 사망하면 회생 할 수 있습니다.
+	부활시 또는 명령을 수행할 때마다 자신에게 20%확률로 행동력을 20%만큼 채워줍니다.
+	(이 효과는 확률적으로 한번에 최대 5회 까지 중첩 적용 됩니다.)
+	',
+	'20|20|20|5',
+	'피의유혹',
+	'일반 공격 시 대상의 생명력이 50% 이상 일때 공격력의 200%만큼 흡혈 피해를 입힙니다.
+	',
+	'50|200',
+	'"이제 신에게 기도할 시간이다." - 뱀파이어 사냥꾼 마야
+
+	어느날 뱀파이어 사냥꾼들의 비밀 집회에는 낯선 여인에 대한 소문이 퍼진다.
+	방년의 나이에도 불구하고 불타는 의지와 노력으로 최고의 사냥꾼의 자리에 오른 소녀에 대한 이야기 였다.
+	혹자는 뱀파이어에 대한 증오가 그녀를 이끌었다고도 하고, 
+	사냥하는 그녀가 마치 뱀파이어 같았다는 이야기도 있었다.
+	어느것도 확실한 것은 없지만 한가지 확실한 것은 뱀파이어들에게 더 이상 미래는 없으리라는 것이다.
+	'
+FROM card_info a
+WHERE cardname = '마야';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 30022, 5227, 5088, 
+	'달의가호',
+	'아군 모두에게 6초 동안 공격력의 100%만큼 보호막을 생성하고, 해로운 효과를 1개 제거합니다.
+	',
+	'6|100|1',
+	0,
+	'찬란한달빛',
+	'적 모두에게 공격력의 100%만큼 피해를 입히고, 25%확률로 1초 동안 기절 상태로 만듭니다.
+	대상이 표적 상태 일때 6초 동안 공격력의 100% 만큼 관통 출혈 피해를 입히고, 방어량을 20% 만큼 감소시킵니다.
+	',
+	'100|25|1|6|100|20',
+	0,
+	'생명의샘',
+	'피격시 아군 모두에게 행동력을 10% 만큼 채워줍니다.
+	(이 효과는 2초 마다 적용됩니다.)
+	사망 시 자신을 최대 생명력의 30%로 부활시킵니다.
+	(전투 중 한번만 발동됩니다.)
+	사망 시 적 모두에게 조건에 따른 연계효과를 발동합니다.
+	대상이 표적 상태일때 2초 동안 기절 상태로 만듭니다.
+	',
+	'10|2|30|2',
+	'달빛표식',
+	'공격 시 자신에게 1초 동안 스킬 속도를 100% 만큼 증가시킵니다.
+	(이 효과는 1초 마다 적용됩니다.)
+	공격 시 적에게 6초 동안 표적 상태로 만듭니다.
+	절망의 문장 효과:6초동안 공격 속도를 10%만큼 감소시킵니다.
+	',
+	'1|100|1|6|6|10',
+	'"이 세상을 지킬 것입니다. 제 모든것을 희생해서라도." - 루아나프라
+
+	검은 누물의 광기가 세상을 뒤덮은 시기에 모든 것을 잃어버린 한소녀가 있었다.
+	타오르는 마을 속에서 혼신의 힘을 다해 기도하던 소녀는 마침내 누군가의 응답을 들었고 
+	이 음색은 스스로를 달의 여신이라 말하였다.
+	수개월 후 래딜에는 검은 눈물의 타락으로부터 구원받을 수 있는 생명의 샘에 대한 이야기가 퍼지게 된다.
+	그곳에는 모두를 지켜줄 달의 여신의 사도가 있다는 소문도 함께였다.
+	'
+FROM card_info a
+WHERE cardname = '루아나프라';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 26715, 4394, 4440, 
+	'광폭찍기',
+	'적에게 공격력의 125% 만큼 증폭 피해를 입힙니다.
+	대상이 도발 상태일때 이로운 효과를 모두 제거하고, 공격력의 75%만큼 관통 피해를 입힙니다.
+	추가로 5초 동안 이로운 효과를 5개 제거합니다.
+	(이 효과는 제거되지 않습니다.)
+	',
+	'125|75|5|5',
+	0,
+	'화염베기',
+	'적에게 공격력의 100%만큼 관통 피해를 입히고, 5초 동안 행동력을 50%만큼 감소시킵니다.
+	대상이 표적 상태일 때 5초 동안 공격력의 50%만큼 관통 출혈 피해를 입히고, 30%만큼 공격 속도를 감소시킵니다.
+	',
+	'100|5|50|5|50|30',
+	0,
+	'분노의의지',
+	'피격시 자신의 행동력을 25%만큼 채웁니다.
+	추가로 3초 동안 공격력을 25%만큼, 방어력을 15%만큼 증가시킵니다.
+	(이 효과는 1초마다 적용됩니다.)
+	공격 기회를 가질때마다 자신에게 0.1초 동안 무적상태로 만듭니다.
+	',
+	'25|3|25|15|1|0.1',
+	'화검술',
+	'공격시 적에게 5초 동안 회복량을 30만큼, 3초동안 막기확률을 20%만큼 감소시킵니다.
+	파멸의 문장 효과:공격력의 50%만큼 관통 피해를 입힙니다.
+	',
+	'5|30|3|20|50',
+	'로비안 출신이라 짐작되는 제롬은 오로지 용족만 사냥하고 다니는 기행 때문에 이름이 알려지기 시작했다.
+	그가 왜 용족을 죽이는 지는 아무도 알지 못하지만, 단신으로 용을 죽일만큼 강하다는 건 분명하다.
+	데론에 용이 적은 이유는 제롬 때문이라는 우스갯소리도 있으며,
+	용 훈련관인 도르 드라콘들에겐 최우선적인 표적이기도 하다.
+	'
+FROM card_info a
+WHERE cardname = '제롬올렌더';
+
+-- 20210206
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 23968, 4150, 4194, 
+	'달콤한유혹의구속',
+	'적에게 공격력의 125%만큼 증폭피해를 입힙니다.
+	대상이 도발 상태일때 도발상태를 모두 제거하고, 공격력의 75%만큼 관통 피해를 입힙니다.
+	추가로 3초 동안 이로운 효과를 3개 제거합니다.
+	(이 효과는 제거되지 않습니다.)
+	',
+	'125|75|3|3',
+	0,
+	'초콜릿중탕베기',
+	'적에게 공격력의100%만큼 관통 피해를 입히고, 3초 동안 행동력을 30%만큼 감소시킵니다.
+	대상이 표적 상태일때 5초 동안 공격력의 50%만큼 관통 출혈 피해를 입히고, 20%만큼 방어력을 감소시킵니다.
+	',
+	'100|3|30|5|50|20',
+	0,
+	'사랑이담긴초콜릿코팅',
+	'반격시 자신의 행동력을 25%만큼 채웁니다.
+	추가로 3초 동안 공격력을 25%만큼, 방어력을 15%만큼 증가시킵니다.
+	(이 효과는 1초마다 적용됩니다.)
+	공격 기회를 가질때 마다 자신에게 0.1초 동안 무적상태로 만듭니다.
+	',
+	'25|3|25|15|1.|0.1',
+	'끈적한초콜릿검술',
+	'공격시 적에게 5초 동안 회복량을 30%만큼, 3초동안 반격확률을 30%만큼 감소시킵니다.
+	파멸의 문장 효과:공격력의 50%만큼 관통 피해를 입힙니다.
+	',
+	'5|30|3|30|50',
+	'"드래곤 슬레이어" 로 알려진 제롬올렌더의 숨겨진 별명은 "초콜릿 슬레이어"
+
+	초콜릿 대회의 숨겨진 심사위원이였던 제롬 올렌더는, 마법이 들어간 초콜릿에 대한 논란이 있었던
+	작년 대회에서도 한명의 심사위원으로서 현장에 있었다. 그는 마법이 들어간 초콜릿은 진정한 초콜릿이
+	아니라고 주장하는 심사위원중 한명 이었다.
+
+	하지만 마법이 들어간 초콜릿이 우승하게 되는 심사 결과에 분노하게 되고 진정한 초콜릿이 무엇인지
+	보여주기 위하여 화려한 모습을 드러낸다.
+	'
+FROM card_info a
+WHERE cardname = '달콤한제롬올렌더';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 22644, 3423, 4024, 
+	'포식자의도축',
+	'적에게 공격력의 110%만큼 피해를 입히고 2초동안 공격력의 30%만큼 출혈 피해를 입힙니다.
+	',
+	'',
+	0,
+	'포식자의광분',
+	'자신에게 5초동안 공격 속도를 50%만큼, 공격량을 15%만큼, 명중 확률을 20%만큼 증가시킵니다.
+	추가로 자신의 해로운 효과를 모두 제거합니다.
+	',
+	'',
+	0,
+	'포식',
+	'전투가 시작되면 자신에게 8초 동안 최대 생명력을 25%만큼 증가시킵니다.
+	(이 효과는 제거되지 않습니다.)
+	공격 시 자신의 공격력을 5%만큼 증가시킵니다.
+	',
+	'',
+	'맹렬한포효',
+	'반격 시 자신에게 최대 생명력의 5%만큼 회복시킵니다.
+	피격 시 공격한 대상의 종족이 악마/요정 일때 자신의 행동력을 10%만큼 채웁니다.
+	',
+	'',
+	'짙은 어둠 협곡에서 검은 눈물에 물들여진 존재는 비드온만이 아니었다. 
+	검은 눈물의 영향은 전방위적으로 발생하였고 그중 호전적 성격을 지녔던 파이톤은 
+	더욱더 포악해지고 끓어오르는 분노를 표출할 대상을 찾아다닌다.
+	'
+FROM card_info a
+WHERE cardname = '파이톤';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 26460, 3562, 6337, 
+	'강성강화',
+	'자신에게 5초동안 방어력을 70%만큼, 방어량을 20%만큼 증가시킵니다.
+	추가로 5초 동안 피해반사를 50%만큼 증가시키고, 도발 상태로 만듭니다.
+	',
+	'',
+	0,
+	'고출력보호막',
+	'아군 모두에게 5초 동안 기절 면역력을 50%만큼 증가시키고, 현재 생명력의 20%만큼 보호막을 생성합니다.
+	추가로 아군 모두의 해로운 효과를 2개 제거합니다.
+	대상의 해로운 효과 제거시 3초 동안 막기확률을 10%만큼 증가시킵니다.
+	(제거한 수만큼 효과가 증가됩니다.)
+	',
+	'',
+	0,
+	'절대방어',
+	'자신의 빙결 면역력, 출혈 면역력을 100%만큼 증가시킵니다.
+	피격시 자신이 도발 상태일때 적에게 2초 동안 기절 상태로 만듭니다.
+	(이 효과는 5초 마다 적용됩니다.)
+	막기 시 자신에게 피해무시 기회를 1회 부여합니다.
+	(이 효과는 5초 마다 적용됩니다.)
+	',
+	'',
+	'방어태세',
+	'아군 모두의 방어력을 10%만큼 증가시킵니다.
+	일반 공격 시 적에게 방어력의 70%만큼 돌진 피해를 입힙니다.
+	',
+	'',
+	'헤브니움 가디언은 헤브니움 버스터와 함께 침략자를 경계하기 위한 목적으로 
+	헤브니얼 문명의 가장 강력한 방어 수단으로 제작되었다.
+	가디언의 강력한 방어능력은 타의 추종을 불허하며, 헤브니움 버스터와 함께 헤브니얼 문명을 지키는 수호신과 같다.
+	'
+FROM card_info a
+WHERE cardname = '헤브니움가디언';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 26715, 4394, 4440, 
+	'시간돌풍',
+	'적모두에게 공격력의 100%만큼 피해를 입히고, 5초 동안 공격 속도를 30%만큼 감소시킵니다.
+	',
+	'',
+	0,
+	'시간 족쇄',
+	'적에게 공격력의 100%만큼 피해를 입히고, 행동력을 50%만큼 감소시킵니다.
+	추가로 2초 동안 행동력을 200%만큼 감소시키고, 자신에게 2초 동안 행동력을 200%만큼 증가시킵니다.
+	',
+	'',
+	2,
+	'디할라의의지',
+	'아군이 공격 기회를 가질때마다 침묵 상태이면 자기 자신에게 3초 동안 치명타 확률을 30%만큼 극대화를 50%만큼 증가시킵니다.
+	아군이 공격 기회를 가질때마다 탈진 상태이면 자기 자신에게 3초 동안 공격력, 명중 확률을 30%만큼 증가시킵니다.
+	',
+	'',
+	'시간의지배자',
+	'공격 시 적에게 3초 동안 방어력을 15%만큼 감소시킵니다.
+	치명타 공격시 아군 모두에게 3초 동안 공격 속도, 스킬 속도를 15%만큼 증가시킵니다.
+	(이 효과는 2초 마다 적용 됩니다.)
+	',
+	'',
+	'시간을 다스리는 힘을 가진 디할라는 어느 순간부터 래딜에 존재해 있었다.
+
+	그녀는 상대를 시간의 족쇄에 가두고 영겁의 시간 속에서 빠져나오지 못하는 모습을 보며 즐거움을 느낀다.
+	'
+FROM card_info a
+WHERE cardname = '디할라'; 
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 28496, 5227, 5273, 
+	'화염발톱',
+	'적에게 공격력의 150%만큼 피해를 입힙니다.
+	대상이 출혈 상태일 때 공격력의 50%만큼 관통 피해를 입힙니다.
+	',
+	'',
+	0,
+	'소각',
+	'적 모두에게 공격력의 125%만큼 피해를 입힙니다.
+	추가로 3초 동안 공격력의 50%만큼 관통 출혈 피해를 입히고, 방어력을 15%만큼 감소시킵니다.
+	대상이 표적 상태일 때 공격력의 50%만큼 관통 피해를 입힙니다.
+	',
+	'',
+	1,
+	'환생',
+	'사망 시 자신을 최대 생명력의 15%로 부활 시킵니다.
+	(이 효과는 5초 마다 적용 됩니다.)
+	부활 시 아군 모두에게 3초 동안 공격력을 25%만큼 증가시킵니다.
+	추가로 자신에게 3초 동안 공격력의 100% 만큼 재생시킵니다.
+	',
+	'',
+	'피닉스의불길',
+	'자신의 피해반사를 15%만큼 증가시킵니다.
+	반격시 적에게 3초 동안 방어량을 15%만큼 감소 시킵니다.
+	(이 효과는 3초마다 적용됩니다.)
+	',
+	'',
+	'래딜 변방 화신에서 태어났다고 전해지는 피닉스는 날갯짓 한번에 모든것을 소각 시켜버리는 가공할 힘을 가지고 있다.
+	다른 종족들과의 화합과 친목을 원하고 있으나, 근처에 다가가는 것만으로도 모든것을 태워버리는 강력한 불길로
+	인해 타 종족에서는 그저 공포의 대상일 뿐이다.
+	'
+FROM card_info a
+WHERE cardname = '피닉스';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 31549, 5366, 4996, 
+	'치명적인매혹',
+	'적에게 공격력의 200%만큼 흡혈 피해를 입히고, 이로운 효과를 3개 제거합니다.
+	대상의 이로운 효과 제거시 공격력의 30%만큼 관통 피해를 입힙니다.
+	(제거한 수만큼 효과가 증가합니다.)
+	',
+	'',
+	1,
+	'치명적인매력',
+	'자신에게 5초 동안 도발 상태로 만들고, 회피 확률을 10%만큼 증가시킵니다.
+	추가로 5초 동안 공격 속도를 80%만큼 증가시킵니다.
+	',
+	'',
+	0,
+	'매력증폭',
+	'자신의 흡혈량을 20%만큼 증가시킵니다.
+	자신의 생명력이 50% 이상일때 적 모두의 공격량을 20%만큼 감소시킵니다.
+	자신의 생명력이 50%이하 일때 적 모두의 회복량을 20%만큼 감소시킵니다.
+	공격 기회를 가질때마다 자신이 탈진 상태이면 2초 동안 방어량을 20%만큼 증가시킵니다.
+	(이 효과는 4초마다 적용 됩니다.)
+	',
+	'',
+	'매력발산',
+	'회피 시 아군 모두에게 2초 동안 방어량, 명중 확률을 10%만큼 증가시킵니다.
+	(이 효과는 2초마다 적용 됩니다.)
+	일반 공격시 적 모두에게 공격력의 25%만큼 흡혈 피해를 입힙니다.
+	',
+	'',
+	'처음 그녀를 만났을 때는 아름다운 모습에 홀려 넋을 놓게 되고, 그녀의 유혹에는 당해낼 재간이 없으며
+	한번 그녀에게 마음을 준 대상은 다시는 그녀 곁을 벗어 날수가 없다.
+
+	그녀는 자신의 품에 들어온 상대를 절대 놓아주지 않으며, 그녀의 품을 벗어 날 수 있는 방법은 오직 죽음뿐이다.
+	'
+FROM card_info a
+WHERE cardname = '미호';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 24934, 3932, 6568, 
+	'뿌리휘감기',
+	'적에게 공격력의 100%만큼 피해를 입히고, 방어력의 50%만큼 돌진 피해를 입힙니다.
+	추가로 행동력을 30%만큼 감소시킵니다.
+	절망의 문장 효과:5초 동안 공격량을 20%만큼 감소시킵니다.
+	',
+	'',
+	0,
+	'가시갑옷',
+	'자신에게 5초 동안 방어력을 100%만큼, 막기확률을 20%만큼 증가시킵니다.
+	추가로 2초동안 피해반사를 75%만큼 증가시키고, 5초동안 도발상태로 만듭니다.
+	',
+	'',
+	0,
+	'검은힘',
+	'자신의 수면 면역력을 100%만큼 증가시킵니다.
+	아군 모두의 공격 속도를 10%만큼 증가시킵니다.
+	',
+	'',
+	'대지의분노',
+	'자신의 피해반사를 25%만큼 증가시킵니다.
+	공격 시 적에게 3초동안 공격량을 10%만큼 감소시킵니다.
+	막기 시 자신에게 공격력의 50%만큼 생명력을 회복시킵니다.
+	',
+	'',
+	'"어둠으로부터 내가 왔다." - 비드온
+
+	헤브니얼의 그림자와도 같은 짙은 어둠 협곡을 검은 눈물로 물들인 추방된 엘프들.
+	그 오염은 협곡 내에서 가장 깊고 어두운 곳에 자리 잡고 있던 오래된 고목나무에게마저 영향을 미치게 된다.
+	검은 눈물의 힘을 가득 머금은 고목나무는 마치내 타락의 정수를 품은 살아 움직이는 거대한 지배자가 되어 끓어오르는
+	분노를 표출할 대상을 찾아 나선다.
+	'
+FROM card_info a
+WHERE cardname = '비드온';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 28750, 5134, 4903, 
+	'파멸의주먹',
+	'적에게 공격력의 100%만큼 관통 피해를 입히고, 보호막 효과를 모두 제거합니다.
+	추가로 5초 동안 탈진 상태로 만듭니다.
+	',
+	'',
+	0,
+	'고출력마력표',
+	'적 모두에게 공격력의 125%만큼 피해를 입히고, 이로운 효과를 2개 제거합니다.
+	대상의 이로운 효과 제거시 공격력의 75%만큼 관통 피해를 입힙니다.
+	(제거한 수만큼 효과가 증가됩니다.)
+	',
+	'',
+	2,
+	'충전모드',
+	'명령을 수행할 때마다 자신에게 최대 생명력의 5%만큼 회복시킵니다.
+	회피 시 자신에게 1초 동안 무적 상태로 만들고, 2초 동안 스킬 속도를 50%만큼 증가시킵니다.
+	(이 효과는 2초 마다 적용됩니다.)
+	',
+	'',
+	'마력해방',
+	'일반 공격시 적에게 공격력의 50%만큼 관통 피해를 입힙니다.
+	',
+	'',
+	'"마력 충전 완료. 지금부터 적들을 섬멸합니다." - 헤브니움 버스터와
+
+	본래 평화로운 헤브니얼의 엘프들이 침략자를 경계하기 위해 만들어낸 헤브니얼 문명의 가장 강력한 전투 수단.
+	세리아오의 축복이 깃든 이 마법 물체는 순수하게 방어를 목적으로 제작되었으며,
+	침략하는 모든 적을 막아설 준비를 마친 상태다.
+	'
+FROM card_info a
+WHERE cardname = '헤브니움버스터';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 24934, 5227, 4255, 
+	'광휘의기운',
+	'아군 모두에게 5초동안 공격량을 25%만큼, 스킬 속도를 50%만큼 증가시킵니다.
+	',
+	'',
+	0,
+	'빛의파동',
+	'적 모두에게 공격력의 75%만큼 피해를 입히고, 5초 동안 회피 확률을 10%만큼 감소시킵니다.
+	추가로 이로운 효과를 3개 제거합니다.
+	대상의 이로운 효과 제거시 3초 동안 공격 속도를 30%만큼 감소시킵니다.
+	(제거한 수만큼 효과가 증가됩니다.)
+	',
+	'',
+	0,
+	'정화의빛',
+	'피격시 아군 모두에게 5초 동안 상태이상 면역력을 30%만큼 증가시키고, 스킬재사용 시간을 1초 단축시킵니다.
+	(이 효과는 3초 마다 적용됩니다.)
+	',
+	'',
+	'전장의기운',
+	'아군 모두의 명중확률, 공격 속도를 10%만큼 증가시킵니다.
+	',
+	'',
+	'지나치는 모든 것을 강풍으로 쓸어버리던 괴조였으나 세리아오의 축복을 받아 각성하게 되며
+	파괴가 아닌 축복을 퍼뜨리는 성스러운 새로 변모하였다.
+	세리아오의 축복을 받은 몇 안되는 생명체중 하나.
+	'
+FROM card_info a
+WHERE cardname = '홀리버드';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 24934, 4781, 4718, 
+	'폭풍의날개짓',
+	'적 모두에게 공격력의 30%만큼 관통 피해를 2회 입힙니다.
+	',
+	'',
+	0,
+	'음속의파동',
+	'적 모두에게 공격력의 100%만큼 증폭 피해를 입힙니다.
+	혼돈의 문장 효과:1초 동안 침묵 상태로 만듭니다.
+	',
+	'',
+	2,
+	'거산의주인',
+	'자신의 최대 생명력을 20%만큼 증가시킵니다.
+	자신의 생명력이 50% 이상일때 자신의 방어량을 10%만큼 증가시킵니다.
+	자신의 생명력이 50% 이하일때 자신의 공격량을 10%만큼 증가시킵니다.
+	',
+	'',
+	'수호자의권능',
+	'자신의 생명력이 50% 이상일때 명령을 수행할 때마다 죽은 아군 모두를 최대 생명력의 15%로 부활시킵니다.
+	공격시 적에게 혼돈의 문장을 1개 부여합니다.
+	',
+	'',
+	'래딜 변방에는 아무도 기억하지 못하는 거대한 산이 하나 존재한다.
+	지형이 너무나 험난하고, 풀 한포기 자라지 않는 척박한 환경 때문에 아무도 가려하지 않는 곳.
+	그 산속에 봉인되어 있던 거산의 주인이 멸망을 초래하는 자들을 단죄하기 위해 스스로 깨어나게 된다.	
+	'
+FROM card_info a
+WHERE cardname = '그리피오스';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 26460, 3562, 6337, 
+	'영혼흡수',
+	'적에게 공격력의 200%만큼 흡혈 피해를 입히고, 자신에게 5초 동안 최대 생명력의 50%만큼 보호막을 생성합니다.
+	(이 스킬로 대상이 사망시 보호막 효과는 발동되지 않습니다.)
+	',
+	'',
+	0,
+	'챠바나의수호',
+	'자신에게 5초 동안 도발 상태로 만들고, 현재 생명력의 50%만큼 보호막을 생성합니다.
+	추가로 아군 모두에게 표적 효과를 모두 제거합니다.
+	',
+	'',
+	0,
+	'혼돈의눈',
+	'피격 시 적에게 20% 확률로 3초 동안 수면 상태로 만듭니다.
+	공격 시 자신의 보호막 수치의 70%만큼 파동 피해를 입힙니다.
+	혼돈의 문장 효과:1.5초 동안 침묵 상태로 만듭니다.
+	',
+	'',
+	'만월의기운',
+	'아군 모두의 방어량, 최대 생명력을 10%만큼 증가시킵니다.
+	',
+	'',
+	'"내앞에 꿇으라. 나는 너의 지배자이자 통치자이다." - 챠바나
+
+	마녀들이 숭배하는 신 중의 하나인 챠바나.
+	신화에 따르면 그는 달빛에서 태어나 밤의 힘을 자유자재로 다루며, 특히 보름달이 뜰 때 그 힘이 극대화 된다고 한다.
+	때문에 마녀들은 그를 숭배하고 그에게서 밤의 힘을 얻는다.
+	'
+FROM card_info a
+WHERE cardname = '챠바나';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 25443, 4996, 4348, 
+	'찬란한파동',
+	'적 모두에게 공격력의 70%만큼 피해를 입힙니다.
+	추가로 보호막의 100%만큼 파동 피해를 입힙니다.
+	',
+	'',
+	0,
+	'찬란한보호',
+	'자신에게 5초 동안 현재 생명력의 50%만큼 보호막을 생성합니다.
+	추가로 아군 모두의 해로운 효과를 2개 제거합니다.
+	대상의 해로운 효과 제거시 3초 동안 막기확률을 15%만큼 증가시킵니다.
+	(제거한 수만큼 효과가 증가됩니다.)
+	',
+	'',
+	0,
+	'아이리스의명령',
+	'명령을 수행할 때마다 자신에게 공격력의 15%만큼 생명력을 회복시킵니다.
+	아군에게 명령 수행 시 아군 모두에게 3초 동안 명중 확률을 20%만큼 증가시킵니다.
+	',
+	'',
+	'아이리스의가호',
+	'아군 모두의 치유량을 25%만큼, 출혈 면역력을 30%만큼 증가시킵니다.
+	',
+	'',
+	'래딜 북쪽에 존재한다고만 알려진 하얀 숲은 강력한 보호막으로 인해 외부에서의 접근이 어려워 지금까지도 알려진게 많지 않다.
+	하얀 숲을 지키는 여왕 아이리스는 외부세력으로부터 하얀숲을 지키고자 평생을 희생해 보호막을 유지하는데 살아왔고
+	앞으로도 그녀의 수명이 다 할때까지 계속될 것이다.
+	'
+FROM card_info a
+WHERE cardname = '아이리스';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 24679, 3747, 3747, 
+	'신중한일격',
+	'적에게 공격력의 180%만큼 관통 피해를 입히고, 이로운 효과를 5개 제거합니다.
+	대상의 이로운 효과 제거시 5초 동안 공격력의 40%만큼 출혈 피해를 입힙니다.
+	(제거한 수만큼 효과가 증가됩니다.)
+	',
+	'',
+	2,
+	'화살폭격',
+	'적 모두에게 공격력의 80%만큼 피해를 입히고, 2초 동안 탈진 상태로 만듭니다.
+	추가로 2초 동안 방어량, 회피 확률을 20%만큼, 막기 확률을 15%만큼 감소시킵니다.
+	',
+	'',
+	0,
+	'승리의환호',
+	'아군 모두의 명중 확률, 공격력을 10%만큼 증가시킵니다.
+	명령을 수행할 때마다, 자신에게 치명타 기회를 1회 부여합니다.
+	(이 효과는 7초마다 적용됩니다.)
+	',
+	'',
+	'신궁의잠재력',
+	'전투가 시작되면 적 모두의 방어력을 10%만큼 감소시킵니다.
+	피격 시 5초 동안 적에게 상태이상 면역력을 30%만큼 감소시킵니다.
+	(이 효과는 3초 마다 적용됩니다.)
+	공격시 대상이 표적 상태일때 공격력의 50%만큼 피해를 입히고, 이로운 효과를 1개 제거합니다.
+	',
+	'',
+	'요정족 최고의 명궁수 이며, 신궁이라 불릴만한 실력과 자격을 갖춘 그는 한번 노린 적을 놓친 적이 없다.
+	그의 활시위가 당겨지는 순간 적들은 두려움에 떨게 된다.
+
+	전장에서는 뛰어난 전략가로써 전투시 많은 요정족들은 그와 함께 싸우길 원하며, 그와 함께라면 두려울 것이 없다.
+	'
+FROM card_info a
+WHERE cardname = '베르딘';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 25443, 5134, 4163, 
+	'대정령의빛',
+	'아군 모두에게 5초 동안 공격력의 100%만큼 재생 시킵니다.
+	추가로 3초 동안 해로운 효과를 3개 제거합니다.
+	',
+	'',
+	0,
+	'대정령의분노',
+	'적에게 공격력의 100%만큼 관통 피해를 입히고, 이로운 효과를 3개 제거합니다.
+	대상의 이로운 효과 제거시 3초 동안 공격 속도를 30%만큼 감소시킵니다.
+	(제거한 수만큼 효과가 증가됩니다.)
+	',
+	'',
+	0,
+	'대정령의가호',
+	'전투가 시작되면 아군 모두에게 8초 동안 방어력, 반격 확률을 20%만큼 증가시킵니다.
+	(이 효과는 제거되지 않습니다.)
+	피격 시 아군 모두에게 4초 동안 상태이상 면역력을 30%만큼 증가시킵니다.
+	(이 효과는 3초 마다 적용됩니다.)
+	',
+	'',
+	'대정령의저주',
+	'적 모두의 회복량을 50%만큼, 상태이상 면역력을 20%만큼 감소시킵니다.
+	아군에게 명령 수행 시 적 모두의 이로운 효과를 1개 제거합니다.
+	대상의 이로운 효과 제거시 공격력의 50%만큼 관통 피해를 입힙니다.
+	(이 효과는 1초 마다 적용 됩니다.)
+	',
+	'',
+	'"정령들의 가호가 당신과 함께하길" - 루미너스
+
+	요정계 대정령 여신 루미너스는 정령들을 이용하여 요정족의 풍요로운 삶을 위해 헌신하고 있으며,
+	자애로운 성격으로 다른 종족과의 친밀한 유대 관계를 가지고 있지만,
+	몬스터/튜톤/악마 종족에 대해서는 적대적인 모습을 보인다.
+	'
+FROM card_info a
+WHERE cardname = '루미너스';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 30022, 5366, 5181, 
+	'하늘의분노',
+	'적 모두에게 공격력의 225%만큼 피해를 입히고, 이로운 효과를 2개 제거합니다.
+	대상의 이로운 효과 제거시 5초 동안 공격력의 30%만큼 관통 출혈 피해를 입힙니다.
+	(제거한 수만큼 효과가 증가됩니다.)
+	절망의 문장 효과:5초 동안 공격 속도를 20%만큼 감소시킵니다.
+	',
+	'',
+	3,
+	'타오르는갑옷',
+	'아군에게 5초동안 현재 생명력의 30%만큼 보호막을 생성합니다.
+	추가로 공격량, 반격확률을 20%만큼 증가시키고, 도발상태로 만듭니다.
+	5초 후 대상의 이로운 효과가 모두 제거하고, 5초 동안 탈진 상태로 만듭니다.
+	(탈진 효과는 제거되지 않습니다.)
+	',
+	'',
+	0,
+	'칠흑의장막',
+	'적 모두의 명중확률, 회피 확률을 10%만큼 감소시킵니다.
+	',
+	'',
+	'칠흑의속박',
+	'전투가 시작되면 적 모두에게 절망의 문장을 1개 부여합니다.
+	(이 효과는 제거되지 않습니다.)
+	피격 시 적 모두에게 절망의 문장을 1개 부여하고, 행동력을 20%만큼 감소시킵니다.
+	(이 효과는 2초 마다 적용 됩니다.)
+	',
+	'',
+	'"나에게 대항하는 어리석은 자들에게 죽음을 선물할 뿐" - 엘카너스
+
+	다크엘프 중 궁극의 마법력을 가지고 있어 많은 이들의 존경을 받지만, 호전적인 성격으로 인해
+	엘카너스는 다른 종족뿐만 아니라 동족내에서도 그녀에 대한 원성이 자자하다.
+	'
+FROM card_info a
+WHERE cardname = '엘카너스';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 28496, 5227, 5273, 
+	'설풍',
+	'적 모두에게 공격력의 100%만큼 피해를 입히고, 25% 확률로 3초 동안 빙결 상태로 만듭니다.
+	',
+	'',
+	0,
+	'혹한의파편',
+	'적에게 공격력의 150%만큼 피해를 입히고, 이로운 효과를 5개 제거합니다.
+	대상의 이로운 효과 제거시 4초 동안 방어력을 10%만큼 감소시킵니다.
+	(제거한 수만큼 효과가 증가됩니다.)
+	',
+	'',
+	0,
+	'새하얀설레임',
+	'명령을 수행할 때마다 자신의 해로운 효과를 1개 제거합니다.
+	피격시 자신에게 5초 동안 반격 확률을 25%만큼 증가시킵니다.
+	(이 효과는 3초 마다 적용 됩니다.)
+	반격 시 자신에게 즉시 공격 기회를 부여합니다.
+	(이 효과는 3초 마다 적용 됩니다.)
+	',
+	'',
+	'영광의빛',
+	'공격 시 자신에게 5초 동안 공격량을 10%만큼, 상태이상 면역력을 25%만큼 증가시킵니다.
+	(이 효과는 1초 마다 적용됩니다.)
+	치명타 공격시 적에게 2초 동안 기절상태로 만듭니다.
+	',
+	'',
+	'"고요 속을 거닐어 볼까요?" - 프레이즈
+
+	프레이즈는 매우 조심스럽게 선한 이들을 돕는다.
+	평소 래딜 전역을 돌아다니며 아름다운 음색으로 사람들의 마음을 치유하곤 하는 음유시인 프레이즈는
+	겨울 축제 기간 동안은 가장 낮은 곳에서 고통스러운 삶을 감내하는 이들을 찾아 나선다.
+	그녀는 조용한 밤에 가난한 성자와 타인을 위해 희생한 자들의 침상에 이들의 업적을 칭송하는 선물을 두고 온다.
+	프레이즈의 노력으로 세상은 좀 더 살만한 곳이 된다.
+	'
+FROM card_info a
+WHERE cardname = '프레이즈';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 25188, 5366, 4070, 
+	'여왕의축복',
+	'아군 모두에게 공격력의 40%만큼 생명력을 회복시키고, 해로운 효과를 5개 제거합니다.
+	대상의 해로운 효과 제거시 10초 동안 최대 생명력의 20%만큼 보호막을 생성합니다.
+	(제거한 수만큼 효과가 증가됩니다.)
+	',
+	'',
+	0,
+	'혹한의축제',
+	'적 모두에게 공격력의 40%만큼 피해를 입히고, 50%확률로 3초 동안 빙결 상태로 만듭니다.
+	',
+	'',
+	0,
+	'얼어붙은심장',
+	'자신의 치유량, 빙결 면역력을 50%만큼 증가시킵니다.
+	',
+	'',
+	'고고한여왕',
+	'일반 공격 시 적에게 4초 동안 탈진 상태로 만들고, 보호막 효과를 모두제거합니다.
+	치명타 공격 시 자신의 스킬 재사용시간을 10초 단축시킵니다.
+	(이 효과는 5초 마다 적용됩니다.)
+	',
+	'',
+	'"함께 축제를 즐겨보겠어?" - 이오니아
+
+	래딜의 북부 지방에는 끝없는 겨울이 계속되는 나라가 있다.
+	이 땅의 사람들은 혹한의 추위속에서도 용기를 잃지 않고 서로의 온기에 기대어 살아간다.
+	이들의 이런 삶에는 이 나라의 여왕 이오니아의 영향이 컸다.
+	아무리 힘들고 어려운 시기에도 미소를 잃지 않고 백성들을 온화하게 이끈 이오니아는 신비한 힘으로
+	늘 축제같은 하루하루를 보낼수 있도록 해주었기에 겨울 축제의 여왕이란 이름으로 불리게 된다.
+	'
+FROM card_info a
+WHERE cardname = '이오니아';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 22644, 3423, 4024, 
+	'비전낙하',
+	'적에게 공격력의 75%만큼 관통 피해를 입히고, 6초 동안 공격력을 50%만큼 감소시킵니다.
+	',
+	'',
+	0,
+	'에너지 폭류',
+	'적에게 공격력의 100% 만큼 증폭 피해를 입히고, 8 초동안 방어력을 25%만큼 감소시킵니다.
+	',
+	'',
+	0,
+	'빛의분노',
+	'공격 시 자신에게 5초 동안 행동력을 50%만큼 채워주고, 치명타 확률을 15%만큼 증가시킵니다.
+	추가로 해로운 효과를 1개 제거합니다.
+	(이 효과는 1.5초 마다 적용됩니다.)
+	',
+	'',
+	'감속의진언',
+	'공격 시 적의 이로운 효과를 2개 제거합니다.
+	대상의 이로운 효과 제거시 공격력의 25%만큼 관통 피해를 입힙니다.
+	(제거한 수만큼 효과가 증가됩니다.)
+	치명타 공격 시 적에게 3초 동안 행동력을 30%만큼 감소시킵니다.
+	',
+	'',
+	'"이것이... 진정한 힘이다!." - 레티르
+
+	위대한 모험가이자 겸손한 방랑자 레티르를 기억하는가? 래딜을 모험하던 그는 우연히 희귀한 펜던트를 획득한 후,
+	그것을 행운의 부적이라고 착각하여 경계심 없이 목에 걸게 되는 실수를 범하게 된다.
+	하지만 불행히도 그것은 세공된 검은 눈물의 조각이었다. 검은 눈물의 힘은 그의 가슴을 파고들어 그에게 젊음과 힘을 되돌려 준 대신
+	타락의 길로 유혹하고 있다. 그는 과연 스스로 이힘을 거역할 수 있을 것인가?
+	'
+FROM card_info a
+WHERE cardname = '레티르';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 24934, 5227, 4255, 
+	'꽃가루의향연',
+	'적 모두에게 공격력의 100%만큼 피해를 입히고, 이로운 효과를 2개 제거합니다.
+	대상의 이로운 효과 제거시 3초 동안 방어력을 15%만큼 감소시킵니다.
+	',
+	'',
+	0,
+	'평온의씨앗',
+	'적에게 공격력의 120%만큼 피해를 입히고, 4초 동안 방어량을 30%만큼 감소시킵니다.
+	추가로 3초 동안 행동력을 30%만큼 감소시킵니다.
+	',
+	'',
+	0,
+	'꽃들의가호',
+	'전투가 시작되면 아군 모두에게 5초 동안 공격력을 25%만큼, 8초 동안 수면 면역력을 100%만큼 증가시킵니다.
+	공격 시 아군 모두의 행동력을 10%만큼 채우고 2초 동안 명중 확률을 10%만큼 증가시킵니다.
+	(이 효과는 1초 마다 적용 됩니다.)
+	',
+	'',
+	'수호자의 결의',
+	'자신의 생명력이 [80%/60%/40%/20%] 일 때마다 공격 속도를 25%만큼 증가시킵니다.
+	피격시 아군 모두의 해로운 효과를 1개 제거하고, 
+	2초 동안 공격력을 10%만큼 증가시킵니다.
+	(이 효과는 2초 마다 적용 됩니다.)
+	',
+	'',
+	'"꽃들은 항상 우리를 지켜준답니다." - 로제타
+
+	엘프들의 숲을 지키는 수호자인 요정 로제타는 나비여왕의 뒤를 이을 가장 유력한 후보로 알려져 있다.
+	본래 민들레의 요정이었던 그녀는 다른 요정들과는 다르게 유달리 꽃에 대해 깊은 애정을 보였다.
+	민들레만을 돌보던 그녀는 곧 모든 세상의 꽃들에게 관심을 가지게 되었으며 지금은 온 세상의 꽃들로부터 
+	사랑을 받는 존재가 되었다. 그녀가 원한다면 래들의 모든 꽃들은 기꺼이 그녀를 도와줄 것이다.	
+	'
+FROM card_info a
+WHERE cardname = '로제타';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 25951, 3469, 7355, 
+	'굉음의포효',
+	'적 모두에게 공격력의 125%만큼 피해를 입힙니다.
+	절망의 문장 효과:5초 동안 스킬 속도를 20%만큼 감소시킵니다.
+	',
+	'',
+	1,
+	'드래곤의결속',
+	'자신에게 3초 동안 결속 상태로 만들고, 2초 동안 최대 생명력의 30%만큼 보호막을 생성합니다.
+	(이 효과는 제거되지 않습니다.)
+	추가로 아군 모두에게 3초 동안 방어량, 막기 확률을 30%만큼 증가시킵니다.
+	',
+	'',
+	0,
+	'방어의지배자',
+	'피격 시 자신에게 3초 동안 방어량을 10%만큼 증가시킵니다.
+	(이 효과는 1초마다 적용됩니다.)
+	막기 시 자신에게 4초 동안 공격력의 70%만큼 재생시킵니다.
+	(이 효과는 4초마다 적용됩니다.)
+	',
+	'',
+	'견고한방어',
+	'공격시 적에게 방어력의 70%만큼 돌진 피해를 입힙니다.
+	자신의 생명력이 [80%/60%/40%] 일 대마다 방어력을 [10%/20%/30%] 만큼 증가시킵니다.
+	(이 효과는 제거 되지 않습니다.)
+	',
+	'',
+	'드래곤 종족중 가장 단단한 피부를 가진 그는 왠만한 공격으로는 티끌만 한 상처도 줄수가 없다.
+	아칸트의 호전적인 성향으로 많은 지역들이 피해를 보고 있으며, 오랜 기간 동안 아칸트를 토벌하기 위해 애써왔지만
+	번번이 토벌대는 전멸하게 되었고 앞으로도 아칸트를 토벌하기 위한 도전은 계속 될 것이다.
+	'
+FROM card_info a
+WHERE cardname = '아칸트';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 30022, 5366, 5181, 
+	'죽음의메아리',
+	'적 모두에게 공격력의 50%만큼 관통 피해를 입히고, 5초 동안 공격력의 100%만큼 흡혈 출혈 피해를 입힙니다.
+	절망의 문장 효과:8초 동안 방어량을 20%만큼 감소시킵니다.
+	',
+	'',
+	0,
+	'사신의안개',
+	'적에게 공격력의 150%만큼 피해를 입힙니다.
+	파멸의 문장 효과:10초 동안 공격력의 100%만큼 출혈 피해를 입힙니다.
+	',
+	'',
+	0,
+	'맹독침투',
+	'전투가 시작되면 조건에 따른 연계 효과를 발동합니다.
+	아군 드래곤 종족의 반격 확률을 15%만큼 증가시킵니다.
+	적 인간/몬스터/요정 종족의 공격 속도를 10%만큼 감소시킵니다.
+	치명타 공격 시 자신에게 5초 동안 흡혈량을 50%만큼 증가시키고, 적 모두에게 5초 동안 공격력의 100% 만큼 흡혈 출혈 피해를 입힙니다.
+	(이 효과는 1초 마다 적용 됩니다.)
+	',
+	'',
+	'상처찢기',
+	'공격 시 적에게 조건에 따른 연계효과를 발동합니다.
+	대상이 출혈 상태일때 10초 동안 공격력의 50%만큼 관통 출혈 피해를 입힙니다.
+	반격 시 적에게 7초 동안 공격력의 100%만큼 출혈 피해를 입힙니다.
+	(이 효과는 제거되지 않습니다.)
+	피격 시 자신의 행동력을 20%만큼 채웁니다.
+	(이 효과는 3초 마다 적용됩니다.)
+	',
+	'',
+	'"이 몸이 선사하는 죽음의 기운을 크게 들이켜 죽음이라는 축복을 받아들여라!" - 스카레스
+
+	용족이 벌인 전쟁에서 가장 추악하고 끔직한 현장이 간혹 발견되는데 이는 모두 강력한 죽음의 기운을 사용하는 스카레스와
+	그의 수하들의 짓이다. 화려한 파괴력을 자랑하는 다른 드래곤들보다 외형이나 능력 면에서 한수 아래라는 평가를 받지만,
+	죽음의 기운이 남기고 간 그 처참한 현장은 보는 이들로 하여금 그 어떤 존재보다 강력한 공포심을 새기기에 부족함이 없다.
+	'
+FROM card_info a
+WHERE cardname = '스카레스';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 31549, 5366, 4996, 
+	'멸망의숨결',
+	'적에게 공격력의 150%만큼 피해를 입힙니다.
+	대상이 기절 상태일 때 공격력의 100%만큼 관통 피해를 입힙니다.
+	',
+	'',
+	0,
+	'단죄의불꽃',
+	'적 모두에게 공격력의 100% 만큼 피해를 입히고, 혼돈의 문장을 2개 부여합니다.
+	대상이 표적 상태 일때 공격력의 50%만큼 관통 피해를 입힙니다.
+	',
+	'',
+	0,
+	'황천의빛',
+	'자신의 생명력이 50% 이상일 때 자신의 공격력을 15%만큼 증가시킵니다.
+	명령을 수행할 때마다 자신의 해로운 효과를 1개 제거합니다.
+	사망 시 적 모두의 이로운 효과를 2개 제거하고, 5초 동안 표적 상태로 만듭니다.
+	(이 효과는 제거 되지 않습니다.)
+	',
+	'',
+	'화룡의포효',
+	'공격 시 자신에게 1초 동안 행동력을 40%만큼 채워줍니다.
+	(이 효과는 5초 마다 적용됩니다.)
+	피격 시 자신에게 1초 동안 방어량을 50%만큼 증가시킵니다.
+	(이 효과는 3초 마다 적용됩니다.)
+	피격 시 아군 모두에게 3초 동안 반격 확률을 15%만큼 증가시킵니다.
+	(이 효과는 1초 마다 적용됩니다.)
+	반격 시 아군 모두에게 3초 동안 공격력을 25%만큼 증가시킵니다.
+	(이 효과는 2초 마다 적용됩니다.)
+	',
+	'',
+	'"끝없이 부정한 존재들이여, 나 불의 화신 칼페리온이 이제부터 너희들의 죄를 심판할 것이다!" - 칼페리온
+
+	지식의 정점에 도달한 고위급 드래곤 칼페리온
+	끝을 모르고 퍼져 나가는 부정한 존재들을 더는 두고 볼 수 없어 세상의 정화라는 명목하에 단죄의 불꽃으로 심판을 시작한다.	
+	'
+FROM card_info a
+WHERE cardname = '칼페리온';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 26715, 4394, 4440, 
+	'황혼유성',
+	'적 모두에게 공격력의 90%만큼 피해를 입히고, 10초 동안 공격력의 50%만큼 출혈 피해를 입힙니다.
+	대상이 탈진 상태 일때 공격력의 50%만큼 관통 피해를 입히고, 4초 동안 방어량을 20%만큼 감소시킵니다.
+	',
+	'',
+	0,
+	'지옥의불길',
+	'적에게 공격력의 150%만큼 피해를 입히고, 4초 동안 탈진 상태로 만듭니다.
+	대상이 침묵 상태일 때 3초 동안 공격력의 100%만큼 관통 출혈 피해를 입힙니다.
+	',
+	'',
+	0,
+	'광기의심연',
+	'전투가 시작되면 자신에게 10초 동안 최대 생명력,침묵, 면역력을 50%만큼 증가시킵니다.
+	(이 효과는 제거되지 않습니다.)
+	자신의 생명력이 50% 이상일때 자신의 공격 속도를 20%만큼 증가시킵니다.
+	자신의 생명력이 50% 이하일때 자신의 공격력, 공격량을 15%만큼 증가시킵니다.
+	',
+	'',
+	'뒤틀린정의',
+	'피격 시 자신에게 행동력을 10%만큼 채워주고, 5초 동안 방어력을 20%만큼 증가시킵니다.
+	(이 효과는 3초 마다 적용됩니다.)
+	공격 시 적의 이로운 효과를 1개 제거합니다.
+	대상의 이로운 효과 제거시 혼돈의 문장을 1개 부여합니다.
+	',
+	'',
+	'"활활 타올라라. 이 부정한 세상을 모두 잿더미로 만들어주마!" - 마룡 헬카이트
+
+	뛰어난 지능을 지닌 용들은 그 통찰력으로 인해 감춰진 세상의 진실을 깨닫게 되는 경우가 있다.
+	부조리한 세상의 모순과 직면하게 된 헬카이트 역시 그랬다. 분노를 이기지 못하고 광기에 휩싸인 정의의 수호자는
+	이 세상을 위한 최선의 방법은 오직 불길로 정화하는 것이라고 굳게 믿게 된다.
+	이후 수많은 문명들이 그의 숨결 아래 사라졌으며 아직까지도 래딜의 큰 위협이 되고 있다.
+	'
+FROM card_info a
+WHERE cardname = '헬카이트';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 28496, 5227, 5273, 
+	'백룡소환',
+	'적 모두에게 공격력의 110%만큼 증폭 피해를 입힙니다.
+	',
+	'',
+	2,
+	'연사',
+	'적에게 공격력의 100%만큼 관통 피해를 입히고, 4초 동안 표적 상태로 만듭니다.
+	파멸의 문장 효과:공격력의 100%만큼 피해를 입힙니다.
+	',
+	'',
+	0,
+	'용신기',
+	'자신의 생명력이 50% 이상 일때 공격량을 20%만큼, 공격 속도를 25%만큼 증가시킵니다.
+	자신의 생명력이 50% 이하 일때 방어량을 30%만큼, 스킬속도, 수면 면역력을 100%만큼 증가시킵니다.
+	',
+	'',
+	'투기',
+	'사망 시 자신을 최대 생명력의 1%로 부활시킵니다.
+	부활시 행동력을 100%만큼 채워주고, 8초 동안 최대 생명력의 50%만큼 보호막을 생성합니다.
+	(전투중 한번만 발동하며, 보호막은 제거되지 않습니다.)
+	',
+	'',
+	'"새로운 생이 새로운 명을 부여하리니" - 히실리스
+
+	사냥꾼 길드에 속한 자들이라면 모르는 이가 없을 정도로 유명했던 여성 헌터, 실리스.
+	어느날 용의 무덤을 지나던 그녀는 잠들어 있던 언데드 드래곤들을 깨우게 되고,
+	이윽고 온 몸이 찢겨진채 심연의 나락으로 떨어진다.
+	선한 마음의 백룡 히스가 그련 그녀를 발견해 자신의 피를 나누었고, 다시 뛰기 시작한 그녀의 심장은 드래곤의 피를 뿜어내기 시작했다.
+	'
+FROM card_info a
+WHERE cardname = '히실리스';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 24679, 3747, 3747, 
+	'화룡의분노',
+	'적에게 공격력의 125%만큼 증폭 피해를 입히고, 이로운 효과를 2개 제거합니다.
+	대상의 이로운 효과 제거시 5초 동안 공격력의 50%만큼 관통 출혈 피해를 입힙니다.
+	(제거한 수만큼 효과가 증가됩니다.)
+	',
+	'',
+	0,
+	'작열하는분노',
+	'적 모두에게 공격력의 100% 만큼 피해를 입히고, 6초 동안 표적 상태로 만듭니다.
+	혼돈의 문장 효과:0.5초 동안 기절 상태로 만듭니다.
+	',
+	'',
+	0,
+	'피의굶주림',
+	'공격 기회를 가질 때마다 자신이 출혈 상태이면 4초 동안 자신의 공겨량, 공격속도를 15%만큼 증가시킵니다.
+	공격 시 대상이 표적 상태일때 공격력의 50%만큼 관통 피해를 입힙니다.
+	',
+	'',
+	'반격타',
+	'자신의 반격 확률이 25%만큼 증가합니다.
+	반격 시 적에게 공격력의 50%만큼 관통 피해를 입힙니다.
+	',
+	'',
+	'드라코니안 신전에서 의식을 치루고 더욱 강력해진 카벨
+	그 어떤 적도 맞설수 없다.
+	'
+FROM card_info a
+WHERE cardname = '카벨';
+
+
+
+
+---------------------------------
+
+
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 25188, 4811, 4533, 
+	'지친영혼에의표식',
+	'적 모두에게 공격력의 100%만큼 피해를 입히고, 파멸의 문장을 1개 부여합니다.
+	추가로 대상이 탈진 상태일 때 파멸의 문장을 1개 부여합니다.
+	',
+	'',
+	0,
+	'피흘리는영혼수확',
+	'적모두에게 공격력의 100%만큼 피해를 입힙니다.
+	대상이 출혈 상태 일때 공격력의 75%만큼 관통 피해를 입힙니다.
+	',
+	'',
+	0,
+	'영혼구속',
+	'피격 시 적 모두의 이로운 효과를 1개 제거합니다.
+	(이 효과는 2초 마다 적용됩니다.)
+	추가로 공격한 대상이 출혈 상태일때 자신에게 회피 기회를 1회 부여합니다.
+	(이 효과는 3초 마다 적용됩니다.)
+	',
+	'',
+	'사신의등장',
+	'전투가 시작되면 적 모두에게 파멸의 문장을 1개 부여합니다.
+	(이 효과는 제거되지 않습니다.)
+	회피 시 적 모두에게 파멸의 문장을 1개 부여합니다.
+	',
+	'',
+	'한때 뱀파이어였던 그녀는 래딜의 변방에서 가족들과 행복한 삶을 살고 있었지만, 
+	누군지 모를 불의의 습격으로 목숨을 잃게 된다.
+	한순간에 가족과 행복한 삶을 모두 잃게 된 그녀는 영혼만 남아 복수를 꿈꾸고 있었다.
+
+	어느날 듀크를 만난 그녀의 영혼은 검은 눈물과 함께하게 되며 니프리드 라는 새로운 이름을 얻게 된다.
+
+	이제 그녀는 죽음을 퍼뜨리는 마녀로 불리고 있다.
+	'
+FROM card_info a
+WHERE cardname = '니프리드';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 30022, 5366, 5181, 
+	'저주의안개',
+	'적 모두에게 공격력의 100%만큼 피해를 입힙니다.
+	대상의 생명력이 30% 이상 일때 부식의 저주를 발동시킵니다.
+	부식의 저주:대상의 방어력을 10%만큼, 행동력을 20%만큼 감소시키고 스킬 재사용 시간을 1초 연장 시킵니다.
+	',
+	'',
+	0,
+	'저주의일격',
+	'적에게 공격력의 150%만큼 피해를 입히고 이로운 효과를 2개 제거합니다.
+	대상의 이로운 효과 제거시 3초 동안 공격력을 25%만큼 감소시킵니다.
+	(제거한 수만큼 효과가 증가됩니다.)
+	',
+	'',
+	0,
+	'죽음의희생',
+	'전투가 시작되면 아군 모두에게 5초 동안 최대 생명력의 10%만큼 보호막을 생성합니다.
+	최대 생명력의 20% 이상일때 한번의 피해로 사명하면 회생 할수 있습니다.
+	부활 시 아군 모두에게 5초 동안 최대 생명력의 15%만큼 재생시키고, 행동력을 20%만큼 채워줍니다.
+	(이 효과는 5초 마다 적용됩니다.)
+	',
+	'',
+	'저주의집행자',
+	'자신의 회피 확률을 10%만큼 증가시킵니다.
+	자신의 생명력이 50% 이상 일대 아군모두의 방어력을 20%만큼 증가시킵니다.
+	명령을 수행 할 때 마다 자신의 해로운 효과를 1개 제거합니다.
+	',
+	'',
+	'래딜 전역을 돌아다니며 죽은 자를 검은 눈물로 인도하는 듀크
+	살아 있는 자가 그를 마주치게 된다면 그자는 검은 눈물의 저주에 걸리게 되고,
+	저주에 걸린 자는 제 명에 살지 못하고 듀크의 곁으로 오게 된다.
+	'
+FROM card_info a
+WHERE cardname = '듀크';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 23916, 3608, 3932, 
+	'습격',
+	'적에게 공격력의 75%만큼 피해를 입히고, 3초 동안 탈진 상태로 만듭니다.
+	대상이 출혈 상태 일때 3초 동안 침묵 상태로 만듭니다.
+	',
+	'',
+	0,
+	'급소도려내기',
+	'적에게 공격력의 75%만큼 관통 피해를 입히고, 
+	1초 동안 공격력의 25%만큼 관통 출혈 피해를 입힙니다.
+	대상이 탈진 상태 일때 공격력의 50%만큼 관통 피해를 입힙니다.
+	',
+	'',
+	0,
+	'추적자의표식',
+	'공격 기회를 가질때마다 적 모두에게 0.1초 동안 표적 상태로 만듭니다.
+	일반 공격 시 자신의 스킬 재사용 시간을 1초 단축 시킵니다.
+	(이 효과들은 1초 마다 적용됩니다.)
+	',
+	'',
+	'살의의시선',
+	'공격 시 자신의 행동력을 100%만큼 채워주니다.
+	(이 효과는 1초 마다 적용 됩니다.)
+	아군 에게 명령 수행 시 2초 후 사냥개시를 발동시킵니다.
+	(전투 중 한번만 발동됩니다.)
+	사냥개시:자신의 행동력을 100% 만큼 채우고, 스킬 재사용 시간을 5초 단축시킵니다.
+	7초 동안 자신의 치명타 확률을 100%만큼, 극대화를 50%만큼 증가시킵니다.
+	(이 효과는 제거 되지 않습니다.)
+	',
+	'',
+	'태어났을 때부터 암살집단에서 자라온 이아나는 타고난 암살자였다.
+	검은 눈물을 추적하는 임무를 수행 중 그 기운에 휩싸여 목숨을 잃었다가 
+	다시 태어난 이아나는 그 힘에 매료되어 검은 눈물을 게속해서 추적하고 있다.
+
+	어떤 이유에서든 검은 눈물을 차지하려는 자들은 이아나의 습격에 주의해야 할 것이다.
+	그녀가 모습을 드러냈을 때는 반드시 상대의 목숨을 끊을 수 있는 기회를 잡았을 때 뿐이기 때문이다.
+	'
+FROM card_info a
+WHERE cardname = '이아나';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 26715, 4394, 4440, 
+	'파멸의낙인',
+	'적에게 2초 동안 공격력의 100% 만큼 흡혈 출혈 피해를 입힙니다.
+	대상에게 부여된 혼돈의 문장, 절망의 문장을 모두 발동시켜. 발동 시킨 개수만큼 파멸의 문장으로 변경합니다.
+	(대상에게 부여된 파멸의 문자잉 5개인 경우, 혼돈의 문장과 절망의 문장은 발동 되지 않고 제거됩니다.)	
+	',
+	'',
+	0,
+	'불타는괴수',
+	'적 모두에게 공격력의 100%만큼 피해를 입힙니다.
+	파멸의 문장 효과:공격력의 50%만큼 관통 피해를 입힙니다.
+	',
+	'',
+	2,
+	'열상',
+	'전투가 시작되면 적 모두에게 파멸의 문장, 혼돈의 문장, 절망의 문장을 1개 부여합니다.
+	일반 공격 시 적에게 혼돈의 문장, 절망의 문장을 1개 부여합니다.
+	',
+	'',
+	'살아있는폭탄',
+	'자신의 빙결 면역력을 100%만큼 증가시킵니다.
+	명령을 수행할 때마다 내열, 과열을 발동시킵니다.
+	내열:자신에게 공격력의 80%만큼 피해를 입힙니다.
+	과열:적 모두 에게 1초 후 공격력의 40%만큼 피해를 입힙니다.
+	',
+	'',
+	'"영원히 불타는 내 몸처럼 온세상을 불태워버리겠어"
+
+	불타는 화염속에서 검은 눈물에 의해 다시 태어난 이프리타는 온몸이 화염에 휩싸여있다.
+	과거에 어떤 사람이었는지, 목적이 무엇인지조차 알 수 없지만, 
+	지금의 그녀는 눈앞에 보이는 모든 것을 불태워 없애겠다는 생각뿐이라고 전해지며
+	래딜의 불타는 악마로 불리고 있다.
+	'
+FROM card_info a
+WHERE cardname = '이프리타';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 30022, 5366, 5181, 
+	'죽음의대지',
+	'적 모두에게 공격력의 100%만큼 피해를 입히고, 5초 동안 상태 이상 면역력을 30%만큼 감소시킵니다.
+	대상이 출혈 상태 일때 공격력의 50%만큼 관통 피해를 입힙니다.
+	',
+	'',
+	0,
+	'무한의갈증',
+	'적에게 5초 동안 공격력의 200%만큼 흡혈 출혈 피해를 입힙니다.
+	파멸의 문장 효과:5초 동안 공격력의 100%만큼 흡혈 출혈 피해를 입힙니다.
+	',
+	'',
+	2,
+	'어둠의규율',
+	'전투가 시작되면 적 모두에게 3초 동안 공격량을 50%만큼, 회피 확률, 막기 확률을 25%만큼 감소시킵니다.
+	추가로 8초 동안 공격력의 100%만큼 흡혈 출혈 피해를 입힙니다.
+	(출혈 효과는 제거되지 않습니다.)
+	',
+	'',
+	'불사자의저주',
+	'공격 기회를 가질때마다 자신이 탈진 상태이면, 2초 동안 자신의 공격량을 25%만큼 증가시킵니다.
+	사망 시 적 모두에게 1초 동안 기절 상태로 만들고, 5초 동안 공격력의 150%만큼 관통 출혈 피해를 입힙니다.
+	',
+	'',
+	'"부정함은 곧 나의 힘. 죽음이라는 허물을 벗어 던지고 더욱 높은 존재로 거듭나리라!" - 알테가스
+
+	래딜에서 금기시 되어 오던 불사 학문을 연구하던 알테가스.
+	연구를 방해하는 존재들로부터 도망을 쳐오다 우연히 헤브니얼로 넘어오게 된다.
+	필사의 존재로서 넘을 수 없는 한계를 느끼던중, 헤브니얼의 검은 눈물을 접하게 되며 불멸의 존재로 재탄생하게 된다.
+	'
+FROM card_info a
+WHERE cardname = '알테가스';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 30022, 5366, 5181, 
+	'악몽의검',
+	'적에게 공격력의 175%만큼 관통 피해를 입히고, 5초 동안 표적 상태로 만듭니다.
+	혼돈의 문장 효과:2초 동안 탈진 상태로 만듭니다.
+	(이 효과는 제거 되지 않습니다.)
+	',
+	'',
+	2,
+	'죽음의숨결',
+	'적 모두에게 공격력의 100%만큼 피해를 입히고, 5초 동안 공격력의 100%만큼 출혈 피해를 입힙니다.
+	절망의 문장 효과:6초 동안 방어량을 20%만큼 감소시킵니다.
+	',
+	'',
+	0,
+	'욕망의기운',
+	'공격 시 적에게 혼돈의 문장, 절망의 문장을 1개씩 부여합니다.
+	피격 시 자신의 해로운 효과를 1개 제거합니다.
+	(이 효과는 2초 마다 적용됩니다.)
+	해로운 효과 제거시 자신에게 5초 동안 공격량을 25%만큼 증가시킵니다.
+	',
+	'',
+	'예언된저주',
+	'회피 시 자신에게 3초 동안 스킬 속도를 30%만큼 증가시킵니다.
+	사망 시 적 모두에게 5초 동안 스킬 속도를 50%만큼, 공격량을 20%만큼 감소시킵니다.
+	',
+	'',
+	'"꿇어라, 우매한 것들아. 너희의 지배자인 내가 돌아왔다!" - 레가드리스
+
+	아주 오래전부터 강대한 지배력으로 협곡의 수많은 종족을 하나의 세력으로 규합시켜 지배하던 마녀.
+	언제부터인가 모습을 보이지않다가 헤브니얼에 퍼진 검은 눈물에 의해 수많은 종족이 이성을 잃고 통제 불능이 되자
+	직접 사태를 수습하기 위해 모습을 드러낸다.
+	혹자는 이렇게 말한다. 비드온을 탄생시킨 것은 어쩌면 이 협곡의 마녀일지도 모른다고.
+	'
+FROM card_info a
+WHERE cardname = '레가드리스';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 23916, 3608, 3932, 
+	'파멸과비탄의밤',
+	'적 모두에게 공격력의 150%만큼 피해를 입히고, 5초 동안 방어량을 30%만큼 감소시킵니다.
+	대상이 출혈 상태일 때 3초 동안 공격력의 30%만큼 흡혈 출혈 피해를 입힙니다.
+	',
+	'',
+	0,
+	'피의윤회',
+	'적 모두에게 자신의 최대 생명력의 30%만큼 피해를 입힙니다.
+	파멸의 문장 효과:공격력의 100%만큼 흡혈 피해를 입힙니다.
+	',
+	'',
+	0,
+	'불멸의카리스마',
+	'사망 시 자신을 최대 생명력의 1%로 부활시키고, 4초 동안 최대 생명력의 50%만큼 보호막을 생성합니다.
+	추가로 4초 후에 피의 그림자를 발동시킵니다.
+	피의 그림자:적 모두에게 공격력의 100%만틈 흡혈 피해를 입힙니다.
+	(전투중 한번만 발동됩니다.)
+	',
+	'',
+	'오래된피의저주',
+	'자신의 생명력이 [80%/60%/40%/20%] 일 때마다 흡혈량을 10%만큼 증가시킵니다.
+	일반 공격 시 자신의 스킬 재사용 시간을 2초 단축 시키고, 2초 동안 공격량을 15%만큼 증가시킵니다.
+	피격시 적에게 파멸의 문장을 1개 부여합니다.
+	',
+	'',
+	'"어둠의 귀환을 두려워하라." - 데미트리
+
+	한 때 뱀파이어들에게 왕이라 일컬어지는 이가 있었다.
+	초월적인 마력과 카리스마로 큰 세력을 이끈 데미트리는 어느 날 래딜에서 자취를 감춘다.
+	왕의 부재는 뱀파이어들에게는 치명적이었고 그들 대부분은 살해당한다.
+	세월이 지나 추적자들에게서 발견된 뱀파이어의 왕은 뜻밖에도 변방에서 소박한 가정을 이루고 있었다.
+	추적자들의 갑작스런 습격으로 아내를 살해당하고 딸을 빼앗긴 그는 피의 복수를 외치며 그의 고성으로 돌아온다.
+	'
+FROM card_info a
+WHERE cardname = '데미트리';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 28496, 5227, 5273, 
+	'죽음의축제',
+	'적 모두에게 공격력의 100%만큼 피해를 입히고, 대상이 침묵 상태일때 공격력의 50%만큼 관통 피해를 입힙니다.
+	추가로 30% 확률로 2초 동안 수면 상태로 만듭니다.
+	',
+	'',
+	0,
+	'암흑의소용돌이',
+	'적모두에게 1초동안 기절 상태로 만들고, 3초동안 이로운 효과를 3개 제거합니다.
+	혼돈의 문장 효과:2초 동안 침묵 상태로 만듭니다.
+	',
+	'',
+	0,
+	'어둠의부활',
+	'자신의 공격 속도를 10%만큼 증가시킵니다.
+	사망 시 자신을 최대 생명력의 25%로 부활시키고, 즉시 공격 기회를 부여합니다.
+	추가로 적 모두에게 3초 동안 침묵 상태로 만듭니다.
+	(전투 중 한번만 발동됩니다.)	
+	',
+	'',
+	'혼돈의메아리',
+	'전투가 시작되면 적 모두에게 3초 동안 상태이상면역력을 50%만큼 감소시킵니다.
+	피격 시 적에게 25%확률로 4초 동안 침묵 상태로 만듭니다.
+	공격 기회를 가질때마다 적 모두에게 15%확률로 파멸의 문장, 혼돈의 문장, 절망의 문장을 1개씩 부여합니다.
+	(문장 부여 확률은 개별적으로 적용됩니다.)
+	',
+	'',
+	'"어둠의 권능이 네 허물을 벗길지니" - 나르샤
+
+	검은 눈물의 인도자라 불리는 나르샤는 자애로운 여성의 형체로 세간에 모습을 드러내길 즐기는 잔혹한 말살자이다.
+	살아있는 모든 것을 오임시켜 미쳐 날뛰게 만드는 그녀의 주변은 "혼돈" 이라는 단어 그 이외엔 표현할 길이 없으며,
+	타락한 자들을 종으로 부리는 혼돈 속 거대한 질서의 모습은 감당할 수 없는 공포감으로 다가온다.
+	'
+FROM card_info a
+WHERE cardname = '나르샤';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 26460, 3562, 6337, 
+	'칼날의춤',
+	'적에게 공격력의 125%만큼 피해를 입히고, 2초동안 기절 상태로 만듭니다.
+	',
+	'',
+	0,
+	'반격준비',
+	'자신에게 4초 동안 반격 확률을 50%만큼 증가시키고, 도발상태로 만듭니다.
+	추가로 아군 모두에게 3초 동안 현재 생명력의 30%만큼 보호막을 생성합니다.
+	',
+	'',
+	0,
+	'단결의외침',
+	'전투가 시작되면 적 모두에게 7초 동안 스킬 속도를 100%만큼 감소시킵니다.
+	자신의 생명력이 [80%/60%/40%] 일 때마다 치유량을 15%만큼 증가시킵니다.
+	',
+	'',
+	'단결의의지',
+	'피격 시 아군 모두의 탈진 효과를 1개 제거하고, 3초 동안 상태이상 면역력을 25%만큼 증가시킵니다.
+	(이 효과는 2초 마다 적용됩니다.)
+	반격 시 아군 모두에게 공격력의 15%만큼 생명력을 회복시킵니다.
+	(이 효과는 1초마다 적용 됩니다.)
+	',
+	'',
+	'용맹한 컬킨 기사중 하나로 래딜의 유명한 기사였던 아게르나는 튜톤 호드와의 대격돌 중에 전사하게 된다.
+	이를 안타깝게 여긴 시그룬 은 아게르나를 발키리의 전사로 그녀를 소환하게 되고,
+	그녀는 곧 발키리 친위대 내에서도 특별 임무를 맡으며 성장하게 된다.
+
+	여느 때 처럼 특별임무를 수행하던 중에 우연히 헤브니얼로 넘어가게되고,
+	결국 승천의 길에 도달하게 된다. 이제 그녀는 승천자 중의 하나로서 검은 눈물의 본질과 맞서 싸우는 천사가 된다.
+	'
+FROM card_info a
+WHERE cardname = '아게르나';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 30022, 5366, 5181, 
+	'선물폭격',
+	'적 모두에게 공격력의 100% 만큼 피해를 입히고, 5초 동안 이료온 효과를 5개 제거합니다.
+	',
+	'',
+	0,
+	'불타는 선물',
+	'적에게 공격력의 100% 만큼 증폭 피해를 입히고, 2초 동안 기절 상태로 만듭니다.
+	',
+	'',
+	0,
+	'크리스마스의공포',
+	'공격 시 적의 치명타 확률을 3초 동안 15%만큼 감소시킵니다.
+	치명타 공격시 적의 행동력을 50% 감소시킵니다.
+	',
+	'',
+	'크리스마스의저주',
+	'적 모두의 스킬 속도를 30%만큼, 회피 확률, 막기 확률, 방어량을 10%만큼 감소시킵니다.
+	',
+	'',
+	'추운 겨울이 되면 나타나 많은 이들에게 축복과 기쁨을 안겨주는 그녀는 항상 커다란 보따리에 선물을 가득 들고 다닌다.
+	하지만 그녀의 선물은 선한 자들에게는 축복이ㅡ 선물로 악한 자들에게는 저주의 선물이 된다.
+	선과 악이 공존하는 많은 이들은 그녀에게 받은 선물을 열기 부담스러워한다고 한다.
+	당신의 선물은 어떤 선물일까?
+	'
+FROM card_info a
+WHERE cardname = '마리아';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 25443, 4626, 4626, 
+	'새벽의빛',
+	'적에게 3초 동안 기절 상태로 만들고, 0.1초 후에 파동을 발동시킵니다.
+	파동: 새벽의 빛을 맞은 대상이 자신의 보호막 수치의 100%만큼 아군 모두에게 파동 피해를 입히고,
+	보호막 효과를 모두 제거합니다.
+	(대상의 특정 패시브 효과가 적용될 수 있습니다.)	
+	',
+	'',
+	0,
+	'영원한승천',
+	'자신에게 5초 동안 공격량을 30%만큼, 공격 속도를 100% 만큼 증가시킵니다.
+	추가로 5 초동안 자신에게 걸린 해로운 효과를 5개 제거합니다.
+	',
+	'',
+	0,
+	'빛의진격',
+	'일반 공격 시 적에게 공격력의 50%만큼 관통 피해를 입힙니다.
+	막기 시 아군 모두에게 4초 동안 최대 생명력의 10%만큼 보호막을 생성합니다.
+	(이 효과는 5초 마다 적용됩니다.)
+	반격 시 자신에게 최대 생명력의 5%만큼 회복시킵니다.
+	(이 효과는 3초 마다 적용됩니다.)
+	피격 시 적에게 20%확률로 2초 동안 침묵 상태로 만듭니다.
+	',
+	'',
+	'최초의승천자',
+	'사망 시 자신을 최대 생명력의 15%로 부활합니다.
+	부활 시 자신에게 5초 동안 최대 생명력의 15%만큼 회복시키고, 아군 모두에게 5초 동안 최대 생명력의 20% 만큼 보호막을 생성합니다.
+	(전투 중 한번만 발동합니다.)
+	',
+	'',
+	'"모든 부정은 우리 힘 앞에 무너질 것이다." - 최초의 승천자 미느엘
+
+	어렸을 적부터 세리아오의 총애를 받던 열렬한 추종자였으며, 최초로 승천의 길에 도달한 헤브니얼 엘프.
+	높은 하늘 부족의 족장인 그녀는 헤브니얼의 위기가 닥치자마자 가장 최전선에서 타락한 동족들을 정화하고 있으며,
+	오직 이 방법만이 평화를 가져올 것이라고 굳게 믿고 있다.
+	'
+FROM card_info a
+WHERE cardname = '미느엘';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 23661, 3515, 3839, 
+	'단죄의검',
+	'적에게 공격력의 85%만큼 관통 피해를 입히고, 2초 동안 기절 상태로 만듭니다.
+	추가로 3초 동안 방어량을 20%만큼 감소시키고, 탈진 상태로 만듭니다.
+	',
+	'',
+	0,
+	'섬광난무',
+	'적에게 공격력의 90%만큼 피해를 2회 입히고, 3초 동안 행동력을 60%만큼 감소시킵니다.
+	추가로 4초 동안 탈진 상태로 만듭니다.
+	',
+	'',
+	0,
+	'선제공격',
+	'전투가 시작되면 자신에게 5초 동안 행동력을 100% 만큼 채워줍니다.
+	(이 효과는 제거되지 않습니다.)
+	피격 시 자신에게 5초 동안 행동력을 100% 만큼 채워줍니다.
+	(이 효과는 2초 마다 적용됩니다.)
+	',
+	'',
+	'처형',
+	'공격 시 적에게 조건에 따른 연계효과를 발동합니다.
+	대상이 탈진 상태일때 공격력의 50%만큼 관통 피해를 입힙니다.
+	파멸의 문장 효과:공격력의 60%만큼 관통 피해를 입힙니다.
+	',
+	'',
+	'"타락한 힘 앞에 굴복한 어리석은 존재들이여.
+	이제 그 부정함을 지위내 새로운 존재로 거듭나거라!" - 가르시엘라
+
+	자신들의 신을 배반한 추방자들을 증오하며 최전선에서 추방자들을 막아서고 있는 승천자.
+	자애로운 느낌의 이미지와는 다르게 냉철하고 완고한 성격을 지니고 있지만, 미느엘이ㅡ 신념을 굳건히 따르며
+	그녀를 위해 할 수 있는 거의 모든 일에 앞장 서고 있다.	
+	'
+FROM card_info a
+WHERE cardname = '가르시엘라';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 25697, 3654, 6846, 
+	'불멸의성역',
+	'아군 모두에게 5초 동안 출혈 면역력을 50%만큼 증가시킵니다.
+	추가로 아군 모두의 해로운 효과를 2개 제거하고, 5초 동안 방어량을 10%만큼 증가시킵니다.
+	(제거한 수만큼 효과가 증가됩니다.)
+	',
+	'',
+	0,
+	'붉은빛의가호',
+	'자신에게 5초 동안 방어력을 100%만큼 증가시키고, 도발 상태로 만듭니다.
+	추가로 3초후에 황혼의 빛을 발동시킵니다.
+	황혼의 빛:아군 모두에게 최대 생명력의 10%만큼 회복시키고, 출혈 효과를 2개 제거합니다.
+	',
+	'',
+	0,
+	'거부하는힘',
+	'자신의 생명력이 50% 이하 일때 자신의 방어량, 반격 확률을 20%만큼 증가시킵니다.
+	사망 시 아군 모두에게 5초 동안 상태이상 면역력을 100%만큼 증가시킵니다.
+	(이 효과는 제거되지 않습니다.)
+	',
+	'',
+	'황혼의수호자',
+	'피격 시 자신에게 3초 동안 막기 확률을 30%만큼 증가시킵니다.
+	(이 효과는 5초 마다 적용됩니다.)
+	막기 시 자신에게 1초 동안 무적 상태로 만듭니다.
+	추가로 적에게 방어력의 100% 만큼 돌진 피해를 입히고, 스킬 재사용 시간을 3초 연장시킵니다.
+	(이 효과는 5초 마다 적용됩니다.)
+	',
+	'',
+	'"저는 믿습니다. 여명 속에서 피어 오르는 한줄기 빛과도 같은 희망을..." - 엑슬리온
+
+	헤브니얼의 위기 속에서도 모두가 힘을 합치면 그것을 극복해 내리라는 희망을 잃지 않으며
+	자신의 신념을 모두에게 관철시키는 수호자.
+	같은 동족에게 무력을 사용하길 원치 않는 신념으로 인해 방어 능력이 각성하게 된다.
+	'
+FROM card_info a
+WHERE cardname = '엑슬리온';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 23916, 3608, 3932, 
+	'천상의검',
+	'적에게 공격력의 100%만큼 피해를 입힙니다.
+	대상이 침묵 상태일 떄 공격력의 75%만큼 관통 피해를 입힙니다.
+	대상이 표적 상태일 때 공격력의 75%만큼 관통 피해를 입힙니다.
+	',
+	'',
+	0,
+	'빛의포효',
+	'적 모두에게 공격력의 100%만큼 피해를 입히고, 4초 동안 치명타 확률, 회피 확률을 20%만큼 감소시킵니다.
+	혼돈의 문장 효과:1초 동안 기절상태로 만듭니다.
+	',
+	'',
+	0,
+	'신성한빛',
+	'반격 시 적에게 3초 동안 이로운 효과를 3개 제거하고, 자신에게 즉시 공격 기회를 부여합니다.
+	(이 효과는 1초마다 적용됩니다.)
+	사망 시 자신을 최대 생명력의 20%로 부활시키고, 즉시 공격 기회를 부여합니다.
+	(전투중 한번만 발동합니다.)
+	',
+	'',
+	'마력제어',
+	'자신의 생명력이 50% 이상일때 자신의 방어량을 20%만큼, 공격 속도를 30%만큼 증가시킵니다.
+	자신의 생명력이 50% 이하일때 자신의 공격량, 반격 확률을 20%만큼 증가시킵니다.
+	',
+	'',
+	'"마침내 우리는 그원의 길을 찾은 것 같군요" - 높은 하늘 부족 장로 기브엘
+
+	헤브니얼을 대표하는 현자 중 한 명으로 지금까지 높은 하늘 부족을 평화롭게 지도해 온 장로.
+	추방자들의 타락을 본 그녀는 더는 예전과 같은 방법으로 엘프들을 이끌 수 없음을 깨닫는다.
+	이후 타락한 자들을 정화하는 미느엘의 행보에 적극적으로 동참하고 있지만, 너무 변해가는 미느엘의 모습을 보며 걱정을 하는 중이다.
+	'
+FROM card_info a
+WHERE cardname = '기브엘';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 25443, 4626, 4626, 
+	'신성징벌',
+	'적에게 공격력의 150%만큼 피해를 입히고, 이로운 효과를 5개 제거합니다.
+	대상의 이로운 효과 제거시 2초 동안 공격력의 30%만큼 관통 출혈 피해를 입힙니다.
+	(제거한 수만큼 효과가 증가됩니다.)
+	',
+	'',
+	0,
+	'악마정화',
+	'적에게 공격력의 25%만큼 관통 피해를 입힙니다.
+	추가로 4초 동안 수면 상태로 만들고, 반격확률, 방어력을 20%만큼 감소시킵니다.
+	대상이 악마 종족일 경우 공격력의 75%만큼 관통 피해를 입힙니다.
+	(조건 발동시 피해를 입힌 후 수면이 적용됩니다.)
+	',
+	'',
+	0,
+	'심판자',
+	'자신의 생명력이 50% 이상 일때 자신의 공격량을 20%만큼 증가시킵니다.
+	자신의 생명력이 50% 이하 일때 자신의 방어량을 20%만큼, 공격 속도를 50%만큼 증가시킵니다.
+	',
+	'',
+	'천상의빛',
+	'전투가 시작되면 아군 모두의 치명타 확률을 10%만큼 증가시킵니다.
+	추가로 적 악마 종족의 치명타 확률과 공격 속도를 10%만큼 감소시킵니다.
+	치명타 공격 시 아군 모두의 해로운 효과를 1개 제거하고, 공격력의 15%만큼 생명력을 회복시킵니다.
+	',
+	'',
+	'"의로운 자들이여 희망을 거두지마라. 악은 모두 빛속에서 사라질 것이다." - 그라시아
+
+	래딜을 수호하는 집행자 중 한명인 그라시아는 오직 악을 징벌하기 위해서만 그 힘을 사용한다.
+	강대한 신성력을 보유한 그녀지만 전투를 선호하지는 않으며 되도록 평화로운 방법으로 문제를 해결하려고 한다.
+	하지만 일단 싸워야 하겠다고 마음먹은 그녀는 그 누구도 막을 수 없는 정의의 화신이 된다.
+	현재는 죽음을 퍼뜨리는 마녀를 쫓고 있다.
+	'
+FROM card_info a
+WHERE cardname = '그라시아';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 25188, 5366, 4070, 
+	'심판의일격',
+	'적에게 공격력의 50%만큼 관통 피해를 입히고,2초 동안 기절 상태로 만듭니다.
+	파멸의 문장 효과:공격력의 100%만큼 피해를 입힙니다.	
+	',
+	'',
+	0,
+	'신성정화',
+	'아군 모두에게 공격력의 25%만큼 생명력을 회복시키고, 4초 동안 막기확률, 탄력을 25%만큼 증가시킵니다.
+	',
+	'',
+	0,
+	'사자의문명',
+	'사망 시 생존한 아군에게 5초 동안 공격력을 25%만큼 증가시킵니다.
+	죽은 아군 모두를 최대 생명력의 20%로 부활시킵니다.
+	공통적으로 아군 모두에게 행동력을 50%만큼 채워줍니다.
+	(전투 중 한번만 발동됩니다.)
+	',
+	'',
+	'빛의가호',
+	'공격 시 적 모두의 이로운 효과를 1개 제거합니다.
+	피격 시 아군 모두의 해로운 효과를 1개 제거하고, 자신의 행동력을 20%만큼 채웁니다.
+	(이 효과는 1초 마다 적용 됩니다.)
+	',
+	'',
+	'"결국 모두 여린 불꽃입니다." - 세리엘
+
+	세상의 균형과 조화를 위해 탄생한 고결한 신의 사자들.
+	그들을 이끄는 지휘관이 바로 중품천사 세리엘이다.
+	눈앞의 모든 거싱 무너져 내리는 순간에도 결코 흔들림이 없는 의지는 함께 하는 이들에게 경외감을 불러일으키는데
+	이것은 비단 아군에게만 국한된 이야기는 아니다.
+	짙은 어둠속 한줄기 빛과 같은 그녀의 존재는 지금 이 순간에도 세상을 밝히고 있다.	
+	'
+FROM card_info a
+WHERE cardname = '세리얼';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 23916, 3608, 3932, 
+	'흡혈각인',
+	'적 모두에게 공격력의 30%만큼 흡혈 피해를 입히고, 5초 동안 공격력의 100%만큼 흡혈 출혈 피해를 입힙니다.
+	',
+	'',
+	0,
+	'진혈이식',
+	'아군에게 5초 동안 공격량, 명중 확률을 30%만큼 증가시키고, 방어량, 회피 확률을 20%만큼 감소시킵니다.
+	',
+	'',
+	0,
+	'상처핥기',
+	'공격기회를 가질때마다 자신이 출혈 상태이면 3초 동안 자신의 공격량, 공격속도를 20%만큼 증가시킵니다.
+	',
+	'',
+	'진혈의손길',
+	'일반 공격시 자신의 현재 생명력의 25%만큼 추가 피해를 입힙니다.
+	스킬 사용시 자신에게 7초 동안 최대 생명력을 20%만큼 증가시키고, 자기 자신에게 현재 생명력의 20%만큼 피해를 입힙니다.
+	(생명력 증가 효과는 제거되지 않습니다.)
+	',
+	'',
+	'사람들이 많은 래딜의 대도시에는, 항상 밤에만 모습을 보이는 인간이 있다고 한다.
+	그는 시끄러운 파티를 좋아하며 다른 인간들과 어울리는 것을 매우 즐긴다고 한다.
+	그는 매우 부유했고, 호사스러우며, 모르는 것이 없는 매력적인 존재였다.
+
+	하지만 그에 대한 미심쩍은 소문이 돌기 시작하였다. 아무도 그가 늙는 모습을 본 적이 없다는 것이다.
+	도시의 사람들은 그를 의심하기 시작하였고, 곧 그는 도시를 떠날수 밖에 없었다.
+
+	아주 오랜 세월이 지난 후 다시 나타난 그는 놀랍게도 변하지 않는 모습이었다.
+	'
+FROM card_info a
+WHERE cardname = '알폰스';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 31549, 5366, 4996, 
+	'흑마의발톱',
+	'적에게 공격력의 100%만큼 관통 피해를 입힙니다.
+	파멸의 문장 효과:공격력의 50%만큼 관통 피해를 입힙니다.
+	',
+	'',
+	0,
+	'붉은밤의악몽',
+	'적 모두에게 공격력의 100%만큼 피해를 입히고, 5초 동안 공격력의 50%만큼 관통 출혈 피해를 입힙니다.
+	',
+	'',
+	0,
+	'피의제단',
+	'명령을 수행할 때마다 2초 후에 마신 소환을 발동시킵니다.
+	(이 효과는 7초 마다 적용됩니다.)
+	마신 소환:출혈 상태인 적 모두에게 공격력의 100%만큼 흡혈 피해를 입히고, 1초 동안 기절 상태로 만듭니다.
+	피격 시 자신의 해로운 효과를 2개 제거합니다.
+	(이 효과는 3초 마다 적용됩니다.)
+	해로운 효과 제거시 2초 동안 치명타 확률을 25%만큼 증가시킵니다.
+	(제거한 개수만큼 효과가 증가됩니다.)
+	',
+	'',
+	'순혈결정',
+	'공격 시 적에게 3초 동안 막기 확률을 20%만큼 감소시킵니다.
+	대상이 출혈 상태일 때 5초 동안 공격력의 40%만큼 관통 출혈 피해를 입히고, 상태이상 면역력을 25%만큼 감소시킵니다.
+	',
+	'',
+	'"나에게 피를 바쳐라. 그리하면 너희의 염원대로 세상을 파멸시켜줄 것이다!" - 칼리
+
+	마수들의 지배자로 군림하고 있는 악의 여신.
+	모든 것을 잃어 나락으로 추락한 인간들이 부르짓는 세상의 파멸을 갈구하는 염원이 힘의 원천이 되어 지상계에 소환된다.
+	자신의 마수군단을 지상계에 소환하는 피의 제전을 준비하고 있다.
+	'
+FROM card_info a
+WHERE cardname = '칼리';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 30022, 5366, 5181, 
+	'흑의망령',
+	'적 모두에게 공격력의 100% 만큼 피해를 입히고, 25%확률로 2초 동안 수면 상태로 만듭니다.
+	혼돈의 문장 효과:1초 동안 기절 상태로 만듭니다.
+	절망의 문장 효과:5초 동안 방어량을 20%만큼 감소시킵니다.
+	',
+	'',
+	0,
+	'사신의숨결',
+	'적에게 공격력의 100% 만큼 관통 피해를 입히고, 절망의 문장을 2개 부여합니다.
+	',
+	'',
+	0,
+	'죽음의마도사',
+	'전투가 시작되면 적 모두에게 절망의 문장을 2개 부여합니다.
+	(이 효과는 제거되지 않습니다.)
+	사망 시 적 모두에게 5초 동안 공격력의 100%만큼 관통 출혈 피해를 입힙니다.
+	',
+	'',
+	'악마의계약',
+	'공격 시 적에게 절망의 문장을 1개 부여합니다.
+	피격 시 3초 후에 영혼 흡수를 발동시킵니다.
+	(이 효과는 7초 마다 적용됩니다.)
+	영혼 흡수:적 모두에게 공격력의 50%만큼 관통 피해를 입힙니다.
+	',
+	'',
+	'"나와 영혼의 계약을 해 볼텐가?" - 메피스토
+
+	인간이 가장 나약해진 틈을 타 매력적인 조건이 걸린 영혼의 계약을 건네는 악마.
+	인간의 본성인 욕심을 누구보다 잘 파악하고 있으며, 그 능력을 이용해 지금껏 단 한 번도 패배한 적이 없다.
+	'
+FROM card_info a
+WHERE cardname = '메피스토';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 23661, 3515, 3839, 
+	'매혹의꿈',
+	'적에게 공격력의 100%만큼 피해를 입힙니다.
+	추가로 30% 확률로 공격력의 350%만큼 피해를 입히고, 1초 동안 수면 상태로 만듭니다.
+	(각 효과는 개별적으로 확률이 적용됩니다.)
+	',
+	'',
+	0,
+	'밤의기억',
+	'적 모두에게 공격력의 75%만큼 관통 피해를 입히고, 30%확률로 2초 동안 침묵 상태로 만듭니다.
+	',
+	'',
+	1,
+	'마녀의권능',
+	'피격 시 자신에게 행동력을 25%만큼 채워주고, 5초 동안 공격량을 20%만큼 증가시킵니다.
+	(이 효과는 2초 마다 적용됩니다.)
+	공격 시 적에게 조건에 따른 연계효과를 발동합니다.
+	파멸의 문장 효과:5초 동안 공격력의 50%만큼 관통 출혈 피해를 입힙니다.
+	혼돈의 문장 효과:1.5초 동안 침묵 상태로 만듭니다.
+	절망의 문장 효과:5초 동안 방어량을 15%만큼 감소시킵니다.
+	',
+	'',
+	'꿈의선물',
+	'공격 기회를 가질때마다 아군 모두에게 20% 확률로 2초 동안 공격력, 공격 속도, 스킬속도, 치명타확률, 반격 확률을 20%만큼 증가시킵니다.
+	(각 효과는 개별적으로 적용됩니다.)
+	최대 생명력의 15% 이상 일때, 한번의 피해로 사망하면 회생 할 수 있습니다.
+	부활 시 자신에게 5초 동안 최대 생명력의 20%만큼 재생시킵니다.
+	',
+	'',
+	'"끝없는 꿈속으로 떠나볼까요" - 마리안느
+
+	꿈의 세계를 오갈 수 있는 마녀 마리안느는 세상을 떠돌며 관찰하는 것이 취미다.
+	어느날 그녀는 잠에서 깨지 못하는 한 소녀를 발견하고, 꿈속을 헤매는 소녀의 영혼이 몸을 찾도록 하는데 성공한다.
+	하지만 이 소녀의 정체는 오랜세월을 살아온 마녀조차 처음 보는 놀라운 것이었다.
+	이 천진난만한 소녀를 돌보기로 마음먹은 마녀는 그녀에게 인형으로 변장한 수하 두명을 붙여놓고 보호의 눈길을 거두지 않고 있다.	
+	'
+FROM card_info a
+WHERE cardname = '마리안느';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 25188, 4811, 4533, 
+	'화염가르기',
+	'적 모두에게 공격력의 75%만큼 피해를 입히고, 2초 동안 공격력의 50%만큼 관통 출혈 피해를 입힙니다.
+	추가로 파멸의 문장을 1개 부여합니다.
+	',
+	'',
+	0,
+	'벼락찍기',
+	'적에게 공격력의 125%만큼 피해를 입히고, 2초 동안 기절 상태로 만듭니다.
+	',
+	'',
+	0,
+	'광기의마녀',
+	'공격 기회를 가질때마다 아군 모두에게 3초 동안 공격량을 10%만큼 증가시킵니다.
+	공격 시 적에게 4초 동안 탈진 상태로 만듭니다.
+	피격 시 아군 모두에게 2초 동안 상태이상 면역력, 스킬 속도를 50%만큼 증가시킵니다.
+	(이 효과는 2초 마다 적용됩니다.)
+	',
+	'',
+	'광기의여파',
+	'적 모두의 스킬 속도를 30%만큼, 방어력, 막기 확률을 10%만큼 감소시킵니다.
+	',
+	'',
+	'"나는 극복해 낼거야. 절대 굴복하지 않을거라구" - 브린힐트
+
+	타오르는 불길의 힘을 간직하고 태어난 마족 브린힐트는 마족들의 숙며에 대해 의문을 갖고 있었다.
+	어째서 자신들은 타 종족들에게 공포와 증오의 대상일수 밖에 없는지 늘 궁금했다.
+	그녀는 마족의 끝을 모르는 호전성이 그 원인이라고 생각하였고 이를 제어할 방법을 찾기 시작한다.
+	요정왕의 도움으로 냉철한 이성을 깨우친 브린힐트는 새로운 힘을 손에 넣고 자신의 한계를 더욱 높여가고 있다.
+	'
+FROM card_info a
+WHERE cardname = '브린힐트';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 25188, 4811, 4533, 
+	'칠흑의칼날깃털',
+	'적에게 공격력의 20%만큼 관통 피해를 3회 입히고, 5초 동안 막기 확률을 25%만큼 감소시킵니다.
+	추가로 자신에게 5초 동안 공겨력의 10%만큼 출혈 피해를 입힙니다.
+	',
+	'',
+	0,
+	'타천사의권능',
+	'적에게 공격력의 125%만큼 피해를 입히고, 이로운 효과를 3개 제거합니다.
+	대상의 이로운 효과 제거시 제거한 개수에 따라 적에게 중첩 효과를 적용합니다.
+	(각 효과는 최대 1회만 적용됩니다.)
+	1개:공격력의 75%만큼 흡혈 피해를 입힙니다.
+	2개:5초 동안 방어력을 25%만큼 감소시킵니다.
+	3개:1초 동안 기절 상태로 만듭니다.
+	',
+	'',
+	0,
+	'타락의힘',
+	'적 모두의 막기 확률을 30%만큼, 방어력을 20%만큼 감소시킵니다.
+	',
+	'',
+	'어둠의포옹',
+	'전투가 시작되면 자신에게 즉시 공격 기회를 부여합니다.
+	공격 시 적에게 파멸의 문장을 1개 부여합니다.
+	피격 시 아군 모두의 행동력을 10%만큼 채우고, 3초 동안 수면 면역력을 50%만큼 증가시킵니다.
+	(이 효과는 3초 마다 적용됩니다.)
+	',
+	'',
+	'"물러서세요. 당신을 해치고 싶지 않아요" - 헥스
+
+	죽음의 천사라는 별칭을 가지고 있는 헥스는 알려진 바와 ㄷ르게 매우 평화로운 성격을 가지고 있다.
+	그녀는 수 천년 전에 대천사로서 수많은 업적을 수행하였지만 모종의 이유로 어둠의 권능을 받아들이게 되었고
+	마침내 새하얗던 날개를 검게 물들이게 된다.
+	이제 타천사 로서 그녀가 발휘하는 어둠의 힘을 그 누구도 감당하기 힘들 것이다.
+	'
+FROM card_info a
+WHERE cardname = '헥스';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 22142, 3538, 3538, 
+	'혈룡의분노',
+	'적 모두에게 공격력의 80%만큼 피해를 입히고, 파멸의 문장을 1개 부여합니다.
+	',
+	'',
+	0,
+	'정신붕괴',
+	'적에게 2.5초 동안 기절 상태로 만들고, 파멸의 문장을 1개 부여합니다.
+	',
+	'',
+	0,
+	'약점파악',
+	'아군 모두의 치명타 확률을 25%만큼 증가시킵니다.
+	',
+	'',
+	'사념의검',
+	'공격 시 적에게 행동력을 10%만큼 감소시킵니다.
+	',
+	'',
+	'용 군단의 수하로 용들이 원하는 것과 필요로 하는것을 모두 충족해 준다.
+	건장한 튜톤 기사 몇명이 덤벼도 버거운 상대로 날렵하고 공격성이 강하다.
+	'
+FROM card_info a
+WHERE cardname = '드라마담';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 26936, 4936, 4805, 
+	'별빛섬광',
+	'적 모두에게 공격력의 125%만큼 피해를 입힙니다.
+	절망의 문장 효과:5초 동안 방어량을 20%만큼 감소시킵니다.
+	',
+	'',
+	0,
+	'화염구',
+	'적에게 공격력의 200%만큼 피해를 입힙니다.
+	대상이 출혈 상태일 때 10초 동안 공격력의 100% 만큼 관통 출혈 피해를 입힙니다.
+	',
+	'',
+	2,
+	'마력증폭',
+	'사망 시 죽은 아군 모두를 최대 생명력의 10%로 부활시킵니다.
+	(이 효과는 5초 마다 적용됩니다.)
+	부활 시 아군 모두에게 조건에 따른 연계효과를 발동합니다.
+	대상의 생명력이 50% 이상일 때 5초 동안 공격력, 스킬 속도를 50%만큼 증가시킵니다.
+	',
+	'',
+	'지혜',
+	'자신의 스킬 속도를 50%만큼 증가시킵니다.
+	',
+	'',
+	'드진족의 여성들은 불의 힘을 래딜 여신의 힘이라 믿는다.
+	그래서 드진족의 여사제들은 무시무시한 화염에 자신을 던져 화염의 사제로 태어나기도 하는데 
+	특히 어둡고 악한 기운을 몰아내는 빛의 사제이기도 하다.
+	'
+FROM card_info a
+WHERE cardname = '불의여사제';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 20316, 3233, 3801, 
+	'침묵의파도',
+	'적에게 공격력의 100% 만큼 피해를 입히고, 3초 동안 침묵 상태로 만듭니다.
+	',
+	'',
+	0,
+	'심연의노래',
+	'적에게 4초 동안 수면 상태로 만들고, 혼돈의 문장을 2개 부여합니다.
+	',
+	'',
+	0,
+	'혼돈의창',
+	'공격 시 적에게 혼돈의 문장을 1개 부여합니다.
+	피격 시 적의 이로운 효과를 1개 제거하고, 스킬 재사용 시간을 1초 연장시킵니다.
+	(이 효과는 2초 마다 적용됩니다.)
+	',
+	'',
+	'심해의저주',
+	'적 모두의 상태이상 면역력을 20%만큼, 공격 속도를 10%만큼 감소시킵니다.
+	',
+	'',
+	'"바다의 분노가 너희를 심판할 것이다!" - 네쉬르
+
+	컬킨 해협을 지키는 어인족 수장.
+	수많은 종족에 의해 바다가 오염되는 것을 막기 위해 모험가들을 막아서고 있다.
+	'
+FROM card_info a
+WHERE cardname = '네쉬르';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 22827, 4849, 3932, 
+	'폭풍의장벽',
+	'아군에게 3초 동안 무적 상태로 만들고, 공격 속도를 100%만큼 감소시킵니다.
+	(무적 효과는 제거 되지 않습니다.)
+	',
+	'',
+	0,
+	'날카로운바람',
+	'적 모두에게 공격력의 100%만큼 피해를 입힙니다.
+	절망의 문장 효과:5초 동안 방어량을 20%만큼 감소시킵니다.
+	',
+	'',
+	0,
+	'바람의가호',
+	'아군 모두의 공격속도를 10%만큼, 치명타 확률, 막기 확률, 회피 확률, 반격 확률을 5%만큼 증가시킵니다.
+	',
+	'',
+	'질풍감옥',
+	'적 모두의 스킬 속도를 30%만큼, 공격량, 방어량, 상태이상 면역력을 10%만큼 감소시킵니다.
+	',
+	'',
+	'"바람을 느껴보아요" - 실피네스
+
+	이례적으로 승천의 길을 도달하지 않고도 검은 눈물에 저항한 엘프.
+	그 영향인지 날개가 아닌 바람의 정령이 깃들게 되어 바람을 자유자재로 다루는 능력을 얻게 된다.
+	'
+FROM card_info a
+WHERE cardname = '실피네스';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 28306, 5068, 4718, 
+	'죽음의손길',
+	'적 모두에게 공격력의 150%만큼 관통 피해를 입히고, 25%확률로 4초 동안 침묵 상태로 만듭니다.
+	(이 효과는 제거되지 않습니다.)
+	절망의 문장 효과:10초 동안 방어량을 20%만큼 감소시킵니다.
+	',
+	'',
+	3,
+	'타락한영혼',
+	'적에게 공격력의 200%만큼 피해를 입히고, 이로운 효과를 2개 제거합니다.
+	대상의 이로운 효과 제거시 절망의 문장을 1개 부여합니다.
+	(제거한 수만큼 효과가 증가됩니다.)
+	',
+	'',
+	0,
+	'영혼의부활',
+	'사망 시 자신을 최대 생명력의 10%로 부활시키고,
+	10초 동안 스킬 속도를 100%만큼 증가시킵니다.
+	추가로 행동력을 100%만큼 채워줍니다.
+	(전투 중 한 번만 발동됩니다.)
+	',
+	'',
+	'원한의절규',
+	'자신의 생명력이 50% 이상일때 치명타 확률을 25%만큼 증가시킵니다.
+	자신의 생명력이 50% 이하일때 공격력을 50%만큼 증가시킵니다.
+	',
+	'',
+	'"부질없는 삶을 버리고 죽음의 품에 안겨라" - 브리실다
+
+	래딜에서 최초로 검은 눈물의 타락을 맛본자이자 가장 자유롭게 검은 눈물의 힘을 사용할 수 있는 브리실다는
+	이 막대한 힘을 영혼과 죽음을 부리는데 사용하였다.
+	브리실다는 래딜에서의 영향력에 만족하지 않고 그녀의 세력을 넓히기 위해서라면 수단과 방법을 가리지 않고 있으며
+	시공을 넘어선 다른 차원의 장소까지 욕심을 내고 있다.	
+	'
+FROM card_info a
+WHERE cardname = '브리실다';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 22371, 4936, 4019, 
+	'신의가호',
+	'아군 모두에게 3초 동안 공격력의 100% 만큼 보호막을 생성하고, 3초 동안 해로운 효과를 3개 제거합니다.
+	',
+	'',
+	0,
+	'천상의보호막',
+	'아군에게 2초 동안 무적 상태로 만들고, 공격력의 60%만큼 재생시킵니다.
+	',
+	'',
+	0,
+	'회생의빛',
+	'사망 시 아군 모두에게 5초 동안 공격량을 25%만큼 상태이상 면역력을 100% 만큼 증가시킵니다.
+	',
+	'',
+	'인도자의가르침',
+	'전투가 시작되면 아군 모두의 스킬 속도를 20%만큼, 회복량을 30%만큼 증가시킵니다.
+	',
+	'',
+	'"승천을 위한 여정, 준비 되셨나요?" - 승천의 인도자
+
+	승천의 길을 완료한 후 아직 그 길을 도달하지 못한 이들을 인도하는 길잡이.
+	이들의 활약 덕분에 승천의 길에 도달하는 엘프들이 점차 늘어나게 된다.
+	'
+FROM card_info a
+WHERE cardname = '승천의인도자';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 25566, 4936, 4980, 
+	'영혼가르기',
+	'적에게 공격력의 150%만큼 피해를 입히고, 5초 동안 공격력의 50%만큼 관통 출혈 피해를 입힙니다.
+	',
+	'',
+	0,
+	'악마의갈퀴',
+	'적에게 공격력의 150%만큼 피해를 입히고, 파멸의 문장을 1개 부여합니다.
+	',
+	'',
+	0,
+	'매혹의눈길',
+	'공격 시 적에게 파멸의 문장, 혼돈의 문장, 절망의 문장을 1개씩 부여합니다.
+	(이 효과는 1초마다 적용됩니다.)
+	',
+	'',
+	'전투본능',
+	'공격 시 자신에게 1초 동안 행동력을 50%만큼 채워줍니다.
+	(이 효과는 1초 마다 적용됩니다.)
+	',
+	'',
+	'"그래, 어디 한번 나를 즐겁게 해보려무나" - 벨리스트라
+
+	벨리스트라는 매우 오만하고 도도한 악마의 여군주이다. 제멋대로에 자기 중심적인 벨리스트라는 
+	그 누구의 말도 신경 쓰지 않고 자신의 욕망만을 위해 살아가며 오직 전투의 열기 속에서만 희열을 느낀다.
+	그런 그녀이기에 지금까지 수많은 래딜의 강자들을 쓰러뜨려왔고 아직까지도 그녀의 승리를 향한 욕망은 식을줄 모르며
+	더욱 강한 자의 도전을 갈망하고 있다.
+	'
+FROM card_info a
+WHERE cardname = '벨리스트라';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 25566, 4936, 4980, 
+	'불새소환',
+	'적 모두에게 공격력의 100%만큼 피해를 입히고, 5초 동안 공격력의 50%만큼 관통 출혈 피해를 입힙니다.
+	추가로 이로운 효과를 1개 제거합니다.
+	',
+	'',
+	0,
+	'불벼락',
+	'적 모두에게 공격력의 125%만큼 피해를 입히고, 10초 동안 공격력의 50%만큼 관통 출혈 피해를 입힙니다.
+	추가로 파멸의 문장을 2개 부여합니다.
+	',
+	'',
+	3,
+	'마력폭주',
+	'아군 모두의 공격력을 15%만큼 증가시킵니다.
+	',
+	'',
+	'척살',
+	'공격 시 적에게 조건에 따른 연계효과를 발동합니다.
+	파멸의 문장 효과:공격력의 100%만큼 피해를 입힙니다.
+	',
+	'',
+	'불의 정령을 자유자재로 부리는 전설의 정령사.
+	주로 새의 형태를 지닌 정령을 소환하고 친구처럼 지낸다.
+	'
+FROM card_info a
+WHERE cardname = '이그니아';

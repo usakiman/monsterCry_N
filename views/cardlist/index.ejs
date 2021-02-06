@@ -37,14 +37,24 @@
                     $("#cardBody1").html(temp);                                        
                                         
                     temp = "<b>스킬 명</b> : "+result[0].card_active1_name + "<br/>";
-                    temp += "<b>스킬 시전 시간</b> : "+result[0].card_active1_ex_time + "초" + "<br/>";
+
+                    if (result[0].card_active1_ex_time == "0")
+                        temp += "<b>스킬 시전 시간</b> : 즉시 <br/>";
+                    else 
+                        temp += "<b>스킬 시전 시간</b> : "+result[0].card_active1_ex_time + "초" + "<br/>";
+                    
                     temp += "<b>스킬 재사용 시간</b> : "+result[0].cardactive1_waiting + "초";
                     $("#cardBody2_1").html(temp);
                     temp = "<b>스킬 설명</b> : "+result[0].card_active1_text.replace(/\r\n/g, "<br/>");
                     $("#cardText2_1").html(temp);
 
                     temp = "<b>스킬 명</b> : "+result[0].card_active2_name + "<br/>";
-                    temp += "<b>스킬 시전 시간</b> : "+result[0].card_active2_ex_time + "초" + "<br/>";
+
+                    if (result[0].card_active2_ex_time == "0")
+                        temp += "<b>스킬 시전 시간</b> : 즉시 <br/>";
+                    else
+                        temp += "<b>스킬 시전 시간</b> : "+result[0].card_active2_ex_time + "초" + "<br/>";
+                                            
                     temp += "<b>스킬 재사용 시간</b> : "+result[0].cardactive2_waiting + "초";
                     $("#cardBody2_2").html(temp);
                     temp = "<b>스킬 설명</b> : "+result[0].card_active2_text.replace(/\r\n/g, "<br/>");
