@@ -3155,3 +3155,41 @@ SELECT
 	'
 FROM card_info a
 WHERE cardname = '이그니아';
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 22599, 4543, 4281, 
+	'독의숨결',
+	'적에게 공격력의 50%만큼 관통 피해를 입히고, 5초 동안 공격력의 100% 만큼 관통 출혈 피해를 입힙니다.
+	대상이 출혈 상태일 때 공격력의 50%만큼 관통 피해를 입힙니다.
+	',
+	'',
+	0,
+	'드래곤의포효',
+	'적에게 공격력의 150%만큼 피해를 입히고, 맹독전이를 발동시킵니다.
+	맹독 전이:적 모두에게 1초 동안 침묵 상태로 만들고, 대상의 생명력이 50%이하 일때 5초 동안 공격력의 50%만큼 관통 출혈 피해를 입힙니다.
+	',
+	'',
+	0,
+	'맹독의피',
+	'자신의 출혈 면역력을 100%만큼 증가시킵니다.
+	사망 시 적 모두에게 10초 동안 공격력의 200% 만큼 관통 출혈 피해를 입힙니다.
+	',
+	'',
+	'광룡화',
+	'전투가 시작되면 자신에게 10초 동안 최대 생명력과 공격력을 20%만큼 증가시킵니다.
+	(이 효과는 제거되지 않습니다.)
+	',
+	'',
+	'볼칸은 드라코나안 신전 인근의 골짜기에 머물려 신전의 입구를 지키는 수문장이다.
+	골짜기를 떠나는 일이 없기 때문에 래딜의 다섯 용만큼 이름이 알려져 있지는 않다.
+	한편으로 혹자들은 볼칸이야말로 그들 각각을 능가하는 힘을 가졌기 때문에 신전의 선택을 받은 것이라고 짐작한다.
+	'
+FROM card_info a
+WHERE cardname = '볼칸';
