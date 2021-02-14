@@ -17,6 +17,7 @@ const session = require('express-session');
 const { response } = require('express');
 const path = require('path');   
 const mysqlStore = require('express-mysql-session')(session);    
+const cookieParser = require("cookie-parser");
 
 global.gLoginID = null;
 global.gSocket = null;
@@ -56,7 +57,9 @@ class App {
         // 미들웨어 셋팅
         this.app.use(morgan('dev'));        
         this.app.use(bodyParser.json());
-        this.app.use(bodyParser.urlencoded({ extended: false }));        
+        this.app.use(bodyParser.urlencoded({ extended: false }));   
+        
+        this.app.use(cookieParser());
         
         const sessionMysql = require(__dirname + "/conf/sessionMysql");
         var hostname = os.hostname();

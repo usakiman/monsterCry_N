@@ -117,3 +117,7 @@ SELECT * FROM (
 	) a, (SELECT @rownum := 0) rn
 	ORDER BY rownum DESC
 ) a LIMIT 10 OFFSET 0;
+
+
+
+https://backend-intro.vlpt.us/5/

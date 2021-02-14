@@ -6,7 +6,9 @@ const smtp = require("../conf/smtp");
 const emails = require("../conf/emails");
 const uuid = require("uuid4");
 const os = require('os');
-const path = require('path');   
+const path = require('path');
+
+const jwt = require("jsonwebtoken");
 
 var dt = require("date-utils");
 
@@ -324,3 +326,36 @@ exports.paging = (page, totalPost, maxPost, maxPage) => {
   
     return { startPage, endPage, hidePost, maxPost, totalPage, currentPage }; // (10)
   };
+
+
+
+  function generateToken(payload) {
+      return new Promise(
+        (resolve, reject) => {
+            jwt.sign(
+                payload,
+                "usaki_token_key_20210214",
+                {
+                    expiresIn: '1h'
+                }, (error, token) => {
+                    if(error) reject(error);
+                    resolve(token);
+                }
+            );
+        }
+      );
+  }
+
+  function decodeToken(token) {
+      return new Promise(
+          (resolve, reject) => {
+              jwt.verify(token, "usaki_token_key_20210214", (error, decoded) => {
+                  if (error) reject(error);
+                  resolve(decoded);
+              });
+          }
+      );
+  }
+
+  exports.generateToken = generateToken;
+  exports.decodeToken = decodeToken;

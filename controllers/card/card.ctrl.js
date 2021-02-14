@@ -118,6 +118,11 @@ exports.post_card_logout = (req, res) => {
         //req.session.isLogin = false;
         //req.isLogin = true;
         //req.session.loginID = "";    
+
+        res.cookie('access_token', null, {
+            maxAge: 0,
+            httpOnly:true
+        });
         
         util.log("logout");
 
@@ -125,7 +130,7 @@ exports.post_card_logout = (req, res) => {
     });  
 }
 
-exports.post_card_login = (req, res) => {    
+exports.post_card_login = async (req, res) => {    
     const ip = req.headers['x-forwarded-for'] ||  req.connection.remoteAddress;
     var uid = req.body.uid.toLowerCase();
     var pwd = req.body.pwd.toLowerCase();    
@@ -144,89 +149,160 @@ exports.post_card_login = (req, res) => {
     sqlUpdate = sqlUpdate.replace(":uid", uid);
     
     util.log(sql);
-        
-    gMysqlConn.query(sql, function (err, result, fields) {
-        if(err) util.log('query is not excuted. select fail\n' + err);
-        else {            
-            // 아이디 체크
-            if (result[0].cnt == 1) {
-                util.log(sqlLogin);
-                gMysqlConn.query(sqlLogin, params, function (err, result, fields) {
-                    if(err) util.log('query is not excuted. select fail\n' + err);
-                    else {                  
 
-                        var correct = 0;
-                        var status = -1;
-                        var vcode = "";                        
-                        
-                        result.forEach(element => {
-                            correct = 1;
-                            status = element.STATUS || element.status;
-                            vcode = element.loginCode;                            
-                        });
+    (async () => {
+        try {
+            const res1 = await util.queryExec_results(sql, "");
+            const res2 = await util.queryExec_results(sqlLogin, params);
 
-                        util.log("status["+status+"] vcode["+vcode+"] code["+code+"]");
-                        util.log("status["+status+"] vcode["+vcode+"] code["+code+"]");
-
-                        if (correct == 1) {
-                                                        
-                            if (status <= 0 || status == undefined) {
-                                res.json("승인이 필요합니다.");
-                            } else {                            
-                                if (vcode == code) {                                    
-                                    req.session.isLogin = true;                            
-                                    req.session.loginID = uid;
-                                    req.session.loginType = status;                                    
-                                    req.session.cookie.maxAge = (60 * 60000); // 세션 시간 60분
-                                    req.session.link = null;
-                                    req.session.link2 = null;
-                                    if (status == 3 || status == 4) {
-                                        req.session.link = "/admin/confirm";
-                                        req.session.link2 = "/asmonel";
-                                    }
-                                    if (status == 2) {
-                                        req.session.link2 = "/asmonel";
-                                    }                                    
-                                    req.session.save(function() {
-        
-                                    })
-                                    req.session.touch();
-
-                                    global.gLoginID = uid;
-                                    util.log(req.session);                                    
-        
-                                    gMysqlConn.query(sqlIP, params2, function(err, rows, fields) {
-                                        if (err) util.log('query is not excuted.\n' + err);
-                                        else {
-                                            util.log("insert execute --> user_login_info seq = "+rows.insertId);                            
-                                        }
-                                    });
-        
-                                    gMysqlConn.query(sqlUpdate, function(err, rows, fields) {
-                                        if (err) util.log('query is not excuted.\n' + err);
-                                        else {
-                                            util.log("insert execute --> last login update");
-                                        }
-                                    });
-        
-                                    res.json("SUCCESS");
-                                } else {
-                                    res.json("코드가 일치하지 않습니다.");
-                                }                                         
-                            }
-                                                                           
-                        } else{
-                            res.json("패스워드가 일치하지 않습니다.");
-                        }                        
-                                                                                                
-                    }
-                });  
+            if (res1[0].cnt == 1) {
+                var correct = 0;
+                var status = -1;
+                var vcode = "";                        
                 
+                res2.forEach(element => {
+                    correct = 1;
+                    status = element.STATUS || element.status;
+                    vcode = element.loginCode;                            
+                });
+
+                util.log("status["+status+"] vcode["+vcode+"] code["+code+"]");
+                util.log("status["+status+"] vcode["+vcode+"] code["+code+"]");
+
+                if (correct == 1) {
+                                                        
+                    if (status <= 0 || status == undefined) {
+                        res.json("승인이 필요합니다.");
+                    } else {                            
+                        if (vcode == code) {                                    
+                            req.session.isLogin = true;                            
+                            req.session.loginID = uid;
+                            req.session.loginType = status;                                    
+                            req.session.cookie.maxAge = (60 * 60000); // 세션 시간 60분
+                            req.session.link = null;
+                            req.session.link2 = null;
+                            if (status == 3 || status == 4) {
+                                req.session.link = "/admin/confirm";
+                                req.session.link2 = "/asmonel";
+                            }
+                            if (status == 2) {
+                                req.session.link2 = "/asmonel";
+                            }                                    
+                            req.session.save(function() {
+
+                            })
+                            req.session.touch();
+
+                            global.gLoginID = uid;
+                            util.log(req.session);
+                                                     
+                            res.cookie('access_token', await util.generateToken({loginid : uid}), { httpOnly: true, maxAge: 60 * 60000});                              
+
+                            const res3 = await util.queryExec_rows(sqlIP, params2);
+                            const res4 = await util.queryExec_rows(sqlUpdate, "");
+
+                            res.json("SUCCESS");
+                        } else {
+                            res.json("코드가 일치하지 않습니다.");
+                        }                                         
+                    }
+                                                                   
+                } else{
+                    res.json("패스워드가 일치하지 않습니다.");
+                }  
             } else {
                 res.json("해당 아이디는 존재 하지 않습니다.");
             }
+                        
+        } catch (err) {
+            util.log(err)
         }
-    });      
+    })();
+        
+    // gMysqlConn.query(sql, function (err, result, fields) {
+    //     if(err) util.log('query is not excuted. select fail\n' + err);
+    //     else {            
+    //         // 아이디 체크
+    //         if (result[0].cnt == 1) {
+    //             util.log(sqlLogin);
+    //             gMysqlConn.query(sqlLogin, params, function (err, result, fields) {
+    //                 if(err) util.log('query is not excuted. select fail\n' + err);
+    //                 else {                  
+
+    //                     var correct = 0;
+    //                     var status = -1;
+    //                     var vcode = "";                        
+                        
+    //                     result.forEach(element => {
+    //                         correct = 1;
+    //                         status = element.STATUS || element.status;
+    //                         vcode = element.loginCode;                            
+    //                     });
+
+    //                     util.log("status["+status+"] vcode["+vcode+"] code["+code+"]");
+    //                     util.log("status["+status+"] vcode["+vcode+"] code["+code+"]");
+
+    //                     if (correct == 1) {
+                                                        
+    //                         if (status <= 0 || status == undefined) {
+    //                             res.json("승인이 필요합니다.");
+    //                         } else {                            
+    //                             if (vcode == code) {                                    
+    //                                 req.session.isLogin = true;                            
+    //                                 req.session.loginID = uid;
+    //                                 req.session.loginType = status;                                    
+    //                                 req.session.cookie.maxAge = (60 * 60000); // 세션 시간 60분
+    //                                 req.session.link = null;
+    //                                 req.session.link2 = null;
+    //                                 if (status == 3 || status == 4) {
+    //                                     req.session.link = "/admin/confirm";
+    //                                     req.session.link2 = "/asmonel";
+    //                                 }
+    //                                 if (status == 2) {
+    //                                     req.session.link2 = "/asmonel";
+    //                                 }                                    
+    //                                 req.session.save(function() {
+        
+    //                                 })
+    //                                 req.session.touch();
+
+    //                                 global.gLoginID = uid;
+    //                                 util.log(req.session);
+                                                             
+    //                                 res.cookie('access_token', util.generateToken({loginid : uid}), { httpOnly: true, maxAge: 60 * 60000});  
+        
+    //                                 gMysqlConn.query(sqlIP, params2, function(err, rows, fields) {
+    //                                     if (err) util.log('query is not excuted.\n' + err);
+    //                                     else {
+    //                                         util.log("insert execute --> user_login_info seq = "+rows.insertId);                            
+    //                                     }
+    //                                 });
+        
+    //                                 gMysqlConn.query(sqlUpdate, function(err, rows, fields) {
+    //                                     if (err) util.log('query is not excuted.\n' + err);
+    //                                     else {
+    //                                         util.log("insert execute --> last login update");
+    //                                     }
+    //                                 });
+        
+    //                                 res.json("SUCCESS");
+    //                             } else {
+    //                                 res.json("코드가 일치하지 않습니다.");
+    //                             }                                         
+    //                         }
+                                                                           
+    //                     } else{
+    //                         res.json("패스워드가 일치하지 않습니다.");
+    //                     }                        
+                                                                                                
+    //                 }
+    //             });  
+                
+    //         } else {
+    //             res.json("해당 아이디는 존재 하지 않습니다.");
+    //         }
+    //     }
+    // });      
 };
 
 exports.post_card_write = ( req , res ) => {
@@ -292,3 +368,37 @@ exports.post_card_result = (req, res) => {
 
     res.json(returnActPower + "," + returnSkill1_Wtime + "," + returnSkill2_Wtime + "," + returnSkill1_chance + "," + returnSkill2_chance + "," + returnSkill1_etc + "," + returnSkill2_etc);
 }
+
+
+
+exports.get_login_auth = async (req, res) => {
+    
+    let token = null;
+    try {
+        token = await util.generateToken({ username : 'usaki'});
+    } catch (e) {
+        console.log(e)
+    }
+
+    res.cookie('access_token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7});      
+    res.send(token);  
+}
+
+exports.get_logout_auth = (req, res) => {
+    res.cookie('access_token', null, {
+        maxAge: 0,
+        httpOnly:true
+    });
+    //res.status = 204;
+
+    res.send("logout");
+}
+
+exports.get_auth_check = (req, res) => {
+    
+    console.log(req.session)
+    console.log(req.user);
+
+    res.send("check");
+}
+

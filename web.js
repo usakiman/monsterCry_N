@@ -1,11 +1,16 @@
 const app = require('./app.js');
 const port = process.env.port || 8001
 
-// app.set('views', __dirname + '/views');
-// app.set('view engine', 'ejs')
-// app.get('/', (req, res) => {
-//   res.render('index')
-// })
+// const jwt = require("jsonwebtoken");
+// const token = jwt.sign(
+//     { foo: 'bar'}, 'secket-key', {expiresIn: '7d'}, (err, token) => {
+//         if (err) {
+//             console.log(err);
+//             return;
+//         }
+//         console.log(token);
+//     }
+// )
 
 let util = require("./controllers/util");
 gMysqlConn = util.mysqlConnecter();

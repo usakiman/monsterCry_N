@@ -1,6 +1,8 @@
 const { Router } = require('express');
 const router = Router();
 const ctrl = require('./card.ctrl');
+const util = require("../util");
+const { request } = require('../../app');
 
 function getMiddleWare( req, res, next ){    
     if (req.session.loginType == undefined) {
@@ -38,6 +40,29 @@ function postMiddleWareAllUser( req, res, next ){
     }
 }
 
+const getMiddleWareJwt = (req, res, next) => {
+    console.log(req.cookies);
+    const token = req.cookies['access_token'];    
+    if (token != undefined) {
+        try {
+            const decoded = util.decodeToken(token);
+
+            if (Date.now() / 1000 - decoded.iat > 60 * 60 *24) {
+                const { _id, profile } = decoded;
+                const freshToken = util.generateToken({ username : 'usaki'});
+                res.cookie('access_token', freshToken, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7}); 
+            }
+
+            req.user = decoded;
+        } catch (e) {
+            req.user = null;
+        }
+    }
+
+    next();
+}
+
+
 router.get('/', getMiddleWare , (req,res) => {
     res.send('까꿍~? how are you?');
 });
@@ -53,6 +78,13 @@ router.post("/logout", ctrl.post_card_logout);
 router.post("/join", ctrl.post_card_join);
 
 router.post('/write', postMiddleWare, ctrl.post_card_write );
+
+
+// react관련
+
+router.get("/login_auth", ctrl.get_login_auth);
+router.get("/logout_auth", ctrl.get_logout_auth);
+router.get("/auth_check", getMiddleWareJwt, ctrl.get_auth_check);
 
 module.exports = router;
 
