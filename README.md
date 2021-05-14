@@ -2,7 +2,7 @@
 node js 관련 스터디중
 
 20201203
-github 관련 확인...
+github 관련 확인
 
 20201204
 nodemon 설치관련
@@ -17,5 +17,3 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDcZVbsLgBS++dMHbsYGliNZRowJ6ETfQFkn7jH4tg9
 
 cafe24 key name
 usakiKey
-
-git 설정해야됨
