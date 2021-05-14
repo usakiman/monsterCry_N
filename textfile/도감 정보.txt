@@ -3193,3 +3193,88 @@ SELECT
 	'
 FROM card_info a
 WHERE cardname = '볼칸';
+
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 22644, 3423, 4024, 
+	'만월의일격',
+	'적에게 공격력의 100% 만큼 관통 피해를 입히고, 3초 동안 공격 속도를 100%만큼 감소시킵니다.
+	',
+	'',
+	0,
+	'푸른칼날의바람',
+	'적 모두에게 공격력의 75%만큼 피해를 입히고, 3초 동안 공격력의 50%만큼 관통 출혈 피해를 입힙니다.
+	',
+	'',
+	0,
+	'차크람의가호',
+	'공격 시 자신에게 5초 동안 공격 속도를 20%만큼 증가시키고, 공격력의 50%만큼 보호막을 생성합니다.
+	( 이 효과는 3초 마다 적용되며, 보호막 효과는 제거되지 않습니다.)
+	',
+	'',
+	'균열지속',
+	'공격 시 적에게 3초 동안 방어력을 10%만큼 감소 시킵니다.
+	치명타 공격 시 자신에게 5초 동안 공격량을 10%만큼 증가시킵니다.
+	',
+	'',
+	'차크람을 주무기로 사용하는 요정 부족의 출신.
+
+	유년 시절부터 사냥꾼으로서 성장하였지만, 검은 눈물로 부족이 멸망하여 혼자 살아남게 된다.
+	이후 유적을 찾아다니며 도굴꾼으로 살아가던 그녀.
+	어느날 달의 유적을 헤매던 중 달의 여신에게 선택받게 되고, 푸르빛을 띠는 신비한 차크람을 얻게 된다.
+	'
+FROM card_info a
+WHERE cardname = '라라';
+
+
+INSERT INTO card_info_detail (main_seq, card_lv, card_star, card_health, card_attack, card_defense, 
+card_active1_name, card_active1_text, card_active1_data, card_active1_ex_time, 
+card_active2_name, card_active2_text, card_active2_data, card_active2_ex_time, 
+card_passive1_name, card_passive1_text, card_passive1_data,
+card_passive2_name, card_passive2_text, card_passive2_data,
+card_info)
+SELECT	
+	a.seq,
+	80, 5, 26460, 3562, 6337, 
+	'업화의의식',
+	'자신에게 5초 동안 방어력을 100%만큼 증가시킵니다.
+	추가로 아군 모두에게 2초 동안 상태이상 면역력을 100%만큼 증가시키고, 5초 동안 최대 생명력을 5%만큼 증가시킵니다.
+	',
+	'',
+	0,
+	'업화방출',
+	'적 모두에게 공격력의 50%만큼 흡혈 피해를 입히고, 3초 동안 공격력의 100% 만큼 흡혈 출혈 피해를 입힙니다.
+	',
+	'',
+	0,
+	'구속 속의 화염',
+	'일반 공격 시 적에게 자신의 현재 생명력의 25%만큼 피해를 입힙니다.
+	피격 시 자신에게 3초 동안 흡혈량을 15%만큼, 막기 확률을 20%만큼 증가시킵니다.
+	(이 효과는 3초 마다 적용됩니다.)
+	막기 시 적 모두에게 5초 동안 방어력의 100% 만큼 돌진 출혈 피해를 입힙니다.
+	(이 효과는 3초 마다 적용됩니다.)
+	',
+	'',
+	'불의날개',
+	'명령을 수행할 때마다 적 모두에게 3초 동안 명중 확률, 막기 확률, 스킬 속도를 30%만큼 감소시킵니다.
+	(이 효과는 5초마다 적용됩니다.)
+	자신의 생명력이 [80%/60%/40%] 일 때마다 방어력을 15%만큼 증가시킵니다.
+	(이 효과는 제거 되지 않습니다.)
+	',
+	'',
+	'차크람을 주무기로 사용하는 요정 부족의 출신.
+
+	유년 시절부터 사냥꾼으로서 성장하였지만, 검은 눈물로 부족이 멸망하여 혼자 살아남게 된다.
+	이후 유적을 찾아다니며 도굴꾼으로 살아가던 그녀.
+	어느날 달의 유적을 헤매던 중 달의 여신에게 선택받게 되고, 푸르빛을 띠는 신비한 차크람을 얻게 된다.
+	'
+FROM card_info a
+WHERE cardname = '칼릭스';

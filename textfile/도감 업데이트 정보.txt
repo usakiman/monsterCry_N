@@ -1,0 +1,61 @@
+UPDATE card_info_detail
+SET card_active1_text = '적에게 공격력의 20%만큼 관통 피해를 3회 입히고, 5초 동안 막기 확률을 25%만큼 감소시킵니다.'
+WHERE main_seq IN (
+	SELECT seq FROM card_info
+	WHERE cardname = '헥스'
+);
+
+UPDATE card_info_detail
+SET card_active1_text = '적에게 공격력의 75%만큼 관통 피해를 입히고, 행동력을 50%만큼 감소시킵니다.
+추가로 0.5초 동안 기절 상태로 만듭니다.
+절망의 문장 효과: 6초 동안 공격력을 15%만큼 감소시킵니다.
+',
+card_active2_text = '적 모두에게 4초동안 공격력의 100%만큼 흡혈 출혈 피해를 입히고, 
+6초 동안 공격 속도를 20%만큼 감소시킵니다.
+',
+card_passive1_text = '스킬 사용시 적 모두의 이로운 효과를 1개 제거합니다.
+(이 효과는 3초 마다 적용됩니다.) 
+대상의 이로운 효과 제거시 절망의 문장을 1개 부여합니다. 
+(제거한 수만큼 효과가 증가됩니다.) 
+피격시 자신의 해로운 효과를 1개 제거합니다. 
+(이 효과는 3초 마다 적용됩니다.) 
+해로운 효과 제거시 2초동안 최대 생명력의 15%만큼 보호막을 생성합니다.
+'	
+WHERE main_seq IN (
+	SELECT seq FROM card_info
+	WHERE cardname = '딜라이트'
+);
+
+UPDATE card_info_detail
+SET card_active1_text = '적 모두에게 공격력의 100%만큼 피해를 입힙니다. 
+추가로 대상이 침묵 상태일 때 공격력의 100%만큼 흡혈 피해를 입힙니다.
+',
+card_active2_text = '적에게 공격력의 60% 만큼 관통 피해를 2회 입히고,  
+3초 동안 회피 확률을 20%만큼 감소시킵니다. 
+추가로 대상이 보호막, 도발 상태일 때 공격력의 80%만큼 피해를 입힙니다. 
+(각 효과는 개별적으로 적용됩니다.)
+'	
+WHERE main_seq IN (
+	SELECT seq FROM card_info
+	WHERE cardname = '산드라'
+);
+
+
+UPDATE card_info_detail
+SET card_active1_text = '적에게 공격력의 180%만큼 관통 피해를 입히고, 
+3초 동안 수면 상태로 만듭니다. 
+혼돈의 문장 효과:2초 동안 탈진 상태로 만듭니다. 
+(이 효과는 제거 되지 않습니다.)	
+',
+card_passive2_text = '자신의 명중 확률을 10%만큼 증가시킵니다. 
+회피 시 자신에게 3초 동안 스킬 속ㄷ를 50%만큼 증가시킵니다. 
+사망 시 적 모두에게 3초 동안 스킬 속도를 50%만큼, 공격량을 20%만큼 감소시킵니다. 
+(이 효과는 제거 되지 않습니다.)
+'	
+WHERE main_seq IN (
+	SELECT seq FROM card_info
+	WHERE cardname = '레가드리스'
+);
+
+
+	
